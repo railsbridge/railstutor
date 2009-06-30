@@ -1,0 +1,759 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Redmine::Plugin</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Redmine::Plugin</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/redmine/plugin_rb.html">
+                lib/redmine/plugin.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Base class for Redmine plugins. Plugins are registered using the <tt><a
+href="Plugin.html#M001043">register</a></tt> class method that acts as the
+public constructor.
+</p>
+<pre>
+  Redmine::Plugin.register :example do
+    name 'Example plugin'
+    author 'John Smith'
+    description 'This is an example plugin for Redmine'
+    version '0.0.1'
+    settings :default =&gt; {'foo'=&gt;'bar'}, :partial =&gt; 'settings/settings'
+  end
+</pre>
+<h3><a href="Plugin.html">Plugin</a> attributes</h3>
+<p>
+<tt>settings</tt> is an optional attribute that let the plugin be
+configurable. It must be a hash with the following keys:
+</p>
+<ul>
+<li><tt>:default</tt>: default value for the plugin settings
+
+</li>
+<li><tt>:partial</tt>: path of the configuration partial view, relative to the
+plugin <tt>app/views</tt> directory
+
+</li>
+</ul>
+<p>
+Example:
+</p>
+<pre>
+  settings :default =&gt; {'foo'=&gt;'bar'}, :partial =&gt; 'settings/settings'
+</pre>
+<p>
+In this example, the settings partial will be found here in the plugin
+directory: <tt>app/views/settings/_settings.rhtml</tt>.
+</p>
+<p>
+When rendered, the plugin settings value is available as the local variable
+<tt>settings</tt>
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M001048">&lt;=&gt;</a>&nbsp;&nbsp;
+      <a href="#M001055">activity_provider</a>&nbsp;&nbsp;
+      <a href="#M001051">add_menu_item</a>&nbsp;&nbsp;
+      <a href="#M001044">all</a>&nbsp;&nbsp;
+      <a href="#M001046">clear</a>&nbsp;&nbsp;
+      <a href="#M001057">configurable?</a>&nbsp;&nbsp;
+      <a href="#M001042">def_field</a>&nbsp;&nbsp;
+      <a href="#M001052">delete_menu_item</a>&nbsp;&nbsp;
+      <a href="#M001045">find</a>&nbsp;&nbsp;
+      <a href="#M001050">menu</a>&nbsp;&nbsp;
+      <a href="#M001047">new</a>&nbsp;&nbsp;
+      <a href="#M001053">permission</a>&nbsp;&nbsp;
+      <a href="#M001054">project_module</a>&nbsp;&nbsp;
+      <a href="#M001043">register</a>&nbsp;&nbsp;
+      <a href="#M001049">requires_redmine</a>&nbsp;&nbsp;
+      <a href="#M001056">wiki_format_provider</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">id</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">registered_plugins</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M001044" class="method-detail">
+        <a name="M001044"></a>
+
+        <div class="method-heading">
+          <a href="#M001044" class="method-signature">
+          <span class="method-name">all</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns an array off <a href="Plugin.html#M001044">all</a> registered
+plugins
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001044-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001044-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/redmine/plugin.rb, line 77</span>
+77:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">all</span>
+78:       <span class="ruby-identifier">registered_plugins</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">sort</span>
+79:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001046" class="method-detail">
+        <a name="M001046"></a>
+
+        <div class="method-heading">
+          <a href="#M001046" class="method-signature">
+          <span class="method-name">clear</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Clears the registered plugins hash It doesn&#8216;t unload installed
+plugins
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001046-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001046-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/redmine/plugin.rb, line 89</span>
+89:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">clear</span>
+90:       <span class="ruby-ivar">@registered_plugins</span> = {}
+91:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001042" class="method-detail">
+        <a name="M001042"></a>
+
+        <div class="method-heading">
+          <a href="#M001042" class="method-signature">
+          <span class="method-name">def_field</span><span class="method-args">(*names)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001042-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001042-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/redmine/plugin.rb, line 51</span>
+51:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">def_field</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">names</span>)
+52:         <span class="ruby-identifier">class_eval</span> <span class="ruby-keyword kw">do</span> 
+53:           <span class="ruby-identifier">names</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span>
+54:             <span class="ruby-identifier">define_method</span>(<span class="ruby-identifier">name</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-operator">*</span><span class="ruby-identifier">args</span><span class="ruby-operator">|</span> 
+55:               <span class="ruby-identifier">args</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-value">? </span><span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-node">&quot;@#{name}&quot;</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-node">&quot;@#{name}&quot;</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+56:             <span class="ruby-keyword kw">end</span>
+57:           <span class="ruby-keyword kw">end</span>
+58:         <span class="ruby-keyword kw">end</span>
+59:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001045" class="method-detail">
+        <a name="M001045"></a>
+
+        <div class="method-heading">
+          <a href="#M001045" class="method-signature">
+          <span class="method-name">find</span><span class="method-args">(id)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Finds a plugin by its id Returns a <a
+href="PluginNotFound.html">PluginNotFound</a> exception if the plugin
+doesn&#8216;t exist
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001045-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001045-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/redmine/plugin.rb, line 83</span>
+83:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">id</span>)
+84:       <span class="ruby-identifier">registered_plugins</span>[<span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_sym</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">raise</span>(<span class="ruby-constant">PluginNotFound</span>)
+85:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001047" class="method-detail">
+        <a name="M001047"></a>
+
+        <div class="method-heading">
+          <a href="#M001047" class="method-signature">
+          <span class="method-name">new</span><span class="method-args">(id)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001047-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001047-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/redmine/plugin.rb, line 93</span>
+93:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">id</span>)
+94:       <span class="ruby-ivar">@id</span> = <span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_sym</span>
+95:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001043" class="method-detail">
+        <a name="M001043"></a>
+
+        <div class="method-heading">
+          <a href="#M001043" class="method-signature">
+          <span class="method-name">register</span><span class="method-args">(id, &amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<a href="Plugin.html">Plugin</a> constructor
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001043-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001043-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/redmine/plugin.rb, line 65</span>
+65:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">register</span>(<span class="ruby-identifier">id</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+66:       <span class="ruby-identifier">p</span> = <span class="ruby-identifier">new</span>(<span class="ruby-identifier">id</span>)
+67:       <span class="ruby-identifier">p</span>.<span class="ruby-identifier">instance_eval</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+68:       <span class="ruby-comment cmt"># Set a default name if it was not provided during registration</span>
+69:       <span class="ruby-identifier">p</span>.<span class="ruby-identifier">name</span>(<span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">humanize</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">p</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">nil?</span>
+70:       <span class="ruby-comment cmt"># Adds plugin locales if any</span>
+71:       <span class="ruby-comment cmt"># YAML translation files should be found under &lt;plugin&gt;/config/locales/</span>
+72:       <span class="ruby-operator">::</span><span class="ruby-constant">I18n</span>.<span class="ruby-identifier">load_path</span> <span class="ruby-operator">+=</span> <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">glob</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">RAILS_ROOT</span>, <span class="ruby-value str">'vendor'</span>, <span class="ruby-value str">'plugins'</span>, <span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-value str">'config'</span>, <span class="ruby-value str">'locales'</span>, <span class="ruby-value str">'*.yml'</span>))
+73:       <span class="ruby-identifier">registered_plugins</span>[<span class="ruby-identifier">id</span>] = <span class="ruby-identifier">p</span>
+74:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M001048" class="method-detail">
+        <a name="M001048"></a>
+
+        <div class="method-heading">
+          <a href="#M001048" class="method-signature">
+          <span class="method-name">&lt;=&gt;</span><span class="method-args">(plugin)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001048-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001048-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/redmine/plugin.rb, line 97</span>
+97:     <span class="ruby-keyword kw">def</span> <span class="ruby-operator">&lt;=&gt;</span>(<span class="ruby-identifier">plugin</span>)
+98:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">plugin</span>.<span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span>
+99:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001055" class="method-detail">
+        <a name="M001055"></a>
+
+        <div class="method-heading">
+          <a href="#M001055" class="method-signature">
+          <span class="method-name">activity_provider</span><span class="method-args">(*args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Registers an activity provider.
+</p>
+<p>
+Options:
+</p>
+<ul>
+<li><tt>:class_name</tt> - one or more model(s) that provide these events
+(inferred from event_type by default)
+
+</li>
+<li><tt>:default</tt> - setting this option to false will make the events not
+displayed by default
+
+</li>
+</ul>
+<p>
+A model can provide several activity event types.
+</p>
+<p>
+Examples:
+</p>
+<pre>
+  register :news
+  register :scrums, :class_name =&gt; 'Meeting'
+  register :issues, :class_name =&gt; ['Issue', 'Journal']
+</pre>
+<p>
+Retrieving events: Associated model(s) must implement the find_events class
+method. ActiveRecord models can use acts_as_activity_provider as a way to
+implement this class method.
+</p>
+<p>
+The following call should return <a href="Plugin.html#M001044">all</a> the
+scrum events visible by current user that occured in the 5 last days:
+</p>
+<pre>
+  Meeting.find_events('scrums', User.current, 5.days.ago, Date.today)
+  Meeting.find_events('scrums', User.current, 5.days.ago, Date.today, :project =&gt; foo) # events for project foo only
+</pre>
+<p>
+Note that :view_scrums <a href="Plugin.html#M001053">permission</a> is
+required to view these events in the activity view.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001055-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001055-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redmine/plugin.rb, line 216</span>
+216:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">activity_provider</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+217:       <span class="ruby-constant">Redmine</span><span class="ruby-operator">::</span><span class="ruby-constant">Activity</span>.<span class="ruby-identifier">register</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+218:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001051" class="method-detail">
+        <a name="M001051"></a>
+
+        <div class="method-heading">
+          <span class="method-name">add_menu_item</span><span class="method-args">(menu, item, url, options={})</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Plugin.html#M001050">menu</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001057" class="method-detail">
+        <a name="M001057"></a>
+
+        <div class="method-heading">
+          <a href="#M001057" class="method-signature">
+          <span class="method-name">configurable?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns <tt>true</tt> if the plugin can be configured.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001057-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001057-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redmine/plugin.rb, line 231</span>
+231:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">configurable?</span>
+232:       <span class="ruby-identifier">settings</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">settings</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">settings</span>[<span class="ruby-identifier">:partial</span>].<span class="ruby-identifier">blank?</span>
+233:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001052" class="method-detail">
+        <a name="M001052"></a>
+
+        <div class="method-heading">
+          <a href="#M001052" class="method-signature">
+          <span class="method-name">delete_menu_item</span><span class="method-args">(menu, item)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Removes <tt>item</tt> from the given <tt><a
+href="Plugin.html#M001050">menu</a></tt>.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001052-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001052-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redmine/plugin.rb, line 147</span>
+147:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">delete_menu_item</span>(<span class="ruby-identifier">menu</span>, <span class="ruby-identifier">item</span>)
+148:       <span class="ruby-constant">Redmine</span><span class="ruby-operator">::</span><span class="ruby-constant">MenuManager</span>.<span class="ruby-identifier">map</span>(<span class="ruby-identifier">menu</span>).<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">item</span>)
+149:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001050" class="method-detail">
+        <a name="M001050"></a>
+
+        <div class="method-heading">
+          <a href="#M001050" class="method-signature">
+          <span class="method-name">menu</span><span class="method-args">(menu, item, url, options={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Adds an item to the given <tt><a href="Plugin.html#M001050">menu</a></tt>.
+The <tt>id</tt> parameter (equals to the project id) is automatically added
+to the url.
+</p>
+<pre>
+  menu :project_menu, :plugin_example, { :controller =&gt; 'example', :action =&gt; 'say_hello' }, :caption =&gt; 'Sample'
+</pre>
+<p>
+<tt>name</tt> parameter can be: :top_menu, :account_menu, :application_menu
+or :project_menu
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001050-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001050-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redmine/plugin.rb, line 141</span>
+141:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">menu</span>(<span class="ruby-identifier">menu</span>, <span class="ruby-identifier">item</span>, <span class="ruby-identifier">url</span>, <span class="ruby-identifier">options</span>={})
+142:       <span class="ruby-constant">Redmine</span><span class="ruby-operator">::</span><span class="ruby-constant">MenuManager</span>.<span class="ruby-identifier">map</span>(<span class="ruby-identifier">menu</span>).<span class="ruby-identifier">push</span>(<span class="ruby-identifier">item</span>, <span class="ruby-identifier">url</span>, <span class="ruby-identifier">options</span>)
+143:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001053" class="method-detail">
+        <a name="M001053"></a>
+
+        <div class="method-heading">
+          <a href="#M001053" class="method-signature">
+          <span class="method-name">permission</span><span class="method-args">(name, actions, options = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Defines a <a href="Plugin.html#M001053">permission</a> called <tt>name</tt>
+for the given <tt>actions</tt>.
+</p>
+<p>
+The <tt>actions</tt> argument is a hash with controllers as keys and
+actions as values (a single value or an array):
+</p>
+<pre>
+  permission :destroy_contacts, { :contacts =&gt; :destroy }
+  permission :view_contacts, { :contacts =&gt; [:index, :show] }
+</pre>
+<p>
+The <tt>options</tt> argument can be used to make the <a
+href="Plugin.html#M001053">permission</a> public (implicitly given to any
+user) or to restrict users the <a href="Plugin.html#M001053">permission</a>
+can be given to.
+</p>
+<p>
+Examples
+</p>
+<pre>
+  # A permission that is implicitly given to any user
+  # This permission won't appear on the Roles &amp; Permissions setup screen
+  permission :say_hello, { :example =&gt; :say_hello }, :public =&gt; true
+
+  # A permission that can be given to any user
+  permission :say_hello, { :example =&gt; :say_hello }
+
+  # A permission that can be given to registered users only
+  permission :say_hello, { :example =&gt; :say_hello }, :require =&gt; loggedin
+
+  # A permission that can be given to project members only
+  permission :say_hello, { :example =&gt; :say_hello }, :require =&gt; member
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001053-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001053-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redmine/plugin.rb, line 173</span>
+173:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">permission</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">actions</span>, <span class="ruby-identifier">options</span> = {})
+174:       <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@project_module</span>
+175:         <span class="ruby-constant">Redmine</span><span class="ruby-operator">::</span><span class="ruby-constant">AccessControl</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">map</span><span class="ruby-operator">|</span> <span class="ruby-identifier">map</span>.<span class="ruby-identifier">project_module</span>(<span class="ruby-ivar">@project_module</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">map</span><span class="ruby-operator">|</span><span class="ruby-identifier">map</span>.<span class="ruby-identifier">permission</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">actions</span>, <span class="ruby-identifier">options</span>)}}
+176:       <span class="ruby-keyword kw">else</span>
+177:         <span class="ruby-constant">Redmine</span><span class="ruby-operator">::</span><span class="ruby-constant">AccessControl</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">map</span><span class="ruby-operator">|</span> <span class="ruby-identifier">map</span>.<span class="ruby-identifier">permission</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">actions</span>, <span class="ruby-identifier">options</span>)}
+178:       <span class="ruby-keyword kw">end</span>
+179:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001054" class="method-detail">
+        <a name="M001054"></a>
+
+        <div class="method-heading">
+          <a href="#M001054" class="method-signature">
+          <span class="method-name">project_module</span><span class="method-args">(name, &amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Defines a project module, that can be enabled/disabled for each project.
+Permissions defined inside <tt>block</tt> will be bind to the module.
+</p>
+<pre>
+  project_module :things do
+    permission :view_contacts, { :contacts =&gt; [:list, :show] }, :public =&gt; true
+    permission :destroy_contacts, { :contacts =&gt; :destroy }
+  end
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001054-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001054-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redmine/plugin.rb, line 188</span>
+188:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">project_module</span>(<span class="ruby-identifier">name</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+189:       <span class="ruby-ivar">@project_module</span> = <span class="ruby-identifier">name</span>
+190:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">instance_eval</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+191:       <span class="ruby-ivar">@project_module</span> = <span class="ruby-keyword kw">nil</span>
+192:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001049" class="method-detail">
+        <a name="M001049"></a>
+
+        <div class="method-heading">
+          <a href="#M001049" class="method-signature">
+          <span class="method-name">requires_redmine</span><span class="method-args">(arg)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Sets a requirement on Redmine version Raises a <a
+href="PluginRequirementError.html">PluginRequirementError</a> exception if
+the requirement is not met
+</p>
+<p>
+Examples
+</p>
+<pre>
+  # Requires Redmine 0.7.3 or higher
+  requires_redmine :version_or_higher =&gt; '0.7.3'
+  requires_redmine '0.7.3'
+
+  # Requires a specific Redmine version
+  requires_redmine :version =&gt; '0.7.3'              # 0.7.3 only
+  requires_redmine :version =&gt; ['0.7.3', '0.8.0']   # 0.7.3 or 0.8.0
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001049-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001049-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redmine/plugin.rb, line 112</span>
+112:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">requires_redmine</span>(<span class="ruby-identifier">arg</span>)
+113:       <span class="ruby-identifier">arg</span> = { <span class="ruby-identifier">:version_or_higher</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">arg</span> } <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)
+114:       <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">assert_valid_keys</span>(<span class="ruby-identifier">:version</span>, <span class="ruby-identifier">:version_or_higher</span>)
+115:       
+116:       <span class="ruby-identifier">current</span> = <span class="ruby-constant">Redmine</span><span class="ruby-operator">::</span><span class="ruby-constant">VERSION</span>.<span class="ruby-identifier">to_a</span>
+117:       <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+118:         <span class="ruby-identifier">v</span> = [] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">v</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Array</span>)
+119:         <span class="ruby-identifier">versions</span> = <span class="ruby-identifier">v</span>.<span class="ruby-identifier">collect</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">'.'</span>).<span class="ruby-identifier">collect</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">:to_i</span>)}
+120:         <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">k</span>
+121:         <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:version_or_higher</span>
+122:           <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;wrong number of versions (#{versions.size} for 1)&quot;</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">versions</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+123:           <span class="ruby-keyword kw">unless</span> (<span class="ruby-identifier">current</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">versions</span>.<span class="ruby-identifier">first</span>) <span class="ruby-operator">&gt;=</span> <span class="ruby-value">0</span>
+124:             <span class="ruby-identifier">raise</span> <span class="ruby-constant">PluginRequirementError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;#{id} plugin requires Redmine #{v} or higher but current is #{current.join('.')}&quot;</span>)
+125:           <span class="ruby-keyword kw">end</span>
+126:         <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:version</span>
+127:           <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">versions</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">current</span>.<span class="ruby-identifier">slice</span>(<span class="ruby-value">0</span>,<span class="ruby-value">3</span>))
+128:             <span class="ruby-identifier">raise</span> <span class="ruby-constant">PluginRequirementError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;#{id} plugin requires one the following Redmine versions: #{v.join(', ')} but current is #{current.join('.')}&quot;</span>)
+129:           <span class="ruby-keyword kw">end</span>
+130:         <span class="ruby-keyword kw">end</span>
+131:       <span class="ruby-keyword kw">end</span>
+132:       <span class="ruby-keyword kw">true</span>
+133:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001056" class="method-detail">
+        <a name="M001056"></a>
+
+        <div class="method-heading">
+          <a href="#M001056" class="method-signature">
+          <span class="method-name">wiki_format_provider</span><span class="method-args">(name, formatter, helper)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Registers a wiki formatter.
+</p>
+<p>
+Parameters:
+</p>
+<ul>
+<li><tt>name</tt> - human-readable name
+
+</li>
+<li><tt>formatter</tt> - formatter class, which should have an instance method
+<tt>to_html</tt>
+
+</li>
+<li><tt>helper</tt> - helper module, which will be included by wiki pages
+
+</li>
+</ul>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001056-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001056-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redmine/plugin.rb, line 226</span>
+226:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">wiki_format_provider</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">formatter</span>, <span class="ruby-identifier">helper</span>)
+227:       <span class="ruby-constant">Redmine</span><span class="ruby-operator">::</span><span class="ruby-constant">WikiFormatting</span>.<span class="ruby-identifier">register</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">formatter</span>, <span class="ruby-identifier">helper</span>)
+228:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

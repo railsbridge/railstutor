@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Enumeration</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Enumeration</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/app/models/enumeration_rb.html">
+                app/models/enumeration.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                ActiveRecord::Base
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+redMine - project management software Copyright (C) 2006 Jean-Philippe Lang
+</p>
+<p>
+This program is free software; you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the Free
+Software Foundation; either version 2 of the License, or (at your option)
+any later version.
+</p>
+<p>
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+more details.
+</p>
+<p>
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc., 51
+Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000124">&lt;=&gt;</a>&nbsp;&nbsp;
+      <a href="#M000120">before_save</a>&nbsp;&nbsp;
+      <a href="#M000113">default</a>&nbsp;&nbsp;
+      <a href="#M000116">default</a>&nbsp;&nbsp;
+      <a href="#M000117">default</a>&nbsp;&nbsp;
+      <a href="#M000115">default</a>&nbsp;&nbsp;
+      <a href="#M000114">default</a>&nbsp;&nbsp;
+      <a href="#M000123">destroy</a>&nbsp;&nbsp;
+      <a href="#M000126">get_subclasses</a>&nbsp;&nbsp;
+      <a href="#M000122">in_use?</a>&nbsp;&nbsp;
+      <a href="#M000121">objects_count</a>&nbsp;&nbsp;
+      <a href="#M000119">opt</a>&nbsp;&nbsp;
+      <a href="#M000118">option_name</a>&nbsp;&nbsp;
+      <a href="#M000125">to_s</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+    <div id="aliases-list">
+      <h3 class="section-bar">External Aliases</h3>
+
+      <div class="name-list">
+                        <table summary="aliases">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">destroy</td>
+          <td>-&gt;</td>
+          <td class="context-item-value">destroy_without_reassign</td>
+        </tr>
+                        </table>
+      </div>
+    </div>
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000117" class="method-detail">
+        <a name="M000117"></a>
+
+        <div class="method-heading">
+          <a href="#M000117" class="method-signature">
+          <span class="method-name">default</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000117-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000117-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/enumeration.rb, line 58</span>
+58:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">default</span>
+59:     <span class="ruby-comment cmt"># Creates a fake default scope so Enumeration.default will check</span>
+60:     <span class="ruby-comment cmt"># it's type.  STI subclasses will automatically add their own</span>
+61:     <span class="ruby-comment cmt"># types to the finder.</span>
+62:     <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">descends_from_active_record?</span>
+63:       <span class="ruby-identifier">find</span>(<span class="ruby-identifier">:first</span>, <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> { <span class="ruby-identifier">:is_default</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>, <span class="ruby-identifier">:type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'Enumeration'</span> })
+64:     <span class="ruby-keyword kw">else</span>
+65:       <span class="ruby-comment cmt"># STI classes are</span>
+66:       <span class="ruby-identifier">find</span>(<span class="ruby-identifier">:first</span>, <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> { <span class="ruby-identifier">:is_default</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span> })
+67:     <span class="ruby-keyword kw">end</span>
+68:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000126" class="method-detail">
+        <a name="M000126"></a>
+
+        <div class="method-heading">
+          <a href="#M000126" class="method-signature">
+          <span class="method-name">get_subclasses</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the Subclasses of <a href="Enumeration.html">Enumeration</a>. Each
+Subclass needs to be required in development mode.
+</p>
+<p>
+Note: subclasses is protected in ActiveRecord
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000126-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000126-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/enumeration.rb, line 117</span>
+117:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">get_subclasses</span>
+118:     <span class="ruby-ivar">@@subclasses</span>[<span class="ruby-constant">Enumeration</span>]
+119:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000124" class="method-detail">
+        <a name="M000124"></a>
+
+        <div class="method-heading">
+          <a href="#M000124" class="method-signature">
+          <span class="method-name">&lt;=&gt;</span><span class="method-args">(enumeration)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000124-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000124-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/enumeration.rb, line 107</span>
+107:   <span class="ruby-keyword kw">def</span> <span class="ruby-operator">&lt;=&gt;</span>(<span class="ruby-identifier">enumeration</span>)
+108:     <span class="ruby-identifier">position</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">enumeration</span>.<span class="ruby-identifier">position</span>
+109:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000120" class="method-detail">
+        <a name="M000120"></a>
+
+        <div class="method-heading">
+          <a href="#M000120" class="method-signature">
+          <span class="method-name">before_save</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000120-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000120-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/enumeration.rb, line 81</span>
+81:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">before_save</span>
+82:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">is_default?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">is_default_changed?</span>
+83:       <span class="ruby-constant">Enumeration</span>.<span class="ruby-identifier">update_all</span>(<span class="ruby-node">&quot;is_default = #{connection.quoted_false}&quot;</span>, {<span class="ruby-identifier">:type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">type</span>})
+84:     <span class="ruby-keyword kw">end</span>
+85:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000113" class="method-detail">
+        <a name="M000113"></a>
+
+        <div class="method-heading">
+          <a href="#M000113" class="method-signature">
+          <span class="method-name">default</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000113-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000113-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/enumeration.rb, line 31</span>
+31:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">default</span>
+32:       <span class="ruby-identifier">find</span>(<span class="ruby-identifier">:first</span>, <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> { <span class="ruby-identifier">:is_default</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span> })
+33:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000116" class="method-detail">
+        <a name="M000116"></a>
+
+        <div class="method-heading">
+          <a href="#M000116" class="method-signature">
+          <span class="method-name">default</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000116-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000116-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/enumeration.rb, line 51</span>
+51:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">default</span>
+52:       <span class="ruby-identifier">find</span>(<span class="ruby-identifier">:first</span>, <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> { <span class="ruby-identifier">:is_default</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span> })
+53:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000115" class="method-detail">
+        <a name="M000115"></a>
+
+        <div class="method-heading">
+          <a href="#M000115" class="method-signature">
+          <span class="method-name">default</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000115-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000115-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/enumeration.rb, line 45</span>
+45:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">default</span>
+46:       <span class="ruby-identifier">find</span>(<span class="ruby-identifier">:first</span>, <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> { <span class="ruby-identifier">:is_default</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span> })
+47:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000114" class="method-detail">
+        <a name="M000114"></a>
+
+        <div class="method-heading">
+          <a href="#M000114" class="method-signature">
+          <span class="method-name">default</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000114-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000114-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/enumeration.rb, line 38</span>
+38:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">default</span>
+39:       <span class="ruby-identifier">find</span>(<span class="ruby-identifier">:first</span>, <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> { <span class="ruby-identifier">:is_default</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span> })
+40:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000123" class="method-detail">
+        <a name="M000123"></a>
+
+        <div class="method-heading">
+          <a href="#M000123" class="method-signature">
+          <span class="method-name">destroy</span><span class="method-args">(reassign_to = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Destroy the enumeration If a enumeration is specified, objects are
+reassigned
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000123-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000123-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/enumeration.rb, line 100</span>
+100:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">destroy</span>(<span class="ruby-identifier">reassign_to</span> = <span class="ruby-keyword kw">nil</span>)
+101:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">reassign_to</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">reassign_to</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Enumeration</span>)
+102:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">transfer_relations</span>(<span class="ruby-identifier">reassign_to</span>)
+103:     <span class="ruby-keyword kw">end</span>
+104:     <span class="ruby-identifier">destroy_without_reassign</span>
+105:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000122" class="method-detail">
+        <a name="M000122"></a>
+
+        <div class="method-heading">
+          <a href="#M000122" class="method-signature">
+          <span class="method-name">in_use?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000122-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000122-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/enumeration.rb, line 92</span>
+92:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">in_use?</span>
+93:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">objects_count</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+94:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000121" class="method-detail">
+        <a name="M000121"></a>
+
+        <div class="method-heading">
+          <a href="#M000121" class="method-signature">
+          <span class="method-name">objects_count</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Overloaded on concrete classes
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000121-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000121-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/enumeration.rb, line 88</span>
+88:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">objects_count</span>
+89:     <span class="ruby-value">0</span>
+90:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000119" class="method-detail">
+        <a name="M000119"></a>
+
+        <div class="method-heading">
+          <a href="#M000119" class="method-signature">
+          <span class="method-name">opt</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Backwards compatiblity. Can be removed post-0.9
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000119-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000119-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/enumeration.rb, line 76</span>
+76:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">opt</span>
+77:     <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">warn</span>(<span class="ruby-node">&quot;Enumeration#opt is deprecated, use the STI classes now. (#{Redmine::Info.issue(3007)})&quot;</span>)
+78:     <span class="ruby-keyword kw">return</span> <span class="ruby-constant">OptName</span>
+79:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000118" class="method-detail">
+        <a name="M000118"></a>
+
+        <div class="method-heading">
+          <a href="#M000118" class="method-signature">
+          <span class="method-name">option_name</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Overloaded on concrete classes
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000118-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000118-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/enumeration.rb, line 71</span>
+71:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">option_name</span>
+72:     <span class="ruby-keyword kw">nil</span>
+73:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000125" class="method-detail">
+        <a name="M000125"></a>
+
+        <div class="method-heading">
+          <a href="#M000125" class="method-signature">
+          <span class="method-name">to_s</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000125-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000125-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/enumeration.rb, line 111</span>
+111:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s</span>; <span class="ruby-identifier">name</span> <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

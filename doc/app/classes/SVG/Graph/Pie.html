@@ -1,0 +1,771 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: SVG::Graph::Pie</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">SVG::Graph::Pie</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/SVG/Graph/Pie_rb.html">
+                lib/SVG/Graph/Pie.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="Graph.html">
+                Graph
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h3>Create presentation quality <a href="../../SVG.html">SVG</a> pie graphs easily</h3>
+<h2>Synopsis</h2>
+<pre>
+  require 'SVG/Graph/Pie'
+
+  fields = %w(Jan Feb Mar)
+  data_sales_02 = [12, 45, 21]
+
+  graph = SVG::Graph::Pie.new({
+          :height =&gt; 500,
+    :width  =&gt; 300,
+    :fields =&gt; fields,
+  })
+
+  graph.add_data({
+          :data =&gt; data_sales_02,
+    :title =&gt; 'Sales 2002',
+  })
+
+  print &quot;Content-type: image/svg+xml\r\n\r\n&quot;
+  print graph.burn();
+</pre>
+<h2>Description</h2>
+<p>
+This object aims to allow you to easily create high quality <a
+href="../../SVG.html">SVG</a> pie graphs. You can either use the default
+style sheet or supply your own. Either way there are many options which can
+be configured to give you control over how the graph is generated - with or
+without a key, display percent on pie chart, title, subtitle etc.
+</p>
+<h1>Examples</h1>
+<p>
+<a
+href="http://www.germane-software/repositories/public/SVG/test/single.rb">www.germane-software/repositories/public/SVG/test/single.rb</a>
+</p>
+<h2>See also</h2>
+<ul>
+<li><a href="../Graph.html">SVG::Graph::Graph</a>
+
+</li>
+<li><a href="BarHorizontal.html">SVG::Graph::BarHorizontal</a>
+
+</li>
+<li><a href="Bar.html">SVG::Graph::Bar</a>
+
+</li>
+<li><a href="Line.html">SVG::Graph::Line</a>
+
+</li>
+<li><a href="Plot.html">SVG::Graph::Plot</a>
+
+</li>
+<li><a href="TimeSeries.html">SVG::Graph::TimeSeries</a>
+
+</li>
+</ul>
+<h2>Author</h2>
+<p>
+Sean E. Russell &lt;serATgermaneHYPHENsoftwareDOTcom&gt;
+</p>
+<p>
+Copyright 2004 Sean E. Russell This software is available under the Ruby <a
+href="http://LICENSE.txt">license</a>
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000716">add_data</a>&nbsp;&nbsp;
+      <a href="#M000717">add_defs</a>&nbsp;&nbsp;
+      <a href="#M000722">draw_data</a>&nbsp;&nbsp;
+      <a href="#M000718">draw_graph</a>&nbsp;&nbsp;
+      <a href="#M000724">get_css</a>&nbsp;&nbsp;
+      <a href="#M000720">get_x_labels</a>&nbsp;&nbsp;
+      <a href="#M000719">get_y_labels</a>&nbsp;&nbsp;
+      <a href="#M000721">keys</a>&nbsp;&nbsp;
+      <a href="#M000723">round</a>&nbsp;&nbsp;
+      <a href="#M000715">set_defaults</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">RADIANS</td>
+          <td>=</td>
+          <td class="context-item-value">Math::PI/180</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">datapoint_font_size</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+The font size of the data point labels
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">expand_gap</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+The amount of space between expanded wedges
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">expand_greatest</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+If true, expand the largest pie wedge
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">expanded</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+If true, &quot;explode&quot; the pie (put space between the wedges)
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">shadow_offset</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Sets the offset of the shadow from the pie chart
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">show_actual_values</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+If true, display the actual field values in the data labels
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">show_data_labels</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+If true, display the data labels on the chart
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">show_key_actual_values</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+If true, display the actual value of the field in the key
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">show_key_data_labels</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+If true, display the labels in the key
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">show_key_percent</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+If true, display the percentage value of the wedges in the key
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">show_percent</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+If true, display the percentage value of each pie wedge in the data labels
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">show_shadow</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+If true, displays a drop shadow for the chart
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000716" class="method-detail">
+        <a name="M000716"></a>
+
+        <div class="method-heading">
+          <a href="#M000716" class="method-signature">
+          <span class="method-name">add_data</span><span class="method-args">(arg)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Adds a data set to the graph.
+</p>
+<pre>
+  graph.add_data( { :data =&gt; [1,2,3,4] } )
+</pre>
+<p>
+Note that the :title is not necessary. If multiple data sets are added to
+the graph, the pie chart will display the <tt>sums</tt> of the data. EG:
+</p>
+<pre>
+  graph.add_data( { :data =&gt; [1,2,3,4] } )
+  graph.add_data( { :data =&gt; [2,3,5,9] } )
+</pre>
+<p>
+is the same as:
+</p>
+<pre>
+  graph.add_data( { :data =&gt; [3,5,8,13] } )
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000716-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000716-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/SVG/Graph/Pie.rb, line 111</span>
+111:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_data</span> <span class="ruby-identifier">arg</span>
+112:         <span class="ruby-identifier">arg</span>[<span class="ruby-identifier">:data</span>].<span class="ruby-identifier">each_index</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">idx</span><span class="ruby-operator">|</span>
+113:           <span class="ruby-ivar">@data</span>[<span class="ruby-identifier">idx</span>] = <span class="ruby-value">0</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@data</span>[<span class="ruby-identifier">idx</span>]
+114:           <span class="ruby-ivar">@data</span>[<span class="ruby-identifier">idx</span>] <span class="ruby-operator">+=</span> <span class="ruby-identifier">arg</span>[<span class="ruby-identifier">:data</span>][<span class="ruby-identifier">idx</span>]
+115:         }
+116:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000715" class="method-detail">
+        <a name="M000715"></a>
+
+        <div class="method-heading">
+          <a href="#M000715" class="method-signature">
+          <span class="method-name">set_defaults</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Defaults are those set by Graph::initialize, and
+</p>
+<dl>
+<dt>show_shadow</dt><dd>true
+
+</dd>
+<dt>shadow_offset</dt><dd>10
+
+</dd>
+<dt>show_data_labels</dt><dd>false
+
+</dd>
+<dt>show_actual_values</dt><dd>false
+
+</dd>
+<dt>show_percent</dt><dd>true
+
+</dd>
+<dt>show_key_data_labels</dt><dd>true
+
+</dd>
+<dt>show_key_actual_values</dt><dd>true
+
+</dd>
+<dt>show_key_percent</dt><dd>false
+
+</dd>
+<dt>expanded</dt><dd>false
+
+</dd>
+<dt>expand_greatest</dt><dd>false
+
+</dd>
+<dt>expand_gap</dt><dd>10
+
+</dd>
+<dt>show_x_labels</dt><dd>false
+
+</dd>
+<dt>show_y_labels</dt><dd>false
+
+</dd>
+<dt>datapoint_font_size</dt><dd>12
+
+</dd>
+</dl>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000715-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000715-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/SVG/Graph/Pie.rb, line 73</span>
+73:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">set_defaults</span>
+74:         <span class="ruby-identifier">init_with</span>(
+75:           <span class="ruby-identifier">:show_shadow</span>                  =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>,
+76:           <span class="ruby-identifier">:shadow_offset</span>                =<span class="ruby-operator">&gt;</span> <span class="ruby-value">10</span>, 
+77:           
+78:           <span class="ruby-identifier">:show_data_labels</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>,
+79:           <span class="ruby-identifier">:show_actual_values</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>,
+80:           <span class="ruby-identifier">:show_percent</span>                 =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>,
+81: 
+82:           <span class="ruby-identifier">:show_key_data_labels</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>,
+83:           <span class="ruby-identifier">:show_key_actual_values</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>,
+84:           <span class="ruby-identifier">:show_key_percent</span>                 =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>,
+85:           
+86:           <span class="ruby-identifier">:expanded</span>                                     =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>,
+87:           <span class="ruby-identifier">:expand_greatest</span>                  =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>,
+88:           <span class="ruby-identifier">:expand_gap</span>             =<span class="ruby-operator">&gt;</span> <span class="ruby-value">10</span>,
+89:           
+90:           <span class="ruby-identifier">:show_x_labels</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>,
+91:           <span class="ruby-identifier">:show_y_labels</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>,
+92:           <span class="ruby-identifier">:datapoint_font_size</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-value">12</span>
+93:         )
+94:         <span class="ruby-ivar">@data</span> = []
+95:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Protected Instance methods</h3>
+
+      <div id="method-M000717" class="method-detail">
+        <a name="M000717"></a>
+
+        <div class="method-heading">
+          <a href="#M000717" class="method-signature">
+          <span class="method-name">add_defs</span><span class="method-args">(defs)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000717-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000717-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/SVG/Graph/Pie.rb, line 147</span>
+147:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_defs</span> <span class="ruby-identifier">defs</span>
+148:         <span class="ruby-identifier">gradient</span> = <span class="ruby-identifier">defs</span>.<span class="ruby-identifier">add_element</span>( <span class="ruby-value str">&quot;filter&quot;</span>, {
+149:           <span class="ruby-value str">&quot;id&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value str">&quot;dropshadow&quot;</span>,
+150:           <span class="ruby-value str">&quot;width&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;1.2&quot;</span>,
+151:           <span class="ruby-value str">&quot;height&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;1.2&quot;</span>,
+152:         } )
+153:         <span class="ruby-identifier">gradient</span>.<span class="ruby-identifier">add_element</span>( <span class="ruby-value str">&quot;feGaussianBlur&quot;</span>, {
+154:           <span class="ruby-value str">&quot;stdDeviation&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;4&quot;</span>,
+155:           <span class="ruby-value str">&quot;result&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;blur&quot;</span>
+156:         })
+157:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000722" class="method-detail">
+        <a name="M000722"></a>
+
+        <div class="method-heading">
+          <a href="#M000722" class="method-signature">
+          <span class="method-name">draw_data</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000722-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000722-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/SVG/Graph/Pie.rb, line 187</span>
+187:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">draw_data</span>
+188:         <span class="ruby-ivar">@graph</span> = <span class="ruby-ivar">@root</span>.<span class="ruby-identifier">add_element</span>( <span class="ruby-value str">&quot;g&quot;</span> )
+189:         <span class="ruby-identifier">background</span> = <span class="ruby-ivar">@graph</span>.<span class="ruby-identifier">add_element</span>(<span class="ruby-value str">&quot;g&quot;</span>)
+190:         <span class="ruby-identifier">midground</span> = <span class="ruby-ivar">@graph</span>.<span class="ruby-identifier">add_element</span>(<span class="ruby-value str">&quot;g&quot;</span>)
+191: 
+192:         <span class="ruby-identifier">diameter</span> = <span class="ruby-ivar">@graph_height</span> <span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@graph_width</span> <span class="ruby-operator">?</span> <span class="ruby-ivar">@graph_width</span> <span class="ruby-operator">:</span> <span class="ruby-ivar">@graph_height</span>
+193:         <span class="ruby-identifier">diameter</span> <span class="ruby-operator">-=</span> <span class="ruby-identifier">expand_gap</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">expanded</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">expand_greatest</span>
+194:         <span class="ruby-identifier">diameter</span> <span class="ruby-operator">-=</span> <span class="ruby-identifier">datapoint_font_size</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">show_data_labels</span>
+195:         <span class="ruby-identifier">diameter</span> <span class="ruby-operator">-=</span> <span class="ruby-value">10</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">show_shadow</span>
+196:         <span class="ruby-identifier">radius</span> = <span class="ruby-identifier">diameter</span> <span class="ruby-operator">/</span> <span class="ruby-value">2.0</span>
+197: 
+198:         <span class="ruby-identifier">xoff</span> = (<span class="ruby-identifier">width</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">diameter</span>) <span class="ruby-operator">/</span> <span class="ruby-value">2</span>
+199:         <span class="ruby-identifier">yoff</span> = (<span class="ruby-identifier">height</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@border_bottom</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">diameter</span>)
+200:         <span class="ruby-identifier">yoff</span> <span class="ruby-operator">-=</span> <span class="ruby-value">10</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">show_shadow</span>
+201:         <span class="ruby-ivar">@graph</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">'transform'</span>] = <span class="ruby-node">&quot;translate( #{xoff} #{yoff} )&quot;</span>
+202: 
+203:         <span class="ruby-identifier">wedge_text_pad</span> = <span class="ruby-value">5</span>
+204:         <span class="ruby-identifier">wedge_text_pad</span> = <span class="ruby-value">20</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">show_percent</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">show_data_labels</span>
+205: 
+206:         <span class="ruby-identifier">total</span> = <span class="ruby-value">0</span>
+207:         <span class="ruby-identifier">max_value</span> = <span class="ruby-value">0</span>
+208:         <span class="ruby-ivar">@data</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> 
+209:           <span class="ruby-identifier">max_value</span> = <span class="ruby-identifier">max_value</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">x</span> <span class="ruby-value">? </span><span class="ruby-identifier">x</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">max_value</span>
+210:           <span class="ruby-identifier">total</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">x</span> 
+211:         }
+212:         <span class="ruby-identifier">percent_scale</span> = <span class="ruby-value">100.0</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">total</span>
+213: 
+214:         <span class="ruby-identifier">prev_percent</span> = <span class="ruby-value">0</span>
+215:         <span class="ruby-identifier">rad_mult</span> = <span class="ruby-value">3.6</span> <span class="ruby-operator">*</span> <span class="ruby-constant">RADIANS</span>
+216:         <span class="ruby-ivar">@config</span>[<span class="ruby-identifier">:fields</span>].<span class="ruby-identifier">each_index</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">count</span><span class="ruby-operator">|</span>
+217:           <span class="ruby-identifier">value</span> = <span class="ruby-ivar">@data</span>[<span class="ruby-identifier">count</span>]
+218:           <span class="ruby-identifier">percent</span> = <span class="ruby-identifier">percent_scale</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">value</span>
+219: 
+220:           <span class="ruby-identifier">radians</span> = <span class="ruby-identifier">prev_percent</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">rad_mult</span>
+221:           <span class="ruby-identifier">x_start</span> = <span class="ruby-identifier">radius</span><span class="ruby-operator">+</span>(<span class="ruby-constant">Math</span>.<span class="ruby-identifier">sin</span>(<span class="ruby-identifier">radians</span>) <span class="ruby-operator">*</span> <span class="ruby-identifier">radius</span>)
+222:           <span class="ruby-identifier">y_start</span> = <span class="ruby-identifier">radius</span><span class="ruby-operator">-</span>(<span class="ruby-constant">Math</span>.<span class="ruby-identifier">cos</span>(<span class="ruby-identifier">radians</span>) <span class="ruby-operator">*</span> <span class="ruby-identifier">radius</span>)
+223:           <span class="ruby-identifier">radians</span> = (<span class="ruby-identifier">prev_percent</span><span class="ruby-operator">+</span><span class="ruby-identifier">percent</span>) <span class="ruby-operator">*</span> <span class="ruby-identifier">rad_mult</span>
+224:           <span class="ruby-identifier">x_end</span> = <span class="ruby-identifier">radius</span><span class="ruby-operator">+</span>(<span class="ruby-constant">Math</span>.<span class="ruby-identifier">sin</span>(<span class="ruby-identifier">radians</span>) <span class="ruby-operator">*</span> <span class="ruby-identifier">radius</span>)
+225:           <span class="ruby-identifier">x_end</span> <span class="ruby-operator">-=</span> <span class="ruby-value">0</span><span class="ruby-value">.00001</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@data</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+226:           <span class="ruby-identifier">y_end</span> = <span class="ruby-identifier">radius</span><span class="ruby-operator">-</span>(<span class="ruby-constant">Math</span>.<span class="ruby-identifier">cos</span>(<span class="ruby-identifier">radians</span>) <span class="ruby-operator">*</span> <span class="ruby-identifier">radius</span>)
+227:           <span class="ruby-identifier">path</span> = <span class="ruby-node">&quot;M#{radius},#{radius} L#{x_start},#{y_start} &quot;</span><span class="ruby-operator">+</span>
+228:             <span class="ruby-node">&quot;A#{radius},#{radius} &quot;</span><span class="ruby-operator">+</span>
+229:             <span class="ruby-node">&quot;0, #{percent &gt;= 50 ? '1' : '0'},1, &quot;</span><span class="ruby-operator">+</span>
+230:             <span class="ruby-node">&quot;#{x_end} #{y_end} Z&quot;</span>
+231: 
+232: 
+233:           <span class="ruby-identifier">wedge</span> = <span class="ruby-ivar">@foreground</span>.<span class="ruby-identifier">add_element</span>( <span class="ruby-value str">&quot;path&quot;</span>, {
+234:             <span class="ruby-value str">&quot;d&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">path</span>,
+235:             <span class="ruby-value str">&quot;class&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;fill#{count+1}&quot;</span>
+236:           })
+237: 
+238:           <span class="ruby-identifier">translate</span> = <span class="ruby-keyword kw">nil</span>
+239:           <span class="ruby-identifier">tx</span> = <span class="ruby-value">0</span>
+240:           <span class="ruby-identifier">ty</span> = <span class="ruby-value">0</span>
+241:           <span class="ruby-identifier">half_percent</span> = <span class="ruby-identifier">prev_percent</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">percent</span> <span class="ruby-operator">/</span> <span class="ruby-value">2</span>
+242:           <span class="ruby-identifier">radians</span> = <span class="ruby-identifier">half_percent</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">rad_mult</span>
+243: 
+244:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">show_shadow</span>
+245:             <span class="ruby-identifier">shadow</span> = <span class="ruby-identifier">background</span>.<span class="ruby-identifier">add_element</span>( <span class="ruby-value str">&quot;path&quot;</span>, {
+246:               <span class="ruby-value str">&quot;d&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">path</span>,
+247:               <span class="ruby-value str">&quot;filter&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;url(#dropshadow)&quot;</span>,
+248:               <span class="ruby-value str">&quot;style&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;fill: #ccc; stroke: none;&quot;</span>
+249:             })
+250:             <span class="ruby-identifier">clear</span> = <span class="ruby-identifier">midground</span>.<span class="ruby-identifier">add_element</span>( <span class="ruby-value str">&quot;path&quot;</span>, {
+251:               <span class="ruby-value str">&quot;d&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">path</span>,
+252:               <span class="ruby-value str">&quot;style&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;fill: #fff; stroke: none;&quot;</span>
+253:             })
+254:           <span class="ruby-keyword kw">end</span>
+255: 
+256:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">expanded</span> <span class="ruby-keyword kw">or</span> (<span class="ruby-identifier">expand_greatest</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">max_value</span>)
+257:             <span class="ruby-identifier">tx</span> = (<span class="ruby-constant">Math</span>.<span class="ruby-identifier">sin</span>(<span class="ruby-identifier">radians</span>) <span class="ruby-operator">*</span> <span class="ruby-identifier">expand_gap</span>)
+258:             <span class="ruby-identifier">ty</span> = <span class="ruby-operator">-</span>(<span class="ruby-constant">Math</span>.<span class="ruby-identifier">cos</span>(<span class="ruby-identifier">radians</span>) <span class="ruby-operator">*</span> <span class="ruby-identifier">expand_gap</span>)
+259:             <span class="ruby-identifier">translate</span> = <span class="ruby-node">&quot;translate( #{tx} #{ty} )&quot;</span>
+260:             <span class="ruby-identifier">wedge</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">&quot;transform&quot;</span>] = <span class="ruby-identifier">translate</span>
+261:             <span class="ruby-identifier">clear</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">&quot;transform&quot;</span>] = <span class="ruby-identifier">translate</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">clear</span>
+262:           <span class="ruby-keyword kw">end</span>
+263: 
+264:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">show_shadow</span>
+265:             <span class="ruby-identifier">shadow</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">&quot;transform&quot;</span>] = 
+266:               <span class="ruby-node">&quot;translate( #{tx+shadow_offset} #{ty+shadow_offset} )&quot;</span>
+267:           <span class="ruby-keyword kw">end</span>
+268:           
+269:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">show_data_labels</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+270:             <span class="ruby-identifier">label</span> = <span class="ruby-value str">&quot;&quot;</span>
+271:             <span class="ruby-identifier">label</span> <span class="ruby-operator">+=</span> <span class="ruby-ivar">@config</span>[<span class="ruby-identifier">:fields</span>][<span class="ruby-identifier">count</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">show_key_data_labels</span>
+272:             <span class="ruby-identifier">label</span> <span class="ruby-operator">+=</span> <span class="ruby-value str">&quot; [&quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_s</span><span class="ruby-operator">+</span><span class="ruby-value str">&quot;]&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">show_actual_values</span>
+273:             <span class="ruby-identifier">label</span> <span class="ruby-operator">+=</span> <span class="ruby-value str">&quot; &quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">percent</span>.<span class="ruby-identifier">round</span>.<span class="ruby-identifier">to_s</span><span class="ruby-operator">+</span><span class="ruby-value str">&quot;%&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">show_percent</span>
+274: 
+275:             <span class="ruby-identifier">msr</span> = <span class="ruby-constant">Math</span>.<span class="ruby-identifier">sin</span>(<span class="ruby-identifier">radians</span>)
+276:             <span class="ruby-identifier">mcr</span> = <span class="ruby-constant">Math</span>.<span class="ruby-identifier">cos</span>(<span class="ruby-identifier">radians</span>)
+277:             <span class="ruby-identifier">tx</span> = <span class="ruby-identifier">radius</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">msr</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">radius</span>)
+278:             <span class="ruby-identifier">ty</span> = <span class="ruby-identifier">radius</span> <span class="ruby-operator">-</span>(<span class="ruby-identifier">mcr</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">radius</span>)
+279: 
+280:             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">expanded</span> <span class="ruby-keyword kw">or</span> (<span class="ruby-identifier">expand_greatest</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">max_value</span>)
+281:               <span class="ruby-identifier">tx</span> <span class="ruby-operator">+=</span> (<span class="ruby-identifier">msr</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">expand_gap</span>)
+282:               <span class="ruby-identifier">ty</span> <span class="ruby-operator">-=</span> (<span class="ruby-identifier">mcr</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">expand_gap</span>)
+283:             <span class="ruby-keyword kw">end</span>
+284:             <span class="ruby-ivar">@foreground</span>.<span class="ruby-identifier">add_element</span>( <span class="ruby-value str">&quot;text&quot;</span>, {
+285:               <span class="ruby-value str">&quot;x&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">tx</span>.<span class="ruby-identifier">to_s</span>,
+286:               <span class="ruby-value str">&quot;y&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">ty</span>.<span class="ruby-identifier">to_s</span>,
+287:               <span class="ruby-value str">&quot;class&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;dataPointLabel&quot;</span>,
+288:               <span class="ruby-value str">&quot;style&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;stroke: #fff; stroke-width: 2;&quot;</span>
+289:             }).<span class="ruby-identifier">text</span> = <span class="ruby-identifier">label</span>.<span class="ruby-identifier">to_s</span>
+290:             <span class="ruby-ivar">@foreground</span>.<span class="ruby-identifier">add_element</span>( <span class="ruby-value str">&quot;text&quot;</span>, {
+291:               <span class="ruby-value str">&quot;x&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">tx</span>.<span class="ruby-identifier">to_s</span>,
+292:               <span class="ruby-value str">&quot;y&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">ty</span>.<span class="ruby-identifier">to_s</span>,
+293:               <span class="ruby-value str">&quot;class&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;dataPointLabel&quot;</span>,
+294:             }).<span class="ruby-identifier">text</span> = <span class="ruby-identifier">label</span>.<span class="ruby-identifier">to_s</span>
+295:           <span class="ruby-keyword kw">end</span>
+296: 
+297:           <span class="ruby-identifier">prev_percent</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">percent</span>
+298:         }
+299:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000718" class="method-detail">
+        <a name="M000718"></a>
+
+        <div class="method-heading">
+          <a href="#M000718" class="method-signature">
+          <span class="method-name">draw_graph</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+We don&#8216;t need the graph
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000718-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000718-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/SVG/Graph/Pie.rb, line 160</span>
+160:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">draw_graph</span>
+161:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000724" class="method-detail">
+        <a name="M000724"></a>
+
+        <div class="method-heading">
+          <a href="#M000724" class="method-signature">
+          <span class="method-name">get_css</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000724-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000724-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/SVG/Graph/Pie.rb, line 308</span>
+308:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_css</span>
+309:         <span class="ruby-keyword kw">return</span> <span class="ruby-value str">&quot;.dataPointLabel{\n        fill: #000000;\n        text-anchor:middle;\n        font-size: \#{datapoint_font_size}px;\n        font-family: \&quot;Arial\&quot;, sans-serif;\n        font-weight: normal;\n}\n\n/* key - MUST match fill styles */\n.key1,.fill1{\n        fill: #ff0000;\n        fill-opacity: 0.7;\n        stroke: none;\n        stroke-width: 1px;     \n}\n.key2,.fill2{\n        fill: #0000ff;\n        fill-opacity: 0.7;\n        stroke: none;\n        stroke-width: 1px;     \n}\n.key3,.fill3{\n        fill-opacity: 0.7;\n        fill: #00ff00;\n        stroke: none;\n        stroke-width: 1px;     \n}\n.key4,.fill4{\n        fill-opacity: 0.7;\n        fill: #ffcc00;\n        stroke: none;\n        stroke-width: 1px;     \n}\n.key5,.fill5{\n        fill-opacity: 0.7;\n        fill: #00ccff;\n        stroke: none;\n        stroke-width: 1px;     \n}\n.key6,.fill6{\n        fill-opacity: 0.7;\n        fill: #ff00ff;\n        stroke: none;\n        stroke-width: 1px;     \n}\n.key7,.fill7{\n        fill-opacity: 0.7;\n        fill: #00ff99;\n        stroke: none;\n        stroke-width: 1px;     \n}\n.key8,.fill8{\n        fill-opacity: 0.7;\n        fill: #ffff00;\n        stroke: none;\n        stroke-width: 1px;     \n}\n.key9,.fill9{\n        fill-opacity: 0.7;\n        fill: #cc6666;\n        stroke: none;\n        stroke-width: 1px;     \n}\n.key10,.fill10{\n        fill-opacity: 0.7;\n        fill: #663399;\n        stroke: none;\n        stroke-width: 1px;     \n}\n.key11,.fill11{\n        fill-opacity: 0.7;\n        fill: #339900;\n        stroke: none;\n        stroke-width: 1px;     \n}\n.key12,.fill12{\n        fill-opacity: 0.7;\n        fill: #9966FF;\n        stroke: none;\n        stroke-width: 1px;     \n}\n&quot;</span>
+310:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000720" class="method-detail">
+        <a name="M000720"></a>
+
+        <div class="method-heading">
+          <a href="#M000720" class="method-signature">
+          <span class="method-name">get_x_labels</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000720-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000720-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/SVG/Graph/Pie.rb, line 167</span>
+167:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_x_labels</span>
+168:         [<span class="ruby-value str">&quot;&quot;</span>]
+169:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000719" class="method-detail">
+        <a name="M000719"></a>
+
+        <div class="method-heading">
+          <a href="#M000719" class="method-signature">
+          <span class="method-name">get_y_labels</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000719-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000719-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/SVG/Graph/Pie.rb, line 163</span>
+163:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_y_labels</span>
+164:         [<span class="ruby-value str">&quot;&quot;</span>]
+165:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000721" class="method-detail">
+        <a name="M000721"></a>
+
+        <div class="method-heading">
+          <a href="#M000721" class="method-signature">
+          <span class="method-name">keys</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000721-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000721-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/SVG/Graph/Pie.rb, line 171</span>
+171:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">keys</span>
+172:         <span class="ruby-identifier">total</span> = <span class="ruby-value">0</span>
+173:         <span class="ruby-identifier">max_value</span> = <span class="ruby-value">0</span>
+174:         <span class="ruby-ivar">@data</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">total</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">x</span> }
+175:         <span class="ruby-identifier">percent_scale</span> = <span class="ruby-value">100.0</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">total</span>
+176:         <span class="ruby-identifier">count</span> = <span class="ruby-value">-1</span>
+177:         <span class="ruby-identifier">a</span> = <span class="ruby-ivar">@config</span>[<span class="ruby-identifier">:fields</span>].<span class="ruby-identifier">collect</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span>
+178:           <span class="ruby-identifier">count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+179:           <span class="ruby-identifier">v</span> = <span class="ruby-ivar">@data</span>[<span class="ruby-identifier">count</span>]
+180:           <span class="ruby-identifier">perc</span> = <span class="ruby-identifier">show_key_percent</span> <span class="ruby-value">? </span><span class="ruby-value str">&quot; &quot;</span><span class="ruby-operator">+</span>(<span class="ruby-identifier">v</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">percent_scale</span>).<span class="ruby-identifier">round</span>.<span class="ruby-identifier">to_s</span><span class="ruby-operator">+</span><span class="ruby-value str">&quot;%&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-value str">&quot;&quot;</span>
+181:           <span class="ruby-identifier">x</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot; [&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;]&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">perc</span>
+182:         }
+183:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000723" class="method-detail">
+        <a name="M000723"></a>
+
+        <div class="method-heading">
+          <a href="#M000723" class="method-signature">
+          <span class="method-name">round</span><span class="method-args">(val, to)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000723-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000723-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/SVG/Graph/Pie.rb, line 302</span>
+302:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">round</span> <span class="ruby-identifier">val</span>, <span class="ruby-identifier">to</span>
+303:         <span class="ruby-identifier">up</span> = <span class="ruby-value">10</span><span class="ruby-operator">**</span><span class="ruby-identifier">to</span>.<span class="ruby-identifier">to_f</span>
+304:         (<span class="ruby-identifier">val</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">up</span>).<span class="ruby-identifier">to_i</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">up</span>
+305:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

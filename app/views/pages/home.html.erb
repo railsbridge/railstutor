@@ -1,0 +1,61 @@
+<div id="home_page_left">
+	<div id="courses">
+		<%= image_tag('courses_title.png', :alt => 'Courses') %>
+		<ul>
+			<li><%= "Absolute Beginner's Guide to Ruby on Rails" %></li>
+		</ul>
+	</div>	
+	<div id="recent_topics">
+		<%= image_tag('recently_updated_title.png', :alt => 'Recently Updated') %>
+		<ul>
+			<li><%= "Windows Installation" %></li>
+		</ul>
+	</div>
+</div>
+
+<div id="home_page_middle">
+	<div id="mission_statement">
+		Welcome to Rails Tutor, a project conceived and sponsored by members of <%= link_to 'RailsBridge', 'http://railsbridge.org' %>.
+		<p class="centerme"><%= image_tag('mission_statement_title.png', :alt => 'Mission Statement') %></p>
+		Our goal is to help those with an interest in programming become contributing members of the Ruby on Rails community, in keeping with the <%= link_to 'guidelines of the RailsBridge effort', 'http://railsbridge.org' %> to "..(b)ridge the gap from aspiring developer to contributing community member, through mentoring, teaching, and writing."
+	</div>
+	<div id="how_to_help">
+		<%= image_tag('how_to_help_title.png', :alt => 'How to Help') %><br />
+		<ul>
+			<li><strong>Write courseware</strong>: There are still plenty of topics that have not been written. We encourage you to create an account and start adding content. Please be sure to first read the <%= link_to 'Guide to Contributing to the Courseware', 'projects/rails-tutor/wiki/contributing'%>.</li>
+			<li><strong>Be an editor</strong>: Courseware topics need a "once over" before they are considered complete. If you have a gift for editing (either copy or technical), then create an account and look for those articles with "Awaiting Review" next to their titles on the course outlines.</li>
+			<li><strong>Report errors and omissions</strong>: We're only human, and we can't know everything. If we've made a mistake, or if new updates to Rails or a plugin has rendered something in the courseware invalid, we want to know! Also, if you're a new developer and you find some aspect of the courseware confusing, we'd like to know that, too. Just report it to <%= mail_to 'dana@sterlingrosedesign.com', 'Dana Jones' %> and we'll get it fixed. Similarly, if you know of a good source of <%= link_to 'supplementary material', 'projects/rails-tutor/wiki/Courseware_Source_Materials' %> that's not listed, please add it!</li>
+			<li><strong>Publicize Rails Tutor</strong>: Mention the Rails Tutor website on your Twitter stream, blog, in your conference talk, or anywhere else you might reach beginning developers and those who want to help them.</li>
+			<li><strong>Monetary Contribution</strong>: RailsBridge - the parent of Rails Tutor - has applied for 501c3 status, but this has not yet been granted. We welcome contributions to RailsBridge for our efforts, though they would not yet be tax-deductible.</li>
+		</ul>
+		This courseware is still under development, and we welcome those experienced developers who want to contribute. We need writers, editors, and technical editors. If you want to participate, please contact the program coordinator, <%= mail_to 'dana@sterlingrosedesign.com', 'Dana Jones' %> or <%= link_to 'join the railstutor Google Group', 'http://groups.google.com/group/railstutor' %>.
+	</div>
+</div>
+
+<div id="home_page_right">
+	<div id="recent_blog">
+		<%= image_tag('recent_blog_title.png', :alt => 'Recent Blog Posts') %><br />
+	</div>
+	<div id="wiki_links">
+		<%= image_tag('wiki_hotspots_title.png', :alt => 'Wiki Hotspots') %><br />
+	</div>
+	<div id="team">
+		<%= image_tag('our_team_title.png', :alt => 'Our Team') %><br />
+		<br />
+		Rails Tutor was - and continues to be - a collaborative effort. It takes the dedication and hard work of many people to make this web site possible. Each of the following individuals plays a valuable part in making this content available.<br />
+		<ul>
+			<li><%= 'Pepe Bande' %></li>
+			<li><%= link_to 'Karmen Blake', 'http://twitter.com/kblake' %></li>
+			<li><%= link_to 'Douglas Campos', 'http://twitter.com/qmx' %></li>
+			<li><%= link_to 'Eric Davis', 'http://twitter.com/edavis10' %></li>
+			<li><%= link_to 'Carmen Ferrara', 'http://twitter.com/caferrara' %></li>
+			<li><%= 'Michael Grech' %></li>
+			<li><%= link_to 'Dana Jones', 'http://twitter.com/danabrit' %></li>
+			<li><%= link_to 'Carlo Pecchia', 'http://twitter.com/carlopecchia' %></li>
+			<li><%= 'Nikolay Petrachkov' %></li>
+			<li><%= link_to 'Hector Sansores', 'http://twitter.com/hectorsq' %></li>
+			<li><%= link_to 'Evan Sparkman', 'http://twitter.com/esparkman' %></li>
+		</ul>
+	</div>
+</div>
+<div class="clear"></div>

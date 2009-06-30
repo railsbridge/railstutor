@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Setting</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Setting</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/app/models/setting_rb.html">
+                app/models/setting.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                ActiveRecord::Base
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+redMine - project management software Copyright (C) 2006-2007 Jean-Philippe
+Lang
+</p>
+<p>
+This program is free software; you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the Free
+Software Foundation; either version 2 of the License, or (at your option)
+any later version.
+</p>
+<p>
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+more details.
+</p>
+<p>
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc., 51
+Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000287">[]</a>&nbsp;&nbsp;
+      <a href="#M000288">[]=</a>&nbsp;&nbsp;
+      <a href="#M000291">check_cache</a>&nbsp;&nbsp;
+      <a href="#M000290">openid?</a>&nbsp;&nbsp;
+      <a href="#M000289">per_page_options_array</a>&nbsp;&nbsp;
+      <a href="#M000285">value</a>&nbsp;&nbsp;
+      <a href="#M000286">value=</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DATE_FORMATS</td>
+          <td>=</td>
+          <td class="context-item-value">[         '%Y-%m-%d',         '%d/%m/%Y',         '%d.%m.%Y',         '%d-%m-%Y',         '%m/%d/%Y',         '%d %b %Y',         '%d %B %Y',         '%b %d, %Y',         '%B %d, %Y'</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TIME_FORMATS</td>
+          <td>=</td>
+          <td class="context-item-value">[     '%H:%M',     '%I:%M %p'</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ENCODINGS</td>
+          <td>=</td>
+          <td class="context-item-value">%w(US-ASCII                   windows-1250                   windows-1251                   windows-1252                   windows-1253                   windows-1254                   windows-1255                   windows-1256                   windows-1257                   windows-1258                   windows-31j                   ISO-2022-JP                   ISO-2022-KR                   ISO-8859-1                   ISO-8859-2                   ISO-8859-3                   ISO-8859-4                   ISO-8859-5                   ISO-8859-6                   ISO-8859-7                   ISO-8859-8                   ISO-8859-9                   ISO-8859-13                   ISO-8859-15                   KOI8-R                   UTF-8                   UTF-16                   UTF-16BE                   UTF-16LE                   EUC-JP                   Shift_JIS                   GB18030                   GBK                   ISCII91                   EUC-KR                   Big5                   Big5-HKSCS                   TIS-620)</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000287" class="method-detail">
+        <a name="M000287"></a>
+
+        <div class="method-heading">
+          <a href="#M000287" class="method-signature">
+          <span class="method-name">[]</span><span class="method-args">(name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the <a href="Setting.html#M000285">value</a> of the setting named
+name
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000287-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000287-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/setting.rb, line 105</span>
+105:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-operator">[]</span>(<span class="ruby-identifier">name</span>)
+106:     <span class="ruby-identifier">v</span> = <span class="ruby-ivar">@cached_settings</span>[<span class="ruby-identifier">name</span>]
+107:     <span class="ruby-identifier">v</span> <span class="ruby-value">? </span><span class="ruby-identifier">v</span> <span class="ruby-operator">:</span> (<span class="ruby-ivar">@cached_settings</span>[<span class="ruby-identifier">name</span>] = <span class="ruby-identifier">find_or_default</span>(<span class="ruby-identifier">name</span>).<span class="ruby-identifier">value</span>)
+108:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000288" class="method-detail">
+        <a name="M000288"></a>
+
+        <div class="method-heading">
+          <a href="#M000288" class="method-signature">
+          <span class="method-name">[]=</span><span class="method-args">(name, v)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000288-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000288-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/setting.rb, line 110</span>
+110:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-operator">[]=</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">v</span>)
+111:     <span class="ruby-identifier">setting</span> = <span class="ruby-identifier">find_or_default</span>(<span class="ruby-identifier">name</span>)
+112:     <span class="ruby-identifier">setting</span>.<span class="ruby-identifier">value</span> = (<span class="ruby-identifier">v</span> <span class="ruby-value">? </span><span class="ruby-identifier">v</span> <span class="ruby-operator">:</span> <span class="ruby-value str">&quot;&quot;</span>)
+113:     <span class="ruby-ivar">@cached_settings</span>[<span class="ruby-identifier">name</span>] = <span class="ruby-keyword kw">nil</span>
+114:     <span class="ruby-identifier">setting</span>.<span class="ruby-identifier">save</span>
+115:     <span class="ruby-identifier">setting</span>.<span class="ruby-identifier">value</span>
+116:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000291" class="method-detail">
+        <a name="M000291"></a>
+
+        <div class="method-heading">
+          <a href="#M000291" class="method-signature">
+          <span class="method-name">check_cache</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Checks if settings have changed since the values were read and clears the
+cache hash if it&#8216;s the case Called once per request
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000291-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000291-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/setting.rb, line 151</span>
+151:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">check_cache</span>
+152:     <span class="ruby-identifier">settings_updated_on</span> = <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">maximum</span>(<span class="ruby-identifier">:updated_on</span>)
+153:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">settings_updated_on</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@cached_cleared_on</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-identifier">settings_updated_on</span>
+154:       <span class="ruby-ivar">@cached_settings</span>.<span class="ruby-identifier">clear</span>
+155:       <span class="ruby-ivar">@cached_cleared_on</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
+156:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span> <span class="ruby-value str">&quot;Settings cache cleared.&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">logger</span>
+157:     <span class="ruby-keyword kw">end</span>
+158:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000290" class="method-detail">
+        <a name="M000290"></a>
+
+        <div class="method-heading">
+          <a href="#M000290" class="method-signature">
+          <span class="method-name">openid?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000290-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000290-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/setting.rb, line 144</span>
+144:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">openid?</span>
+145:     <span class="ruby-constant">Object</span>.<span class="ruby-identifier">const_defined?</span>(<span class="ruby-identifier">:OpenID</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword kw">self</span>[<span class="ruby-identifier">:openid</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+146:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000289" class="method-detail">
+        <a name="M000289"></a>
+
+        <div class="method-heading">
+          <a href="#M000289" class="method-signature">
+          <span class="method-name">per_page_options_array</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Helper that returns an array based on per_page_options setting
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000289-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000289-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/setting.rb, line 140</span>
+140:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">per_page_options_array</span>
+141:     <span class="ruby-identifier">per_page_options</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp re">%r{[\s,]}</span>).<span class="ruby-identifier">collect</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">:to_i</span>).<span class="ruby-identifier">select</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> <span class="ruby-identifier">n</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>}.<span class="ruby-identifier">sort</span>
+142:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000285" class="method-detail">
+        <a name="M000285"></a>
+
+        <div class="method-heading">
+          <a href="#M000285" class="method-signature">
+          <span class="method-name">value</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000285-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000285-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/setting.rb, line 91</span>
+91:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">value</span>
+92:     <span class="ruby-identifier">v</span> = <span class="ruby-identifier">read_attribute</span>(<span class="ruby-identifier">:value</span>)
+93:     <span class="ruby-comment cmt"># Unserialize serialized settings</span>
+94:     <span class="ruby-identifier">v</span> = <span class="ruby-constant">YAML</span><span class="ruby-operator">::</span><span class="ruby-identifier">load</span>(<span class="ruby-identifier">v</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@@available_settings</span>[<span class="ruby-identifier">name</span>][<span class="ruby-value str">'serialized'</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>)
+95:     <span class="ruby-identifier">v</span> = <span class="ruby-identifier">v</span>.<span class="ruby-identifier">to_sym</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@@available_settings</span>[<span class="ruby-identifier">name</span>][<span class="ruby-value str">'format'</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'symbol'</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">v</span>.<span class="ruby-identifier">blank?</span>
+96:     <span class="ruby-identifier">v</span>
+97:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000286" class="method-detail">
+        <a name="M000286"></a>
+
+        <div class="method-heading">
+          <a href="#M000286" class="method-signature">
+          <span class="method-name">value=</span><span class="method-args">(v)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000286-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000286-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/setting.rb, line 99</span>
+ 99:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">value=</span>(<span class="ruby-identifier">v</span>)
+100:     <span class="ruby-identifier">v</span> = <span class="ruby-identifier">v</span>.<span class="ruby-identifier">to_yaml</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">v</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@@available_settings</span>[<span class="ruby-identifier">name</span>][<span class="ruby-value str">'serialized'</span>]
+101:     <span class="ruby-identifier">write_attribute</span>(<span class="ruby-identifier">:value</span>, <span class="ruby-identifier">v</span>.<span class="ruby-identifier">to_s</span>)
+102:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

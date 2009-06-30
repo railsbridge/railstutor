@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: AccountController</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">AccountController</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/app/controllers/account_controller_rb.html">
+                app/controllers/account_controller.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="ApplicationController.html">
+                ApplicationController
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Redmine - project management software Copyright (C) 2006-2008 Jean-Philippe
+Lang
+</p>
+<p>
+This program is free software; you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the Free
+Software Foundation; either version 2 of the License, or (at your option)
+any later version.
+</p>
+<p>
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+more details.
+</p>
+<p>
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc., 51
+Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000136">activate</a>&nbsp;&nbsp;
+      <a href="#M000132">login</a>&nbsp;&nbsp;
+      <a href="#M000133">logout</a>&nbsp;&nbsp;
+      <a href="#M000134">lost_password</a>&nbsp;&nbsp;
+      <a href="#M000135">register</a>&nbsp;&nbsp;
+      <a href="#M000131">show</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name"><a href="CustomFieldsHelper.html">CustomFieldsHelper</a></span>
+      </div>
+    </div>
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000136" class="method-detail">
+        <a name="M000136"></a>
+
+        <div class="method-heading">
+          <a href="#M000136" class="method-signature">
+          <span class="method-name">activate</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<a href="Token.html">Token</a> based account activation
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000136-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000136-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/controllers/account_controller.rb, line 139</span>
+139:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">activate</span>
+140:     <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">home_url</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">self_registration?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:token</span>]
+141:     <span class="ruby-identifier">token</span> = <span class="ruby-constant">Token</span>.<span class="ruby-identifier">find_by_action_and_value</span>(<span class="ruby-value str">'register'</span>, <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:token</span>])
+142:     <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">home_url</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">token</span> <span class="ruby-keyword kw">and</span> <span class="ruby-operator">!</span><span class="ruby-identifier">token</span>.<span class="ruby-identifier">expired?</span>
+143:     <span class="ruby-identifier">user</span> = <span class="ruby-identifier">token</span>.<span class="ruby-identifier">user</span>
+144:     <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">home_url</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">status</span> <span class="ruby-operator">==</span> <span class="ruby-constant">User</span><span class="ruby-operator">::</span><span class="ruby-constant">STATUS_REGISTERED</span>
+145:     <span class="ruby-identifier">user</span>.<span class="ruby-identifier">status</span> = <span class="ruby-constant">User</span><span class="ruby-operator">::</span><span class="ruby-constant">STATUS_ACTIVE</span>
+146:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">save</span>
+147:       <span class="ruby-identifier">token</span>.<span class="ruby-identifier">destroy</span>
+148:       <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-identifier">l</span>(<span class="ruby-identifier">:notice_account_activated</span>)
+149:     <span class="ruby-keyword kw">end</span>
+150:     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'login'</span>
+151:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000132" class="method-detail">
+        <a name="M000132"></a>
+
+        <div class="method-heading">
+          <a href="#M000132" class="method-signature">
+          <span class="method-name">login</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Login request and validation
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000132-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000132-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/controllers/account_controller.rb, line 43</span>
+43:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">login</span>
+44:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">get?</span>
+45:       <span class="ruby-comment cmt"># Logout user</span>
+46:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">logged_user</span> = <span class="ruby-keyword kw">nil</span>
+47:     <span class="ruby-keyword kw">else</span>
+48:       <span class="ruby-comment cmt"># Authenticate user</span>
+49:       <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">openid?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">using_open_id?</span>
+50:         <span class="ruby-identifier">open_id_authenticate</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:openid_url</span>])
+51:       <span class="ruby-keyword kw">else</span>
+52:         <span class="ruby-identifier">password_authentication</span>
+53:       <span class="ruby-keyword kw">end</span>
+54:     <span class="ruby-keyword kw">end</span>
+55:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000133" class="method-detail">
+        <a name="M000133"></a>
+
+        <div class="method-heading">
+          <a href="#M000133" class="method-signature">
+          <span class="method-name">logout</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Log out current user and redirect to welcome page
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000133-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000133-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/controllers/account_controller.rb, line 58</span>
+58:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">logout</span>
+59:     <span class="ruby-identifier">cookies</span>.<span class="ruby-identifier">delete</span> <span class="ruby-identifier">:autologin</span>
+60:     <span class="ruby-constant">Token</span>.<span class="ruby-identifier">delete_all</span>([<span class="ruby-value str">&quot;user_id = ? AND action = ?&quot;</span>, <span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value str">'autologin'</span>]) <span class="ruby-keyword kw">if</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>.<span class="ruby-identifier">logged?</span>
+61:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">logged_user</span> = <span class="ruby-keyword kw">nil</span>
+62:     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">home_url</span>
+63:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000134" class="method-detail">
+        <a name="M000134"></a>
+
+        <div class="method-heading">
+          <a href="#M000134" class="method-signature">
+          <span class="method-name">lost_password</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Enable user to choose a new password
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000134-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000134-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/controllers/account_controller.rb, line 66</span>
+ 66:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">lost_password</span>
+ 67:     <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">home_url</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">lost_password?</span>
+ 68:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:token</span>]
+ 69:       <span class="ruby-ivar">@token</span> = <span class="ruby-constant">Token</span>.<span class="ruby-identifier">find_by_action_and_value</span>(<span class="ruby-value str">&quot;recovery&quot;</span>, <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:token</span>])
+ 70:       <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">home_url</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@token</span> <span class="ruby-keyword kw">and</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@token</span>.<span class="ruby-identifier">expired?</span>
+ 71:       <span class="ruby-ivar">@user</span> = <span class="ruby-ivar">@token</span>.<span class="ruby-identifier">user</span>
+ 72:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">post?</span>
+ 73:         <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">password</span>, <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">password_confirmation</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:new_password</span>], <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:new_password_confirmation</span>]
+ 74:         <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">save</span>
+ 75:           <span class="ruby-ivar">@token</span>.<span class="ruby-identifier">destroy</span>
+ 76:           <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-identifier">l</span>(<span class="ruby-identifier">:notice_account_password_updated</span>)
+ 77:           <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'login'</span>
+ 78:           <span class="ruby-keyword kw">return</span>
+ 79:         <span class="ruby-keyword kw">end</span> 
+ 80:       <span class="ruby-keyword kw">end</span>
+ 81:       <span class="ruby-identifier">render</span> <span class="ruby-identifier">:template</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;account/password_recovery&quot;</span>
+ 82:       <span class="ruby-keyword kw">return</span>
+ 83:     <span class="ruby-keyword kw">else</span>
+ 84:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">post?</span>
+ 85:         <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_mail</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:mail</span>])
+ 86:         <span class="ruby-comment cmt"># user not found in db</span>
+ 87:         <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-identifier">:error</span>] = <span class="ruby-identifier">l</span>(<span class="ruby-identifier">:notice_account_unknown_email</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">user</span>
+ 88:         <span class="ruby-comment cmt"># user uses an external authentification</span>
+ 89:         <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-identifier">:error</span>] = <span class="ruby-identifier">l</span>(<span class="ruby-identifier">:notice_can_t_change_password</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">auth_source_id</span>
+ 90:         <span class="ruby-comment cmt"># create a new token for password recovery</span>
+ 91:         <span class="ruby-identifier">token</span> = <span class="ruby-constant">Token</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:user</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user</span>, <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;recovery&quot;</span>)
+ 92:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">token</span>.<span class="ruby-identifier">save</span>
+ 93:           <span class="ruby-constant">Mailer</span>.<span class="ruby-identifier">deliver_lost_password</span>(<span class="ruby-identifier">token</span>)
+ 94:           <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-identifier">l</span>(<span class="ruby-identifier">:notice_account_lost_email_sent</span>)
+ 95:           <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'login'</span>
+ 96:           <span class="ruby-keyword kw">return</span>
+ 97:         <span class="ruby-keyword kw">end</span>
+ 98:       <span class="ruby-keyword kw">end</span>
+ 99:     <span class="ruby-keyword kw">end</span>
+100:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000135" class="method-detail">
+        <a name="M000135"></a>
+
+        <div class="method-heading">
+          <a href="#M000135" class="method-signature">
+          <span class="method-name">register</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<a href="User.html">User</a> self-registration
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000135-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000135-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/controllers/account_controller.rb, line 103</span>
+103:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">register</span>
+104:     <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">home_url</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">self_registration?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">session</span>[<span class="ruby-identifier">:auth_source_registration</span>]
+105:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">get?</span>
+106:       <span class="ruby-identifier">session</span>[<span class="ruby-identifier">:auth_source_registration</span>] = <span class="ruby-keyword kw">nil</span>
+107:       <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:language</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">default_language</span>)
+108:     <span class="ruby-keyword kw">else</span>
+109:       <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:user</span>])
+110:       <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">admin</span> = <span class="ruby-keyword kw">false</span>
+111:       <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">status</span> = <span class="ruby-constant">User</span><span class="ruby-operator">::</span><span class="ruby-constant">STATUS_REGISTERED</span>
+112:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">session</span>[<span class="ruby-identifier">:auth_source_registration</span>]
+113:         <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">status</span> = <span class="ruby-constant">User</span><span class="ruby-operator">::</span><span class="ruby-constant">STATUS_ACTIVE</span>
+114:         <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">login</span> = <span class="ruby-identifier">session</span>[<span class="ruby-identifier">:auth_source_registration</span>][<span class="ruby-identifier">:login</span>]
+115:         <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">auth_source_id</span> = <span class="ruby-identifier">session</span>[<span class="ruby-identifier">:auth_source_registration</span>][<span class="ruby-identifier">:auth_source_id</span>]
+116:         <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">save</span>
+117:           <span class="ruby-identifier">session</span>[<span class="ruby-identifier">:auth_source_registration</span>] = <span class="ruby-keyword kw">nil</span>
+118:           <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">logged_user</span> = <span class="ruby-ivar">@user</span>
+119:           <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-identifier">l</span>(<span class="ruby-identifier">:notice_account_activated</span>)
+120:           <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">:controller</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'my'</span>, <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'account'</span>
+121:         <span class="ruby-keyword kw">end</span>
+122:       <span class="ruby-keyword kw">else</span>
+123:         <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">login</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:user</span>][<span class="ruby-identifier">:login</span>]
+124:         <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">password</span>, <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">password_confirmation</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:password</span>], <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:password_confirmation</span>]
+125: 
+126:         <span class="ruby-keyword kw">case</span> <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">self_registration</span>
+127:         <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'1'</span>
+128:           <span class="ruby-identifier">register_by_email_activation</span>(<span class="ruby-ivar">@user</span>)
+129:         <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'3'</span>
+130:           <span class="ruby-identifier">register_automatically</span>(<span class="ruby-ivar">@user</span>)
+131:         <span class="ruby-keyword kw">else</span>
+132:           <span class="ruby-identifier">register_manually_by_administrator</span>(<span class="ruby-ivar">@user</span>)
+133:         <span class="ruby-keyword kw">end</span>
+134:       <span class="ruby-keyword kw">end</span>
+135:     <span class="ruby-keyword kw">end</span>
+136:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000131" class="method-detail">
+        <a name="M000131"></a>
+
+        <div class="method-heading">
+          <a href="#M000131" class="method-signature">
+          <span class="method-name">show</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Show user&#8216;s account
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000131-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000131-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/controllers/account_controller.rb, line 26</span>
+26:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show</span>
+27:     <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">active</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>])
+28:     <span class="ruby-ivar">@custom_values</span> = <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">custom_values</span>
+29:     
+30:     <span class="ruby-comment cmt"># show only public projects and private projects that the logged in user is also a member of</span>
+31:     <span class="ruby-ivar">@memberships</span> = <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">memberships</span>.<span class="ruby-identifier">select</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">membership</span><span class="ruby-operator">|</span>
+32:       <span class="ruby-identifier">membership</span>.<span class="ruby-identifier">project</span>.<span class="ruby-identifier">is_public?</span> <span class="ruby-operator">||</span> (<span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>.<span class="ruby-identifier">member_of?</span>(<span class="ruby-identifier">membership</span>.<span class="ruby-identifier">project</span>))
+33:     <span class="ruby-keyword kw">end</span>
+34:     
+35:     <span class="ruby-identifier">events</span> = <span class="ruby-constant">Redmine</span><span class="ruby-operator">::</span><span class="ruby-constant">Activity</span><span class="ruby-operator">::</span><span class="ruby-constant">Fetcher</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>, <span class="ruby-identifier">:author</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@user</span>).<span class="ruby-identifier">events</span>(<span class="ruby-keyword kw">nil</span>, <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">:limit</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">10</span>)
+36:     <span class="ruby-ivar">@events_by_day</span> = <span class="ruby-identifier">events</span>.<span class="ruby-identifier">group_by</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">:event_date</span>)
+37:     
+38:   <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">RecordNotFound</span>
+39:     <span class="ruby-identifier">render_404</span>
+40:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

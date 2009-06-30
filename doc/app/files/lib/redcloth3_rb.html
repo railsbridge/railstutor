@@ -1,0 +1,1995 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: redcloth3.rb</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>redcloth3.rb</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>lib/redcloth3.rb
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Tue Jun 02 10:24:50 -0500 2009</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <pre>
+                               vim:ts=4:sw=4:
+</pre>
+<h1>RedCloth - Textile and Markdown Hybrid for Ruby</h1>
+<table>
+<tr><td valign="top">Homepage:</td><td><a
+href="http://whytheluckystiff.net/ruby/redcloth">whytheluckystiff.net/ruby/redcloth</a>/
+
+</td></tr>
+<tr><td valign="top">Author:</td><td>why the lucky stiff (<a
+href="http://whytheluckystiff.net">whytheluckystiff.net</a>/)
+
+</td></tr>
+<tr><td valign="top">Copyright:</td><td>(cc) 2004 why the lucky stiff (and his puppet organizations.)
+
+</td></tr>
+<tr><td valign="top">License:</td><td>BSD
+
+</td></tr>
+</table>
+<p>
+(see <a href="http://hobix.com/textile">hobix.com/textile</a>/ for a
+Textile Reference.)
+</p>
+<p>
+Based on (and also inspired by) both:
+</p>
+<p>
+PyTextile: <a
+href="http://diveintomark.org/projects/textile/textile.py.txt">diveintomark.org/projects/textile/textile.py.txt</a>
+Textism for PHP: <a
+href="http://www.textism.com/tools/textile">www.textism.com/tools/textile</a>/
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000022">block_markdown_atx</a>&nbsp;&nbsp;
+      <a href="#M000023">block_markdown_bq</a>&nbsp;&nbsp;
+      <a href="#M000025">block_markdown_lists</a>&nbsp;&nbsp;
+      <a href="#M000024">block_markdown_rule</a>&nbsp;&nbsp;
+      <a href="#M000021">block_markdown_setext</a>&nbsp;&nbsp;
+      <a href="#M000005">block_textile_lists</a>&nbsp;&nbsp;
+      <a href="#M000020">block_textile_prefix</a>&nbsp;&nbsp;
+      <a href="#M000006">block_textile_quotes</a>&nbsp;&nbsp;
+      <a href="#M000004">block_textile_table</a>&nbsp;&nbsp;
+      <a href="#M000010">blocks</a>&nbsp;&nbsp;
+      <a href="#M000033">check_refs</a>&nbsp;&nbsp;
+      <a href="#M000049">clean_html</a>&nbsp;&nbsp;
+      <a href="#M000039">clean_white_space</a>&nbsp;&nbsp;
+      <a href="#M000050">escape_html_tags</a>&nbsp;&nbsp;
+      <a href="#M000040">flush_left</a>&nbsp;&nbsp;
+      <a href="#M000041">footnote_ref</a>&nbsp;&nbsp;
+      <a href="#M000042">glyphs_textile</a>&nbsp;&nbsp;
+      <a href="#M000046">h_align</a>&nbsp;&nbsp;
+      <a href="#M000009">hard_break</a>&nbsp;&nbsp;
+      <a href="#M000001">htmlesc</a>&nbsp;&nbsp;
+      <a href="#M000037">incoming_entities</a>&nbsp;&nbsp;
+      <a href="#M000045">inline</a>&nbsp;&nbsp;
+      <a href="#M000029">inline_markdown_link</a>&nbsp;&nbsp;
+      <a href="#M000028">inline_markdown_reflink</a>&nbsp;&nbsp;
+      <a href="#M000007">inline_textile_code</a>&nbsp;&nbsp;
+      <a href="#M000034">inline_textile_image</a>&nbsp;&nbsp;
+      <a href="#M000027">inline_textile_link</a>&nbsp;&nbsp;
+      <a href="#M000026">inline_textile_span</a>&nbsp;&nbsp;
+      <a href="#M000008">lT</a>&nbsp;&nbsp;
+      <a href="#M000038">no_textile</a>&nbsp;&nbsp;
+      <a href="#M000003">pba</a>&nbsp;&nbsp;
+      <a href="#M000002">pgl</a>&nbsp;&nbsp;
+      <a href="#M000030">refs</a>&nbsp;&nbsp;
+      <a href="#M000032">refs_markdown</a>&nbsp;&nbsp;
+      <a href="#M000031">refs_textile</a>&nbsp;&nbsp;
+      <a href="#M000036">retrieve</a>&nbsp;&nbsp;
+      <a href="#M000043">rip_offtags</a>&nbsp;&nbsp;
+      <a href="#M000035">shelve</a>&nbsp;&nbsp;
+      <a href="#M000044">smooth_offtags</a>&nbsp;&nbsp;
+      <a href="#M000011">textile_bq</a>&nbsp;&nbsp;
+      <a href="#M000019">textile_fn_</a>&nbsp;&nbsp;
+      <a href="#M000013">textile_h1</a>&nbsp;&nbsp;
+      <a href="#M000014">textile_h2</a>&nbsp;&nbsp;
+      <a href="#M000015">textile_h3</a>&nbsp;&nbsp;
+      <a href="#M000016">textile_h4</a>&nbsp;&nbsp;
+      <a href="#M000017">textile_h5</a>&nbsp;&nbsp;
+      <a href="#M000018">textile_h6</a>&nbsp;&nbsp;
+      <a href="#M000012">textile_p</a>&nbsp;&nbsp;
+      <a href="#M000048">textile_popup_help</a>&nbsp;&nbsp;
+      <a href="#M000047">v_align</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">A_HLGN</td>
+          <td>=</td>
+          <td class="context-item-value">/(?:(?:&lt;&gt;|&lt;|&gt;|\=|[()]+)+)/</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Regular expressions to convert to HTML.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">A_VLGN</td>
+          <td>=</td>
+          <td class="context-item-value">/[\-^~]/</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">C_CLAS</td>
+          <td>=</td>
+          <td class="context-item-value">'(?:\([^)]+\))'</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">C_LNGE</td>
+          <td>=</td>
+          <td class="context-item-value">'(?:\[[^\[\]]+\])'</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">C_STYL</td>
+          <td>=</td>
+          <td class="context-item-value">'(?:\{[^}]+\})'</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">S_CSPN</td>
+          <td>=</td>
+          <td class="context-item-value">'(?:\\\\\d+)'</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">S_RSPN</td>
+          <td>=</td>
+          <td class="context-item-value">'(?:/\d+)'</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">A</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;(?:#{A_HLGN}?#{A_VLGN}?|#{A_VLGN}?#{A_HLGN}?)&quot;</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">S</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;(?:#{S_CSPN}?#{S_RSPN}|#{S_RSPN}?#{S_CSPN}?)&quot;</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">C</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;(?:#{C_CLAS}?#{C_STYL}?#{C_LNGE}?|#{C_STYL}?#{C_LNGE}?#{C_CLAS}?|#{C_LNGE}?#{C_STYL}?#{C_CLAS}?)&quot;</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PUNCT</td>
+          <td>=</td>
+          <td class="context-item-value">Regexp::quote( '!&quot;#$%&amp;\'*+,-./:;=?@\\^_`|~' )</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+PUNCT = Regexp::quote(
+&#8217;!&quot;#$%&amp;\&#8217;()*+,-./:;&lt;=&gt;?@[\]^_`{|}~&#8217; )
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PUNCT_NOQ</td>
+          <td>=</td>
+          <td class="context-item-value">Regexp::quote( '!&quot;#$&amp;\',./:;=?@\\`|' )</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PUNCT_Q</td>
+          <td>=</td>
+          <td class="context-item-value">Regexp::quote( '*-_+^~%' )</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HYPERLINK</td>
+          <td>=</td>
+          <td class="context-item-value">'(\S+?)([^\w\s/;=\?]*?)(?=\s|&lt;|$)'</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SIMPLE_HTML_TAGS</td>
+          <td>=</td>
+          <td class="context-item-value">[         'tt', 'b', 'i', 'big', 'small', 'em', 'strong', 'dfn', 'code',          'samp', 'kbd', 'var', 'cite', 'abbr', 'acronym', 'a', 'img', 'br',         'br', 'map', 'q', 'sub', 'sup', 'span', 'bdo'</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Text markup tags, don&#8216;t conflict with block tags
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">QTAGS</td>
+          <td>=</td>
+          <td class="context-item-value">[         ['**', 'b', :limit],         ['*', 'strong', :limit],         ['??', 'cite', :limit],         ['-', 'del', :limit],         ['__', 'i', :limit],         ['_', 'em', :limit],         ['%', 'span', :limit],         ['+', 'ins', :limit],         ['^', 'sup', :limit],         ['~', 'sub', :limit]</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GLYPHS</td>
+          <td>=</td>
+          <td class="context-item-value">[     #   [ /([^\s\[{(&gt;])?\'([dmst]\b|ll\b|ve\b|\s|:|$)/, '\1&amp;#8217;\2' ], # single closing     #   [ /([^\s\[{(&gt;#{PUNCT_Q}][#{PUNCT_Q}]*)\'/, '\1&amp;#8217;' ], # single closing     #   [ /\'(?=[#{PUNCT_Q}]*(s\b|[\s#{PUNCT_NOQ}]))/, '&amp;#8217;' ], # single closing     #   [ /\'/, '&amp;#8216;' ], # single opening     #   [ /&lt;/, '&amp;lt;' ], # less-than     #   [ /&gt;/, '&amp;gt;' ], # greater-than     #   [ /([^\s\[{(])?&quot;(\s|:|$)/, '\1&amp;#8221;\2' ], # double closing     #   [ /([^\s\[{(&gt;#{PUNCT_Q}][#{PUNCT_Q}]*)&quot;/, '\1&amp;#8221;' ], # double closing     #   [ /&quot;(?=[#{PUNCT_Q}]*[\s#{PUNCT_NOQ}])/, '&amp;#8221;' ], # double closing     #   [ /&quot;/, '&amp;#8220;' ], # double opening     #   [ /\b( )?\.{3}/, '\1&amp;#8230;' ], # ellipsis     #   [ /\b([A-Z][A-Z0-9]{2,})\b(?:[(]([^)]*)[)])/, '&lt;acronym title=&quot;\2&quot;&gt;\1&lt;/acronym&gt;' ], # 3+ uppercase acronym     #   [ /(^|[^&quot;][&gt;\s])([A-Z][A-Z0-9 ]+[A-Z0-9])([^&lt;A-Za-z0-9]|$)/, '\1&lt;span class=&quot;caps&quot;&gt;\2&lt;/span&gt;\3', :no_span_caps ], # 3+ uppercase caps     #   [ /(\.\s)?\s?--\s?/, '\1&amp;#8212;' ], # em dash     #   [ /\s-&gt;\s/, ' &amp;rarr; ' ], # right arrow     #   [ /\s-\s/, ' &amp;#8211; ' ], # en dash     #   [ /(\d+) ?x ?(\d+)/, '\1&amp;#215;\2' ], # dimension sign     #   [ /\b ?[(\[]TM[\])]/i, '&amp;#8482;' ], # trademark     #   [ /\b ?[(\[]R[\])]/i, '&amp;#174;' ], # registered     #   [ /\b ?[(\[]C[\])]/i, '&amp;#169;' ] # copyright     ]</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Elements to handle
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">H_ALGN_VALS</td>
+          <td>=</td>
+          <td class="context-item-value">{         '&lt;' =&gt; 'left',         '=' =&gt; 'center',         '&gt;' =&gt; 'right',         '&lt;&gt;' =&gt; 'justify'</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">V_ALGN_VALS</td>
+          <td>=</td>
+          <td class="context-item-value">{         '^' =&gt; 'top',         '-' =&gt; 'middle',         '~' =&gt; 'bottom'</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TABLE_RE</td>
+          <td>=</td>
+          <td class="context-item-value">/^(?:table(_?#{S}#{A}#{C})\. ?\n)?^(#{A}#{C}\.? ?\|.*?\|)(\n\n|\Z)/m</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LISTS_RE</td>
+          <td>=</td>
+          <td class="context-item-value">/^([#*]+?#{C} .*?)$(?![^#*])/m</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LISTS_CONTENT_RE</td>
+          <td>=</td>
+          <td class="context-item-value">/^([#*]+)(#{A}#{C}) (.*)$/m</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">QUOTES_RE</td>
+          <td>=</td>
+          <td class="context-item-value">/(^&gt;+([^\n]*?)\n?)+/m</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">QUOTES_CONTENT_RE</td>
+          <td>=</td>
+          <td class="context-item-value">/^([&gt; ]+)(.*)$/m</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CODE_RE</td>
+          <td>=</td>
+          <td class="context-item-value">/(\W)         @         (?:\|(\w+?)\|)?         (.+?)         @         (?=\W)/x</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BLOCKS_GROUP_RE</td>
+          <td>=</td>
+          <td class="context-item-value">/\n{2,}(?! )/m</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BLOCK_RE</td>
+          <td>=</td>
+          <td class="context-item-value">/^(([a-z]+)(\d*))(#{A}#{C})\.(?::(\S+))? (.*)$/m</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SETEXT_RE</td>
+          <td>=</td>
+          <td class="context-item-value">/\A(.+?)\n([=-])[=-]* *$/m</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ATX_RE</td>
+          <td>=</td>
+          <td class="context-item-value">/\A(\#{1,6})  # $1 = string of #'s               [ ]*               (.+?)       # $2 = Header text               [ ]*               \#*         # optional closing #'s (not counted)               $/x</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MARKDOWN_BQ_RE</td>
+          <td>=</td>
+          <td class="context-item-value">/\A(^ *&gt; ?.+$(.+\n)*\n*)+/m</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MARKDOWN_RULE_RE</td>
+          <td>=</td>
+          <td class="context-item-value">/^(#{         ['*', '-', '_'].collect { |ch| ' ?(' + Regexp::quote( ch ) + ' ?){3,}' }.join( '|' )     })$/</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LINK_RE</td>
+          <td>=</td>
+          <td class="context-item-value">/             ([\s\[{(]|[#{PUNCT}])?     # $pre             &quot;                          # start             (#{C})                     # $atts             ([^&quot;\n]+?)                 # $text             \s?             (?:\(([^)]+?)\)(?=&quot;))?     # $title             &quot;:             (                          # $url             (\/|[a-zA-Z]+:\/\/|www\.|mailto:)  # $proto             [\w\/]\S+?             )                            (\/)?                      # $slash             ([^\w\=\/;\(\)]*?)         # $post             (?=&lt;|\s|$)         /x</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MARKDOWN_REFLINK_RE</td>
+          <td>=</td>
+          <td class="context-item-value">/             \[([^\[\]]+)\]      # $text             [ ]?                # opt. space             (?:\n[ ]*)?         # one optional newline followed by spaces             \[(.*?)\]           # $id         /x</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MARKDOWN_LINK_RE</td>
+          <td>=</td>
+          <td class="context-item-value">/             \[([^\[\]]+)\]      # $text             \(                  # open paren             [ \t]*              # opt space             &lt;?(.+?)&gt;?           # $href             [ \t]*              # opt space             (?:                 # whole title             (['&quot;])              # $quote             (.*?)               # $title             \3                  # matching quote             )?                  # title is optional             \)         /x</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TEXTILE_REFS_RE</td>
+          <td>=</td>
+          <td class="context-item-value">/(^ *)\[([^\[\n]+?)\](#{HYPERLINK})(?=\s|$)/</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MARKDOWN_REFS_RE</td>
+          <td>=</td>
+          <td class="context-item-value">/(^ *)\[([^\n]+?)\]:\s+&lt;?(#{HYPERLINK})&gt;?(?:\s+&quot;((?:[^&quot;]|\\&quot;)+)&quot;)?(?=\s|$)/m</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">IMAGE_RE</td>
+          <td>=</td>
+          <td class="context-item-value">/             (&lt;p&gt;|\s|^)           # start of line?             \!                   # opening             (\&lt;|\=|\&gt;)?          # optional alignment atts             (#{C})               # optional style,class atts             (?:\. )?             # optional dot-space             ([^\s(!]+?)          # presume this is the src             \s?                  # optional space             (?:\(((?:[^\(\)]|\([^\)]+\))+?)\))?   # optional title             \!                   # closing             (?::#{ HYPERLINK })? # optional href         /x</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">OFFTAGS</td>
+          <td>=</td>
+          <td class="context-item-value">/(code|pre|kbd|notextile)/</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">OFFTAG_MATCH</td>
+          <td>=</td>
+          <td class="context-item-value">/(?:(&lt;\/#{ OFFTAGS }&gt;)|(&lt;#{ OFFTAGS }[^&gt;]*&gt;))(.*?)(?=&lt;\/?#{ OFFTAGS }|\Z)/mi</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">OFFTAG_OPEN</td>
+          <td>=</td>
+          <td class="context-item-value">/&lt;#{ OFFTAGS }/</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">OFFTAG_CLOSE</td>
+          <td>=</td>
+          <td class="context-item-value">/&lt;\/?#{ OFFTAGS }/</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HASTAG_MATCH</td>
+          <td>=</td>
+          <td class="context-item-value">/(&lt;\/?\w[^\n]*?&gt;)/m</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ALLTAG_MATCH</td>
+          <td>=</td>
+          <td class="context-item-value">/(&lt;\/?\w[^\n]*?&gt;)|.*?(?=&lt;\/?\w[^\n]*?&gt;|$)/m</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BASIC_TAGS</td>
+          <td>=</td>
+          <td class="context-item-value">{         'a' =&gt; ['href', 'title'],         'img' =&gt; ['src', 'alt', 'title'],         'br' =&gt; [],         'i' =&gt; nil,         'u' =&gt; nil,          'b' =&gt; nil,         'pre' =&gt; nil,         'kbd' =&gt; nil,         'code' =&gt; ['lang'],         'cite' =&gt; nil,         'strong' =&gt; nil,         'em' =&gt; nil,         'ins' =&gt; nil,         'sup' =&gt; nil,         'sub' =&gt; nil,         'del' =&gt; nil,         'table' =&gt; nil,         'tr' =&gt; nil,         'td' =&gt; ['colspan', 'rowspan'],         'th' =&gt; nil,         'ol' =&gt; nil,         'ul' =&gt; nil,         'li' =&gt; nil,         'p' =&gt; nil,         'h1' =&gt; nil,         'h2' =&gt; nil,         'h3' =&gt; nil,         'h4' =&gt; nil,         'h5' =&gt; nil,         'h6' =&gt; nil,          'blockquote' =&gt; ['cite']</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+HTML cleansing stuff
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ALLOWED_TAGS</td>
+          <td>=</td>
+          <td class="context-item-value">%w(redpre pre code notextile)</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000022" class="method-detail">
+        <a name="M000022"></a>
+
+        <div class="method-heading">
+          <a href="#M000022" class="method-signature">
+          <span class="method-name">block_markdown_atx</span><span class="method-args">( text )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000022-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000022-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 730</span>
+730:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">block_markdown_atx</span>( <span class="ruby-identifier">text</span> )
+731:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">text</span> <span class="ruby-operator">=~</span> <span class="ruby-constant">ATX_RE</span>
+732:             <span class="ruby-identifier">tag</span> = <span class="ruby-node">&quot;h#{ $1.length }&quot;</span>
+733:             <span class="ruby-identifier">blk</span>, <span class="ruby-identifier">cont</span> = <span class="ruby-node">&quot;&lt;#{ tag }&gt;#{ $2 }&lt;/#{ tag }&gt;\n\n&quot;</span>, <span class="ruby-identifier">$'</span>
+734:             <span class="ruby-identifier">blocks</span> <span class="ruby-identifier">cont</span>
+735:             <span class="ruby-identifier">text</span>.<span class="ruby-identifier">replace</span>( <span class="ruby-identifier">blk</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">cont</span> )
+736:         <span class="ruby-keyword kw">end</span>
+737:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000023" class="method-detail">
+        <a name="M000023"></a>
+
+        <div class="method-heading">
+          <a href="#M000023" class="method-signature">
+          <span class="method-name">block_markdown_bq</span><span class="method-args">( text )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000023-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000023-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 741</span>
+741:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">block_markdown_bq</span>( <span class="ruby-identifier">text</span> )
+742:         <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-constant">MARKDOWN_BQ_RE</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">blk</span><span class="ruby-operator">|</span>
+743:             <span class="ruby-identifier">blk</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-regexp re">/^ *&gt; ?/</span>, <span class="ruby-value str">''</span> )
+744:             <span class="ruby-identifier">flush_left</span> <span class="ruby-identifier">blk</span>
+745:             <span class="ruby-identifier">blocks</span> <span class="ruby-identifier">blk</span>
+746:             <span class="ruby-identifier">blk</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-regexp re">/^(\S)/</span>, <span class="ruby-value str">&quot;\t\\1&quot;</span> )
+747:             <span class="ruby-node">&quot;&lt;blockquote&gt;\n#{ blk }\n&lt;/blockquote&gt;\n\n&quot;</span>
+748:         <span class="ruby-keyword kw">end</span>
+749:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000025" class="method-detail">
+        <a name="M000025"></a>
+
+        <div class="method-heading">
+          <a href="#M000025" class="method-signature">
+          <span class="method-name">block_markdown_lists</span><span class="method-args">( text )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+XXX TODO XXX
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000025-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000025-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 762</span>
+762:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">block_markdown_lists</span>( <span class="ruby-identifier">text</span> )
+763:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000024" class="method-detail">
+        <a name="M000024"></a>
+
+        <div class="method-heading">
+          <a href="#M000024" class="method-signature">
+          <span class="method-name">block_markdown_rule</span><span class="method-args">( text )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000024-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000024-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 755</span>
+755:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">block_markdown_rule</span>( <span class="ruby-identifier">text</span> )
+756:         <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-constant">MARKDOWN_RULE_RE</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">blk</span><span class="ruby-operator">|</span>
+757:             <span class="ruby-value str">&quot;&lt;hr /&gt;&quot;</span>
+758:         <span class="ruby-keyword kw">end</span>
+759:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000021" class="method-detail">
+        <a name="M000021"></a>
+
+        <div class="method-heading">
+          <a href="#M000021" class="method-signature">
+          <span class="method-name">block_markdown_setext</span><span class="method-args">( text )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000021-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000021-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 715</span>
+715:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">block_markdown_setext</span>( <span class="ruby-identifier">text</span> )
+716:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">text</span> <span class="ruby-operator">=~</span> <span class="ruby-constant">SETEXT_RE</span>
+717:             <span class="ruby-identifier">tag</span> = <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">$2</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;=&quot;</span>; <span class="ruby-value str">&quot;h1&quot;</span>; <span class="ruby-keyword kw">else</span>; <span class="ruby-value str">&quot;h2&quot;</span>; <span class="ruby-keyword kw">end</span>
+718:             <span class="ruby-identifier">blk</span>, <span class="ruby-identifier">cont</span> = <span class="ruby-node">&quot;&lt;#{ tag }&gt;#{ $1 }&lt;/#{ tag }&gt;&quot;</span>, <span class="ruby-identifier">$'</span>
+719:             <span class="ruby-identifier">blocks</span> <span class="ruby-identifier">cont</span>
+720:             <span class="ruby-identifier">text</span>.<span class="ruby-identifier">replace</span>( <span class="ruby-identifier">blk</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">cont</span> )
+721:         <span class="ruby-keyword kw">end</span>
+722:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000005" class="method-detail">
+        <a name="M000005"></a>
+
+        <div class="method-heading">
+          <a href="#M000005" class="method-signature">
+          <span class="method-name">block_textile_lists</span><span class="method-args">( text )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Parses Textile lists and generates HTML
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000005-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000005-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 537</span>
+537:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">block_textile_lists</span>( <span class="ruby-identifier">text</span> ) 
+538:         <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-constant">LISTS_RE</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">match</span><span class="ruby-operator">|</span>
+539:             <span class="ruby-identifier">lines</span> = <span class="ruby-identifier">match</span>.<span class="ruby-identifier">split</span>( <span class="ruby-regexp re">/\n/</span> )
+540:             <span class="ruby-identifier">last_line</span> = <span class="ruby-value">-1</span>
+541:             <span class="ruby-identifier">depth</span> = []
+542:             <span class="ruby-identifier">lines</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span>, <span class="ruby-identifier">line_id</span><span class="ruby-operator">|</span>
+543:                 <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">=~</span> <span class="ruby-constant">LISTS_CONTENT_RE</span> 
+544:                     <span class="ruby-identifier">tl</span>,<span class="ruby-identifier">atts</span>,<span class="ruby-identifier">content</span> = <span class="ruby-identifier">$~</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">3</span>]
+545:                     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">depth</span>.<span class="ruby-identifier">last</span>
+546:                         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">depth</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">tl</span>.<span class="ruby-identifier">length</span>
+547:                             (<span class="ruby-identifier">depth</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>).<span class="ruby-identifier">downto</span>(<span class="ruby-value">0</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+548:                                 <span class="ruby-keyword kw">break</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">depth</span>[<span class="ruby-identifier">i</span>].<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">tl</span>.<span class="ruby-identifier">length</span>
+549:                                 <span class="ruby-identifier">lines</span>[<span class="ruby-identifier">line_id</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&lt;/li&gt;\n\t&lt;/#{ lT( depth[i] ) }l&gt;\n\t&quot;</span>
+550:                                 <span class="ruby-identifier">depth</span>.<span class="ruby-identifier">pop</span>
+551:                             <span class="ruby-keyword kw">end</span>
+552:                         <span class="ruby-keyword kw">end</span>
+553:                         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">depth</span>.<span class="ruby-identifier">last</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">depth</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">tl</span>.<span class="ruby-identifier">length</span>
+554:                             <span class="ruby-identifier">lines</span>[<span class="ruby-identifier">line_id</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">'&lt;/li&gt;'</span>
+555:                         <span class="ruby-keyword kw">end</span>
+556:                     <span class="ruby-keyword kw">end</span>
+557:                     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">depth</span>.<span class="ruby-identifier">last</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">tl</span>
+558:                         <span class="ruby-identifier">depth</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">tl</span>
+559:                         <span class="ruby-identifier">atts</span> = <span class="ruby-identifier">pba</span>( <span class="ruby-identifier">atts</span> )
+560:                         <span class="ruby-identifier">atts</span> = <span class="ruby-identifier">shelve</span>( <span class="ruby-identifier">atts</span> ) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">atts</span>
+561:                         <span class="ruby-identifier">lines</span>[<span class="ruby-identifier">line_id</span>] = <span class="ruby-node">&quot;\t&lt;#{ lT(tl) }l#{ atts }&gt;\n\t&lt;li&gt;#{ content }&quot;</span>
+562:                     <span class="ruby-keyword kw">else</span>
+563:                         <span class="ruby-identifier">lines</span>[<span class="ruby-identifier">line_id</span>] = <span class="ruby-node">&quot;\t\t&lt;li&gt;#{ content }&quot;</span>
+564:                     <span class="ruby-keyword kw">end</span>
+565:                     <span class="ruby-identifier">last_line</span> = <span class="ruby-identifier">line_id</span>
+566: 
+567:                 <span class="ruby-keyword kw">else</span>
+568:                     <span class="ruby-identifier">last_line</span> = <span class="ruby-identifier">line_id</span>
+569:                 <span class="ruby-keyword kw">end</span>
+570:                 <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">line_id</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">last_line</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">line_id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">lines</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>
+571:                     <span class="ruby-identifier">depth</span>.<span class="ruby-identifier">delete_if</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+572:                         <span class="ruby-identifier">lines</span>[<span class="ruby-identifier">last_line</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&lt;/li&gt;\n\t&lt;/#{ lT( v ) }l&gt;&quot;</span>
+573:                     <span class="ruby-keyword kw">end</span>
+574:                 <span class="ruby-keyword kw">end</span>
+575:             <span class="ruby-keyword kw">end</span>
+576:             <span class="ruby-identifier">lines</span>.<span class="ruby-identifier">join</span>( <span class="ruby-value str">&quot;\n&quot;</span> )
+577:         <span class="ruby-keyword kw">end</span>
+578:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000020" class="method-detail">
+        <a name="M000020"></a>
+
+        <div class="method-heading">
+          <a href="#M000020" class="method-signature">
+          <span class="method-name">block_textile_prefix</span><span class="method-args">( text )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000020-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000020-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 700</span>
+700:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">block_textile_prefix</span>( <span class="ruby-identifier">text</span> ) 
+701:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">text</span> <span class="ruby-operator">=~</span> <span class="ruby-constant">BLOCK_RE</span>
+702:             <span class="ruby-identifier">tag</span>,<span class="ruby-identifier">tagpre</span>,<span class="ruby-identifier">num</span>,<span class="ruby-identifier">atts</span>,<span class="ruby-identifier">cite</span>,<span class="ruby-identifier">content</span> = <span class="ruby-identifier">$~</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">6</span>]
+703:             <span class="ruby-identifier">atts</span> = <span class="ruby-identifier">pba</span>( <span class="ruby-identifier">atts</span> )
+704: 
+705:             <span class="ruby-comment cmt"># pass to prefix handler</span>
+706:             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">respond_to?</span> <span class="ruby-node">&quot;textile_#{ tag }&quot;</span>, <span class="ruby-keyword kw">true</span>
+707:                 <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-identifier">$&amp;</span>, <span class="ruby-identifier">method</span>( <span class="ruby-node">&quot;textile_#{ tag }&quot;</span> ).<span class="ruby-identifier">call</span>( <span class="ruby-identifier">tag</span>, <span class="ruby-identifier">atts</span>, <span class="ruby-identifier">cite</span>, <span class="ruby-identifier">content</span> ) )
+708:             <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">respond_to?</span> <span class="ruby-node">&quot;textile_#{ tagpre }_&quot;</span>, <span class="ruby-keyword kw">true</span>
+709:                 <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-identifier">$&amp;</span>, <span class="ruby-identifier">method</span>( <span class="ruby-node">&quot;textile_#{ tagpre }_&quot;</span> ).<span class="ruby-identifier">call</span>( <span class="ruby-identifier">tagpre</span>, <span class="ruby-identifier">num</span>, <span class="ruby-identifier">atts</span>, <span class="ruby-identifier">cite</span>, <span class="ruby-identifier">content</span> ) )
+710:             <span class="ruby-keyword kw">end</span>
+711:         <span class="ruby-keyword kw">end</span>
+712:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000006" class="method-detail">
+        <a name="M000006"></a>
+
+        <div class="method-heading">
+          <a href="#M000006" class="method-signature">
+          <span class="method-name">block_textile_quotes</span><span class="method-args">( text )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000006-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000006-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 583</span>
+583:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">block_textile_quotes</span>( <span class="ruby-identifier">text</span> )
+584:       <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-constant">QUOTES_RE</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">match</span><span class="ruby-operator">|</span>
+585:         <span class="ruby-identifier">lines</span> = <span class="ruby-identifier">match</span>.<span class="ruby-identifier">split</span>( <span class="ruby-regexp re">/\n/</span> )
+586:         <span class="ruby-identifier">quotes</span> = <span class="ruby-value str">''</span>
+587:         <span class="ruby-identifier">indent</span> = <span class="ruby-value">0</span>
+588:         <span class="ruby-identifier">lines</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+589:           <span class="ruby-identifier">line</span> <span class="ruby-operator">=~</span> <span class="ruby-constant">QUOTES_CONTENT_RE</span> 
+590:           <span class="ruby-identifier">bq</span>,<span class="ruby-identifier">content</span> = <span class="ruby-identifier">$1</span>, <span class="ruby-identifier">$2</span>
+591:           <span class="ruby-identifier">l</span> = <span class="ruby-identifier">bq</span>.<span class="ruby-identifier">count</span>(<span class="ruby-value str">'&gt;'</span>)
+592:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">l</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">indent</span>
+593:             <span class="ruby-identifier">quotes</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-value str">&quot;\n\n&quot;</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">l</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">indent</span> <span class="ruby-value">? </span><span class="ruby-value str">'&lt;blockquote&gt;'</span> <span class="ruby-operator">*</span> (<span class="ruby-identifier">l</span><span class="ruby-operator">-</span><span class="ruby-identifier">indent</span>) <span class="ruby-operator">:</span> <span class="ruby-value str">'&lt;/blockquote&gt;'</span> <span class="ruby-operator">*</span> (<span class="ruby-identifier">indent</span><span class="ruby-operator">-</span><span class="ruby-identifier">l</span>)) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;\n\n&quot;</span>)
+594:             <span class="ruby-identifier">indent</span> = <span class="ruby-identifier">l</span>
+595:           <span class="ruby-keyword kw">end</span>
+596:           <span class="ruby-identifier">quotes</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-identifier">content</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;\n&quot;</span>)
+597:         <span class="ruby-keyword kw">end</span>
+598:         <span class="ruby-identifier">quotes</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-value str">&quot;\n&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-value str">'&lt;/blockquote&gt;'</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">indent</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;\n\n&quot;</span>)
+599:         <span class="ruby-identifier">quotes</span>
+600:       <span class="ruby-keyword kw">end</span>
+601:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000004" class="method-detail">
+        <a name="M000004"></a>
+
+        <div class="method-heading">
+          <a href="#M000004" class="method-signature">
+          <span class="method-name">block_textile_table</span><span class="method-args">( text )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Parses a Textile table block, building HTML from the result.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000004-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000004-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 504</span>
+504:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">block_textile_table</span>( <span class="ruby-identifier">text</span> ) 
+505:         <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-constant">TABLE_RE</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">matches</span><span class="ruby-operator">|</span>
+506: 
+507:             <span class="ruby-identifier">tatts</span>, <span class="ruby-identifier">fullrow</span> = <span class="ruby-identifier">$~</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">2</span>]
+508:             <span class="ruby-identifier">tatts</span> = <span class="ruby-identifier">pba</span>( <span class="ruby-identifier">tatts</span>, <span class="ruby-value str">'table'</span> )
+509:             <span class="ruby-identifier">tatts</span> = <span class="ruby-identifier">shelve</span>( <span class="ruby-identifier">tatts</span> ) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">tatts</span>
+510:             <span class="ruby-identifier">rows</span> = []
+511: 
+512:             <span class="ruby-identifier">fullrow</span>.<span class="ruby-identifier">each_line</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">row</span><span class="ruby-operator">|</span>
+513:                 <span class="ruby-identifier">ratts</span>, <span class="ruby-identifier">row</span> = <span class="ruby-identifier">pba</span>( <span class="ruby-identifier">$1</span>, <span class="ruby-value str">'tr'</span> ), <span class="ruby-identifier">$2</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">row</span> <span class="ruby-operator">=~</span> <span class="ruby-node">/^(#{A}#{C}\. )(.*)/</span><span class="ruby-identifier">m</span>
+514:                 <span class="ruby-identifier">cells</span> = []
+515:                 <span class="ruby-identifier">row</span>.<span class="ruby-identifier">split</span>( <span class="ruby-regexp re">/(\|)(?![^\[\|]*\]\])/</span> )[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">-2</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cell</span><span class="ruby-operator">|</span>
+516:                     <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">cell</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'|'</span>
+517:                     <span class="ruby-identifier">ctyp</span> = <span class="ruby-value str">'d'</span>
+518:                     <span class="ruby-identifier">ctyp</span> = <span class="ruby-value str">'h'</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">cell</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^_/</span>
+519: 
+520:                     <span class="ruby-identifier">catts</span> = <span class="ruby-value str">''</span>
+521:                     <span class="ruby-identifier">catts</span>, <span class="ruby-identifier">cell</span> = <span class="ruby-identifier">pba</span>( <span class="ruby-identifier">$1</span>, <span class="ruby-value str">'td'</span> ), <span class="ruby-identifier">$2</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">cell</span> <span class="ruby-operator">=~</span> <span class="ruby-node">/^(_?#{S}#{A}#{C}\. ?)(.*)/</span>
+522: 
+523:                     <span class="ruby-identifier">catts</span> = <span class="ruby-identifier">shelve</span>( <span class="ruby-identifier">catts</span> ) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">catts</span>
+524:                     <span class="ruby-identifier">cells</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;\t\t\t&lt;t#{ ctyp }#{ catts }&gt;#{ cell }&lt;/t#{ ctyp }&gt;&quot;</span> 
+525:                 <span class="ruby-keyword kw">end</span>
+526:                 <span class="ruby-identifier">ratts</span> = <span class="ruby-identifier">shelve</span>( <span class="ruby-identifier">ratts</span> ) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">ratts</span>
+527:                 <span class="ruby-identifier">rows</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;\t\t&lt;tr#{ ratts }&gt;\n#{ cells.join( &quot;\n&quot; ) }\n\t\t&lt;/tr&gt;&quot;</span>
+528:             <span class="ruby-keyword kw">end</span>
+529:             <span class="ruby-node">&quot;\t&lt;table#{ tatts }&gt;\n#{ rows.join( &quot;\n&quot; ) }\n\t&lt;/table&gt;\n\n&quot;</span>
+530:         <span class="ruby-keyword kw">end</span>
+531:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000010" class="method-detail">
+        <a name="M000010"></a>
+
+        <div class="method-heading">
+          <a href="#M000010" class="method-signature">
+          <span class="method-name">blocks</span><span class="method-args">( text, deep_code = false )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000010-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000010-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 628</span>
+628:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">blocks</span>( <span class="ruby-identifier">text</span>, <span class="ruby-identifier">deep_code</span> = <span class="ruby-keyword kw">false</span> )
+629:         <span class="ruby-identifier">text</span>.<span class="ruby-identifier">replace</span>( <span class="ruby-identifier">text</span>.<span class="ruby-identifier">split</span>( <span class="ruby-constant">BLOCKS_GROUP_RE</span> ).<span class="ruby-identifier">collect</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">blk</span><span class="ruby-operator">|</span>
+630:             <span class="ruby-identifier">plain</span> = <span class="ruby-identifier">blk</span> <span class="ruby-operator">!~</span> <span class="ruby-regexp re">/\A[#*&gt; ]/</span>
+631: 
+632:             <span class="ruby-comment cmt"># skip blocks that are complex HTML</span>
+633:             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">blk</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^&lt;\/?(\w+).*&gt;/</span> <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">not</span> <span class="ruby-constant">SIMPLE_HTML_TAGS</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">$1</span>
+634:                 <span class="ruby-identifier">blk</span>
+635:             <span class="ruby-keyword kw">else</span>
+636:                 <span class="ruby-comment cmt"># search for indentation levels</span>
+637:                 <span class="ruby-identifier">blk</span>.<span class="ruby-identifier">strip!</span>
+638:                 <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">blk</span>.<span class="ruby-identifier">empty?</span>
+639:                     <span class="ruby-identifier">blk</span>
+640:                 <span class="ruby-keyword kw">else</span>
+641:                     <span class="ruby-identifier">code_blk</span> = <span class="ruby-keyword kw">nil</span>
+642:                     <span class="ruby-identifier">blk</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-regexp re">/((?:\n(?:\n^ +[^\n]*)+)+)/</span><span class="ruby-identifier">m</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">iblk</span><span class="ruby-operator">|</span>
+643:                         <span class="ruby-identifier">flush_left</span> <span class="ruby-identifier">iblk</span>
+644:                         <span class="ruby-identifier">blocks</span> <span class="ruby-identifier">iblk</span>, <span class="ruby-identifier">plain</span>
+645:                         <span class="ruby-identifier">iblk</span>.<span class="ruby-identifier">gsub</span>( <span class="ruby-regexp re">/^(\S)/</span>, <span class="ruby-value str">&quot;\t\\1&quot;</span> )
+646:                         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">plain</span>
+647:                             <span class="ruby-identifier">code_blk</span> = <span class="ruby-identifier">iblk</span>; <span class="ruby-value str">&quot;&quot;</span>
+648:                         <span class="ruby-keyword kw">else</span>
+649:                             <span class="ruby-identifier">iblk</span>
+650:                         <span class="ruby-keyword kw">end</span>
+651:                     <span class="ruby-keyword kw">end</span>
+652: 
+653:                     <span class="ruby-identifier">block_applied</span> = <span class="ruby-value">0</span> 
+654:                     <span class="ruby-ivar">@rules</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">rule_name</span><span class="ruby-operator">|</span>
+655:                         <span class="ruby-identifier">block_applied</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span> <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">rule_name</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">match</span> <span class="ruby-regexp re">/^block_/</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">method</span>( <span class="ruby-identifier">rule_name</span> ).<span class="ruby-identifier">call</span>( <span class="ruby-identifier">blk</span> ) )
+656:                     <span class="ruby-keyword kw">end</span>
+657:                     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_applied</span>.<span class="ruby-identifier">zero?</span>
+658:                         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">deep_code</span>
+659:                             <span class="ruby-identifier">blk</span> = <span class="ruby-node">&quot;\t&lt;pre&gt;&lt;code&gt;#{ blk }&lt;/code&gt;&lt;/pre&gt;&quot;</span>
+660:                         <span class="ruby-keyword kw">else</span>
+661:                             <span class="ruby-identifier">blk</span> = <span class="ruby-node">&quot;\t&lt;p&gt;#{ blk }&lt;/p&gt;&quot;</span>
+662:                         <span class="ruby-keyword kw">end</span>
+663:                     <span class="ruby-keyword kw">end</span>
+664:                     <span class="ruby-comment cmt"># hard_break blk</span>
+665:                     <span class="ruby-identifier">blk</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot;\n#{ code_blk }&quot;</span>
+666:                 <span class="ruby-keyword kw">end</span>
+667:             <span class="ruby-keyword kw">end</span>
+668: 
+669:         <span class="ruby-keyword kw">end</span>.<span class="ruby-identifier">join</span>( <span class="ruby-value str">&quot;\n\n&quot;</span> ) )
+670:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000033" class="method-detail">
+        <a name="M000033"></a>
+
+        <div class="method-heading">
+          <a href="#M000033" class="method-signature">
+          <span class="method-name">check_refs</span><span class="method-args">( text )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000033-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000033-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 904</span>
+904:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">check_refs</span>( <span class="ruby-identifier">text</span> ) 
+905:         <span class="ruby-identifier">ret</span> = <span class="ruby-ivar">@urlrefs</span>[<span class="ruby-identifier">text</span>.<span class="ruby-identifier">downcase</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">text</span>
+906:         <span class="ruby-identifier">ret</span> <span class="ruby-operator">||</span> [<span class="ruby-identifier">text</span>, <span class="ruby-keyword kw">nil</span>]
+907:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000049" class="method-detail">
+        <a name="M000049"></a>
+
+        <div class="method-heading">
+          <a href="#M000049" class="method-signature">
+          <span class="method-name">clean_html</span><span class="method-args">( text, tags = BASIC_TAGS )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000049-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000049-source">
+<pre>
+      <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 1146</span>
+1146:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">clean_html</span>( <span class="ruby-identifier">text</span>, <span class="ruby-identifier">tags</span> = <span class="ruby-constant">BASIC_TAGS</span> )
+1147:         <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-regexp re">/&lt;!\[CDATA\[/</span>, <span class="ruby-value str">''</span> )
+1148:         <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-regexp re">/&lt;(\/*)(\w+)([^&gt;]*)&gt;/</span> ) <span class="ruby-keyword kw">do</span>
+1149:             <span class="ruby-identifier">raw</span> = <span class="ruby-identifier">$~</span>
+1150:             <span class="ruby-identifier">tag</span> = <span class="ruby-identifier">raw</span>[<span class="ruby-value">2</span>].<span class="ruby-identifier">downcase</span>
+1151:             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">tags</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-identifier">tag</span>
+1152:                 <span class="ruby-identifier">pcs</span> = [<span class="ruby-identifier">tag</span>]
+1153:                 <span class="ruby-identifier">tags</span>[<span class="ruby-identifier">tag</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">prop</span><span class="ruby-operator">|</span>
+1154:                     [<span class="ruby-value str">'&quot;'</span>, <span class="ruby-value str">&quot;'&quot;</span>, <span class="ruby-value str">''</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">q</span><span class="ruby-operator">|</span>
+1155:                         <span class="ruby-identifier">q2</span> = ( <span class="ruby-identifier">q</span> <span class="ruby-operator">!=</span> <span class="ruby-value str">''</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">q</span> <span class="ruby-operator">:</span> <span class="ruby-value str">'\s'</span> )
+1156:                         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">raw</span>[<span class="ruby-value">3</span>] <span class="ruby-operator">=~</span> <span class="ruby-node">/#{prop}\s*=\s*#{q}([^#{q2}]+)#{q}/i</span>
+1157:                             <span class="ruby-identifier">attrv</span> = <span class="ruby-identifier">$1</span>
+1158:                             <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">prop</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'src'</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">attrv</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">%r{^(?!http)\w+:}</span>
+1159:                             <span class="ruby-identifier">pcs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{prop}=\&quot;#{$1.gsub('&quot;', '\\&quot;')}\&quot;&quot;</span>
+1160:                             <span class="ruby-keyword kw">break</span>
+1161:                         <span class="ruby-keyword kw">end</span>
+1162:                     <span class="ruby-keyword kw">end</span>
+1163:                 <span class="ruby-keyword kw">end</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">tags</span>[<span class="ruby-identifier">tag</span>]
+1164:                 <span class="ruby-node">&quot;&lt;#{raw[1]}#{pcs.join &quot; &quot;}&gt;&quot;</span>
+1165:             <span class="ruby-keyword kw">else</span>
+1166:                 <span class="ruby-value str">&quot; &quot;</span>
+1167:             <span class="ruby-keyword kw">end</span>
+1168:         <span class="ruby-keyword kw">end</span>
+1169:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000039" class="method-detail">
+        <a name="M000039"></a>
+
+        <div class="method-heading">
+          <a href="#M000039" class="method-signature">
+          <span class="method-name">clean_white_space</span><span class="method-args">( text )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000039-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000039-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 982</span>
+982:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">clean_white_space</span>( <span class="ruby-identifier">text</span> ) 
+983:         <span class="ruby-comment cmt"># normalize line breaks</span>
+984:         <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-regexp re">/\r\n/</span>, <span class="ruby-value str">&quot;\n&quot;</span> )
+985:         <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-regexp re">/\r/</span>, <span class="ruby-value str">&quot;\n&quot;</span> )
+986:         <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-regexp re">/\t/</span>, <span class="ruby-value str">'    '</span> )
+987:         <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-regexp re">/^ +$/</span>, <span class="ruby-value str">''</span> )
+988:         <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-regexp re">/\n{3,}/</span>, <span class="ruby-value str">&quot;\n\n&quot;</span> )
+989:         <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-regexp re">/&quot;$/</span>, <span class="ruby-value str">&quot;\&quot; &quot;</span> )
+990: 
+991:         <span class="ruby-comment cmt"># if entire document is indented, flush</span>
+992:         <span class="ruby-comment cmt"># to the left side</span>
+993:         <span class="ruby-identifier">flush_left</span> <span class="ruby-identifier">text</span>
+994:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000050" class="method-detail">
+        <a name="M000050"></a>
+
+        <div class="method-heading">
+          <a href="#M000050" class="method-signature">
+          <span class="method-name">escape_html_tags</span><span class="method-args">(text)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000050-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000050-source">
+<pre>
+      <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 1173</span>
+1173:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">escape_html_tags</span>(<span class="ruby-identifier">text</span>)
+1174:       <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">%r{&lt;(\/?([!\w]+)[^&lt;&gt;\n]*)(&gt;?)}</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span> <span class="ruby-constant">ALLOWED_TAGS</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">$2</span>) <span class="ruby-operator">?</span> <span class="ruby-node">&quot;&lt;#{$1}#{$3}&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-node">&quot;&amp;lt;#{$1}#{'&amp;gt;' unless $3.blank?}&quot;</span> }
+1175:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000040" class="method-detail">
+        <a name="M000040"></a>
+
+        <div class="method-heading">
+          <a href="#M000040" class="method-signature">
+          <span class="method-name">flush_left</span><span class="method-args">( text )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000040-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000040-source">
+<pre>
+      <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 996</span>
+ 996:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">flush_left</span>( <span class="ruby-identifier">text</span> )
+ 997:         <span class="ruby-identifier">indt</span> = <span class="ruby-value">0</span>
+ 998:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">text</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^ /</span>
+ 999:             <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">text</span> <span class="ruby-operator">!~</span> <span class="ruby-node">/^ {#{indt}}\S/</span>
+1000:                 <span class="ruby-identifier">indt</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+1001:             <span class="ruby-keyword kw">end</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">text</span>.<span class="ruby-identifier">empty?</span>
+1002:             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">indt</span>.<span class="ruby-identifier">nonzero?</span>
+1003:                 <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-node">/^ {#{indt}}/</span>, <span class="ruby-value str">''</span> )
+1004:             <span class="ruby-keyword kw">end</span>
+1005:         <span class="ruby-keyword kw">end</span>
+1006:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000041" class="method-detail">
+        <a name="M000041"></a>
+
+        <div class="method-heading">
+          <a href="#M000041" class="method-signature">
+          <span class="method-name">footnote_ref</span><span class="method-args">( text )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000041-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000041-source">
+<pre>
+      <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 1008</span>
+1008:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">footnote_ref</span>( <span class="ruby-identifier">text</span> ) 
+1009:         <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-regexp re">/\b\[([0-9]+?)\](\s)?/</span>,
+1010:             <span class="ruby-value str">'&lt;sup&gt;&lt;a href=&quot;#fn\1&quot;&gt;\1&lt;/a&gt;&lt;/sup&gt;\2'</span> )
+1011:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000042" class="method-detail">
+        <a name="M000042"></a>
+
+        <div class="method-heading">
+          <a href="#M000042" class="method-signature">
+          <span class="method-name">glyphs_textile</span><span class="method-args">( text, level = 0 )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000042-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000042-source">
+<pre>
+      <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 1020</span>
+1020:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">glyphs_textile</span>( <span class="ruby-identifier">text</span>, <span class="ruby-identifier">level</span> = <span class="ruby-value">0</span> )
+1021:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">text</span> <span class="ruby-operator">!~</span> <span class="ruby-constant">HASTAG_MATCH</span>
+1022:             <span class="ruby-identifier">pgl</span> <span class="ruby-identifier">text</span>
+1023:             <span class="ruby-identifier">footnote_ref</span> <span class="ruby-identifier">text</span>
+1024:         <span class="ruby-keyword kw">else</span>
+1025:             <span class="ruby-identifier">codepre</span> = <span class="ruby-value">0</span>
+1026:             <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-constant">ALLTAG_MATCH</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+1027:                 <span class="ruby-comment cmt">## matches are off if we're between &lt;code&gt;, &lt;pre&gt; etc.</span>
+1028:                 <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">$1</span>
+1029:                     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">=~</span> <span class="ruby-constant">OFFTAG_OPEN</span>
+1030:                         <span class="ruby-identifier">codepre</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+1031:                     <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">=~</span> <span class="ruby-constant">OFFTAG_CLOSE</span>
+1032:                         <span class="ruby-identifier">codepre</span> <span class="ruby-operator">-=</span> <span class="ruby-value">1</span>
+1033:                         <span class="ruby-identifier">codepre</span> = <span class="ruby-value">0</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">codepre</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">0</span>
+1034:                     <span class="ruby-keyword kw">end</span> 
+1035:                 <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">codepre</span>.<span class="ruby-identifier">zero?</span>
+1036:                     <span class="ruby-identifier">glyphs_textile</span>( <span class="ruby-identifier">line</span>, <span class="ruby-identifier">level</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span> )
+1037:                 <span class="ruby-keyword kw">else</span>
+1038:                     <span class="ruby-identifier">htmlesc</span>( <span class="ruby-identifier">line</span>, <span class="ruby-identifier">:NoQuotes</span> )
+1039:                 <span class="ruby-keyword kw">end</span>
+1040:                 <span class="ruby-comment cmt"># p [level, codepre, line]</span>
+1041: 
+1042:                 <span class="ruby-identifier">line</span>
+1043:             <span class="ruby-keyword kw">end</span>
+1044:         <span class="ruby-keyword kw">end</span>
+1045:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000046" class="method-detail">
+        <a name="M000046"></a>
+
+        <div class="method-heading">
+          <a href="#M000046" class="method-signature">
+          <span class="method-name">h_align</span><span class="method-args">( text )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000046-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000046-source">
+<pre>
+      <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 1099</span>
+1099:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">h_align</span>( <span class="ruby-identifier">text</span> ) 
+1100:         <span class="ruby-constant">H_ALGN_VALS</span>[<span class="ruby-identifier">text</span>]
+1101:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000009" class="method-detail">
+        <a name="M000009"></a>
+
+        <div class="method-heading">
+          <a href="#M000009" class="method-signature">
+          <span class="method-name">hard_break</span><span class="method-args">( text )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000009-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000009-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 622</span>
+622:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">hard_break</span>( <span class="ruby-identifier">text</span> )
+623:         <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-regexp re">/(.)\n(?!\Z| *([#*=]+(\s|$)|[{|]))/</span>, <span class="ruby-value str">&quot;\\1&lt;br /&gt;&quot;</span> ) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">hard_breaks</span>
+624:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000001" class="method-detail">
+        <a name="M000001"></a>
+
+        <div class="method-heading">
+          <a href="#M000001" class="method-signature">
+          <span class="method-name">htmlesc</span><span class="method-args">( str, mode=:Quotes )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Flexible HTML escaping
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000001-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000001-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 438</span>
+438:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">htmlesc</span>( <span class="ruby-identifier">str</span>, <span class="ruby-identifier">mode</span>=<span class="ruby-identifier">:Quotes</span> )
+439:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">str</span>
+440:         <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-value str">'&amp;'</span>, <span class="ruby-value str">'&amp;amp;'</span> )
+441:         <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-value str">'&quot;'</span>, <span class="ruby-value str">'&amp;quot;'</span> ) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">mode</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">:NoQuotes</span>
+442:         <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-value str">&quot;'&quot;</span>, <span class="ruby-value str">'&amp;#039;'</span> ) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">mode</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:Quotes</span>
+443:         <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-value str">'&lt;'</span>, <span class="ruby-value str">'&amp;lt;'</span>)
+444:         <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-value str">'&gt;'</span>, <span class="ruby-value str">'&amp;gt;'</span>)
+445:       <span class="ruby-keyword kw">end</span>
+446:       <span class="ruby-identifier">str</span>
+447:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000037" class="method-detail">
+        <a name="M000037"></a>
+
+        <div class="method-heading">
+          <a href="#M000037" class="method-signature">
+          <span class="method-name">incoming_entities</span><span class="method-args">( text )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000037-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000037-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 967</span>
+967:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">incoming_entities</span>( <span class="ruby-identifier">text</span> ) 
+968:         <span class="ruby-comment cmt">## turn any incoming ampersands into a dummy character for now.</span>
+969:         <span class="ruby-comment cmt">## This uses a negative lookahead for alphanumerics followed by a semicolon,</span>
+970:         <span class="ruby-comment cmt">## implying an incoming html entity, to be skipped</span>
+971: 
+972:         <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-regexp re">/&amp;(?![#a-z0-9]+;)/i</span>, <span class="ruby-value str">&quot;x%x%&quot;</span> )
+973:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000045" class="method-detail">
+        <a name="M000045"></a>
+
+        <div class="method-heading">
+          <a href="#M000045" class="method-signature">
+          <span class="method-name">inline</span><span class="method-args">( text )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000045-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000045-source">
+<pre>
+      <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 1091</span>
+1091:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">inline</span>( <span class="ruby-identifier">text</span> ) 
+1092:         [<span class="ruby-regexp re">/^inline_/</span>, <span class="ruby-regexp re">/^glyphs_/</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">meth_re</span><span class="ruby-operator">|</span>
+1093:             <span class="ruby-ivar">@rules</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">rule_name</span><span class="ruby-operator">|</span>
+1094:                 <span class="ruby-identifier">method</span>( <span class="ruby-identifier">rule_name</span> ).<span class="ruby-identifier">call</span>( <span class="ruby-identifier">text</span> ) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">rule_name</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">match</span>( <span class="ruby-identifier">meth_re</span> )
+1095:             <span class="ruby-keyword kw">end</span>
+1096:         <span class="ruby-keyword kw">end</span>
+1097:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000029" class="method-detail">
+        <a name="M000029"></a>
+
+        <div class="method-heading">
+          <a href="#M000029" class="method-signature">
+          <span class="method-name">inline_markdown_link</span><span class="method-args">( text )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000029-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000029-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 866</span>
+866:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">inline_markdown_link</span>( <span class="ruby-identifier">text</span> ) 
+867:         <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-constant">MARKDOWN_LINK_RE</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span>
+868:             <span class="ruby-identifier">text</span>, <span class="ruby-identifier">url</span>, <span class="ruby-identifier">quote</span>, <span class="ruby-identifier">title</span> = <span class="ruby-identifier">$~</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">4</span>]
+869: 
+870:             <span class="ruby-identifier">atts</span> = <span class="ruby-node">&quot; href=\&quot;#{ url }\&quot;&quot;</span>
+871:             <span class="ruby-identifier">atts</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; title=\&quot;#{ title }\&quot;&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">title</span>
+872:             <span class="ruby-identifier">atts</span> = <span class="ruby-identifier">shelve</span>( <span class="ruby-identifier">atts</span> )
+873:             
+874:             <span class="ruby-node">&quot;&lt;a#{ atts }&gt;#{ text }&lt;/a&gt;&quot;</span>
+875:         <span class="ruby-keyword kw">end</span>
+876:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000028" class="method-detail">
+        <a name="M000028"></a>
+
+        <div class="method-heading">
+          <a href="#M000028" class="method-signature">
+          <span class="method-name">inline_markdown_reflink</span><span class="method-args">( text )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000028-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000028-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 834</span>
+834:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">inline_markdown_reflink</span>( <span class="ruby-identifier">text</span> ) 
+835:         <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-constant">MARKDOWN_REFLINK_RE</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span>
+836:             <span class="ruby-identifier">text</span>, <span class="ruby-identifier">id</span> = <span class="ruby-identifier">$~</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">2</span>]
+837: 
+838:             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">id</span>.<span class="ruby-identifier">empty?</span>
+839:                 <span class="ruby-identifier">url</span>, <span class="ruby-identifier">title</span> = <span class="ruby-identifier">check_refs</span>( <span class="ruby-identifier">text</span> )
+840:             <span class="ruby-keyword kw">else</span>
+841:                 <span class="ruby-identifier">url</span>, <span class="ruby-identifier">title</span> = <span class="ruby-identifier">check_refs</span>( <span class="ruby-identifier">id</span> )
+842:             <span class="ruby-keyword kw">end</span>
+843:             
+844:             <span class="ruby-identifier">atts</span> = <span class="ruby-node">&quot; href=\&quot;#{ url }\&quot;&quot;</span>
+845:             <span class="ruby-identifier">atts</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; title=\&quot;#{ title }\&quot;&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">title</span>
+846:             <span class="ruby-identifier">atts</span> = <span class="ruby-identifier">shelve</span>( <span class="ruby-identifier">atts</span> )
+847:             
+848:             <span class="ruby-node">&quot;&lt;a#{ atts }&gt;#{ text }&lt;/a&gt;&quot;</span>
+849:         <span class="ruby-keyword kw">end</span>
+850:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000007" class="method-detail">
+        <a name="M000007"></a>
+
+        <div class="method-heading">
+          <a href="#M000007" class="method-signature">
+          <span class="method-name">inline_textile_code</span><span class="method-args">( text )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000007-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000007-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 610</span>
+610:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">inline_textile_code</span>( <span class="ruby-identifier">text</span> ) 
+611:         <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-constant">CODE_RE</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span>
+612:             <span class="ruby-identifier">before</span>,<span class="ruby-identifier">lang</span>,<span class="ruby-identifier">code</span>,<span class="ruby-identifier">after</span> = <span class="ruby-identifier">$~</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">4</span>]
+613:             <span class="ruby-identifier">lang</span> = <span class="ruby-node">&quot; lang=\&quot;#{ lang }\&quot;&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">lang</span>
+614:             <span class="ruby-identifier">rip_offtags</span>( <span class="ruby-node">&quot;#{ before }&lt;code#{ lang }&gt;#{ code }&lt;/code&gt;#{ after }&quot;</span> )
+615:         <span class="ruby-keyword kw">end</span>
+616:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000034" class="method-detail">
+        <a name="M000034"></a>
+
+        <div class="method-heading">
+          <a href="#M000034" class="method-signature">
+          <span class="method-name">inline_textile_image</span><span class="method-args">( text )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000034-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000034-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 922</span>
+922:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">inline_textile_image</span>( <span class="ruby-identifier">text</span> ) 
+923:         <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-constant">IMAGE_RE</span> )  <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span>
+924:             <span class="ruby-identifier">stln</span>,<span class="ruby-identifier">algn</span>,<span class="ruby-identifier">atts</span>,<span class="ruby-identifier">url</span>,<span class="ruby-identifier">title</span>,<span class="ruby-identifier">href</span>,<span class="ruby-identifier">href_a1</span>,<span class="ruby-identifier">href_a2</span> = <span class="ruby-identifier">$~</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">8</span>]
+925:             <span class="ruby-identifier">htmlesc</span> <span class="ruby-identifier">title</span>
+926:             <span class="ruby-identifier">atts</span> = <span class="ruby-identifier">pba</span>( <span class="ruby-identifier">atts</span> )
+927:             <span class="ruby-identifier">atts</span> = <span class="ruby-node">&quot; src=\&quot;#{ url }\&quot;#{ atts }&quot;</span>
+928:             <span class="ruby-identifier">atts</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; title=\&quot;#{ title }\&quot;&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">title</span>
+929:             <span class="ruby-identifier">atts</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; alt=\&quot;#{ title }\&quot;&quot;</span> 
+930:             <span class="ruby-comment cmt"># size = @getimagesize($url);</span>
+931:             <span class="ruby-comment cmt"># if($size) $atts.= &quot; $size[3]&quot;;</span>
+932: 
+933:             <span class="ruby-identifier">href</span>, <span class="ruby-identifier">alt_title</span> = <span class="ruby-identifier">check_refs</span>( <span class="ruby-identifier">href</span> ) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">href</span>
+934:             <span class="ruby-identifier">url</span>, <span class="ruby-identifier">url_title</span> = <span class="ruby-identifier">check_refs</span>( <span class="ruby-identifier">url</span> )
+935: 
+936:             <span class="ruby-identifier">out</span> = <span class="ruby-value str">''</span>
+937:             <span class="ruby-identifier">out</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&lt;a#{ shelve( &quot; href=\&quot;#{ href }\&quot;&quot; ) }&gt;&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">href</span>
+938:             <span class="ruby-identifier">out</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&lt;img#{ shelve( atts ) } /&gt;&quot;</span>
+939:             <span class="ruby-identifier">out</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&lt;/a&gt;#{ href_a1 }#{ href_a2 }&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">href</span>
+940:             
+941:             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">algn</span> 
+942:                 <span class="ruby-identifier">algn</span> = <span class="ruby-identifier">h_align</span>( <span class="ruby-identifier">algn</span> )
+943:                 <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">stln</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;&lt;p&gt;&quot;</span>
+944:                     <span class="ruby-identifier">out</span> = <span class="ruby-node">&quot;&lt;p style=\&quot;float:#{ algn }\&quot;&gt;#{ out }&quot;</span>
+945:                 <span class="ruby-keyword kw">else</span>
+946:                     <span class="ruby-identifier">out</span> = <span class="ruby-node">&quot;#{ stln }&lt;div style=\&quot;float:#{ algn }\&quot;&gt;#{ out }&lt;/div&gt;&quot;</span>
+947:                 <span class="ruby-keyword kw">end</span>
+948:             <span class="ruby-keyword kw">else</span>
+949:                 <span class="ruby-identifier">out</span> = <span class="ruby-identifier">stln</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">out</span>
+950:             <span class="ruby-keyword kw">end</span>
+951: 
+952:             <span class="ruby-identifier">out</span>
+953:         <span class="ruby-keyword kw">end</span>
+954:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000027" class="method-detail">
+        <a name="M000027"></a>
+
+        <div class="method-heading">
+          <a href="#M000027" class="method-signature">
+          <span class="method-name">inline_textile_link</span><span class="method-args">( text )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+&quot;
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000027-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000027-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 803</span>
+803:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">inline_textile_link</span>( <span class="ruby-identifier">text</span> ) 
+804:         <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-constant">LINK_RE</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span>
+805:             <span class="ruby-identifier">pre</span>,<span class="ruby-identifier">atts</span>,<span class="ruby-identifier">text</span>,<span class="ruby-identifier">title</span>,<span class="ruby-identifier">url</span>,<span class="ruby-identifier">proto</span>,<span class="ruby-identifier">slash</span>,<span class="ruby-identifier">post</span> = <span class="ruby-identifier">$~</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">8</span>]
+806: 
+807:             <span class="ruby-identifier">url</span>, <span class="ruby-identifier">url_title</span> = <span class="ruby-identifier">check_refs</span>( <span class="ruby-identifier">url</span> )
+808:             <span class="ruby-identifier">title</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">url_title</span>
+809:             
+810:             <span class="ruby-comment cmt"># Idea below : an URL with unbalanced parethesis and</span>
+811:             <span class="ruby-comment cmt"># ending by ')' is put into external parenthesis</span>
+812:             <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">url</span>[<span class="ruby-value">-1</span>]<span class="ruby-operator">==</span><span class="ruby-value">?)</span> <span class="ruby-keyword kw">and</span> ((<span class="ruby-identifier">url</span>.<span class="ruby-identifier">count</span>(<span class="ruby-value str">&quot;(&quot;</span>) <span class="ruby-operator">-</span> <span class="ruby-identifier">url</span>.<span class="ruby-identifier">count</span>(<span class="ruby-value str">&quot;)&quot;</span>)) <span class="ruby-operator">&lt;</span> <span class="ruby-value">0</span> ) )
+813:               <span class="ruby-identifier">url</span>=<span class="ruby-identifier">url</span>[<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">-2</span>] <span class="ruby-comment cmt"># discard closing parenth from url</span>
+814:               <span class="ruby-identifier">post</span> = <span class="ruby-value str">&quot;)&quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">post</span> <span class="ruby-comment cmt"># add closing parenth to post</span>
+815:             <span class="ruby-keyword kw">end</span>
+816:             <span class="ruby-identifier">atts</span> = <span class="ruby-identifier">pba</span>( <span class="ruby-identifier">atts</span> )
+817:             <span class="ruby-identifier">atts</span> = <span class="ruby-node">&quot; href=\&quot;#{ url }#{ slash }\&quot;#{ atts }&quot;</span>
+818:             <span class="ruby-identifier">atts</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; title=\&quot;#{ htmlesc title }\&quot;&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">title</span>
+819:             <span class="ruby-identifier">atts</span> = <span class="ruby-identifier">shelve</span>( <span class="ruby-identifier">atts</span> ) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">atts</span>
+820:             
+821:             <span class="ruby-identifier">external</span> = (<span class="ruby-identifier">url</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^https?:\/\//</span>) <span class="ruby-operator">?</span> <span class="ruby-value str">' class=&quot;external&quot;'</span> <span class="ruby-operator">:</span> <span class="ruby-value str">''</span>
+822:             
+823:             <span class="ruby-node">&quot;#{ pre }&lt;a#{ atts }#{ external }&gt;#{ text }&lt;/a&gt;#{ post }&quot;</span>
+824:         <span class="ruby-keyword kw">end</span>
+825:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000026" class="method-detail">
+        <a name="M000026"></a>
+
+        <div class="method-heading">
+          <a href="#M000026" class="method-signature">
+          <span class="method-name">inline_textile_span</span><span class="method-args">( text )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000026-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000026-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 765</span>
+765:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">inline_textile_span</span>( <span class="ruby-identifier">text</span> ) 
+766:         <span class="ruby-constant">QTAGS</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">qtag_rc</span>, <span class="ruby-identifier">ht</span>, <span class="ruby-identifier">qtag_re</span>, <span class="ruby-identifier">rtype</span><span class="ruby-operator">|</span>
+767:             <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-identifier">qtag_re</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span>
+768:              
+769:                 <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">rtype</span>
+770:                 <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:limit</span>
+771:                     <span class="ruby-identifier">sta</span>,<span class="ruby-identifier">qtag</span>,<span class="ruby-identifier">atts</span>,<span class="ruby-identifier">cite</span>,<span class="ruby-identifier">content</span> = <span class="ruby-identifier">$~</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">5</span>]
+772:                 <span class="ruby-keyword kw">else</span>
+773:                     <span class="ruby-identifier">qtag</span>,<span class="ruby-identifier">atts</span>,<span class="ruby-identifier">cite</span>,<span class="ruby-identifier">content</span> = <span class="ruby-identifier">$~</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">4</span>]
+774:                     <span class="ruby-identifier">sta</span> = <span class="ruby-value str">''</span>
+775:                 <span class="ruby-keyword kw">end</span>
+776:                 <span class="ruby-identifier">atts</span> = <span class="ruby-identifier">pba</span>( <span class="ruby-identifier">atts</span> )
+777:                 <span class="ruby-identifier">atts</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; cite=\&quot;#{ cite }\&quot;&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">cite</span>
+778:                 <span class="ruby-identifier">atts</span> = <span class="ruby-identifier">shelve</span>( <span class="ruby-identifier">atts</span> ) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">atts</span>
+779: 
+780:                 <span class="ruby-node">&quot;#{ sta }&lt;#{ ht }#{ atts }&gt;#{ content }&lt;/#{ ht }&gt;&quot;</span>
+781: 
+782:             <span class="ruby-keyword kw">end</span>
+783:         <span class="ruby-keyword kw">end</span>
+784:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000008" class="method-detail">
+        <a name="M000008"></a>
+
+        <div class="method-heading">
+          <a href="#M000008" class="method-signature">
+          <span class="method-name">lT</span><span class="method-args">( text )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000008-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000008-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 618</span>
+618:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">lT</span>( <span class="ruby-identifier">text</span> ) 
+619:         <span class="ruby-identifier">text</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\#$/</span> <span class="ruby-operator">?</span> <span class="ruby-value str">'o'</span> <span class="ruby-operator">:</span> <span class="ruby-value str">'u'</span>
+620:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000038" class="method-detail">
+        <a name="M000038"></a>
+
+        <div class="method-heading">
+          <a href="#M000038" class="method-signature">
+          <span class="method-name">no_textile</span><span class="method-args">( text )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000038-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000038-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 975</span>
+975:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">no_textile</span>( <span class="ruby-identifier">text</span> ) 
+976:         <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-regexp re">/(^|\s)==([^=]+.*?)==(\s|$)?/</span>,
+977:             <span class="ruby-value str">'\1&lt;notextile&gt;\2&lt;/notextile&gt;\3'</span> )
+978:         <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-regexp re">/^ *==([^=]+.*?)==/</span><span class="ruby-identifier">m</span>,
+979:             <span class="ruby-value str">'\1&lt;notextile&gt;\2&lt;/notextile&gt;\3'</span> )
+980:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000003" class="method-detail">
+        <a name="M000003"></a>
+
+        <div class="method-heading">
+          <a href="#M000003" class="method-signature">
+          <span class="method-name">pba</span><span class="method-args">( text_in, element = &quot;&quot; )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Parses Textile attribute lists and builds an HTML attribute string
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000003-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000003-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 461</span>
+461:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">pba</span>( <span class="ruby-identifier">text_in</span>, <span class="ruby-identifier">element</span> = <span class="ruby-value str">&quot;&quot;</span> )
+462:         
+463:         <span class="ruby-keyword kw">return</span> <span class="ruby-value str">''</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">text_in</span>
+464: 
+465:         <span class="ruby-identifier">style</span> = []
+466:         <span class="ruby-identifier">text</span> = <span class="ruby-identifier">text_in</span>.<span class="ruby-identifier">dup</span>
+467:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">element</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'td'</span>
+468:             <span class="ruby-identifier">colspan</span> = <span class="ruby-identifier">$1</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">text</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\\(\d+)/</span>
+469:             <span class="ruby-identifier">rowspan</span> = <span class="ruby-identifier">$1</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">text</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\/(\d+)/</span>
+470:             <span class="ruby-identifier">style</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;vertical-align:#{ v_align( $&amp; ) };&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">text</span> <span class="ruby-operator">=~</span> <span class="ruby-constant">A_VLGN</span>
+471:         <span class="ruby-keyword kw">end</span>
+472: 
+473:         <span class="ruby-identifier">style</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{ htmlesc $1 };&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">text</span>.<span class="ruby-identifier">sub!</span>( <span class="ruby-regexp re">/\{([^}]*)\}/</span>, <span class="ruby-value str">''</span> ) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">filter_styles</span>
+474: 
+475:         <span class="ruby-identifier">lang</span> = <span class="ruby-identifier">$1</span> <span class="ruby-keyword kw">if</span>
+476:             <span class="ruby-identifier">text</span>.<span class="ruby-identifier">sub!</span>( <span class="ruby-regexp re">/\[([^)]+?)\]/</span>, <span class="ruby-value str">''</span> )
+477: 
+478:         <span class="ruby-identifier">cls</span> = <span class="ruby-identifier">$1</span> <span class="ruby-keyword kw">if</span>
+479:             <span class="ruby-identifier">text</span>.<span class="ruby-identifier">sub!</span>( <span class="ruby-regexp re">/\(([^()]+?)\)/</span>, <span class="ruby-value str">''</span> )
+480:                         
+481:         <span class="ruby-identifier">style</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;padding-left:#{ $1.length }em;&quot;</span> <span class="ruby-keyword kw">if</span>
+482:             <span class="ruby-identifier">text</span>.<span class="ruby-identifier">sub!</span>( <span class="ruby-regexp re">/([(]+)/</span>, <span class="ruby-value str">''</span> )
+483: 
+484:         <span class="ruby-identifier">style</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;padding-right:#{ $1.length }em;&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">text</span>.<span class="ruby-identifier">sub!</span>( <span class="ruby-regexp re">/([)]+)/</span>, <span class="ruby-value str">''</span> )
+485: 
+486:         <span class="ruby-identifier">style</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;text-align:#{ h_align( $&amp; ) };&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">text</span> <span class="ruby-operator">=~</span> <span class="ruby-constant">A_HLGN</span>
+487: 
+488:         <span class="ruby-identifier">cls</span>, <span class="ruby-identifier">id</span> = <span class="ruby-identifier">$1</span>, <span class="ruby-identifier">$2</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">cls</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^(.*?)#(.*)$/</span>
+489:         
+490:         <span class="ruby-identifier">atts</span> = <span class="ruby-value str">''</span>
+491:         <span class="ruby-identifier">atts</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; style=\&quot;#{ style.join }\&quot;&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">style</span>.<span class="ruby-identifier">empty?</span>
+492:         <span class="ruby-identifier">atts</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; class=\&quot;#{ cls }\&quot;&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">cls</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">empty?</span>
+493:         <span class="ruby-identifier">atts</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; lang=\&quot;#{ lang }\&quot;&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">lang</span>
+494:         <span class="ruby-identifier">atts</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; id=\&quot;#{ id }\&quot;&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">id</span>
+495:         <span class="ruby-identifier">atts</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; colspan=\&quot;#{ colspan }\&quot;&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">colspan</span>
+496:         <span class="ruby-identifier">atts</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; rowspan=\&quot;#{ rowspan }\&quot;&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">rowspan</span>
+497:         
+498:         <span class="ruby-identifier">atts</span>
+499:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000002" class="method-detail">
+        <a name="M000002"></a>
+
+        <div class="method-heading">
+          <a href="#M000002" class="method-signature">
+          <span class="method-name">pgl</span><span class="method-args">( text )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Search and replace for Textile glyphs (quotes, dashes, other symbols)
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000002-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000002-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 450</span>
+450:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">pgl</span>( <span class="ruby-identifier">text</span> )
+451:         <span class="ruby-comment cmt">#GLYPHS.each do |re, resub, tog|</span>
+452:         <span class="ruby-comment cmt">#    next if tog and method( tog ).call</span>
+453:         <span class="ruby-comment cmt">#    text.gsub! re, resub</span>
+454:         <span class="ruby-comment cmt">#end</span>
+455:         <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/\b([A-Z][A-Z0-9]{2,})\b(?:[(]([^)]*)[)])/</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span>
+456:           <span class="ruby-node">&quot;&lt;acronym title=\&quot;#{htmlesc $2}\&quot;&gt;#{$1}&lt;/acronym&gt;&quot;</span>
+457:         <span class="ruby-keyword kw">end</span>
+458:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000030" class="method-detail">
+        <a name="M000030"></a>
+
+        <div class="method-heading">
+          <a href="#M000030" class="method-signature">
+          <span class="method-name">refs</span><span class="method-args">( text )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000030-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000030-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 881</span>
+881:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">refs</span>( <span class="ruby-identifier">text</span> )
+882:         <span class="ruby-ivar">@rules</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">rule_name</span><span class="ruby-operator">|</span>
+883:             <span class="ruby-identifier">method</span>( <span class="ruby-identifier">rule_name</span> ).<span class="ruby-identifier">call</span>( <span class="ruby-identifier">text</span> ) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">rule_name</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">match</span> <span class="ruby-regexp re">/^refs_/</span>
+884:         <span class="ruby-keyword kw">end</span>
+885:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000032" class="method-detail">
+        <a name="M000032"></a>
+
+        <div class="method-heading">
+          <a href="#M000032" class="method-signature">
+          <span class="method-name">refs_markdown</span><span class="method-args">( text )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000032-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000032-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 895</span>
+895:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">refs_markdown</span>( <span class="ruby-identifier">text</span> )
+896:         <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-constant">MARKDOWN_REFS_RE</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span>
+897:             <span class="ruby-identifier">flag</span>, <span class="ruby-identifier">url</span> = <span class="ruby-identifier">$~</span>[<span class="ruby-value">2</span><span class="ruby-operator">..</span><span class="ruby-value">3</span>]
+898:             <span class="ruby-identifier">title</span> = <span class="ruby-identifier">$~</span>[<span class="ruby-value">6</span>]
+899:             <span class="ruby-ivar">@urlrefs</span>[<span class="ruby-identifier">flag</span>.<span class="ruby-identifier">downcase</span>] = [<span class="ruby-identifier">url</span>, <span class="ruby-identifier">title</span>]
+900:             <span class="ruby-keyword kw">nil</span>
+901:         <span class="ruby-keyword kw">end</span>
+902:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000031" class="method-detail">
+        <a name="M000031"></a>
+
+        <div class="method-heading">
+          <a href="#M000031" class="method-signature">
+          <span class="method-name">refs_textile</span><span class="method-args">( text )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000031-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000031-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 887</span>
+887:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">refs_textile</span>( <span class="ruby-identifier">text</span> ) 
+888:         <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-constant">TEXTILE_REFS_RE</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span>
+889:             <span class="ruby-identifier">flag</span>, <span class="ruby-identifier">url</span> = <span class="ruby-identifier">$~</span>[<span class="ruby-value">2</span><span class="ruby-operator">..</span><span class="ruby-value">3</span>]
+890:             <span class="ruby-ivar">@urlrefs</span>[<span class="ruby-identifier">flag</span>.<span class="ruby-identifier">downcase</span>] = [<span class="ruby-identifier">url</span>, <span class="ruby-keyword kw">nil</span>]
+891:             <span class="ruby-keyword kw">nil</span>
+892:         <span class="ruby-keyword kw">end</span>
+893:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000036" class="method-detail">
+        <a name="M000036"></a>
+
+        <div class="method-heading">
+          <a href="#M000036" class="method-signature">
+          <span class="method-name">retrieve</span><span class="method-args">( text )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000036-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000036-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 961</span>
+961:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrieve</span>( <span class="ruby-identifier">text</span> ) 
+962:         <span class="ruby-ivar">@shelf</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">r</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+963:             <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-node">&quot; :redsh##{ i + 1 }:&quot;</span>, <span class="ruby-identifier">r</span> )
+964:         <span class="ruby-keyword kw">end</span>
+965:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000043" class="method-detail">
+        <a name="M000043"></a>
+
+        <div class="method-heading">
+          <a href="#M000043" class="method-signature">
+          <span class="method-name">rip_offtags</span><span class="method-args">( text )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000043-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000043-source">
+<pre>
+      <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 1047</span>
+1047:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rip_offtags</span>( <span class="ruby-identifier">text</span> )
+1048:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">text</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/&lt;.*&gt;/</span>
+1049:             <span class="ruby-comment cmt">## strip and encode &lt;pre&gt; content</span>
+1050:             <span class="ruby-identifier">codepre</span>, <span class="ruby-identifier">used_offtags</span> = <span class="ruby-value">0</span>, {}
+1051:             <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-constant">OFFTAG_MATCH</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+1052:                 <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">$3</span>
+1053:                     <span class="ruby-identifier">offtag</span>, <span class="ruby-identifier">aftertag</span> = <span class="ruby-identifier">$4</span>, <span class="ruby-identifier">$5</span>
+1054:                     <span class="ruby-identifier">codepre</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+1055:                     <span class="ruby-identifier">used_offtags</span>[<span class="ruby-identifier">offtag</span>] = <span class="ruby-keyword kw">true</span>
+1056:                     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">codepre</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">used_offtags</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+1057:                         <span class="ruby-identifier">htmlesc</span>( <span class="ruby-identifier">line</span>, <span class="ruby-identifier">:NoQuotes</span> )
+1058:                         <span class="ruby-ivar">@pre_list</span>.<span class="ruby-identifier">last</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
+1059:                         <span class="ruby-identifier">line</span> = <span class="ruby-value str">&quot;&quot;</span>
+1060:                     <span class="ruby-keyword kw">else</span>
+1061:                         <span class="ruby-identifier">htmlesc</span>( <span class="ruby-identifier">aftertag</span>, <span class="ruby-identifier">:NoQuotes</span> ) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">aftertag</span>
+1062:                         <span class="ruby-identifier">line</span> = <span class="ruby-node">&quot;&lt;redpre##{ @pre_list.length }&gt;&quot;</span>
+1063:                         <span class="ruby-identifier">$3</span>.<span class="ruby-identifier">match</span>(<span class="ruby-node">/&lt;#{ OFFTAGS }([^&gt;]*)&gt;/</span>)
+1064:                         <span class="ruby-identifier">tag</span> = <span class="ruby-identifier">$1</span>
+1065:                         <span class="ruby-identifier">$2</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp re">/(class\=\S+)/i</span>)
+1066:                         <span class="ruby-identifier">tag</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; #{$1}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">$1</span>
+1067:                         <span class="ruby-ivar">@pre_list</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&lt;#{ tag }&gt;#{ aftertag }&quot;</span>
+1068:                     <span class="ruby-keyword kw">end</span>
+1069:                 <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">$1</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">codepre</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+1070:                     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">codepre</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">used_offtags</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+1071:                         <span class="ruby-identifier">htmlesc</span>( <span class="ruby-identifier">line</span>, <span class="ruby-identifier">:NoQuotes</span> )
+1072:                         <span class="ruby-ivar">@pre_list</span>.<span class="ruby-identifier">last</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
+1073:                         <span class="ruby-identifier">line</span> = <span class="ruby-value str">&quot;&quot;</span>
+1074:                     <span class="ruby-keyword kw">end</span>
+1075:                     <span class="ruby-identifier">codepre</span> <span class="ruby-operator">-=</span> <span class="ruby-value">1</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">codepre</span>.<span class="ruby-identifier">zero?</span>
+1076:                     <span class="ruby-identifier">used_offtags</span> = {} <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">codepre</span>.<span class="ruby-identifier">zero?</span>
+1077:                 <span class="ruby-keyword kw">end</span> 
+1078:                 <span class="ruby-identifier">line</span>
+1079:             <span class="ruby-keyword kw">end</span>
+1080:         <span class="ruby-keyword kw">end</span>
+1081:         <span class="ruby-identifier">text</span>
+1082:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000035" class="method-detail">
+        <a name="M000035"></a>
+
+        <div class="method-heading">
+          <a href="#M000035" class="method-signature">
+          <span class="method-name">shelve</span><span class="method-args">( val )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000035-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000035-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 956</span>
+956:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">shelve</span>( <span class="ruby-identifier">val</span> ) 
+957:         <span class="ruby-ivar">@shelf</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">val</span>
+958:         <span class="ruby-node">&quot; :redsh##{ @shelf.length }:&quot;</span>
+959:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000044" class="method-detail">
+        <a name="M000044"></a>
+
+        <div class="method-heading">
+          <a href="#M000044" class="method-signature">
+          <span class="method-name">smooth_offtags</span><span class="method-args">( text )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000044-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000044-source">
+<pre>
+      <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 1084</span>
+1084:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">smooth_offtags</span>( <span class="ruby-identifier">text</span> )
+1085:         <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@pre_list</span>.<span class="ruby-identifier">empty?</span>
+1086:             <span class="ruby-comment cmt">## replace &lt;pre&gt; content</span>
+1087:             <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-regexp re">/&lt;redpre#(\d+)&gt;/</span> ) { <span class="ruby-ivar">@pre_list</span>[<span class="ruby-identifier">$1</span>.<span class="ruby-identifier">to_i</span>] }
+1088:         <span class="ruby-keyword kw">end</span>
+1089:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000011" class="method-detail">
+        <a name="M000011"></a>
+
+        <div class="method-heading">
+          <a href="#M000011" class="method-signature">
+          <span class="method-name">textile_bq</span><span class="method-args">( tag, atts, cite, content )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000011-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000011-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 672</span>
+672:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">textile_bq</span>( <span class="ruby-identifier">tag</span>, <span class="ruby-identifier">atts</span>, <span class="ruby-identifier">cite</span>, <span class="ruby-identifier">content</span> )
+673:         <span class="ruby-identifier">cite</span>, <span class="ruby-identifier">cite_title</span> = <span class="ruby-identifier">check_refs</span>( <span class="ruby-identifier">cite</span> )
+674:         <span class="ruby-identifier">cite</span> = <span class="ruby-node">&quot; cite=\&quot;#{ cite }\&quot;&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">cite</span>
+675:         <span class="ruby-identifier">atts</span> = <span class="ruby-identifier">shelve</span>( <span class="ruby-identifier">atts</span> ) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">atts</span>
+676:         <span class="ruby-node">&quot;\t&lt;blockquote#{ cite }&gt;\n\t\t&lt;p#{ atts }&gt;#{ content }&lt;/p&gt;\n\t&lt;/blockquote&gt;&quot;</span>
+677:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000019" class="method-detail">
+        <a name="M000019"></a>
+
+        <div class="method-heading">
+          <a href="#M000019" class="method-signature">
+          <span class="method-name">textile_fn_</span><span class="method-args">( tag, num, atts, cite, content )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000019-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000019-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 691</span>
+691:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">textile_fn_</span>( <span class="ruby-identifier">tag</span>, <span class="ruby-identifier">num</span>, <span class="ruby-identifier">atts</span>, <span class="ruby-identifier">cite</span>, <span class="ruby-identifier">content</span> )
+692:         <span class="ruby-identifier">atts</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; id=\&quot;fn#{ num }\&quot; class=\&quot;footnote\&quot;&quot;</span>
+693:         <span class="ruby-identifier">content</span> = <span class="ruby-node">&quot;&lt;sup&gt;#{ num }&lt;/sup&gt; #{ content }&quot;</span>
+694:         <span class="ruby-identifier">atts</span> = <span class="ruby-identifier">shelve</span>( <span class="ruby-identifier">atts</span> ) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">atts</span>
+695:         <span class="ruby-node">&quot;\t&lt;p#{ atts }&gt;#{ content }&lt;/p&gt;&quot;</span>
+696:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000013" class="method-detail">
+        <a name="M000013"></a>
+
+        <div class="method-heading">
+          <span class="method-name">textile_h1</span><span class="method-args">( tag, atts, cite, content )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="redcloth3_rb.html#M000012">textile_p</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000014" class="method-detail">
+        <a name="M000014"></a>
+
+        <div class="method-heading">
+          <span class="method-name">textile_h2</span><span class="method-args">( tag, atts, cite, content )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="redcloth3_rb.html#M000012">textile_p</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000015" class="method-detail">
+        <a name="M000015"></a>
+
+        <div class="method-heading">
+          <span class="method-name">textile_h3</span><span class="method-args">( tag, atts, cite, content )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="redcloth3_rb.html#M000012">textile_p</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000016" class="method-detail">
+        <a name="M000016"></a>
+
+        <div class="method-heading">
+          <span class="method-name">textile_h4</span><span class="method-args">( tag, atts, cite, content )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="redcloth3_rb.html#M000012">textile_p</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000017" class="method-detail">
+        <a name="M000017"></a>
+
+        <div class="method-heading">
+          <span class="method-name">textile_h5</span><span class="method-args">( tag, atts, cite, content )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="redcloth3_rb.html#M000012">textile_p</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000018" class="method-detail">
+        <a name="M000018"></a>
+
+        <div class="method-heading">
+          <span class="method-name">textile_h6</span><span class="method-args">( tag, atts, cite, content )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="redcloth3_rb.html#M000012">textile_p</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000012" class="method-detail">
+        <a name="M000012"></a>
+
+        <div class="method-heading">
+          <a href="#M000012" class="method-signature">
+          <span class="method-name">textile_p</span><span class="method-args">( tag, atts, cite, content )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000012-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000012-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 679</span>
+679:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">textile_p</span>( <span class="ruby-identifier">tag</span>, <span class="ruby-identifier">atts</span>, <span class="ruby-identifier">cite</span>, <span class="ruby-identifier">content</span> )
+680:         <span class="ruby-identifier">atts</span> = <span class="ruby-identifier">shelve</span>( <span class="ruby-identifier">atts</span> ) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">atts</span>
+681:         <span class="ruby-node">&quot;\t&lt;#{ tag }#{ atts }&gt;#{ content }&lt;/#{ tag }&gt;&quot;</span>
+682:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000048" class="method-detail">
+        <a name="M000048"></a>
+
+        <div class="method-heading">
+          <a href="#M000048" class="method-signature">
+          <span class="method-name">textile_popup_help</span><span class="method-args">( name, windowW, windowH )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000048-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000048-source">
+<pre>
+      <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 1107</span>
+1107:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">textile_popup_help</span>( <span class="ruby-identifier">name</span>, <span class="ruby-identifier">windowW</span>, <span class="ruby-identifier">windowH</span> )
+1108:         <span class="ruby-value str">' &lt;a target=&quot;_blank&quot; href=&quot;http://hobix.com/textile/#'</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">helpvar</span> <span class="ruby-operator">+</span> <span class="ruby-value str">'&quot; onclick=&quot;window.open(this.href, \'popupwindow\', \'width='</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">windowW</span> <span class="ruby-operator">+</span> <span class="ruby-value str">',height='</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">windowH</span> <span class="ruby-operator">+</span> <span class="ruby-value str">',scrollbars,resizable\'); return false;&quot;&gt;'</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">name</span> <span class="ruby-operator">+</span> <span class="ruby-value str">'&lt;/a&gt;&lt;br /&gt;'</span>
+1109:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000047" class="method-detail">
+        <a name="M000047"></a>
+
+        <div class="method-heading">
+          <a href="#M000047" class="method-signature">
+          <span class="method-name">v_align</span><span class="method-args">( text )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000047-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000047-source">
+<pre>
+      <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 1103</span>
+1103:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">v_align</span>( <span class="ruby-identifier">text</span> ) 
+1104:         <span class="ruby-constant">V_ALGN_VALS</span>[<span class="ruby-identifier">text</span>]
+1105:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

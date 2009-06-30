@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: WatchersController</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">WatchersController</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/app/controllers/watchers_controller_rb.html">
+                app/controllers/watchers_controller.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="ApplicationController.html">
+                ApplicationController
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+redMine - project management software Copyright (C) 2006-2007 Jean-Philippe
+Lang
+</p>
+<p>
+This program is free software; you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the Free
+Software Foundation; either version 2 of the License, or (at your option)
+any later version.
+</p>
+<p>
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+more details.
+</p>
+<p>
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc., 51
+Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000610">new</a>&nbsp;&nbsp;
+      <a href="#M000609">unwatch</a>&nbsp;&nbsp;
+      <a href="#M000608">watch</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000610" class="method-detail">
+        <a name="M000610"></a>
+
+        <div class="method-heading">
+          <a href="#M000610" class="method-signature">
+          <span class="method-name">new</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000610-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000610-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/controllers/watchers_controller.rb, line 35</span>
+35:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">new</span>
+36:     <span class="ruby-ivar">@watcher</span> = <span class="ruby-constant">Watcher</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:watcher</span>])
+37:     <span class="ruby-ivar">@watcher</span>.<span class="ruby-identifier">watchable</span> = <span class="ruby-ivar">@watched</span>
+38:     <span class="ruby-ivar">@watcher</span>.<span class="ruby-identifier">save</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">post?</span>
+39:     <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+40:       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">:back</span> }
+41:       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> <span class="ruby-keyword kw">do</span>
+42:         <span class="ruby-identifier">render</span> <span class="ruby-identifier">:update</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">page</span><span class="ruby-operator">|</span>
+43:           <span class="ruby-identifier">page</span>.<span class="ruby-identifier">replace_html</span> <span class="ruby-value str">'watchers'</span>, <span class="ruby-identifier">:partial</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'watchers/watchers'</span>, <span class="ruby-identifier">:locals</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-identifier">:watched</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@watched</span>}
+44:         <span class="ruby-keyword kw">end</span>
+45:       <span class="ruby-keyword kw">end</span>
+46:     <span class="ruby-keyword kw">end</span>
+47:   <span class="ruby-keyword kw">rescue</span> <span class="ruby-operator">::</span><span class="ruby-constant">ActionController</span><span class="ruby-operator">::</span><span class="ruby-constant">RedirectBackError</span>
+48:     <span class="ruby-identifier">render</span> <span class="ruby-identifier">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'Watcher added.'</span>, <span class="ruby-identifier">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>
+49:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000609" class="method-detail">
+        <a name="M000609"></a>
+
+        <div class="method-heading">
+          <a href="#M000609" class="method-signature">
+          <span class="method-name">unwatch</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000609-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000609-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/controllers/watchers_controller.rb, line 31</span>
+31:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">unwatch</span>
+32:     <span class="ruby-identifier">set_watcher</span>(<span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>, <span class="ruby-keyword kw">false</span>)
+33:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000608" class="method-detail">
+        <a name="M000608"></a>
+
+        <div class="method-heading">
+          <a href="#M000608" class="method-signature">
+          <span class="method-name">watch</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000608-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000608-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/controllers/watchers_controller.rb, line 27</span>
+27:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">watch</span>
+28:     <span class="ruby-identifier">set_watcher</span>(<span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>, <span class="ruby-keyword kw">true</span>)
+29:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

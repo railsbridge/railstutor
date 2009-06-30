@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Redmine::MimeType</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Redmine::MimeType</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/redmine/mime_type_rb.html">
+                lib/redmine/mime_type.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MIME_TYPES</td>
+          <td>=</td>
+          <td class="context-item-value">{       'text/plain' =&gt; 'txt,tpl,properties,patch,diff,ini,readme,install,upgrade',       'text/css' =&gt; 'css',       'text/html' =&gt; 'html,htm,xhtml',       'text/jsp' =&gt; 'jsp',       'text/x-c' =&gt; 'c,cpp,cc,h,hh',       'text/x-csharp' =&gt; 'cs',       'text/x-java' =&gt; 'java',       'text/x-javascript' =&gt; 'js',       'text/x-html-template' =&gt; 'rhtml',       'text/x-perl' =&gt; 'pl,pm',       'text/x-php' =&gt; 'php,php3,php4,php5',       'text/x-python' =&gt; 'py',       'text/x-ruby' =&gt; 'rb,rbw,ruby,rake,erb',       'text/x-csh' =&gt; 'csh',       'text/x-sh' =&gt; 'sh',       'text/xml' =&gt; 'xml,xsd,mxml',       'text/yaml' =&gt; 'yml,yaml',       'image/gif' =&gt; 'gif',       'image/jpeg' =&gt; 'jpg,jpeg,jpe',       'image/png' =&gt; 'png',       'image/tiff' =&gt; 'tiff,tif',       'image/x-ms-bmp' =&gt; 'bmp',       'image/x-xpixmap' =&gt; 'xpm',       'application/pdf' =&gt; 'pdf',       'application/zip' =&gt; 'zip',       'application/x-gzip' =&gt; 'gz',     }.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">EXTENSIONS</td>
+          <td>=</td>
+          <td class="context-item-value">MIME_TYPES.inject({}) do |map, (type, exts)|       exts.split(',').each {|ext| map[ext.strip] = type}</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

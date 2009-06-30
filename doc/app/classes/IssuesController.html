@@ -1,0 +1,854 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: IssuesController</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">IssuesController</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/app/controllers/issues_controller_rb.html">
+                app/controllers/issues_controller.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="ApplicationController.html">
+                ApplicationController
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Redmine - project management software Copyright (C) 2006-2008 Jean-Philippe
+Lang
+</p>
+<p>
+This program is free software; you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the Free
+Software Foundation; either version 2 of the License, or (at your option)
+any later version.
+</p>
+<p>
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+more details.
+</p>
+<p>
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc., 51
+Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000235">bulk_edit</a>&nbsp;&nbsp;
+      <a href="#M000239">calendar</a>&nbsp;&nbsp;
+      <a href="#M000230">changes</a>&nbsp;&nbsp;
+      <a href="#M000240">context_menu</a>&nbsp;&nbsp;
+      <a href="#M000237">destroy</a>&nbsp;&nbsp;
+      <a href="#M000233">edit</a>&nbsp;&nbsp;
+      <a href="#M000238">gantt</a>&nbsp;&nbsp;
+      <a href="#M000229">index</a>&nbsp;&nbsp;
+      <a href="#M000236">move</a>&nbsp;&nbsp;
+      <a href="#M000232">new</a>&nbsp;&nbsp;
+      <a href="#M000242">preview</a>&nbsp;&nbsp;
+      <a href="#M000234">reply</a>&nbsp;&nbsp;
+      <a href="#M000231">show</a>&nbsp;&nbsp;
+      <a href="#M000241">update_form</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name"><a href="ProjectsHelper.html">ProjectsHelper</a></span>
+        <span class="include-name"><a href="CustomFieldsHelper.html">CustomFieldsHelper</a></span>
+        <span class="include-name"><a href="IssueRelationsHelper.html">IssueRelationsHelper</a></span>
+        <span class="include-name"><a href="WatchersHelper.html">WatchersHelper</a></span>
+        <span class="include-name"><a href="AttachmentsHelper.html">AttachmentsHelper</a></span>
+        <span class="include-name"><a href="SortHelper.html">SortHelper</a></span>
+        <span class="include-name"><a href="IssuesHelper.html">IssuesHelper</a></span>
+        <span class="include-name"><a href="Redmine/Export/PDF.html">Redmine::Export::PDF</a></span>
+      </div>
+    </div>
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">UPDATABLE_ATTRS_ON_TRANSITION</td>
+          <td>=</td>
+          <td class="context-item-value">%w(status_id assigned_to_id fixed_version_id done_ratio) unless const_defined?(:UPDATABLE_ATTRS_ON_TRANSITION)</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Attributes that can be updated on workflow transition (without :<a
+href="IssuesController.html#M000233">edit</a> permission) TODO: make it
+configurable (at least per role)
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000235" class="method-detail">
+        <a name="M000235"></a>
+
+        <div class="method-heading">
+          <a href="#M000235" class="method-signature">
+          <span class="method-name">bulk_edit</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Bulk <a href="IssuesController.html#M000233">edit</a> a set of issues
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000235-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000235-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/controllers/issues_controller.rb, line 237</span>
+237:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">bulk_edit</span>
+238:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">post?</span>
+239:       <span class="ruby-identifier">status</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:status_id</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-value">? </span><span class="ruby-keyword kw">nil</span> <span class="ruby-operator">:</span> <span class="ruby-constant">IssueStatus</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:status_id</span>])
+240:       <span class="ruby-identifier">priority</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:priority_id</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-value">? </span><span class="ruby-keyword kw">nil</span> <span class="ruby-operator">:</span> <span class="ruby-constant">IssuePriority</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:priority_id</span>])
+241:       <span class="ruby-identifier">assigned_to</span> = (<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:assigned_to_id</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:assigned_to_id</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'none'</span>) <span class="ruby-operator">?</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-operator">:</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:assigned_to_id</span>])
+242:       <span class="ruby-identifier">category</span> = (<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:category_id</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:category_id</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'none'</span>) <span class="ruby-operator">?</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-operator">:</span> <span class="ruby-ivar">@project</span>.<span class="ruby-identifier">issue_categories</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:category_id</span>])
+243:       <span class="ruby-identifier">fixed_version</span> = (<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:fixed_version_id</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:fixed_version_id</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'none'</span>) <span class="ruby-operator">?</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-operator">:</span> <span class="ruby-ivar">@project</span>.<span class="ruby-identifier">versions</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:fixed_version_id</span>])
+244:       <span class="ruby-identifier">custom_field_values</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:custom_field_values</span>] <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:custom_field_values</span>].<span class="ruby-identifier">reject</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">blank?</span>} <span class="ruby-operator">:</span> <span class="ruby-keyword kw">nil</span>
+245:       
+246:       <span class="ruby-identifier">unsaved_issue_ids</span> = []      
+247:       <span class="ruby-ivar">@issues</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">issue</span><span class="ruby-operator">|</span>
+248:         <span class="ruby-identifier">journal</span> = <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">init_journal</span>(<span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>, <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:notes</span>])
+249:         <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">priority</span> = <span class="ruby-identifier">priority</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">priority</span>
+250:         <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">assigned_to</span> = <span class="ruby-identifier">assigned_to</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">assigned_to</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:assigned_to_id</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'none'</span>
+251:         <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">category</span> = <span class="ruby-identifier">category</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">category</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:category_id</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'none'</span>
+252:         <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">fixed_version</span> = <span class="ruby-identifier">fixed_version</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">fixed_version</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:fixed_version_id</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'none'</span>
+253:         <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">start_date</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:start_date</span>] <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:start_date</span>].<span class="ruby-identifier">blank?</span>
+254:         <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">due_date</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:due_date</span>] <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:due_date</span>].<span class="ruby-identifier">blank?</span>
+255:         <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">done_ratio</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:done_ratio</span>] <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:done_ratio</span>].<span class="ruby-identifier">blank?</span>
+256:         <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">custom_field_values</span> = <span class="ruby-identifier">custom_field_values</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">custom_field_values</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">custom_field_values</span>.<span class="ruby-identifier">empty?</span>
+257:         <span class="ruby-identifier">call_hook</span>(<span class="ruby-identifier">:controller_issues_bulk_edit_before_save</span>, { <span class="ruby-identifier">:params</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>, <span class="ruby-identifier">:issue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">issue</span> })
+258:         <span class="ruby-comment cmt"># Don't save any change to the issue if the user is not authorized to apply the requested status</span>
+259:         <span class="ruby-keyword kw">unless</span> (<span class="ruby-identifier">status</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> (<span class="ruby-identifier">issue</span>.<span class="ruby-identifier">new_statuses_allowed_to</span>(<span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>).<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">status</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">status</span> = <span class="ruby-identifier">status</span>)) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">save</span>
+260:           <span class="ruby-comment cmt"># Keep unsaved issue ids to display them in flash error</span>
+261:           <span class="ruby-identifier">unsaved_issue_ids</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">id</span>
+262:         <span class="ruby-keyword kw">end</span>
+263:       <span class="ruby-keyword kw">end</span>
+264:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">unsaved_issue_ids</span>.<span class="ruby-identifier">empty?</span>
+265:         <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-identifier">l</span>(<span class="ruby-identifier">:notice_successful_update</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@issues</span>.<span class="ruby-identifier">empty?</span>
+266:       <span class="ruby-keyword kw">else</span>
+267:         <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:error</span>] = <span class="ruby-identifier">l</span>(<span class="ruby-identifier">:notice_failed_to_save_issues</span>, <span class="ruby-identifier">:count</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">unsaved_issue_ids</span>.<span class="ruby-identifier">size</span>,
+268:                                                          <span class="ruby-identifier">:total</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@issues</span>.<span class="ruby-identifier">size</span>,
+269:                                                          <span class="ruby-identifier">:ids</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'#'</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">unsaved_issue_ids</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">', #'</span>))
+270:       <span class="ruby-keyword kw">end</span>
+271:       <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:back_to</span>] <span class="ruby-operator">||</span> {<span class="ruby-identifier">:controller</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'issues'</span>, <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'index'</span>, <span class="ruby-identifier">:project_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@project</span>})
+272:       <span class="ruby-keyword kw">return</span>
+273:     <span class="ruby-keyword kw">end</span>
+274:     <span class="ruby-comment cmt"># Find potential statuses the user could be allowed to switch issues to</span>
+275:     <span class="ruby-ivar">@available_statuses</span> = <span class="ruby-constant">Workflow</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">:all</span>, <span class="ruby-identifier">:include</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:new_status</span>,
+276:                                               <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-identifier">:role_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>.<span class="ruby-identifier">roles_for_project</span>(<span class="ruby-ivar">@project</span>).<span class="ruby-identifier">collect</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">:id</span>)}).<span class="ruby-identifier">collect</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">:new_status</span>).<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">uniq</span>.<span class="ruby-identifier">sort</span>
+277:     <span class="ruby-ivar">@custom_fields</span> = <span class="ruby-ivar">@project</span>.<span class="ruby-identifier">issue_custom_fields</span>.<span class="ruby-identifier">select</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">field_format</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'list'</span>}
+278:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000239" class="method-detail">
+        <a name="M000239"></a>
+
+        <div class="method-heading">
+          <a href="#M000239" class="method-signature">
+          <span class="method-name">calendar</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000239-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000239-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/controllers/issues_controller.rb, line 370</span>
+370:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">calendar</span>
+371:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:year</span>] <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:year</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1900</span>
+372:       <span class="ruby-ivar">@year</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:year</span>].<span class="ruby-identifier">to_i</span>
+373:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:month</span>] <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:month</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:month</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">13</span>
+374:         <span class="ruby-ivar">@month</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:month</span>].<span class="ruby-identifier">to_i</span>
+375:       <span class="ruby-keyword kw">end</span>    
+376:     <span class="ruby-keyword kw">end</span>
+377:     <span class="ruby-ivar">@year</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Date</span>.<span class="ruby-identifier">today</span>.<span class="ruby-identifier">year</span>
+378:     <span class="ruby-ivar">@month</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Date</span>.<span class="ruby-identifier">today</span>.<span class="ruby-identifier">month</span>
+379:     
+380:     <span class="ruby-ivar">@calendar</span> = <span class="ruby-constant">Redmine</span><span class="ruby-operator">::</span><span class="ruby-constant">Helpers</span><span class="ruby-operator">::</span><span class="ruby-constant">Calendar</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">Date</span>.<span class="ruby-identifier">civil</span>(<span class="ruby-ivar">@year</span>, <span class="ruby-ivar">@month</span>, <span class="ruby-value">1</span>), <span class="ruby-identifier">current_language</span>, <span class="ruby-identifier">:month</span>)
+381:     <span class="ruby-identifier">retrieve_query</span>
+382:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@query</span>.<span class="ruby-identifier">valid?</span>
+383:       <span class="ruby-identifier">events</span> = []
+384:       <span class="ruby-identifier">events</span> <span class="ruby-operator">+=</span> <span class="ruby-constant">Issue</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">:all</span>, 
+385:                            <span class="ruby-identifier">:include</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-identifier">:tracker</span>, <span class="ruby-identifier">:status</span>, <span class="ruby-identifier">:assigned_to</span>, <span class="ruby-identifier">:priority</span>, <span class="ruby-identifier">:project</span>], 
+386:                            <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-node">&quot;(#{@query.statement}) AND ((start_date BETWEEN ? AND ?) OR (due_date BETWEEN ? AND ?))&quot;</span>, <span class="ruby-ivar">@calendar</span>.<span class="ruby-identifier">startdt</span>, <span class="ruby-ivar">@calendar</span>.<span class="ruby-identifier">enddt</span>, <span class="ruby-ivar">@calendar</span>.<span class="ruby-identifier">startdt</span>, <span class="ruby-ivar">@calendar</span>.<span class="ruby-identifier">enddt</span>]
+387:                            )
+388:       <span class="ruby-identifier">events</span> <span class="ruby-operator">+=</span> <span class="ruby-constant">Version</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">:all</span>, <span class="ruby-identifier">:include</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:project</span>,
+389:                                    <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-node">&quot;(#{@query.project_statement}) AND effective_date BETWEEN ? AND ?&quot;</span>, <span class="ruby-ivar">@calendar</span>.<span class="ruby-identifier">startdt</span>, <span class="ruby-ivar">@calendar</span>.<span class="ruby-identifier">enddt</span>])
+390:                                      
+391:       <span class="ruby-ivar">@calendar</span>.<span class="ruby-identifier">events</span> = <span class="ruby-identifier">events</span>
+392:     <span class="ruby-keyword kw">end</span>
+393:     
+394:     <span class="ruby-identifier">render</span> <span class="ruby-identifier">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">xhr?</span>
+395:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000230" class="method-detail">
+        <a name="M000230"></a>
+
+        <div class="method-heading">
+          <a href="#M000230" class="method-signature">
+          <span class="method-name">changes</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000230-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000230-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/controllers/issues_controller.rb, line 91</span>
+ 91:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">changes</span>
+ 92:     <span class="ruby-identifier">retrieve_query</span>
+ 93:     <span class="ruby-identifier">sort_init</span> <span class="ruby-value str">'id'</span>, <span class="ruby-value str">'desc'</span>
+ 94:     <span class="ruby-identifier">sort_update</span>({<span class="ruby-value str">'id'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{Issue.table_name}.id&quot;</span>}.<span class="ruby-identifier">merge</span>(<span class="ruby-ivar">@query</span>.<span class="ruby-identifier">available_columns</span>.<span class="ruby-identifier">inject</span>({}) {<span class="ruby-operator">|</span><span class="ruby-identifier">h</span>, <span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span>[<span class="ruby-identifier">c</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span>] = <span class="ruby-identifier">c</span>.<span class="ruby-identifier">sortable</span>; <span class="ruby-identifier">h</span>}))
+ 95:     
+ 96:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@query</span>.<span class="ruby-identifier">valid?</span>
+ 97:       <span class="ruby-ivar">@journals</span> = <span class="ruby-constant">Journal</span>.<span class="ruby-identifier">find</span> <span class="ruby-identifier">:all</span>, <span class="ruby-identifier">:include</span> =<span class="ruby-operator">&gt;</span> [ <span class="ruby-identifier">:details</span>, <span class="ruby-identifier">:user</span>, {<span class="ruby-identifier">:issue</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-identifier">:project</span>, <span class="ruby-identifier">:author</span>, <span class="ruby-identifier">:tracker</span>, <span class="ruby-identifier">:status</span>]} ],
+ 98:                                      <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@query</span>.<span class="ruby-identifier">statement</span>,
+ 99:                                      <span class="ruby-identifier">:limit</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">25</span>,
+100:                                      <span class="ruby-identifier">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{Journal.table_name}.created_on DESC&quot;</span>
+101:     <span class="ruby-keyword kw">end</span>
+102:     <span class="ruby-ivar">@title</span> = (<span class="ruby-ivar">@project</span> <span class="ruby-operator">?</span> <span class="ruby-ivar">@project</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">:</span> <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">app_title</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;: &quot;</span> <span class="ruby-operator">+</span> (<span class="ruby-ivar">@query</span>.<span class="ruby-identifier">new_record?</span> <span class="ruby-value">? </span><span class="ruby-identifier">l</span>(<span class="ruby-identifier">:label_changes_details</span>) <span class="ruby-operator">:</span> <span class="ruby-ivar">@query</span>.<span class="ruby-identifier">name</span>)
+103:     <span class="ruby-identifier">render</span> <span class="ruby-identifier">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>, <span class="ruby-identifier">:content_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'application/atom+xml'</span>
+104:   <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">RecordNotFound</span>
+105:     <span class="ruby-identifier">render_404</span>
+106:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000240" class="method-detail">
+        <a name="M000240"></a>
+
+        <div class="method-heading">
+          <a href="#M000240" class="method-signature">
+          <span class="method-name">context_menu</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000240-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000240-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/controllers/issues_controller.rb, line 397</span>
+397:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">context_menu</span>
+398:     <span class="ruby-ivar">@issues</span> = <span class="ruby-constant">Issue</span>.<span class="ruby-identifier">find_all_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:ids</span>], <span class="ruby-identifier">:include</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:project</span>)
+399:     <span class="ruby-keyword kw">if</span> (<span class="ruby-ivar">@issues</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>)
+400:       <span class="ruby-ivar">@issue</span> = <span class="ruby-ivar">@issues</span>.<span class="ruby-identifier">first</span>
+401:       <span class="ruby-ivar">@allowed_statuses</span> = <span class="ruby-ivar">@issue</span>.<span class="ruby-identifier">new_statuses_allowed_to</span>(<span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>)
+402:     <span class="ruby-keyword kw">end</span>
+403:     <span class="ruby-identifier">projects</span> = <span class="ruby-ivar">@issues</span>.<span class="ruby-identifier">collect</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">:project</span>).<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">uniq</span>
+404:     <span class="ruby-ivar">@project</span> = <span class="ruby-identifier">projects</span>.<span class="ruby-identifier">first</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">projects</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+405: 
+406:     <span class="ruby-ivar">@can</span> = {<span class="ruby-identifier">:edit</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-ivar">@project</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>.<span class="ruby-identifier">allowed_to?</span>(<span class="ruby-identifier">:edit_issues</span>, <span class="ruby-ivar">@project</span>)),
+407:             <span class="ruby-identifier">:log_time</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-ivar">@project</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>.<span class="ruby-identifier">allowed_to?</span>(<span class="ruby-identifier">:log_time</span>, <span class="ruby-ivar">@project</span>)),
+408:             <span class="ruby-identifier">:update</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-ivar">@project</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>.<span class="ruby-identifier">allowed_to?</span>(<span class="ruby-identifier">:edit_issues</span>, <span class="ruby-ivar">@project</span>) <span class="ruby-operator">||</span> (<span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>.<span class="ruby-identifier">allowed_to?</span>(<span class="ruby-identifier">:change_status</span>, <span class="ruby-ivar">@project</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@allowed_statuses</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@allowed_statuses</span>.<span class="ruby-identifier">empty?</span>))),
+409:             <span class="ruby-identifier">:move</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-ivar">@project</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>.<span class="ruby-identifier">allowed_to?</span>(<span class="ruby-identifier">:move_issues</span>, <span class="ruby-ivar">@project</span>)),
+410:             <span class="ruby-identifier">:copy</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-ivar">@issue</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@project</span>.<span class="ruby-identifier">trackers</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-ivar">@issue</span>.<span class="ruby-identifier">tracker</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>.<span class="ruby-identifier">allowed_to?</span>(<span class="ruby-identifier">:add_issues</span>, <span class="ruby-ivar">@project</span>)),
+411:             <span class="ruby-identifier">:delete</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-ivar">@project</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>.<span class="ruby-identifier">allowed_to?</span>(<span class="ruby-identifier">:delete_issues</span>, <span class="ruby-ivar">@project</span>))
+412:             }
+413:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@project</span>
+414:       <span class="ruby-ivar">@assignables</span> = <span class="ruby-ivar">@project</span>.<span class="ruby-identifier">assignable_users</span>
+415:       <span class="ruby-ivar">@assignables</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@issue</span>.<span class="ruby-identifier">assigned_to</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@issue</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@issue</span>.<span class="ruby-identifier">assigned_to</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@assignables</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-ivar">@issue</span>.<span class="ruby-identifier">assigned_to</span>)
+416:     <span class="ruby-keyword kw">end</span>
+417:     
+418:     <span class="ruby-ivar">@priorities</span> = <span class="ruby-constant">IssuePriority</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">reverse</span>
+419:     <span class="ruby-ivar">@statuses</span> = <span class="ruby-constant">IssueStatus</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">:all</span>, <span class="ruby-identifier">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'position'</span>)
+420:     <span class="ruby-ivar">@back</span> = <span class="ruby-identifier">request</span>.<span class="ruby-identifier">env</span>[<span class="ruby-value str">'HTTP_REFERER'</span>]
+421:     
+422:     <span class="ruby-identifier">render</span> <span class="ruby-identifier">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>
+423:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000237" class="method-detail">
+        <a name="M000237"></a>
+
+        <div class="method-heading">
+          <a href="#M000237" class="method-signature">
+          <span class="method-name">destroy</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000237-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000237-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/controllers/issues_controller.rb, line 312</span>
+312:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">destroy</span>
+313:     <span class="ruby-ivar">@hours</span> = <span class="ruby-constant">TimeEntry</span>.<span class="ruby-identifier">sum</span>(<span class="ruby-identifier">:hours</span>, <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-value str">'issue_id IN (?)'</span>, <span class="ruby-ivar">@issues</span>]).<span class="ruby-identifier">to_f</span>
+314:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@hours</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+315:       <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:todo</span>]
+316:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'destroy'</span>
+317:         <span class="ruby-comment cmt"># nothing to do</span>
+318:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'nullify'</span>
+319:         <span class="ruby-constant">TimeEntry</span>.<span class="ruby-identifier">update_all</span>(<span class="ruby-value str">'issue_id = NULL'</span>, [<span class="ruby-value str">'issue_id IN (?)'</span>, <span class="ruby-ivar">@issues</span>])
+320:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'reassign'</span>
+321:         <span class="ruby-identifier">reassign_to</span> = <span class="ruby-ivar">@project</span>.<span class="ruby-identifier">issues</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:reassign_to_id</span>])
+322:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">reassign_to</span>.<span class="ruby-identifier">nil?</span>
+323:           <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-identifier">:error</span>] = <span class="ruby-identifier">l</span>(<span class="ruby-identifier">:error_issue_not_found_in_project</span>)
+324:           <span class="ruby-keyword kw">return</span>
+325:         <span class="ruby-keyword kw">else</span>
+326:           <span class="ruby-constant">TimeEntry</span>.<span class="ruby-identifier">update_all</span>(<span class="ruby-node">&quot;issue_id = #{reassign_to.id}&quot;</span>, [<span class="ruby-value str">'issue_id IN (?)'</span>, <span class="ruby-ivar">@issues</span>])
+327:         <span class="ruby-keyword kw">end</span>
+328:       <span class="ruby-keyword kw">else</span>
+329:         <span class="ruby-comment cmt"># display the destroy form</span>
+330:         <span class="ruby-keyword kw">return</span>
+331:       <span class="ruby-keyword kw">end</span>
+332:     <span class="ruby-keyword kw">end</span>
+333:     <span class="ruby-ivar">@issues</span>.<span class="ruby-identifier">each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">:destroy</span>)
+334:     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'index'</span>, <span class="ruby-identifier">:project_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@project</span>
+335:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000233" class="method-detail">
+        <a name="M000233"></a>
+
+        <div class="method-heading">
+          <a href="#M000233" class="method-signature">
+          <span class="method-name">edit</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000233-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000233-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/controllers/issues_controller.rb, line 174</span>
+174:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">edit</span>
+175:     <span class="ruby-ivar">@allowed_statuses</span> = <span class="ruby-ivar">@issue</span>.<span class="ruby-identifier">new_statuses_allowed_to</span>(<span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>)
+176:     <span class="ruby-ivar">@priorities</span> = <span class="ruby-constant">IssuePriority</span>.<span class="ruby-identifier">all</span>
+177:     <span class="ruby-ivar">@edit_allowed</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>.<span class="ruby-identifier">allowed_to?</span>(<span class="ruby-identifier">:edit_issues</span>, <span class="ruby-ivar">@project</span>)
+178:     <span class="ruby-ivar">@time_entry</span> = <span class="ruby-constant">TimeEntry</span>.<span class="ruby-identifier">new</span>
+179:     
+180:     <span class="ruby-ivar">@notes</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:notes</span>]
+181:     <span class="ruby-identifier">journal</span> = <span class="ruby-ivar">@issue</span>.<span class="ruby-identifier">init_journal</span>(<span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>, <span class="ruby-ivar">@notes</span>)
+182:     <span class="ruby-comment cmt"># User can change issue attributes only if he has :edit permission or if a workflow transition is allowed</span>
+183:     <span class="ruby-keyword kw">if</span> (<span class="ruby-ivar">@edit_allowed</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@allowed_statuses</span>.<span class="ruby-identifier">empty?</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:issue</span>]
+184:       <span class="ruby-identifier">attrs</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:issue</span>].<span class="ruby-identifier">dup</span>
+185:       <span class="ruby-identifier">attrs</span>.<span class="ruby-identifier">delete_if</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-constant">UPDATABLE_ATTRS_ON_TRANSITION</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">k</span>) } <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@edit_allowed</span>
+186:       <span class="ruby-identifier">attrs</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:status_id</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@allowed_statuses</span>.<span class="ruby-identifier">detect</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">attrs</span>[<span class="ruby-identifier">:status_id</span>].<span class="ruby-identifier">to_s</span>}
+187:       <span class="ruby-ivar">@issue</span>.<span class="ruby-identifier">attributes</span> = <span class="ruby-identifier">attrs</span>
+188:     <span class="ruby-keyword kw">end</span>
+189: 
+190:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">post?</span>
+191:       <span class="ruby-ivar">@time_entry</span> = <span class="ruby-constant">TimeEntry</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:project</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@project</span>, <span class="ruby-identifier">:issue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@issue</span>, <span class="ruby-identifier">:user</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>, <span class="ruby-identifier">:spent_on</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Date</span>.<span class="ruby-identifier">today</span>)
+192:       <span class="ruby-ivar">@time_entry</span>.<span class="ruby-identifier">attributes</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:time_entry</span>]
+193:       <span class="ruby-identifier">attachments</span> = <span class="ruby-identifier">attach_files</span>(<span class="ruby-ivar">@issue</span>, <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:attachments</span>])
+194:       <span class="ruby-identifier">attachments</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">journal</span>.<span class="ruby-identifier">details</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">JournalDetail</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:property</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'attachment'</span>, <span class="ruby-identifier">:prop_key</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">:value</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">filename</span>)}
+195:       
+196:       <span class="ruby-identifier">call_hook</span>(<span class="ruby-identifier">:controller_issues_edit_before_save</span>, { <span class="ruby-identifier">:params</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>, <span class="ruby-identifier">:issue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@issue</span>, <span class="ruby-identifier">:time_entry</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@time_entry</span>, <span class="ruby-identifier">:journal</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">journal</span>})
+197: 
+198:       <span class="ruby-keyword kw">if</span> (<span class="ruby-ivar">@time_entry</span>.<span class="ruby-identifier">hours</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-ivar">@time_entry</span>.<span class="ruby-identifier">valid?</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@issue</span>.<span class="ruby-identifier">save</span>
+199:         <span class="ruby-comment cmt"># Log spend time</span>
+200:         <span class="ruby-keyword kw">if</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>.<span class="ruby-identifier">allowed_to?</span>(<span class="ruby-identifier">:log_time</span>, <span class="ruby-ivar">@project</span>)
+201:           <span class="ruby-ivar">@time_entry</span>.<span class="ruby-identifier">save</span>
+202:         <span class="ruby-keyword kw">end</span>
+203:         <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">journal</span>.<span class="ruby-identifier">new_record?</span>
+204:           <span class="ruby-comment cmt"># Only send notification if something was actually changed</span>
+205:           <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-identifier">l</span>(<span class="ruby-identifier">:notice_successful_update</span>)
+206:         <span class="ruby-keyword kw">end</span>
+207:         <span class="ruby-identifier">call_hook</span>(<span class="ruby-identifier">:controller_issues_edit_after_save</span>, { <span class="ruby-identifier">:params</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>, <span class="ruby-identifier">:issue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@issue</span>, <span class="ruby-identifier">:time_entry</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@time_entry</span>, <span class="ruby-identifier">:journal</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">journal</span>})
+208:         <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:back_to</span>] <span class="ruby-operator">||</span> {<span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'show'</span>, <span class="ruby-identifier">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@issue</span>})
+209:       <span class="ruby-keyword kw">end</span>
+210:     <span class="ruby-keyword kw">end</span>
+211:   <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">StaleObjectError</span>
+212:     <span class="ruby-comment cmt"># Optimistic locking exception</span>
+213:     <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-identifier">:error</span>] = <span class="ruby-identifier">l</span>(<span class="ruby-identifier">:notice_locking_conflict</span>)
+214:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000238" class="method-detail">
+        <a name="M000238"></a>
+
+        <div class="method-heading">
+          <a href="#M000238" class="method-signature">
+          <span class="method-name">gantt</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000238-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000238-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/controllers/issues_controller.rb, line 337</span>
+337:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">gantt</span>
+338:     <span class="ruby-ivar">@gantt</span> = <span class="ruby-constant">Redmine</span><span class="ruby-operator">::</span><span class="ruby-constant">Helpers</span><span class="ruby-operator">::</span><span class="ruby-constant">Gantt</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>)
+339:     <span class="ruby-identifier">retrieve_query</span>
+340:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@query</span>.<span class="ruby-identifier">valid?</span>
+341:       <span class="ruby-identifier">events</span> = []
+342:       <span class="ruby-comment cmt"># Issues that have start and due dates</span>
+343:       <span class="ruby-identifier">events</span> <span class="ruby-operator">+=</span> <span class="ruby-constant">Issue</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">:all</span>, 
+344:                            <span class="ruby-identifier">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;start_date, due_date&quot;</span>,
+345:                            <span class="ruby-identifier">:include</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-identifier">:tracker</span>, <span class="ruby-identifier">:status</span>, <span class="ruby-identifier">:assigned_to</span>, <span class="ruby-identifier">:priority</span>, <span class="ruby-identifier">:project</span>], 
+346:                            <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-node">&quot;(#{@query.statement}) AND (((start_date&gt;=? and start_date&lt;=?) or (due_date&gt;=? and due_date&lt;=?) or (start_date&lt;? and due_date&gt;?)) and start_date is not null and due_date is not null)&quot;</span>, <span class="ruby-ivar">@gantt</span>.<span class="ruby-identifier">date_from</span>, <span class="ruby-ivar">@gantt</span>.<span class="ruby-identifier">date_to</span>, <span class="ruby-ivar">@gantt</span>.<span class="ruby-identifier">date_from</span>, <span class="ruby-ivar">@gantt</span>.<span class="ruby-identifier">date_to</span>, <span class="ruby-ivar">@gantt</span>.<span class="ruby-identifier">date_from</span>, <span class="ruby-ivar">@gantt</span>.<span class="ruby-identifier">date_to</span>]
+347:                            )
+348:       <span class="ruby-comment cmt"># Issues that don't have a due date but that are assigned to a version with a date</span>
+349:       <span class="ruby-identifier">events</span> <span class="ruby-operator">+=</span> <span class="ruby-constant">Issue</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">:all</span>, 
+350:                            <span class="ruby-identifier">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;start_date, effective_date&quot;</span>,
+351:                            <span class="ruby-identifier">:include</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-identifier">:tracker</span>, <span class="ruby-identifier">:status</span>, <span class="ruby-identifier">:assigned_to</span>, <span class="ruby-identifier">:priority</span>, <span class="ruby-identifier">:project</span>, <span class="ruby-identifier">:fixed_version</span>], 
+352:                            <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-node">&quot;(#{@query.statement}) AND (((start_date&gt;=? and start_date&lt;=?) or (effective_date&gt;=? and effective_date&lt;=?) or (start_date&lt;? and effective_date&gt;?)) and start_date is not null and due_date is null and effective_date is not null)&quot;</span>, <span class="ruby-ivar">@gantt</span>.<span class="ruby-identifier">date_from</span>, <span class="ruby-ivar">@gantt</span>.<span class="ruby-identifier">date_to</span>, <span class="ruby-ivar">@gantt</span>.<span class="ruby-identifier">date_from</span>, <span class="ruby-ivar">@gantt</span>.<span class="ruby-identifier">date_to</span>, <span class="ruby-ivar">@gantt</span>.<span class="ruby-identifier">date_from</span>, <span class="ruby-ivar">@gantt</span>.<span class="ruby-identifier">date_to</span>]
+353:                            )
+354:       <span class="ruby-comment cmt"># Versions</span>
+355:       <span class="ruby-identifier">events</span> <span class="ruby-operator">+=</span> <span class="ruby-constant">Version</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">:all</span>, <span class="ruby-identifier">:include</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:project</span>,
+356:                                    <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-node">&quot;(#{@query.project_statement}) AND effective_date BETWEEN ? AND ?&quot;</span>, <span class="ruby-ivar">@gantt</span>.<span class="ruby-identifier">date_from</span>, <span class="ruby-ivar">@gantt</span>.<span class="ruby-identifier">date_to</span>])
+357:                                    
+358:       <span class="ruby-ivar">@gantt</span>.<span class="ruby-identifier">events</span> = <span class="ruby-identifier">events</span>
+359:     <span class="ruby-keyword kw">end</span>
+360:     
+361:     <span class="ruby-identifier">basename</span> = (<span class="ruby-ivar">@project</span> <span class="ruby-operator">?</span> <span class="ruby-node">&quot;#{@project.identifier}-&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-value str">''</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">'gantt'</span>
+362:     
+363:     <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+364:       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">:template</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;issues/gantt.rhtml&quot;</span>, <span class="ruby-identifier">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">request</span>.<span class="ruby-identifier">xhr?</span> }
+365:       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">png</span>  { <span class="ruby-identifier">send_data</span>(<span class="ruby-ivar">@gantt</span>.<span class="ruby-identifier">to_image</span>, <span class="ruby-identifier">:disposition</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'inline'</span>, <span class="ruby-identifier">:type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'image/png'</span>, <span class="ruby-identifier">:filename</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{basename}.png&quot;</span>) } <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@gantt</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value str">'to_image'</span>)
+366:       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">pdf</span>  { <span class="ruby-identifier">send_data</span>(<span class="ruby-identifier">gantt_to_pdf</span>(<span class="ruby-ivar">@gantt</span>, <span class="ruby-ivar">@project</span>), <span class="ruby-identifier">:type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'application/pdf'</span>, <span class="ruby-identifier">:filename</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{basename}.pdf&quot;</span>) }
+367:     <span class="ruby-keyword kw">end</span>
+368:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000229" class="method-detail">
+        <a name="M000229"></a>
+
+        <div class="method-heading">
+          <a href="#M000229" class="method-signature">
+          <span class="method-name">index</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000229-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000229-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/controllers/issues_controller.rb, line 46</span>
+46:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">index</span>
+47:     <span class="ruby-identifier">retrieve_query</span>
+48:     <span class="ruby-identifier">sort_init</span>(<span class="ruby-ivar">@query</span>.<span class="ruby-identifier">sort_criteria</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-value">? </span>[[<span class="ruby-value str">'id'</span>, <span class="ruby-value str">'desc'</span>]] <span class="ruby-operator">:</span> <span class="ruby-ivar">@query</span>.<span class="ruby-identifier">sort_criteria</span>)
+49:     <span class="ruby-identifier">sort_update</span>({<span class="ruby-value str">'id'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{Issue.table_name}.id&quot;</span>}.<span class="ruby-identifier">merge</span>(<span class="ruby-ivar">@query</span>.<span class="ruby-identifier">available_columns</span>.<span class="ruby-identifier">inject</span>({}) {<span class="ruby-operator">|</span><span class="ruby-identifier">h</span>, <span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span>[<span class="ruby-identifier">c</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span>] = <span class="ruby-identifier">c</span>.<span class="ruby-identifier">sortable</span>; <span class="ruby-identifier">h</span>}))
+50:     
+51:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@query</span>.<span class="ruby-identifier">valid?</span>
+52:       <span class="ruby-identifier">limit</span> = <span class="ruby-identifier">per_page_option</span>
+53:       <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+54:         <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { }
+55:         <span class="ruby-identifier">format</span>.<span class="ruby-identifier">atom</span> { }
+56:         <span class="ruby-identifier">format</span>.<span class="ruby-identifier">csv</span>  { <span class="ruby-identifier">limit</span> = <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">issues_export_limit</span>.<span class="ruby-identifier">to_i</span> }
+57:         <span class="ruby-identifier">format</span>.<span class="ruby-identifier">pdf</span>  { <span class="ruby-identifier">limit</span> = <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">issues_export_limit</span>.<span class="ruby-identifier">to_i</span> }
+58:       <span class="ruby-keyword kw">end</span>
+59:       <span class="ruby-ivar">@issue_count</span> = <span class="ruby-constant">Issue</span>.<span class="ruby-identifier">count</span>(<span class="ruby-identifier">:include</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-identifier">:status</span>, <span class="ruby-identifier">:project</span>], <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@query</span>.<span class="ruby-identifier">statement</span>)
+60:       <span class="ruby-ivar">@issue_pages</span> = <span class="ruby-constant">Paginator</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword kw">self</span>, <span class="ruby-ivar">@issue_count</span>, <span class="ruby-identifier">limit</span>, <span class="ruby-identifier">params</span>[<span class="ruby-value str">'page'</span>]
+61:       <span class="ruby-ivar">@issues</span> = <span class="ruby-constant">Issue</span>.<span class="ruby-identifier">find</span> <span class="ruby-identifier">:all</span>, <span class="ruby-identifier">:order</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-ivar">@query</span>.<span class="ruby-identifier">group_by_sort_order</span>, <span class="ruby-identifier">sort_clause</span>].<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">','</span>),
+62:                            <span class="ruby-identifier">:include</span> =<span class="ruby-operator">&gt;</span> [ <span class="ruby-identifier">:assigned_to</span>, <span class="ruby-identifier">:status</span>, <span class="ruby-identifier">:tracker</span>, <span class="ruby-identifier">:project</span>, <span class="ruby-identifier">:priority</span>, <span class="ruby-identifier">:category</span>, <span class="ruby-identifier">:fixed_version</span> ],
+63:                            <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@query</span>.<span class="ruby-identifier">statement</span>,
+64:                            <span class="ruby-identifier">:limit</span>  =<span class="ruby-operator">&gt;</span>  <span class="ruby-identifier">limit</span>,
+65:                            <span class="ruby-identifier">:offset</span> =<span class="ruby-operator">&gt;</span>  <span class="ruby-ivar">@issue_pages</span>.<span class="ruby-identifier">current</span>.<span class="ruby-identifier">offset</span>
+66:       <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+67:         <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { 
+68:           <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@query</span>.<span class="ruby-identifier">grouped?</span>
+69:             <span class="ruby-comment cmt"># Retrieve the issue count by group</span>
+70:             <span class="ruby-ivar">@issue_count_by_group</span> = <span class="ruby-keyword kw">begin</span>
+71:               <span class="ruby-constant">Issue</span>.<span class="ruby-identifier">count</span>(<span class="ruby-identifier">:group</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@query</span>.<span class="ruby-identifier">group_by</span>, <span class="ruby-identifier">:include</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-identifier">:status</span>, <span class="ruby-identifier">:project</span>], <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@query</span>.<span class="ruby-identifier">statement</span>)
+72:             <span class="ruby-comment cmt"># Rails will raise an (unexpected) error if there's only a nil group value</span>
+73:             <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">RecordNotFound</span>
+74:               {<span class="ruby-keyword kw">nil</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@issue_count</span>}
+75:             <span class="ruby-keyword kw">end</span>
+76:           <span class="ruby-keyword kw">end</span>
+77:           <span class="ruby-identifier">render</span> <span class="ruby-identifier">:template</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'issues/index.rhtml'</span>, <span class="ruby-identifier">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">request</span>.<span class="ruby-identifier">xhr?</span>
+78:         }
+79:         <span class="ruby-identifier">format</span>.<span class="ruby-identifier">atom</span> { <span class="ruby-identifier">render_feed</span>(<span class="ruby-ivar">@issues</span>, <span class="ruby-identifier">:title</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{@project || Setting.app_title}: #{l(:label_issue_plural)}&quot;</span>) }
+80:         <span class="ruby-identifier">format</span>.<span class="ruby-identifier">csv</span>  { <span class="ruby-identifier">send_data</span>(<span class="ruby-identifier">issues_to_csv</span>(<span class="ruby-ivar">@issues</span>, <span class="ruby-ivar">@project</span>).<span class="ruby-identifier">read</span>, <span class="ruby-identifier">:type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'text/csv; header=present'</span>, <span class="ruby-identifier">:filename</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'export.csv'</span>) }
+81:         <span class="ruby-identifier">format</span>.<span class="ruby-identifier">pdf</span>  { <span class="ruby-identifier">send_data</span>(<span class="ruby-identifier">issues_to_pdf</span>(<span class="ruby-ivar">@issues</span>, <span class="ruby-ivar">@project</span>, <span class="ruby-ivar">@query</span>), <span class="ruby-identifier">:type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'application/pdf'</span>, <span class="ruby-identifier">:filename</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'export.pdf'</span>) }
+82:       <span class="ruby-keyword kw">end</span>
+83:     <span class="ruby-keyword kw">else</span>
+84:       <span class="ruby-comment cmt"># Send html if the query is not valid</span>
+85:       <span class="ruby-identifier">render</span>(<span class="ruby-identifier">:template</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'issues/index.rhtml'</span>, <span class="ruby-identifier">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">request</span>.<span class="ruby-identifier">xhr?</span>)
+86:     <span class="ruby-keyword kw">end</span>
+87:   <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">RecordNotFound</span>
+88:     <span class="ruby-identifier">render_404</span>
+89:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000236" class="method-detail">
+        <a name="M000236"></a>
+
+        <div class="method-heading">
+          <a href="#M000236" class="method-signature">
+          <span class="method-name">move</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000236-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000236-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/controllers/issues_controller.rb, line 280</span>
+280:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">move</span>
+281:     <span class="ruby-ivar">@allowed_projects</span> = []
+282:     <span class="ruby-comment cmt"># find projects to which the user is allowed to move the issue</span>
+283:     <span class="ruby-keyword kw">if</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>.<span class="ruby-identifier">admin?</span>
+284:       <span class="ruby-comment cmt"># admin is allowed to move issues to any active (visible) project</span>
+285:       <span class="ruby-ivar">@allowed_projects</span> = <span class="ruby-constant">Project</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">:all</span>, <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Project</span>.<span class="ruby-identifier">visible_by</span>(<span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>))
+286:     <span class="ruby-keyword kw">else</span>
+287:       <span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>.<span class="ruby-identifier">memberships</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@allowed_projects</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">project</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">roles</span>.<span class="ruby-identifier">detect</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">allowed_to?</span>(<span class="ruby-identifier">:move_issues</span>)}}
+288:     <span class="ruby-keyword kw">end</span>
+289:     <span class="ruby-ivar">@target_project</span> = <span class="ruby-ivar">@allowed_projects</span>.<span class="ruby-identifier">detect</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">p</span>.<span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:new_project_id</span>]} <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:new_project_id</span>]
+290:     <span class="ruby-ivar">@target_project</span> <span class="ruby-operator">||=</span> <span class="ruby-ivar">@project</span>    
+291:     <span class="ruby-ivar">@trackers</span> = <span class="ruby-ivar">@target_project</span>.<span class="ruby-identifier">trackers</span>
+292:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">post?</span>
+293:       <span class="ruby-identifier">new_tracker</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:new_tracker_id</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-value">? </span><span class="ruby-keyword kw">nil</span> <span class="ruby-operator">:</span> <span class="ruby-ivar">@target_project</span>.<span class="ruby-identifier">trackers</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:new_tracker_id</span>])
+294:       <span class="ruby-identifier">unsaved_issue_ids</span> = []
+295:       <span class="ruby-ivar">@issues</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">issue</span><span class="ruby-operator">|</span>
+296:         <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">init_journal</span>(<span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>)
+297:         <span class="ruby-identifier">unsaved_issue_ids</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">id</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">move_to</span>(<span class="ruby-ivar">@target_project</span>, <span class="ruby-identifier">new_tracker</span>, <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:copy_options</span>])
+298:       <span class="ruby-keyword kw">end</span>
+299:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">unsaved_issue_ids</span>.<span class="ruby-identifier">empty?</span>
+300:         <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-identifier">l</span>(<span class="ruby-identifier">:notice_successful_update</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@issues</span>.<span class="ruby-identifier">empty?</span>
+301:       <span class="ruby-keyword kw">else</span>
+302:         <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:error</span>] = <span class="ruby-identifier">l</span>(<span class="ruby-identifier">:notice_failed_to_save_issues</span>, <span class="ruby-identifier">:count</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">unsaved_issue_ids</span>.<span class="ruby-identifier">size</span>,
+303:                                                          <span class="ruby-identifier">:total</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@issues</span>.<span class="ruby-identifier">size</span>,
+304:                                                          <span class="ruby-identifier">:ids</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'#'</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">unsaved_issue_ids</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">', #'</span>))
+305:       <span class="ruby-keyword kw">end</span>
+306:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">:controller</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'issues'</span>, <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'index'</span>, <span class="ruby-identifier">:project_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@project</span>
+307:       <span class="ruby-keyword kw">return</span>
+308:     <span class="ruby-keyword kw">end</span>
+309:     <span class="ruby-identifier">render</span> <span class="ruby-identifier">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">xhr?</span>
+310:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000232" class="method-detail">
+        <a name="M000232"></a>
+
+        <div class="method-heading">
+          <a href="#M000232" class="method-signature">
+          <span class="method-name">new</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Add a <a href="IssuesController.html#M000232">new</a> issue The <a
+href="IssuesController.html#M000232">new</a> issue will be created from an
+existing one if copy_from parameter is given
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000232-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000232-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/controllers/issues_controller.rb, line 127</span>
+127:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">new</span>
+128:     <span class="ruby-ivar">@issue</span> = <span class="ruby-constant">Issue</span>.<span class="ruby-identifier">new</span>
+129:     <span class="ruby-ivar">@issue</span>.<span class="ruby-identifier">copy_from</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:copy_from</span>]) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:copy_from</span>]
+130:     <span class="ruby-ivar">@issue</span>.<span class="ruby-identifier">project</span> = <span class="ruby-ivar">@project</span>
+131:     <span class="ruby-comment cmt"># Tracker must be set before custom field values</span>
+132:     <span class="ruby-ivar">@issue</span>.<span class="ruby-identifier">tracker</span> <span class="ruby-operator">||=</span> <span class="ruby-ivar">@project</span>.<span class="ruby-identifier">trackers</span>.<span class="ruby-identifier">find</span>((<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:issue</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:issue</span>][<span class="ruby-identifier">:tracker_id</span>]) <span class="ruby-operator">||</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:tracker_id</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">:first</span>)
+133:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@issue</span>.<span class="ruby-identifier">tracker</span>.<span class="ruby-identifier">nil?</span>
+134:       <span class="ruby-identifier">render_error</span> <span class="ruby-value str">'No tracker is associated to this project. Please check the Project settings.'</span>
+135:       <span class="ruby-keyword kw">return</span>
+136:     <span class="ruby-keyword kw">end</span>
+137:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:issue</span>].<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)
+138:       <span class="ruby-ivar">@issue</span>.<span class="ruby-identifier">attributes</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:issue</span>]
+139:       <span class="ruby-ivar">@issue</span>.<span class="ruby-identifier">watcher_user_ids</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:issue</span>][<span class="ruby-value str">'watcher_user_ids'</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>.<span class="ruby-identifier">allowed_to?</span>(<span class="ruby-identifier">:add_issue_watchers</span>, <span class="ruby-ivar">@project</span>)
+140:     <span class="ruby-keyword kw">end</span>
+141:     <span class="ruby-ivar">@issue</span>.<span class="ruby-identifier">author</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>
+142:     
+143:     <span class="ruby-identifier">default_status</span> = <span class="ruby-constant">IssueStatus</span>.<span class="ruby-identifier">default</span>
+144:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">default_status</span>
+145:       <span class="ruby-identifier">render_error</span> <span class="ruby-value str">'No default issue status is defined. Please check your configuration (Go to &quot;Administration -&gt; Issue statuses&quot;).'</span>
+146:       <span class="ruby-keyword kw">return</span>
+147:     <span class="ruby-keyword kw">end</span>    
+148:     <span class="ruby-ivar">@issue</span>.<span class="ruby-identifier">status</span> = <span class="ruby-identifier">default_status</span>
+149:     <span class="ruby-ivar">@allowed_statuses</span> = ([<span class="ruby-identifier">default_status</span>] <span class="ruby-operator">+</span> <span class="ruby-identifier">default_status</span>.<span class="ruby-identifier">find_new_statuses_allowed_to</span>(<span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>.<span class="ruby-identifier">roles_for_project</span>(<span class="ruby-ivar">@project</span>), <span class="ruby-ivar">@issue</span>.<span class="ruby-identifier">tracker</span>)).<span class="ruby-identifier">uniq</span>
+150:     
+151:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">get?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">xhr?</span>
+152:       <span class="ruby-ivar">@issue</span>.<span class="ruby-identifier">start_date</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Date</span>.<span class="ruby-identifier">today</span>
+153:     <span class="ruby-keyword kw">else</span>
+154:       <span class="ruby-identifier">requested_status</span> = <span class="ruby-constant">IssueStatus</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:issue</span>][<span class="ruby-identifier">:status_id</span>])
+155:       <span class="ruby-comment cmt"># Check that the user is allowed to apply the requested status</span>
+156:       <span class="ruby-ivar">@issue</span>.<span class="ruby-identifier">status</span> = (<span class="ruby-ivar">@allowed_statuses</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">requested_status</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">requested_status</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">default_status</span>
+157:       <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@issue</span>.<span class="ruby-identifier">save</span>
+158:         <span class="ruby-identifier">attach_files</span>(<span class="ruby-ivar">@issue</span>, <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:attachments</span>])
+159:         <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-identifier">l</span>(<span class="ruby-identifier">:notice_successful_create</span>)
+160:         <span class="ruby-identifier">call_hook</span>(<span class="ruby-identifier">:controller_issues_new_after_save</span>, { <span class="ruby-identifier">:params</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>, <span class="ruby-identifier">:issue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@issue</span>})
+161:         <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:continue</span>] <span class="ruby-operator">?</span> { <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'new'</span>, <span class="ruby-identifier">:tracker_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@issue</span>.<span class="ruby-identifier">tracker</span> } <span class="ruby-operator">:</span>
+162:                                         { <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'show'</span>, <span class="ruby-identifier">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@issue</span> })
+163:         <span class="ruby-keyword kw">return</span>
+164:       <span class="ruby-keyword kw">end</span>               
+165:     <span class="ruby-keyword kw">end</span> 
+166:     <span class="ruby-ivar">@priorities</span> = <span class="ruby-constant">IssuePriority</span>.<span class="ruby-identifier">all</span>
+167:     <span class="ruby-identifier">render</span> <span class="ruby-identifier">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">request</span>.<span class="ruby-identifier">xhr?</span>
+168:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000242" class="method-detail">
+        <a name="M000242"></a>
+
+        <div class="method-heading">
+          <a href="#M000242" class="method-signature">
+          <span class="method-name">preview</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000242-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000242-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/controllers/issues_controller.rb, line 430</span>
+430:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">preview</span>
+431:     <span class="ruby-ivar">@issue</span> = <span class="ruby-ivar">@project</span>.<span class="ruby-identifier">issues</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>]) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>].<span class="ruby-identifier">blank?</span>
+432:     <span class="ruby-ivar">@attachements</span> = <span class="ruby-ivar">@issue</span>.<span class="ruby-identifier">attachments</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@issue</span>
+433:     <span class="ruby-ivar">@text</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:notes</span>] <span class="ruby-operator">||</span> (<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:issue</span>] <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:issue</span>][<span class="ruby-identifier">:description</span>] <span class="ruby-operator">:</span> <span class="ruby-keyword kw">nil</span>)
+434:     <span class="ruby-identifier">render</span> <span class="ruby-identifier">:partial</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'common/preview'</span>
+435:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000234" class="method-detail">
+        <a name="M000234"></a>
+
+        <div class="method-heading">
+          <a href="#M000234" class="method-signature">
+          <span class="method-name">reply</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000234-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000234-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/controllers/issues_controller.rb, line 216</span>
+216:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reply</span>
+217:     <span class="ruby-identifier">journal</span> = <span class="ruby-constant">Journal</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:journal_id</span>]) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:journal_id</span>]
+218:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">journal</span>
+219:       <span class="ruby-identifier">user</span> = <span class="ruby-identifier">journal</span>.<span class="ruby-identifier">user</span>
+220:       <span class="ruby-identifier">text</span> = <span class="ruby-identifier">journal</span>.<span class="ruby-identifier">notes</span>
+221:     <span class="ruby-keyword kw">else</span>
+222:       <span class="ruby-identifier">user</span> = <span class="ruby-ivar">@issue</span>.<span class="ruby-identifier">author</span>
+223:       <span class="ruby-identifier">text</span> = <span class="ruby-ivar">@issue</span>.<span class="ruby-identifier">description</span>
+224:     <span class="ruby-keyword kw">end</span>
+225:     <span class="ruby-identifier">content</span> = <span class="ruby-node">&quot;#{ll(Setting.default_language, :text_user_wrote, user)}\\n&gt; &quot;</span>
+226:     <span class="ruby-identifier">content</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">text</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">strip</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">%r{&lt;pre&gt;((.|\s)*?)&lt;/pre&gt;}</span><span class="ruby-identifier">m</span>, <span class="ruby-value str">'[...]'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-value str">'&quot;'</span>, <span class="ruby-value str">'\&quot;'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/(\r?\n|\r\n?)/</span>, <span class="ruby-value str">&quot;\\n&gt; &quot;</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;\\n\\n&quot;</span>
+227:     <span class="ruby-identifier">render</span>(<span class="ruby-identifier">:update</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">page</span><span class="ruby-operator">|</span>
+228:       <span class="ruby-identifier">page</span>.<span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;$('notes').value = \&quot;#{content}\&quot;;&quot;</span>
+229:       <span class="ruby-identifier">page</span>.<span class="ruby-identifier">show</span> <span class="ruby-value str">'update'</span>
+230:       <span class="ruby-identifier">page</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;Form.Element.focus('notes');&quot;</span>
+231:       <span class="ruby-identifier">page</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;Element.scrollTo('update');&quot;</span>
+232:       <span class="ruby-identifier">page</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;$('notes').scrollTop = $('notes').scrollHeight - $('notes').clientHeight;&quot;</span>
+233:     }
+234:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000231" class="method-detail">
+        <a name="M000231"></a>
+
+        <div class="method-heading">
+          <a href="#M000231" class="method-signature">
+          <span class="method-name">show</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000231-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000231-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/controllers/issues_controller.rb, line 108</span>
+108:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show</span>
+109:     <span class="ruby-ivar">@journals</span> = <span class="ruby-ivar">@issue</span>.<span class="ruby-identifier">journals</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">:all</span>, <span class="ruby-identifier">:include</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-identifier">:user</span>, <span class="ruby-identifier">:details</span>], <span class="ruby-identifier">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{Journal.table_name}.created_on ASC&quot;</span>)
+110:     <span class="ruby-ivar">@journals</span>.<span class="ruby-identifier">each_with_index</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">j</span>,<span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">j</span>.<span class="ruby-identifier">indice</span> = <span class="ruby-identifier">i</span><span class="ruby-operator">+</span><span class="ruby-value">1</span>}
+111:     <span class="ruby-ivar">@journals</span>.<span class="ruby-identifier">reverse!</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>.<span class="ruby-identifier">wants_comments_in_reverse_order?</span>
+112:     <span class="ruby-ivar">@changesets</span> = <span class="ruby-ivar">@issue</span>.<span class="ruby-identifier">changesets</span>
+113:     <span class="ruby-ivar">@changesets</span>.<span class="ruby-identifier">reverse!</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>.<span class="ruby-identifier">wants_comments_in_reverse_order?</span>
+114:     <span class="ruby-ivar">@allowed_statuses</span> = <span class="ruby-ivar">@issue</span>.<span class="ruby-identifier">new_statuses_allowed_to</span>(<span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>)
+115:     <span class="ruby-ivar">@edit_allowed</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>.<span class="ruby-identifier">allowed_to?</span>(<span class="ruby-identifier">:edit_issues</span>, <span class="ruby-ivar">@project</span>)
+116:     <span class="ruby-ivar">@priorities</span> = <span class="ruby-constant">IssuePriority</span>.<span class="ruby-identifier">all</span>
+117:     <span class="ruby-ivar">@time_entry</span> = <span class="ruby-constant">TimeEntry</span>.<span class="ruby-identifier">new</span>
+118:     <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+119:       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">:template</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'issues/show.rhtml'</span> }
+120:       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">atom</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'changes'</span>, <span class="ruby-identifier">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>, <span class="ruby-identifier">:content_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'application/atom+xml'</span> }
+121:       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">pdf</span>  { <span class="ruby-identifier">send_data</span>(<span class="ruby-identifier">issue_to_pdf</span>(<span class="ruby-ivar">@issue</span>), <span class="ruby-identifier">:type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'application/pdf'</span>, <span class="ruby-identifier">:filename</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{@project.identifier}-#{@issue.id}.pdf&quot;</span>) }
+122:     <span class="ruby-keyword kw">end</span>
+123:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000241" class="method-detail">
+        <a name="M000241"></a>
+
+        <div class="method-heading">
+          <a href="#M000241" class="method-signature">
+          <span class="method-name">update_form</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000241-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000241-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/controllers/issues_controller.rb, line 425</span>
+425:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_form</span>
+426:     <span class="ruby-ivar">@issue</span> = <span class="ruby-constant">Issue</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:issue</span>])
+427:     <span class="ruby-identifier">render</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:new</span>, <span class="ruby-identifier">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>
+428:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

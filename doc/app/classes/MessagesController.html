@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: MessagesController</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">MessagesController</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/app/controllers/messages_controller_rb.html">
+                app/controllers/messages_controller.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="ApplicationController.html">
+                ApplicationController
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+redMine - project management software Copyright (C) 2006-2007 Jean-Philippe
+Lang
+</p>
+<p>
+This program is free software; you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the Free
+Software Foundation; either version 2 of the License, or (at your option)
+any later version.
+</p>
+<p>
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+more details.
+</p>
+<p>
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc., 51
+Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000187">destroy</a>&nbsp;&nbsp;
+      <a href="#M000186">edit</a>&nbsp;&nbsp;
+      <a href="#M000184">new</a>&nbsp;&nbsp;
+      <a href="#M000189">preview</a>&nbsp;&nbsp;
+      <a href="#M000188">quote</a>&nbsp;&nbsp;
+      <a href="#M000185">reply</a>&nbsp;&nbsp;
+      <a href="#M000183">show</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name"><a href="AttachmentsHelper.html">AttachmentsHelper</a></span>
+      </div>
+    </div>
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000187" class="method-detail">
+        <a name="M000187"></a>
+
+        <div class="method-heading">
+          <a href="#M000187" class="method-signature">
+          <span class="method-name">destroy</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Delete a messages
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000187-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000187-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/controllers/messages_controller.rb, line 84</span>
+84:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">destroy</span>
+85:     <span class="ruby-identifier">render_403</span> <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">destroyable_by?</span>(<span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>)
+86:     <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">destroy</span>
+87:     <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">parent</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-value">?
+88: </span>      { <span class="ruby-identifier">:controller</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'boards'</span>, <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'show'</span>, <span class="ruby-identifier">:project_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@project</span>, <span class="ruby-identifier">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@board</span> } <span class="ruby-operator">:</span>
+89:       { <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'show'</span>, <span class="ruby-identifier">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">parent</span> }
+90:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000186" class="method-detail">
+        <a name="M000186"></a>
+
+        <div class="method-heading">
+          <a href="#M000186" class="method-signature">
+          <span class="method-name">edit</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Edit a message
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000186-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000186-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/controllers/messages_controller.rb, line 69</span>
+69:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">edit</span>
+70:     <span class="ruby-identifier">render_403</span> <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">editable_by?</span>(<span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>)
+71:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:message</span>]
+72:       <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">locked</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:message</span>][<span class="ruby-value str">'locked'</span>]
+73:       <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">sticky</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:message</span>][<span class="ruby-value str">'sticky'</span>]
+74:     <span class="ruby-keyword kw">end</span>
+75:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">post?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:message</span>])
+76:       <span class="ruby-identifier">attach_files</span>(<span class="ruby-ivar">@message</span>, <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:attachments</span>])
+77:       <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-identifier">l</span>(<span class="ruby-identifier">:notice_successful_update</span>)
+78:       <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">reload</span>
+79:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'show'</span>, <span class="ruby-identifier">:board_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">board</span>, <span class="ruby-identifier">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">root</span>
+80:     <span class="ruby-keyword kw">end</span>
+81:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000184" class="method-detail">
+        <a name="M000184"></a>
+
+        <div class="method-heading">
+          <a href="#M000184" class="method-signature">
+          <span class="method-name">new</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create a <a href="MessagesController.html#M000184">new</a> topic
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000184-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000184-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/controllers/messages_controller.rb, line 40</span>
+40:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">new</span>
+41:     <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:message</span>])
+42:     <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">author</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>
+43:     <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">board</span> = <span class="ruby-ivar">@board</span>
+44:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:message</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>.<span class="ruby-identifier">allowed_to?</span>(<span class="ruby-identifier">:edit_messages</span>, <span class="ruby-ivar">@project</span>)
+45:       <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">locked</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:message</span>][<span class="ruby-value str">'locked'</span>]
+46:       <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">sticky</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:message</span>][<span class="ruby-value str">'sticky'</span>]
+47:     <span class="ruby-keyword kw">end</span>
+48:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">post?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">save</span>
+49:       <span class="ruby-identifier">call_hook</span>(<span class="ruby-identifier">:controller_messages_new_after_save</span>, { <span class="ruby-identifier">:params</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>, <span class="ruby-identifier">:message</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@message</span>})
+50:       <span class="ruby-identifier">attach_files</span>(<span class="ruby-ivar">@message</span>, <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:attachments</span>])
+51:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'show'</span>, <span class="ruby-identifier">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@message</span>
+52:     <span class="ruby-keyword kw">end</span>
+53:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000189" class="method-detail">
+        <a name="M000189"></a>
+
+        <div class="method-heading">
+          <a href="#M000189" class="method-signature">
+          <span class="method-name">preview</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000189-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000189-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/controllers/messages_controller.rb, line 106</span>
+106:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">preview</span>
+107:     <span class="ruby-identifier">message</span> = <span class="ruby-ivar">@board</span>.<span class="ruby-identifier">messages</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>])
+108:     <span class="ruby-ivar">@attachements</span> = <span class="ruby-identifier">message</span>.<span class="ruby-identifier">attachments</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">message</span>
+109:     <span class="ruby-ivar">@text</span> = (<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:message</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:reply</span>])[<span class="ruby-identifier">:content</span>]
+110:     <span class="ruby-identifier">render</span> <span class="ruby-identifier">:partial</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'common/preview'</span>
+111:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000188" class="method-detail">
+        <a name="M000188"></a>
+
+        <div class="method-heading">
+          <a href="#M000188" class="method-signature">
+          <span class="method-name">quote</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000188-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000188-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/controllers/messages_controller.rb, line 92</span>
+ 92:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">quote</span>
+ 93:     <span class="ruby-identifier">user</span> = <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">author</span>
+ 94:     <span class="ruby-identifier">text</span> = <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">content</span>
+ 95:     <span class="ruby-identifier">content</span> = <span class="ruby-node">&quot;#{ll(Setting.default_language, :text_user_wrote, user)}\\n&gt; &quot;</span>
+ 96:     <span class="ruby-identifier">content</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">text</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">strip</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">%r{&lt;pre&gt;((.|\s)*?)&lt;/pre&gt;}</span><span class="ruby-identifier">m</span>, <span class="ruby-value str">'[...]'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-value str">'&quot;'</span>, <span class="ruby-value str">'\&quot;'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/(\r?\n|\r\n?)/</span>, <span class="ruby-value str">&quot;\\n&gt; &quot;</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;\\n\\n&quot;</span>
+ 97:     <span class="ruby-identifier">render</span>(<span class="ruby-identifier">:update</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">page</span><span class="ruby-operator">|</span>
+ 98:       <span class="ruby-identifier">page</span>.<span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;$('message_content').value = \&quot;#{content}\&quot;;&quot;</span>
+ 99:       <span class="ruby-identifier">page</span>.<span class="ruby-identifier">show</span> <span class="ruby-value str">'reply'</span>
+100:       <span class="ruby-identifier">page</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;Form.Element.focus('message_content');&quot;</span>
+101:       <span class="ruby-identifier">page</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;Element.scrollTo('reply');&quot;</span>
+102:       <span class="ruby-identifier">page</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;$('message_content').scrollTop = $('message_content').scrollHeight - $('message_content').clientHeight;&quot;</span>
+103:     }
+104:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000185" class="method-detail">
+        <a name="M000185"></a>
+
+        <div class="method-heading">
+          <a href="#M000185" class="method-signature">
+          <span class="method-name">reply</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Reply to a topic
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000185-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000185-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/controllers/messages_controller.rb, line 56</span>
+56:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reply</span>
+57:     <span class="ruby-ivar">@reply</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:reply</span>])
+58:     <span class="ruby-ivar">@reply</span>.<span class="ruby-identifier">author</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>
+59:     <span class="ruby-ivar">@reply</span>.<span class="ruby-identifier">board</span> = <span class="ruby-ivar">@board</span>
+60:     <span class="ruby-ivar">@topic</span>.<span class="ruby-identifier">children</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@reply</span>
+61:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@reply</span>.<span class="ruby-identifier">new_record?</span>
+62:       <span class="ruby-identifier">call_hook</span>(<span class="ruby-identifier">:controller_messages_reply_after_save</span>, { <span class="ruby-identifier">:params</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>, <span class="ruby-identifier">:message</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@reply</span>})
+63:       <span class="ruby-identifier">attach_files</span>(<span class="ruby-ivar">@reply</span>, <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:attachments</span>])
+64:     <span class="ruby-keyword kw">end</span>
+65:     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'show'</span>, <span class="ruby-identifier">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@topic</span>
+66:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000183" class="method-detail">
+        <a name="M000183"></a>
+
+        <div class="method-heading">
+          <a href="#M000183" class="method-signature">
+          <span class="method-name">show</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Show a topic and its replies
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000183-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000183-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/controllers/messages_controller.rb, line 32</span>
+32:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show</span>
+33:     <span class="ruby-ivar">@replies</span> = <span class="ruby-ivar">@topic</span>.<span class="ruby-identifier">children</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">:all</span>, <span class="ruby-identifier">:include</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-identifier">:author</span>, <span class="ruby-identifier">:attachments</span>, {<span class="ruby-identifier">:board</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:project</span>}])
+34:     <span class="ruby-ivar">@replies</span>.<span class="ruby-identifier">reverse!</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>.<span class="ruby-identifier">wants_comments_in_reverse_order?</span>
+35:     <span class="ruby-ivar">@reply</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:subject</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;RE: #{@message.subject}&quot;</span>)
+36:     <span class="ruby-identifier">render</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;show&quot;</span>, <span class="ruby-identifier">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">xhr?</span>
+37:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

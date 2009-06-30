@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Role</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Role</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/app/models/role_rb.html">
+                app/models/role.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                ActiveRecord::Base
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+redMine - project management software Copyright (C) 2006 Jean-Philippe Lang
+</p>
+<p>
+This program is free software; you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the Free
+Software Foundation; either version 2 of the License, or (at your option)
+any later version.
+</p>
+<p>
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+more details.
+</p>
+<p>
+You should have received a <a href="Role.html#M000244">copy</a> of the GNU
+General Public License along with this program; if not, write to the Free
+Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+02110-1301, USA.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000250">&lt;=&gt;</a>&nbsp;&nbsp;
+      <a href="#M000247">add_permission!</a>&nbsp;&nbsp;
+      <a href="#M000254">allowed_to?</a>&nbsp;&nbsp;
+      <a href="#M000258">anonymous</a>&nbsp;&nbsp;
+      <a href="#M000252">builtin?</a>&nbsp;&nbsp;
+      <a href="#M000244">copy</a>&nbsp;&nbsp;
+      <a href="#M000256">find_all_givable</a>&nbsp;&nbsp;
+      <a href="#M000249">has_permission?</a>&nbsp;&nbsp;
+      <a href="#M000253">member?</a>&nbsp;&nbsp;
+      <a href="#M000257">non_member</a>&nbsp;&nbsp;
+      <a href="#M000245">permissions</a>&nbsp;&nbsp;
+      <a href="#M000246">permissions=</a>&nbsp;&nbsp;
+      <a href="#M000248">remove_permission!</a>&nbsp;&nbsp;
+      <a href="#M000255">setable_permissions</a>&nbsp;&nbsp;
+      <a href="#M000251">to_s</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BUILTIN_NON_MEMBER</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Built-in roles
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BUILTIN_ANONYMOUS</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000258" class="method-detail">
+        <a name="M000258"></a>
+
+        <div class="method-heading">
+          <a href="#M000258" class="method-signature">
+          <span class="method-name">anonymous</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return the builtin &#8216;<a href="Role.html#M000258">anonymous</a>&#8217;
+role
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000258-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000258-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/role.rb, line 135</span>
+135:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">anonymous</span>
+136:     <span class="ruby-identifier">find</span>(<span class="ruby-identifier">:first</span>, <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-identifier">:builtin</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">BUILTIN_ANONYMOUS</span>}) <span class="ruby-operator">||</span> <span class="ruby-identifier">raise</span>(<span class="ruby-value str">'Missing anonymous builtin role.'</span>)
+137:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000256" class="method-detail">
+        <a name="M000256"></a>
+
+        <div class="method-heading">
+          <a href="#M000256" class="method-signature">
+          <span class="method-name">find_all_givable</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Find all the roles that can be given to a project member
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000256-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000256-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/role.rb, line 125</span>
+125:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">find_all_givable</span>
+126:     <span class="ruby-identifier">find</span>(<span class="ruby-identifier">:all</span>, <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-identifier">:builtin</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>}, <span class="ruby-identifier">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'position'</span>)
+127:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000257" class="method-detail">
+        <a name="M000257"></a>
+
+        <div class="method-heading">
+          <a href="#M000257" class="method-signature">
+          <span class="method-name">non_member</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return the builtin &#8216;non member&#8217; role
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000257-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000257-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/role.rb, line 130</span>
+130:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">non_member</span>
+131:     <span class="ruby-identifier">find</span>(<span class="ruby-identifier">:first</span>, <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-identifier">:builtin</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">BUILTIN_NON_MEMBER</span>}) <span class="ruby-operator">||</span> <span class="ruby-identifier">raise</span>(<span class="ruby-value str">'Missing non-member builtin role.'</span>)
+132:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000250" class="method-detail">
+        <a name="M000250"></a>
+
+        <div class="method-heading">
+          <a href="#M000250" class="method-signature">
+          <span class="method-name">&lt;=&gt;</span><span class="method-args">(role)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000250-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000250-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/role.rb, line 86</span>
+86:   <span class="ruby-keyword kw">def</span> <span class="ruby-operator">&lt;=&gt;</span>(<span class="ruby-identifier">role</span>)
+87:     <span class="ruby-identifier">role</span> <span class="ruby-value">? </span><span class="ruby-identifier">position</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">role</span>.<span class="ruby-identifier">position</span> <span class="ruby-operator">:</span> <span class="ruby-value">-1</span>
+88:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000247" class="method-detail">
+        <a name="M000247"></a>
+
+        <div class="method-heading">
+          <a href="#M000247" class="method-signature">
+          <span class="method-name">add_permission!</span><span class="method-args">(*perms)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000247-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000247-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/role.rb, line 63</span>
+63:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_permission!</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">perms</span>)
+64:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">permissions</span> = [] <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">permissions</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Array</span>)
+65: 
+66:     <span class="ruby-identifier">permissions_will_change!</span>
+67:     <span class="ruby-identifier">perms</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span>
+68:       <span class="ruby-identifier">p</span> = <span class="ruby-identifier">p</span>.<span class="ruby-identifier">to_sym</span>
+69:       <span class="ruby-identifier">permissions</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">p</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">permissions</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">p</span>)
+70:     <span class="ruby-keyword kw">end</span>
+71:     <span class="ruby-identifier">save!</span>
+72:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000254" class="method-detail">
+        <a name="M000254"></a>
+
+        <div class="method-heading">
+          <a href="#M000254" class="method-signature">
+          <span class="method-name">allowed_to?</span><span class="method-args">(action)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return true if role is allowed to do the specified action action can be:
+</p>
+<ul>
+<li>a parameter-like Hash (eg. :controller =&gt; &#8216;projects&#8217;,
+:action =&gt; &#8216;edit&#8217;)
+
+</li>
+<li>a permission Symbol (eg. :edit_project)
+
+</li>
+</ul>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000254-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000254-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/role.rb, line 108</span>
+108:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">allowed_to?</span>(<span class="ruby-identifier">action</span>)
+109:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">action</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Hash</span>
+110:       <span class="ruby-identifier">allowed_actions</span>.<span class="ruby-identifier">include?</span> <span class="ruby-node">&quot;#{action[:controller]}/#{action[:action]}&quot;</span>
+111:     <span class="ruby-keyword kw">else</span>
+112:       <span class="ruby-identifier">allowed_permissions</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">action</span>
+113:     <span class="ruby-keyword kw">end</span>
+114:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000252" class="method-detail">
+        <a name="M000252"></a>
+
+        <div class="method-heading">
+          <a href="#M000252" class="method-signature">
+          <span class="method-name">builtin?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return true if the role is a builtin role
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000252-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000252-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/role.rb, line 95</span>
+95:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">builtin?</span>
+96:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">builtin</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+97:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000244" class="method-detail">
+        <a name="M000244"></a>
+
+        <div class="method-heading">
+          <a href="#M000244" class="method-signature">
+          <span class="method-name">copy</span><span class="method-args">(role)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000244-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000244-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/role.rb, line 31</span>
+31:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">copy</span>(<span class="ruby-identifier">role</span>)
+32:       <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Can not copy workflow from a #{role.class}&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">role</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Role</span>)
+33:       <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Can not copy workflow from/to an unsaved role&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">proxy_owner</span>.<span class="ruby-identifier">new_record?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">role</span>.<span class="ruby-identifier">new_record?</span>
+34:       <span class="ruby-identifier">clear</span>
+35:       <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">insert</span> <span class="ruby-node">&quot;INSERT INTO #{Workflow.table_name} (tracker_id, old_status_id, new_status_id, role_id)&quot;</span> <span class="ruby-operator">+</span>
+36:                         <span class="ruby-node">&quot; SELECT tracker_id, old_status_id, new_status_id, #{proxy_owner.id}&quot;</span> <span class="ruby-operator">+</span>
+37:                         <span class="ruby-node">&quot; FROM #{Workflow.table_name}&quot;</span> <span class="ruby-operator">+</span>
+38:                         <span class="ruby-node">&quot; WHERE role_id = #{role.id}&quot;</span>
+39:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000249" class="method-detail">
+        <a name="M000249"></a>
+
+        <div class="method-heading">
+          <a href="#M000249" class="method-signature">
+          <span class="method-name">has_permission?</span><span class="method-args">(perm)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns true if the role has the given permission
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000249-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000249-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/role.rb, line 82</span>
+82:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">has_permission?</span>(<span class="ruby-identifier">perm</span>)
+83:     <span class="ruby-operator">!</span><span class="ruby-identifier">permissions</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">permissions</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">perm</span>.<span class="ruby-identifier">to_sym</span>)
+84:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000253" class="method-detail">
+        <a name="M000253"></a>
+
+        <div class="method-heading">
+          <a href="#M000253" class="method-signature">
+          <span class="method-name">member?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return true if the role is a project member role
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000253-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000253-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/role.rb, line 100</span>
+100:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">member?</span>
+101:     <span class="ruby-operator">!</span><span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">builtin?</span>
+102:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000245" class="method-detail">
+        <a name="M000245"></a>
+
+        <div class="method-heading">
+          <a href="#M000245" class="method-signature">
+          <span class="method-name">permissions</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000245-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000245-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/role.rb, line 54</span>
+54:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">permissions</span>
+55:     <span class="ruby-identifier">read_attribute</span>(<span class="ruby-identifier">:permissions</span>) <span class="ruby-operator">||</span> []
+56:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000246" class="method-detail">
+        <a name="M000246"></a>
+
+        <div class="method-heading">
+          <a href="#M000246" class="method-signature">
+          <span class="method-name">permissions=</span><span class="method-args">(perms)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000246-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000246-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/role.rb, line 58</span>
+58:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">permissions=</span>(<span class="ruby-identifier">perms</span>)
+59:     <span class="ruby-identifier">perms</span> = <span class="ruby-identifier">perms</span>.<span class="ruby-identifier">collect</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">p</span>.<span class="ruby-identifier">to_sym</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">p</span>.<span class="ruby-identifier">blank?</span> }.<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">uniq</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">perms</span>
+60:     <span class="ruby-identifier">write_attribute</span>(<span class="ruby-identifier">:permissions</span>, <span class="ruby-identifier">perms</span>)
+61:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000248" class="method-detail">
+        <a name="M000248"></a>
+
+        <div class="method-heading">
+          <a href="#M000248" class="method-signature">
+          <span class="method-name">remove_permission!</span><span class="method-args">(*perms)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000248-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000248-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/role.rb, line 74</span>
+74:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remove_permission!</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">perms</span>)
+75:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">permissions</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Array</span>)
+76:     <span class="ruby-identifier">permissions_will_change!</span>
+77:     <span class="ruby-identifier">perms</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">permissions</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">p</span>.<span class="ruby-identifier">to_sym</span>) }
+78:     <span class="ruby-identifier">save!</span>
+79:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000255" class="method-detail">
+        <a name="M000255"></a>
+
+        <div class="method-heading">
+          <a href="#M000255" class="method-signature">
+          <span class="method-name">setable_permissions</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return all the <a href="Role.html#M000245">permissions</a> that can be
+given to the role
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000255-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000255-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/role.rb, line 117</span>
+117:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setable_permissions</span>
+118:     <span class="ruby-identifier">setable_permissions</span> = <span class="ruby-constant">Redmine</span><span class="ruby-operator">::</span><span class="ruby-constant">AccessControl</span>.<span class="ruby-identifier">permissions</span> <span class="ruby-operator">-</span> <span class="ruby-constant">Redmine</span><span class="ruby-operator">::</span><span class="ruby-constant">AccessControl</span>.<span class="ruby-identifier">public_permissions</span>
+119:     <span class="ruby-identifier">setable_permissions</span> <span class="ruby-operator">-=</span> <span class="ruby-constant">Redmine</span><span class="ruby-operator">::</span><span class="ruby-constant">AccessControl</span>.<span class="ruby-identifier">members_only_permissions</span> <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">builtin</span> <span class="ruby-operator">==</span> <span class="ruby-constant">BUILTIN_NON_MEMBER</span>
+120:     <span class="ruby-identifier">setable_permissions</span> <span class="ruby-operator">-=</span> <span class="ruby-constant">Redmine</span><span class="ruby-operator">::</span><span class="ruby-constant">AccessControl</span>.<span class="ruby-identifier">loggedin_only_permissions</span> <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">builtin</span> <span class="ruby-operator">==</span> <span class="ruby-constant">BUILTIN_ANONYMOUS</span>
+121:     <span class="ruby-identifier">setable_permissions</span>
+122:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000251" class="method-detail">
+        <a name="M000251"></a>
+
+        <div class="method-heading">
+          <a href="#M000251" class="method-signature">
+          <span class="method-name">to_s</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000251-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000251-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/role.rb, line 90</span>
+90:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s</span>
+91:     <span class="ruby-identifier">name</span>
+92:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

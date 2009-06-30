@@ -1,0 +1,10 @@
+log/*.log
+tmp/**/*.log
+.DS\_Store
+.DS_Store
+db/schema.rb
+/log/*.pid
+**/.DS_Store/*
+.DS_Store/*
+/coverage/*.html
+public/system/*

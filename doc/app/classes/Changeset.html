@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Changeset</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Changeset</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/app/models/changeset_rb.html">
+                app/models/changeset.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                ActiveRecord::Base
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000556">after_create</a>&nbsp;&nbsp;
+      <a href="#M000554">author</a>&nbsp;&nbsp;
+      <a href="#M000555">before_create</a>&nbsp;&nbsp;
+      <a href="#M000551">comments=</a>&nbsp;&nbsp;
+      <a href="#M000552">committed_on=</a>&nbsp;&nbsp;
+      <a href="#M000559">long_comments</a>&nbsp;&nbsp;
+      <a href="#M000561">next</a>&nbsp;&nbsp;
+      <a href="#M000562">normalize_comments</a>&nbsp;&nbsp;
+      <a href="#M000560">previous</a>&nbsp;&nbsp;
+      <a href="#M000553">project</a>&nbsp;&nbsp;
+      <a href="#M000550">revision=</a>&nbsp;&nbsp;
+      <a href="#M000557">scan_comment_for_issue_ids</a>&nbsp;&nbsp;
+      <a href="#M000558">short_comments</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000562" class="method-detail">
+        <a name="M000562"></a>
+
+        <div class="method-heading">
+          <a href="#M000562" class="method-signature">
+          <span class="method-name">normalize_comments</span><span class="method-args">(str)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Strips and reencodes a commit log before insertion into the database
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000562-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000562-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/changeset.rb, line 145</span>
+145:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">normalize_comments</span>(<span class="ruby-identifier">str</span>)
+146:     <span class="ruby-identifier">to_utf8</span>(<span class="ruby-identifier">str</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">strip</span>)
+147:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000556" class="method-detail">
+        <a name="M000556"></a>
+
+        <div class="method-heading">
+          <a href="#M000556" class="method-signature">
+          <span class="method-name">after_create</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000556-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000556-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/changeset.rb, line 69</span>
+69:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">after_create</span>
+70:     <span class="ruby-identifier">scan_comment_for_issue_ids</span>
+71:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000554" class="method-detail">
+        <a name="M000554"></a>
+
+        <div class="method-heading">
+          <a href="#M000554" class="method-signature">
+          <span class="method-name">author</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000554-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000554-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/changeset.rb, line 61</span>
+61:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">author</span>
+62:     <span class="ruby-identifier">user</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">committer</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">'&lt;'</span>).<span class="ruby-identifier">first</span>
+63:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000555" class="method-detail">
+        <a name="M000555"></a>
+
+        <div class="method-heading">
+          <a href="#M000555" class="method-signature">
+          <span class="method-name">before_create</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000555-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000555-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/changeset.rb, line 65</span>
+65:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">before_create</span>
+66:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">user</span> = <span class="ruby-identifier">repository</span>.<span class="ruby-identifier">find_committer_user</span>(<span class="ruby-identifier">committer</span>)
+67:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000551" class="method-detail">
+        <a name="M000551"></a>
+
+        <div class="method-heading">
+          <a href="#M000551" class="method-signature">
+          <span class="method-name">comments=</span><span class="method-args">(comment)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000551-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000551-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/changeset.rb, line 48</span>
+48:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">comments=</span>(<span class="ruby-identifier">comment</span>)
+49:     <span class="ruby-identifier">write_attribute</span>(<span class="ruby-identifier">:comments</span>, <span class="ruby-constant">Changeset</span>.<span class="ruby-identifier">normalize_comments</span>(<span class="ruby-identifier">comment</span>))
+50:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000552" class="method-detail">
+        <a name="M000552"></a>
+
+        <div class="method-heading">
+          <a href="#M000552" class="method-signature">
+          <span class="method-name">committed_on=</span><span class="method-args">(date)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000552-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000552-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/changeset.rb, line 52</span>
+52:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">committed_on=</span>(<span class="ruby-identifier">date</span>)
+53:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">commit_date</span> = <span class="ruby-identifier">date</span>
+54:     <span class="ruby-keyword kw">super</span>
+55:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000559" class="method-detail">
+        <a name="M000559"></a>
+
+        <div class="method-heading">
+          <a href="#M000559" class="method-signature">
+          <span class="method-name">long_comments</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000559-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000559-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/changeset.rb, line 130</span>
+130:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">long_comments</span>
+131:     <span class="ruby-ivar">@long_comments</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">split_comments</span>.<span class="ruby-identifier">last</span>
+132:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000561" class="method-detail">
+        <a name="M000561"></a>
+
+        <div class="method-heading">
+          <a href="#M000561" class="method-signature">
+          <span class="method-name">next</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the <a href="Changeset.html#M000561">next</a> changeset
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000561-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000561-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/changeset.rb, line 140</span>
+140:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">next</span>
+141:     <span class="ruby-ivar">@next</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Changeset</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">:first</span>, <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-value str">'id &gt; ? AND repository_id = ?'</span>, <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">repository_id</span>], <span class="ruby-identifier">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'id ASC'</span>)
+142:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000560" class="method-detail">
+        <a name="M000560"></a>
+
+        <div class="method-heading">
+          <a href="#M000560" class="method-signature">
+          <span class="method-name">previous</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the <a href="Changeset.html#M000560">previous</a> changeset
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000560-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000560-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/changeset.rb, line 135</span>
+135:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">previous</span>
+136:     <span class="ruby-ivar">@previous</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Changeset</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">:first</span>, <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-value str">'id &lt; ? AND repository_id = ?'</span>, <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">repository_id</span>], <span class="ruby-identifier">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'id DESC'</span>)
+137:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000553" class="method-detail">
+        <a name="M000553"></a>
+
+        <div class="method-heading">
+          <a href="#M000553" class="method-signature">
+          <span class="method-name">project</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000553-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000553-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/changeset.rb, line 57</span>
+57:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">project</span>
+58:     <span class="ruby-identifier">repository</span>.<span class="ruby-identifier">project</span>
+59:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000550" class="method-detail">
+        <a name="M000550"></a>
+
+        <div class="method-heading">
+          <a href="#M000550" class="method-signature">
+          <span class="method-name">revision=</span><span class="method-args">(r)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000550-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000550-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/changeset.rb, line 44</span>
+44:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">revision=</span>(<span class="ruby-identifier">r</span>)
+45:     <span class="ruby-identifier">write_attribute</span> <span class="ruby-identifier">:revision</span>, (<span class="ruby-identifier">r</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-value">? </span><span class="ruby-keyword kw">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">to_s</span>)
+46:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000557" class="method-detail">
+        <a name="M000557"></a>
+
+        <div class="method-heading">
+          <a href="#M000557" class="method-signature">
+          <span class="method-name">scan_comment_for_issue_ids</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000557-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000557-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/changeset.rb, line 74</span>
+ 74:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">scan_comment_for_issue_ids</span>
+ 75:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">comments</span>.<span class="ruby-identifier">blank?</span>
+ 76:     <span class="ruby-comment cmt"># keywords used to reference issues</span>
+ 77:     <span class="ruby-identifier">ref_keywords</span> = <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">commit_ref_keywords</span>.<span class="ruby-identifier">downcase</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;,&quot;</span>).<span class="ruby-identifier">collect</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">:strip</span>)
+ 78:     <span class="ruby-comment cmt"># keywords used to fix issues</span>
+ 79:     <span class="ruby-identifier">fix_keywords</span> = <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">commit_fix_keywords</span>.<span class="ruby-identifier">downcase</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;,&quot;</span>).<span class="ruby-identifier">collect</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">:strip</span>)
+ 80:     <span class="ruby-comment cmt"># status and optional done ratio applied</span>
+ 81:     <span class="ruby-identifier">fix_status</span> = <span class="ruby-constant">IssueStatus</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-constant">Setting</span>.<span class="ruby-identifier">commit_fix_status_id</span>)
+ 82:     <span class="ruby-identifier">done_ratio</span> = <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">commit_fix_done_ratio</span>.<span class="ruby-identifier">blank?</span> <span class="ruby-value">? </span><span class="ruby-keyword kw">nil</span> <span class="ruby-operator">:</span> <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">commit_fix_done_ratio</span>.<span class="ruby-identifier">to_i</span>
+ 83:     
+ 84:     <span class="ruby-identifier">kw_regexp</span> = (<span class="ruby-identifier">ref_keywords</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">fix_keywords</span>).<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">kw</span><span class="ruby-operator">|</span> <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-identifier">kw</span>)}.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;|&quot;</span>)
+ 85:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">kw_regexp</span>.<span class="ruby-identifier">blank?</span>
+ 86:     
+ 87:     <span class="ruby-identifier">referenced_issues</span> = []
+ 88:     
+ 89:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">ref_keywords</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value str">'*'</span>)
+ 90:       <span class="ruby-comment cmt"># find any issue ID in the comments</span>
+ 91:       <span class="ruby-identifier">target_issue_ids</span> = []
+ 92:       <span class="ruby-identifier">comments</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp re">%r{([\s\(,-]|^)#(\d+)(?=[[:punct:]]|\s|&lt;|$)}</span>).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span> <span class="ruby-identifier">target_issue_ids</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">m</span>[<span class="ruby-value">1</span>] }
+ 93:       <span class="ruby-identifier">referenced_issues</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">repository</span>.<span class="ruby-identifier">project</span>.<span class="ruby-identifier">issues</span>.<span class="ruby-identifier">find_all_by_id</span>(<span class="ruby-identifier">target_issue_ids</span>)
+ 94:     <span class="ruby-keyword kw">end</span>
+ 95:     
+ 96:     <span class="ruby-identifier">comments</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;(#{kw_regexp})[\s:]+(([\s,;&amp;]*#?\\d+)+)&quot;</span>, <span class="ruby-constant">Regexp</span><span class="ruby-operator">::</span><span class="ruby-constant">IGNORECASE</span>)).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">match</span><span class="ruby-operator">|</span>
+ 97:       <span class="ruby-identifier">action</span> = <span class="ruby-identifier">match</span>[<span class="ruby-value">0</span>]
+ 98:       <span class="ruby-identifier">target_issue_ids</span> = <span class="ruby-identifier">match</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">scan</span>(<span class="ruby-regexp re">/\d+/</span>)
+ 99:       <span class="ruby-identifier">target_issues</span> = <span class="ruby-identifier">repository</span>.<span class="ruby-identifier">project</span>.<span class="ruby-identifier">issues</span>.<span class="ruby-identifier">find_all_by_id</span>(<span class="ruby-identifier">target_issue_ids</span>)
+100:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">fix_status</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">fix_keywords</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">action</span>.<span class="ruby-identifier">downcase</span>)
+101:         <span class="ruby-comment cmt"># update status of issues</span>
+102:         <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;Issues fixed by changeset #{self.revision}: #{issue_ids.join(', ')}.&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">logger</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug?</span>
+103:         <span class="ruby-identifier">target_issues</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">issue</span><span class="ruby-operator">|</span>
+104:           <span class="ruby-comment cmt"># the issue may have been updated by the closure of another one (eg. duplicate)</span>
+105:           <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">reload</span>
+106:           <span class="ruby-comment cmt"># don't change the status is the issue is closed</span>
+107:           <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">status</span>.<span class="ruby-identifier">is_closed?</span>
+108:           <span class="ruby-identifier">csettext</span> = <span class="ruby-node">&quot;r#{self.revision}&quot;</span>
+109:           <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">scmid</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-operator">!</span> (<span class="ruby-identifier">csettext</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^r[0-9]+$/</span>))
+110:             <span class="ruby-identifier">csettext</span> = <span class="ruby-node">&quot;commit:\&quot;#{self.scmid}\&quot;&quot;</span>
+111:           <span class="ruby-keyword kw">end</span>
+112:           <span class="ruby-identifier">journal</span> = <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">init_journal</span>(<span class="ruby-identifier">user</span> <span class="ruby-operator">||</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">anonymous</span>, <span class="ruby-identifier">ll</span>(<span class="ruby-constant">Setting</span>.<span class="ruby-identifier">default_language</span>, <span class="ruby-identifier">:text_status_changed_by_changeset</span>, <span class="ruby-identifier">csettext</span>))
+113:           <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">status</span> = <span class="ruby-identifier">fix_status</span>
+114:           <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">done_ratio</span> = <span class="ruby-identifier">done_ratio</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">done_ratio</span>
+115:           <span class="ruby-constant">Redmine</span><span class="ruby-operator">::</span><span class="ruby-constant">Hook</span>.<span class="ruby-identifier">call_hook</span>(<span class="ruby-identifier">:model_changeset_scan_commit_for_issue_ids_pre_issue_update</span>,
+116:                                   { <span class="ruby-identifier">:changeset</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">:issue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">issue</span> })
+117:           <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">save</span>
+118:         <span class="ruby-keyword kw">end</span>
+119:       <span class="ruby-keyword kw">end</span>
+120:       <span class="ruby-identifier">referenced_issues</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">target_issues</span>
+121:     <span class="ruby-keyword kw">end</span>
+122:     
+123:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">issues</span> = <span class="ruby-identifier">referenced_issues</span>.<span class="ruby-identifier">uniq</span>
+124:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000558" class="method-detail">
+        <a name="M000558"></a>
+
+        <div class="method-heading">
+          <a href="#M000558" class="method-signature">
+          <span class="method-name">short_comments</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000558-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000558-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/changeset.rb, line 126</span>
+126:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">short_comments</span>
+127:     <span class="ruby-ivar">@short_comments</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">split_comments</span>.<span class="ruby-identifier">first</span>
+128:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

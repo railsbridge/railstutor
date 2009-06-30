@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: WikiController</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">WikiController</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/app/controllers/wiki_controller_rb.html">
+                app/controllers/wiki_controller.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="ApplicationController.html">
+                ApplicationController
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000341">add_attachment</a>&nbsp;&nbsp;
+      <a href="#M000337">annotate</a>&nbsp;&nbsp;
+      <a href="#M000338">destroy</a>&nbsp;&nbsp;
+      <a href="#M000336">diff</a>&nbsp;&nbsp;
+      <a href="#M000332">edit</a>&nbsp;&nbsp;
+      <a href="#M000335">history</a>&nbsp;&nbsp;
+      <a href="#M000331">index</a>&nbsp;&nbsp;
+      <a href="#M000340">preview</a>&nbsp;&nbsp;
+      <a href="#M000334">protect</a>&nbsp;&nbsp;
+      <a href="#M000333">rename</a>&nbsp;&nbsp;
+      <a href="#M000339">special</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name"><a href="AttachmentsHelper.html">AttachmentsHelper</a></span>
+      </div>
+    </div>
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000341" class="method-detail">
+        <a name="M000341"></a>
+
+        <div class="method-heading">
+          <a href="#M000341" class="method-signature">
+          <span class="method-name">add_attachment</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000341-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000341-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/controllers/wiki_controller.rb, line 202</span>
+202:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_attachment</span>
+203:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">render_403</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">editable?</span>
+204:     <span class="ruby-identifier">attach_files</span>(<span class="ruby-ivar">@page</span>, <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:attachments</span>])
+205:     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'index'</span>, <span class="ruby-identifier">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@page</span>.<span class="ruby-identifier">title</span>
+206:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000337" class="method-detail">
+        <a name="M000337"></a>
+
+        <div class="method-heading">
+          <a href="#M000337" class="method-signature">
+          <span class="method-name">annotate</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000337-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000337-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/controllers/wiki_controller.rb, line 131</span>
+131:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">annotate</span>
+132:     <span class="ruby-ivar">@annotate</span> = <span class="ruby-ivar">@page</span>.<span class="ruby-identifier">annotate</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:version</span>])
+133:     <span class="ruby-identifier">render_404</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@annotate</span>
+134:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000338" class="method-detail">
+        <a name="M000338"></a>
+
+        <div class="method-heading">
+          <a href="#M000338" class="method-signature">
+          <span class="method-name">destroy</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Removes a wiki page and its <a
+href="WikiController.html#M000335">history</a> Children can be either set
+as root pages, removed or reassigned to another parent page
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000338-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000338-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/controllers/wiki_controller.rb, line 138</span>
+138:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">destroy</span>
+139:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">render_403</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">editable?</span>
+140:     
+141:     <span class="ruby-ivar">@descendants_count</span> = <span class="ruby-ivar">@page</span>.<span class="ruby-identifier">descendants</span>.<span class="ruby-identifier">size</span>
+142:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@descendants_count</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+143:       <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:todo</span>]
+144:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'nullify'</span>
+145:         <span class="ruby-comment cmt"># Nothing to do</span>
+146:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'destroy'</span>
+147:         <span class="ruby-comment cmt"># Removes all its descendants</span>
+148:         <span class="ruby-ivar">@page</span>.<span class="ruby-identifier">descendants</span>.<span class="ruby-identifier">each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">:destroy</span>)
+149:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'reassign'</span>
+150:         <span class="ruby-comment cmt"># Reassign children to another parent page</span>
+151:         <span class="ruby-identifier">reassign_to</span> = <span class="ruby-ivar">@wiki</span>.<span class="ruby-identifier">pages</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:reassign_to_id</span>].<span class="ruby-identifier">to_i</span>)
+152:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">reassign_to</span>
+153:         <span class="ruby-ivar">@page</span>.<span class="ruby-identifier">children</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">child</span><span class="ruby-operator">|</span>
+154:           <span class="ruby-identifier">child</span>.<span class="ruby-identifier">update_attribute</span>(<span class="ruby-identifier">:parent</span>, <span class="ruby-identifier">reassign_to</span>)
+155:         <span class="ruby-keyword kw">end</span>
+156:       <span class="ruby-keyword kw">else</span>
+157:         <span class="ruby-ivar">@reassignable_to</span> = <span class="ruby-ivar">@wiki</span>.<span class="ruby-identifier">pages</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@page</span>.<span class="ruby-identifier">self_and_descendants</span>
+158:         <span class="ruby-keyword kw">return</span>
+159:       <span class="ruby-keyword kw">end</span>
+160:     <span class="ruby-keyword kw">end</span>
+161:     <span class="ruby-ivar">@page</span>.<span class="ruby-identifier">destroy</span>
+162:     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'special'</span>, <span class="ruby-identifier">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@project</span>, <span class="ruby-identifier">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'Page_index'</span>
+163:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000336" class="method-detail">
+        <a name="M000336"></a>
+
+        <div class="method-heading">
+          <a href="#M000336" class="method-signature">
+          <span class="method-name">diff</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000336-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000336-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/controllers/wiki_controller.rb, line 126</span>
+126:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">diff</span>
+127:     <span class="ruby-ivar">@diff</span> = <span class="ruby-ivar">@page</span>.<span class="ruby-identifier">diff</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:version</span>], <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:version_from</span>])
+128:     <span class="ruby-identifier">render_404</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@diff</span>
+129:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000332" class="method-detail">
+        <a name="M000332"></a>
+
+        <div class="method-heading">
+          <a href="#M000332" class="method-signature">
+          <span class="method-name">edit</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<a href="WikiController.html#M000332">edit</a> an existing page or a new
+one
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000332-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000332-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/controllers/wiki_controller.rb, line 62</span>
+62:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">edit</span>
+63:     <span class="ruby-ivar">@page</span> = <span class="ruby-ivar">@wiki</span>.<span class="ruby-identifier">find_or_new_page</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:page</span>])    
+64:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">render_403</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">editable?</span>
+65:     <span class="ruby-ivar">@page</span>.<span class="ruby-identifier">content</span> = <span class="ruby-constant">WikiContent</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@page</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@page</span>.<span class="ruby-identifier">new_record?</span>
+66:     
+67:     <span class="ruby-ivar">@content</span> = <span class="ruby-ivar">@page</span>.<span class="ruby-identifier">content_for_version</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:version</span>])
+68:     <span class="ruby-ivar">@content</span>.<span class="ruby-identifier">text</span> = <span class="ruby-identifier">initial_page_content</span>(<span class="ruby-ivar">@page</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@content</span>.<span class="ruby-identifier">text</span>.<span class="ruby-identifier">blank?</span>
+69:     <span class="ruby-comment cmt"># don't keep previous comment</span>
+70:     <span class="ruby-ivar">@content</span>.<span class="ruby-identifier">comments</span> = <span class="ruby-keyword kw">nil</span>
+71:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">get?</span>
+72:       <span class="ruby-comment cmt"># To prevent StaleObjectError exception when reverting to a previous version</span>
+73:       <span class="ruby-ivar">@content</span>.<span class="ruby-identifier">version</span> = <span class="ruby-ivar">@page</span>.<span class="ruby-identifier">content</span>.<span class="ruby-identifier">version</span>
+74:     <span class="ruby-keyword kw">else</span>
+75:       <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@page</span>.<span class="ruby-identifier">new_record?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@content</span>.<span class="ruby-identifier">text</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:content</span>][<span class="ruby-identifier">:text</span>]
+76:         <span class="ruby-comment cmt"># don't save if text wasn't changed</span>
+77:         <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'index'</span>, <span class="ruby-identifier">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@project</span>, <span class="ruby-identifier">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@page</span>.<span class="ruby-identifier">title</span>
+78:         <span class="ruby-keyword kw">return</span>
+79:       <span class="ruby-keyword kw">end</span>
+80:       <span class="ruby-comment cmt">#@content.text = params[:content][:text]</span>
+81:       <span class="ruby-comment cmt">#@content.comments = params[:content][:comments]</span>
+82:       <span class="ruby-ivar">@content</span>.<span class="ruby-identifier">attributes</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:content</span>]
+83:       <span class="ruby-ivar">@content</span>.<span class="ruby-identifier">author</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>
+84:       <span class="ruby-comment cmt"># if page is new @page.save will also save content, but not if page isn't a new record</span>
+85:       <span class="ruby-keyword kw">if</span> (<span class="ruby-ivar">@page</span>.<span class="ruby-identifier">new_record?</span> <span class="ruby-value">? </span><span class="ruby-ivar">@page</span>.<span class="ruby-identifier">save</span> <span class="ruby-operator">:</span> <span class="ruby-ivar">@content</span>.<span class="ruby-identifier">save</span>)
+86:         <span class="ruby-identifier">call_hook</span>(<span class="ruby-identifier">:controller_wiki_edit_after_save</span>, { <span class="ruby-identifier">:params</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>, <span class="ruby-identifier">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@page</span>})
+87:         <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'index'</span>, <span class="ruby-identifier">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@project</span>, <span class="ruby-identifier">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@page</span>.<span class="ruby-identifier">title</span>
+88:       <span class="ruby-keyword kw">end</span>
+89:     <span class="ruby-keyword kw">end</span>
+90:   <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">StaleObjectError</span>
+91:     <span class="ruby-comment cmt"># Optimistic locking exception</span>
+92:     <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:error</span>] = <span class="ruby-identifier">l</span>(<span class="ruby-identifier">:notice_locking_conflict</span>)
+93:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000335" class="method-detail">
+        <a name="M000335"></a>
+
+        <div class="method-heading">
+          <a href="#M000335" class="method-signature">
+          <span class="method-name">history</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+show page <a href="WikiController.html#M000335">history</a>
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000335-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000335-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/controllers/wiki_controller.rb, line 113</span>
+113:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">history</span>
+114:     <span class="ruby-ivar">@version_count</span> = <span class="ruby-ivar">@page</span>.<span class="ruby-identifier">content</span>.<span class="ruby-identifier">versions</span>.<span class="ruby-identifier">count</span>
+115:     <span class="ruby-ivar">@version_pages</span> = <span class="ruby-constant">Paginator</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword kw">self</span>, <span class="ruby-ivar">@version_count</span>, <span class="ruby-identifier">per_page_option</span>, <span class="ruby-identifier">params</span>[<span class="ruby-value str">'p'</span>]
+116:     <span class="ruby-comment cmt"># don't load text    </span>
+117:     <span class="ruby-ivar">@versions</span> = <span class="ruby-ivar">@page</span>.<span class="ruby-identifier">content</span>.<span class="ruby-identifier">versions</span>.<span class="ruby-identifier">find</span> <span class="ruby-identifier">:all</span>, 
+118:                                             <span class="ruby-identifier">:select</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;id, author_id, comments, updated_on, version&quot;</span>,
+119:                                             <span class="ruby-identifier">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'version DESC'</span>,
+120:                                             <span class="ruby-identifier">:limit</span>  =<span class="ruby-operator">&gt;</span>  <span class="ruby-ivar">@version_pages</span>.<span class="ruby-identifier">items_per_page</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>,
+121:                                             <span class="ruby-identifier">:offset</span> =<span class="ruby-operator">&gt;</span>  <span class="ruby-ivar">@version_pages</span>.<span class="ruby-identifier">current</span>.<span class="ruby-identifier">offset</span>
+122: 
+123:     <span class="ruby-identifier">render</span> <span class="ruby-identifier">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">xhr?</span>
+124:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000331" class="method-detail">
+        <a name="M000331"></a>
+
+        <div class="method-heading">
+          <a href="#M000331" class="method-signature">
+          <span class="method-name">index</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+display a page (in editing mode if it doesn&#8216;t exist)
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000331-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000331-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/controllers/wiki_controller.rb, line 31</span>
+31:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">index</span>
+32:     <span class="ruby-identifier">page_title</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:page</span>]
+33:     <span class="ruby-ivar">@page</span> = <span class="ruby-ivar">@wiki</span>.<span class="ruby-identifier">find_or_new_page</span>(<span class="ruby-identifier">page_title</span>)
+34:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@page</span>.<span class="ruby-identifier">new_record?</span>
+35:       <span class="ruby-keyword kw">if</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>.<span class="ruby-identifier">allowed_to?</span>(<span class="ruby-identifier">:edit_wiki_pages</span>, <span class="ruby-ivar">@project</span>)
+36:         <span class="ruby-identifier">edit</span>
+37:         <span class="ruby-identifier">render</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'edit'</span>
+38:       <span class="ruby-keyword kw">else</span>
+39:         <span class="ruby-identifier">render_404</span>
+40:       <span class="ruby-keyword kw">end</span>
+41:       <span class="ruby-keyword kw">return</span>
+42:     <span class="ruby-keyword kw">end</span>
+43:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:version</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>.<span class="ruby-identifier">allowed_to?</span>(<span class="ruby-identifier">:view_wiki_edits</span>, <span class="ruby-ivar">@project</span>)
+44:       <span class="ruby-comment cmt"># Redirects user to the current version if he's not allowed to view previous versions</span>
+45:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">:version</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">nil</span>
+46:       <span class="ruby-keyword kw">return</span>
+47:     <span class="ruby-keyword kw">end</span>
+48:     <span class="ruby-ivar">@content</span> = <span class="ruby-ivar">@page</span>.<span class="ruby-identifier">content_for_version</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:version</span>])
+49:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:format</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'html'</span>
+50:       <span class="ruby-identifier">export</span> = <span class="ruby-identifier">render_to_string</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'export'</span>, <span class="ruby-identifier">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>
+51:       <span class="ruby-identifier">send_data</span>(<span class="ruby-identifier">export</span>, <span class="ruby-identifier">:type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'text/html'</span>, <span class="ruby-identifier">:filename</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{@page.title}.html&quot;</span>)
+52:       <span class="ruby-keyword kw">return</span>
+53:     <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:format</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'txt'</span>
+54:       <span class="ruby-identifier">send_data</span>(<span class="ruby-ivar">@content</span>.<span class="ruby-identifier">text</span>, <span class="ruby-identifier">:type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'text/plain'</span>, <span class="ruby-identifier">:filename</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{@page.title}.txt&quot;</span>)
+55:       <span class="ruby-keyword kw">return</span>
+56:     <span class="ruby-keyword kw">end</span>
+57:         <span class="ruby-ivar">@editable</span> = <span class="ruby-identifier">editable?</span>
+58:     <span class="ruby-identifier">render</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'show'</span>
+59:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000340" class="method-detail">
+        <a name="M000340"></a>
+
+        <div class="method-heading">
+          <a href="#M000340" class="method-signature">
+          <span class="method-name">preview</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000340-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000340-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/controllers/wiki_controller.rb, line 190</span>
+190:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">preview</span>
+191:     <span class="ruby-identifier">page</span> = <span class="ruby-ivar">@wiki</span>.<span class="ruby-identifier">find_page</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:page</span>])
+192:     <span class="ruby-comment cmt"># page is nil when previewing a new page</span>
+193:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">render_403</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">page</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">editable?</span>(<span class="ruby-identifier">page</span>)
+194:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">page</span>
+195:       <span class="ruby-ivar">@attachements</span> = <span class="ruby-identifier">page</span>.<span class="ruby-identifier">attachments</span>
+196:       <span class="ruby-ivar">@previewed</span> = <span class="ruby-identifier">page</span>.<span class="ruby-identifier">content</span>
+197:     <span class="ruby-keyword kw">end</span>
+198:     <span class="ruby-ivar">@text</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:content</span>][<span class="ruby-identifier">:text</span>]
+199:     <span class="ruby-identifier">render</span> <span class="ruby-identifier">:partial</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'common/preview'</span>
+200:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000334" class="method-detail">
+        <a name="M000334"></a>
+
+        <div class="method-heading">
+          <a href="#M000334" class="method-signature">
+          <span class="method-name">protect</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000334-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000334-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/controllers/wiki_controller.rb, line 107</span>
+107:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">protect</span>
+108:     <span class="ruby-ivar">@page</span>.<span class="ruby-identifier">update_attribute</span> <span class="ruby-identifier">:protected</span>, <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:protected</span>]
+109:     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'index'</span>, <span class="ruby-identifier">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@project</span>, <span class="ruby-identifier">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@page</span>.<span class="ruby-identifier">title</span>
+110:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000333" class="method-detail">
+        <a name="M000333"></a>
+
+        <div class="method-heading">
+          <a href="#M000333" class="method-signature">
+          <span class="method-name">rename</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<a href="WikiController.html#M000333">rename</a> a page
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000333-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000333-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/controllers/wiki_controller.rb, line 96</span>
+ 96:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rename</span>
+ 97:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">render_403</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">editable?</span>
+ 98:     <span class="ruby-ivar">@page</span>.<span class="ruby-identifier">redirect_existing_links</span> = <span class="ruby-keyword kw">true</span>
+ 99:     <span class="ruby-comment cmt"># used to display the *original* title if some AR validation errors occur</span>
+100:     <span class="ruby-ivar">@original_title</span> = <span class="ruby-ivar">@page</span>.<span class="ruby-identifier">pretty_title</span>
+101:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">post?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@page</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:wiki_page</span>])
+102:       <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-identifier">l</span>(<span class="ruby-identifier">:notice_successful_update</span>)
+103:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'index'</span>, <span class="ruby-identifier">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@project</span>, <span class="ruby-identifier">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@page</span>.<span class="ruby-identifier">title</span>
+104:     <span class="ruby-keyword kw">end</span>
+105:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000339" class="method-detail">
+        <a name="M000339"></a>
+
+        <div class="method-heading">
+          <a href="#M000339" class="method-signature">
+          <span class="method-name">special</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+display <a href="WikiController.html#M000339">special</a> pages
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000339-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000339-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/controllers/wiki_controller.rb, line 166</span>
+166:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">special</span>
+167:     <span class="ruby-identifier">page_title</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:page</span>].<span class="ruby-identifier">downcase</span>
+168:     <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">page_title</span>
+169:     <span class="ruby-comment cmt"># show pages index, sorted by title</span>
+170:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'page_index'</span>, <span class="ruby-value str">'date_index'</span>
+171:       <span class="ruby-comment cmt"># eager load information about last updates, without loading text</span>
+172:       <span class="ruby-ivar">@pages</span> = <span class="ruby-ivar">@wiki</span>.<span class="ruby-identifier">pages</span>.<span class="ruby-identifier">find</span> <span class="ruby-identifier">:all</span>, <span class="ruby-identifier">:select</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{WikiPage.table_name}.*, #{WikiContent.table_name}.updated_on&quot;</span>,
+173:                                       <span class="ruby-identifier">:joins</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;LEFT JOIN #{WikiContent.table_name} ON #{WikiContent.table_name}.page_id = #{WikiPage.table_name}.id&quot;</span>,
+174:                                       <span class="ruby-identifier">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'title'</span>
+175:       <span class="ruby-ivar">@pages_by_date</span> = <span class="ruby-ivar">@pages</span>.<span class="ruby-identifier">group_by</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">p</span>.<span class="ruby-identifier">updated_on</span>.<span class="ruby-identifier">to_date</span>}
+176:       <span class="ruby-ivar">@pages_by_parent_id</span> = <span class="ruby-ivar">@pages</span>.<span class="ruby-identifier">group_by</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">:parent_id</span>)
+177:     <span class="ruby-comment cmt"># export wiki to a single html file</span>
+178:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'export'</span>
+179:       <span class="ruby-ivar">@pages</span> = <span class="ruby-ivar">@wiki</span>.<span class="ruby-identifier">pages</span>.<span class="ruby-identifier">find</span> <span class="ruby-identifier">:all</span>, <span class="ruby-identifier">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'title'</span>
+180:       <span class="ruby-identifier">export</span> = <span class="ruby-identifier">render_to_string</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'export_multiple'</span>, <span class="ruby-identifier">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>
+181:       <span class="ruby-identifier">send_data</span>(<span class="ruby-identifier">export</span>, <span class="ruby-identifier">:type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'text/html'</span>, <span class="ruby-identifier">:filename</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;wiki.html&quot;</span>)
+182:       <span class="ruby-keyword kw">return</span>      
+183:     <span class="ruby-keyword kw">else</span>
+184:       <span class="ruby-comment cmt"># requested special page doesn't exist, redirect to default page</span>
+185:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'index'</span>, <span class="ruby-identifier">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@project</span>, <span class="ruby-identifier">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">return</span>
+186:     <span class="ruby-keyword kw">end</span>
+187:     <span class="ruby-identifier">render</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;special_#{page_title}&quot;</span>
+188:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

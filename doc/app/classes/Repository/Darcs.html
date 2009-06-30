@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Repository::Darcs</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Repository::Darcs</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/app/models/repository/darcs_rb.html">
+                app/models/repository/darcs.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="../Repository.html">
+                Repository
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M001163">cat</a>&nbsp;&nbsp;
+      <a href="#M001164">diff</a>&nbsp;&nbsp;
+      <a href="#M001162">entries</a>&nbsp;&nbsp;
+      <a href="#M001161">entry</a>&nbsp;&nbsp;
+      <a href="#M001165">fetch_changesets</a>&nbsp;&nbsp;
+      <a href="#M001159">scm_adapter</a>&nbsp;&nbsp;
+      <a href="#M001160">scm_name</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M001160" class="method-detail">
+        <a name="M001160"></a>
+
+        <div class="method-heading">
+          <a href="#M001160" class="method-signature">
+          <span class="method-name">scm_name</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001160-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001160-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/repository/darcs.rb, line 27</span>
+27:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">scm_name</span>
+28:     <span class="ruby-value str">'Darcs'</span>
+29:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M001163" class="method-detail">
+        <a name="M001163"></a>
+
+        <div class="method-heading">
+          <a href="#M001163" class="method-signature">
+          <span class="method-name">cat</span><span class="method-args">(path, identifier=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001163-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001163-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/repository/darcs.rb, line 54</span>
+54:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cat</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">identifier</span>=<span class="ruby-keyword kw">nil</span>)
+55:     <span class="ruby-identifier">patch</span> = <span class="ruby-identifier">identifier</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-value">? </span><span class="ruby-keyword kw">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">changesets</span>.<span class="ruby-identifier">find_by_revision</span>(<span class="ruby-identifier">identifier</span>.<span class="ruby-identifier">to_s</span>)
+56:     <span class="ruby-identifier">scm</span>.<span class="ruby-identifier">cat</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">patch</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-value">? </span><span class="ruby-keyword kw">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">patch</span>.<span class="ruby-identifier">scmid</span>)
+57:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001164" class="method-detail">
+        <a name="M001164"></a>
+
+        <div class="method-heading">
+          <a href="#M001164" class="method-signature">
+          <span class="method-name">diff</span><span class="method-args">(path, rev, rev_to)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001164-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001164-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/repository/darcs.rb, line 59</span>
+59:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">diff</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">rev</span>, <span class="ruby-identifier">rev_to</span>)
+60:     <span class="ruby-identifier">patch_from</span> = <span class="ruby-identifier">changesets</span>.<span class="ruby-identifier">find_by_revision</span>(<span class="ruby-identifier">rev</span>)
+61:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">patch_from</span>.<span class="ruby-identifier">nil?</span>
+62:     <span class="ruby-identifier">patch_to</span> = <span class="ruby-identifier">changesets</span>.<span class="ruby-identifier">find_by_revision</span>(<span class="ruby-identifier">rev_to</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">rev_to</span>
+63:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">blank?</span>
+64:       <span class="ruby-identifier">path</span> = <span class="ruby-identifier">patch_from</span>.<span class="ruby-identifier">changes</span>.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">change</span><span class="ruby-operator">|</span> <span class="ruby-identifier">change</span>.<span class="ruby-identifier">path</span>}.<span class="ruby-identifier">join</span>(<span class="ruby-value str">' '</span>)
+65:     <span class="ruby-keyword kw">end</span>
+66:     <span class="ruby-identifier">patch_from</span> <span class="ruby-value">? </span><span class="ruby-identifier">scm</span>.<span class="ruby-identifier">diff</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">patch_from</span>.<span class="ruby-identifier">scmid</span>, <span class="ruby-identifier">patch_to</span> <span class="ruby-value">? </span><span class="ruby-identifier">patch_to</span>.<span class="ruby-identifier">scmid</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">nil</span>) <span class="ruby-operator">:</span> <span class="ruby-keyword kw">nil</span>
+67:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001162" class="method-detail">
+        <a name="M001162"></a>
+
+        <div class="method-heading">
+          <a href="#M001162" class="method-signature">
+          <span class="method-name">entries</span><span class="method-args">(path=nil, identifier=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001162-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001162-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/repository/darcs.rb, line 36</span>
+36:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">entries</span>(<span class="ruby-identifier">path</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">identifier</span>=<span class="ruby-keyword kw">nil</span>)
+37:     <span class="ruby-identifier">patch</span> = <span class="ruby-identifier">identifier</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-value">? </span><span class="ruby-keyword kw">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">changesets</span>.<span class="ruby-identifier">find_by_revision</span>(<span class="ruby-identifier">identifier</span>)
+38:     <span class="ruby-identifier">entries</span> = <span class="ruby-identifier">scm</span>.<span class="ruby-identifier">entries</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">patch</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-value">? </span><span class="ruby-keyword kw">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">patch</span>.<span class="ruby-identifier">scmid</span>)
+39:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">entries</span>
+40:       <span class="ruby-identifier">entries</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">entry</span><span class="ruby-operator">|</span>
+41:         <span class="ruby-comment cmt"># Search the DB for the entry's last change</span>
+42:         <span class="ruby-identifier">changeset</span> = <span class="ruby-identifier">changesets</span>.<span class="ruby-identifier">find_by_scmid</span>(<span class="ruby-identifier">entry</span>.<span class="ruby-identifier">lastrev</span>.<span class="ruby-identifier">scmid</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">lastrev</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">entry</span>.<span class="ruby-identifier">lastrev</span>.<span class="ruby-identifier">scmid</span>.<span class="ruby-identifier">blank?</span>
+43:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">changeset</span>
+44:           <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">lastrev</span>.<span class="ruby-identifier">identifier</span> = <span class="ruby-identifier">changeset</span>.<span class="ruby-identifier">revision</span>
+45:           <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">lastrev</span>.<span class="ruby-identifier">name</span> = <span class="ruby-identifier">changeset</span>.<span class="ruby-identifier">revision</span>
+46:           <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">lastrev</span>.<span class="ruby-identifier">time</span> = <span class="ruby-identifier">changeset</span>.<span class="ruby-identifier">committed_on</span>
+47:           <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">lastrev</span>.<span class="ruby-identifier">author</span> = <span class="ruby-identifier">changeset</span>.<span class="ruby-identifier">committer</span>
+48:         <span class="ruby-keyword kw">end</span>
+49:       <span class="ruby-keyword kw">end</span>
+50:     <span class="ruby-keyword kw">end</span>
+51:     <span class="ruby-identifier">entries</span>
+52:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001161" class="method-detail">
+        <a name="M001161"></a>
+
+        <div class="method-heading">
+          <a href="#M001161" class="method-signature">
+          <span class="method-name">entry</span><span class="method-args">(path=nil, identifier=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001161-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001161-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/repository/darcs.rb, line 31</span>
+31:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">entry</span>(<span class="ruby-identifier">path</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">identifier</span>=<span class="ruby-keyword kw">nil</span>)
+32:     <span class="ruby-identifier">patch</span> = <span class="ruby-identifier">identifier</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-value">? </span><span class="ruby-keyword kw">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">changesets</span>.<span class="ruby-identifier">find_by_revision</span>(<span class="ruby-identifier">identifier</span>)
+33:     <span class="ruby-identifier">scm</span>.<span class="ruby-identifier">entry</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">patch</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-value">? </span><span class="ruby-keyword kw">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">patch</span>.<span class="ruby-identifier">scmid</span>)
+34:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001165" class="method-detail">
+        <a name="M001165"></a>
+
+        <div class="method-heading">
+          <a href="#M001165" class="method-signature">
+          <span class="method-name">fetch_changesets</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001165-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001165-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/repository/darcs.rb, line 69</span>
+69:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">fetch_changesets</span>
+70:     <span class="ruby-identifier">scm_info</span> = <span class="ruby-identifier">scm</span>.<span class="ruby-identifier">info</span>
+71:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">scm_info</span>
+72:       <span class="ruby-identifier">db_last_id</span> = <span class="ruby-identifier">latest_changeset</span> <span class="ruby-value">? </span><span class="ruby-identifier">latest_changeset</span>.<span class="ruby-identifier">scmid</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">nil</span>
+73:       <span class="ruby-identifier">next_rev</span> = <span class="ruby-identifier">latest_changeset</span> <span class="ruby-value">? </span><span class="ruby-identifier">latest_changeset</span>.<span class="ruby-identifier">revision</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span> <span class="ruby-operator">:</span> <span class="ruby-value">1</span>      
+74:       <span class="ruby-comment cmt"># latest revision in the repository</span>
+75:       <span class="ruby-identifier">scm_revision</span> = <span class="ruby-identifier">scm_info</span>.<span class="ruby-identifier">lastrev</span>.<span class="ruby-identifier">scmid</span>      
+76:       <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">changesets</span>.<span class="ruby-identifier">find_by_scmid</span>(<span class="ruby-identifier">scm_revision</span>)
+77:         <span class="ruby-identifier">revisions</span> = <span class="ruby-identifier">scm</span>.<span class="ruby-identifier">revisions</span>(<span class="ruby-value str">''</span>, <span class="ruby-identifier">db_last_id</span>, <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">:with_path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>)
+78:         <span class="ruby-identifier">transaction</span> <span class="ruby-keyword kw">do</span>
+79:           <span class="ruby-identifier">revisions</span>.<span class="ruby-identifier">reverse_each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">revision</span><span class="ruby-operator">|</span>
+80:             <span class="ruby-identifier">changeset</span> = <span class="ruby-constant">Changeset</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">:repository</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">self</span>,
+81:                                          <span class="ruby-identifier">:revision</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">next_rev</span>,
+82:                                          <span class="ruby-identifier">:scmid</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">revision</span>.<span class="ruby-identifier">scmid</span>,
+83:                                          <span class="ruby-identifier">:committer</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">revision</span>.<span class="ruby-identifier">author</span>, 
+84:                                          <span class="ruby-identifier">:committed_on</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">revision</span>.<span class="ruby-identifier">time</span>,
+85:                                          <span class="ruby-identifier">:comments</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">revision</span>.<span class="ruby-identifier">message</span>)
+86:                                          
+87:             <span class="ruby-identifier">revision</span>.<span class="ruby-identifier">paths</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">change</span><span class="ruby-operator">|</span>
+88:               <span class="ruby-constant">Change</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">:changeset</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">changeset</span>,
+89:                             <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">change</span>[<span class="ruby-identifier">:action</span>],
+90:                             <span class="ruby-identifier">:path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">change</span>[<span class="ruby-identifier">:path</span>],
+91:                             <span class="ruby-identifier">:from_path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">change</span>[<span class="ruby-identifier">:from_path</span>],
+92:                             <span class="ruby-identifier">:from_revision</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">change</span>[<span class="ruby-identifier">:from_revision</span>])
+93:             <span class="ruby-keyword kw">end</span>
+94:             <span class="ruby-identifier">next_rev</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+95:           <span class="ruby-keyword kw">end</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">revisions</span>
+96:         <span class="ruby-keyword kw">end</span>
+97:       <span class="ruby-keyword kw">end</span>
+98:     <span class="ruby-keyword kw">end</span>
+99:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001159" class="method-detail">
+        <a name="M001159"></a>
+
+        <div class="method-heading">
+          <a href="#M001159" class="method-signature">
+          <span class="method-name">scm_adapter</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001159-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001159-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/repository/darcs.rb, line 23</span>
+23:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">scm_adapter</span>
+24:     <span class="ruby-constant">Redmine</span><span class="ruby-operator">::</span><span class="ruby-constant">Scm</span><span class="ruby-operator">::</span><span class="ruby-constant">Adapters</span><span class="ruby-operator">::</span><span class="ruby-constant">DarcsAdapter</span>
+25:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

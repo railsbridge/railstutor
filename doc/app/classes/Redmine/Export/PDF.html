@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Redmine::Export::PDF</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Redmine::Export::PDF</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/redmine/export/pdf_rb.html">
+                lib/redmine/export/pdf.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M001024">gantt_to_pdf</a>&nbsp;&nbsp;
+      <a href="#M001023">issue_to_pdf</a>&nbsp;&nbsp;
+      <a href="#M001022">issues_to_pdf</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name">ActionView::Helpers::TextHelper</span>
+        <span class="include-name">ActionView::Helpers::NumberHelper</span>
+      </div>
+    </div>
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Class <a href="PDF/IFPDF.html" class="link">Redmine::Export::PDF::IFPDF</a><br />
+
+    </div>
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M001024" class="method-detail">
+        <a name="M001024"></a>
+
+        <div class="method-heading">
+          <a href="#M001024" class="method-signature">
+          <span class="method-name">gantt_to_pdf</span><span class="method-args">(gantt, project)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a <a href="PDF.html">PDF</a> string of a gantt chart
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001024-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001024-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redmine/export/pdf.rb, line 296</span>
+296:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">gantt_to_pdf</span>(<span class="ruby-identifier">gantt</span>, <span class="ruby-identifier">project</span>)
+297:         <span class="ruby-identifier">pdf</span> = <span class="ruby-constant">IFPDF</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">current_language</span>)
+298:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetTitle</span>(<span class="ruby-node">&quot;#{l(:label_gantt)} #{project}&quot;</span>)
+299:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">AliasNbPages</span>
+300:         <span class="ruby-identifier">pdf</span>.<span class="ruby-identifier">footer_date</span> = <span class="ruby-identifier">format_date</span>(<span class="ruby-constant">Date</span>.<span class="ruby-identifier">today</span>)
+301:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">AddPage</span>(<span class="ruby-value str">&quot;L&quot;</span>)
+302:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">'B'</span>,<span class="ruby-value">12</span>)
+303:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetX</span>(<span class="ruby-value">15</span>)
+304:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">70</span>, <span class="ruby-value">20</span>, <span class="ruby-identifier">project</span>.<span class="ruby-identifier">to_s</span>)
+305:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Ln</span>
+306:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">'B'</span>,<span class="ruby-value">9</span>)
+307:         
+308:         <span class="ruby-identifier">subject_width</span> = <span class="ruby-value">70</span>
+309:         <span class="ruby-identifier">header_heigth</span> = <span class="ruby-value">5</span>
+310:         
+311:         <span class="ruby-identifier">headers_heigth</span> = <span class="ruby-identifier">header_heigth</span>
+312:         <span class="ruby-identifier">show_weeks</span> = <span class="ruby-keyword kw">false</span>
+313:         <span class="ruby-identifier">show_days</span> = <span class="ruby-keyword kw">false</span>
+314:         
+315:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">gantt</span>.<span class="ruby-identifier">months</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">7</span>
+316:           <span class="ruby-identifier">show_weeks</span> = <span class="ruby-keyword kw">true</span>
+317:           <span class="ruby-identifier">headers_heigth</span> = <span class="ruby-value">2</span><span class="ruby-operator">*</span><span class="ruby-identifier">header_heigth</span>
+318:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">gantt</span>.<span class="ruby-identifier">months</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">3</span>
+319:             <span class="ruby-identifier">show_days</span> = <span class="ruby-keyword kw">true</span>
+320:             <span class="ruby-identifier">headers_heigth</span> = <span class="ruby-value">3</span><span class="ruby-operator">*</span><span class="ruby-identifier">header_heigth</span>
+321:           <span class="ruby-keyword kw">end</span>
+322:         <span class="ruby-keyword kw">end</span>
+323:         
+324:         <span class="ruby-identifier">g_width</span> = <span class="ruby-value">210</span>
+325:         <span class="ruby-identifier">zoom</span> = (<span class="ruby-identifier">g_width</span>) <span class="ruby-operator">/</span> (<span class="ruby-identifier">gantt</span>.<span class="ruby-identifier">date_to</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">gantt</span>.<span class="ruby-identifier">date_from</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>)
+326:         <span class="ruby-identifier">g_height</span> = <span class="ruby-value">120</span>
+327:         <span class="ruby-identifier">t_height</span> = <span class="ruby-identifier">g_height</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">headers_heigth</span>
+328:         
+329:         <span class="ruby-identifier">y_start</span> = <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">GetY</span>
+330:         
+331:         <span class="ruby-comment cmt"># Months headers</span>
+332:         <span class="ruby-identifier">month_f</span> = <span class="ruby-identifier">gantt</span>.<span class="ruby-identifier">date_from</span>
+333:         <span class="ruby-identifier">left</span> = <span class="ruby-identifier">subject_width</span>
+334:         <span class="ruby-identifier">height</span> = <span class="ruby-identifier">header_heigth</span>
+335:         <span class="ruby-identifier">gantt</span>.<span class="ruby-identifier">months</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword kw">do</span> 
+336:           <span class="ruby-identifier">width</span> = ((<span class="ruby-identifier">month_f</span> <span class="ruby-operator">&gt;&gt;</span> <span class="ruby-value">1</span>) <span class="ruby-operator">-</span> <span class="ruby-identifier">month_f</span>) <span class="ruby-operator">*</span> <span class="ruby-identifier">zoom</span> 
+337:           <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetY</span>(<span class="ruby-identifier">y_start</span>)
+338:           <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetX</span>(<span class="ruby-identifier">left</span>)
+339:           <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>, <span class="ruby-node">&quot;#{month_f.year}-#{month_f.month}&quot;</span>, <span class="ruby-value str">&quot;LTR&quot;</span>, <span class="ruby-value">0</span>, <span class="ruby-value str">&quot;C&quot;</span>)
+340:           <span class="ruby-identifier">left</span> = <span class="ruby-identifier">left</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">width</span>
+341:           <span class="ruby-identifier">month_f</span> = <span class="ruby-identifier">month_f</span> <span class="ruby-operator">&gt;&gt;</span> <span class="ruby-value">1</span>
+342:         <span class="ruby-keyword kw">end</span>  
+343:         
+344:         <span class="ruby-comment cmt"># Weeks headers</span>
+345:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">show_weeks</span>
+346:           <span class="ruby-identifier">left</span> = <span class="ruby-identifier">subject_width</span>
+347:           <span class="ruby-identifier">height</span> = <span class="ruby-identifier">header_heigth</span>
+348:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">gantt</span>.<span class="ruby-identifier">date_from</span>.<span class="ruby-identifier">cwday</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+349:             <span class="ruby-comment cmt"># gantt.date_from is monday</span>
+350:             <span class="ruby-identifier">week_f</span> = <span class="ruby-identifier">gantt</span>.<span class="ruby-identifier">date_from</span>
+351:           <span class="ruby-keyword kw">else</span>
+352:             <span class="ruby-comment cmt"># find next monday after gantt.date_from</span>
+353:             <span class="ruby-identifier">week_f</span> = <span class="ruby-identifier">gantt</span>.<span class="ruby-identifier">date_from</span> <span class="ruby-operator">+</span> (<span class="ruby-value">7</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">gantt</span>.<span class="ruby-identifier">date_from</span>.<span class="ruby-identifier">cwday</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>)
+354:             <span class="ruby-identifier">width</span> = (<span class="ruby-value">7</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">gantt</span>.<span class="ruby-identifier">date_from</span>.<span class="ruby-identifier">cwday</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>) <span class="ruby-operator">*</span> <span class="ruby-identifier">zoom</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>
+355:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetY</span>(<span class="ruby-identifier">y_start</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">header_heigth</span>)
+356:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetX</span>(<span class="ruby-identifier">left</span>)
+357:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-identifier">width</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>, <span class="ruby-identifier">height</span>, <span class="ruby-value str">&quot;&quot;</span>, <span class="ruby-value str">&quot;LTR&quot;</span>)
+358:             <span class="ruby-identifier">left</span> = <span class="ruby-identifier">left</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">width</span><span class="ruby-operator">+</span><span class="ruby-value">1</span>
+359:           <span class="ruby-keyword kw">end</span>
+360:           <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">week_f</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-identifier">gantt</span>.<span class="ruby-identifier">date_to</span>
+361:             <span class="ruby-identifier">width</span> = (<span class="ruby-identifier">week_f</span> <span class="ruby-operator">+</span> <span class="ruby-value">6</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-identifier">gantt</span>.<span class="ruby-identifier">date_to</span>) <span class="ruby-operator">?</span> <span class="ruby-value">7</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">zoom</span> <span class="ruby-operator">:</span> (<span class="ruby-identifier">gantt</span>.<span class="ruby-identifier">date_to</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">week_f</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>) <span class="ruby-operator">*</span> <span class="ruby-identifier">zoom</span>
+362:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetY</span>(<span class="ruby-identifier">y_start</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">header_heigth</span>)
+363:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetX</span>(<span class="ruby-identifier">left</span>)
+364:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>, (<span class="ruby-identifier">width</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">5</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">week_f</span>.<span class="ruby-identifier">cweek</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">:</span> <span class="ruby-value str">&quot;&quot;</span>), <span class="ruby-value str">&quot;LTR&quot;</span>, <span class="ruby-value">0</span>, <span class="ruby-value str">&quot;C&quot;</span>)
+365:             <span class="ruby-identifier">left</span> = <span class="ruby-identifier">left</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">width</span>
+366:             <span class="ruby-identifier">week_f</span> = <span class="ruby-identifier">week_f</span><span class="ruby-operator">+</span><span class="ruby-value">7</span>
+367:           <span class="ruby-keyword kw">end</span>
+368:         <span class="ruby-keyword kw">end</span>
+369:         
+370:         <span class="ruby-comment cmt"># Days headers</span>
+371:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">show_days</span>
+372:           <span class="ruby-identifier">left</span> = <span class="ruby-identifier">subject_width</span>
+373:           <span class="ruby-identifier">height</span> = <span class="ruby-identifier">header_heigth</span>
+374:           <span class="ruby-identifier">wday</span> = <span class="ruby-identifier">gantt</span>.<span class="ruby-identifier">date_from</span>.<span class="ruby-identifier">cwday</span>
+375:           <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">'B'</span>,<span class="ruby-value">7</span>)
+376:           (<span class="ruby-identifier">gantt</span>.<span class="ruby-identifier">date_to</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">gantt</span>.<span class="ruby-identifier">date_from</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>).<span class="ruby-identifier">to_i</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword kw">do</span> 
+377:             <span class="ruby-identifier">width</span> = <span class="ruby-identifier">zoom</span>
+378:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetY</span>(<span class="ruby-identifier">y_start</span> <span class="ruby-operator">+</span> <span class="ruby-value">2</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">header_heigth</span>)
+379:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetX</span>(<span class="ruby-identifier">left</span>)
+380:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>, <span class="ruby-identifier">day_name</span>(<span class="ruby-identifier">wday</span>).<span class="ruby-identifier">first</span>, <span class="ruby-value str">&quot;LTR&quot;</span>, <span class="ruby-value">0</span>, <span class="ruby-value str">&quot;C&quot;</span>)
+381:             <span class="ruby-identifier">left</span> = <span class="ruby-identifier">left</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">width</span>
+382:             <span class="ruby-identifier">wday</span> = <span class="ruby-identifier">wday</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+383:             <span class="ruby-identifier">wday</span> = <span class="ruby-value">1</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">wday</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">7</span>
+384:           <span class="ruby-keyword kw">end</span>
+385:         <span class="ruby-keyword kw">end</span>
+386:         
+387:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetY</span>(<span class="ruby-identifier">y_start</span>)
+388:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetX</span>(<span class="ruby-value">15</span>)
+389:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-identifier">subject_width</span><span class="ruby-operator">+</span><span class="ruby-identifier">g_width</span><span class="ruby-operator">-</span><span class="ruby-value">15</span>, <span class="ruby-identifier">headers_heigth</span>, <span class="ruby-value str">&quot;&quot;</span>, <span class="ruby-value">1</span>)
+390:         
+391:         <span class="ruby-comment cmt"># Tasks</span>
+392:         <span class="ruby-identifier">top</span> = <span class="ruby-identifier">headers_heigth</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">y_start</span>
+393:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">'B'</span>,<span class="ruby-value">7</span>)
+394:         <span class="ruby-identifier">gantt</span>.<span class="ruby-identifier">events</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+395:           <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetY</span>(<span class="ruby-identifier">top</span>)
+396:           <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetX</span>(<span class="ruby-value">15</span>)
+397:           
+398:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Issue</span>
+399:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-identifier">subject_width</span><span class="ruby-operator">-</span><span class="ruby-value">15</span>, <span class="ruby-value">5</span>, <span class="ruby-node">&quot;#{i.tracker} #{i.id}: #{i.subject}&quot;</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp re">/^(.{30}[^\s]*\s).*$/</span>, <span class="ruby-value str">'\1 (...)'</span>), <span class="ruby-value str">&quot;LR&quot;</span>)
+400:           <span class="ruby-keyword kw">else</span>
+401:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-identifier">subject_width</span><span class="ruby-operator">-</span><span class="ruby-value">15</span>, <span class="ruby-value">5</span>, <span class="ruby-node">&quot;#{l(:label_version)}: #{i.name}&quot;</span>, <span class="ruby-value str">&quot;LR&quot;</span>)
+402:           <span class="ruby-keyword kw">end</span>
+403:         
+404:           <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetY</span>(<span class="ruby-identifier">top</span>)
+405:           <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetX</span>(<span class="ruby-identifier">subject_width</span>)
+406:           <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-identifier">g_width</span>, <span class="ruby-value">5</span>, <span class="ruby-value str">&quot;&quot;</span>, <span class="ruby-value str">&quot;LR&quot;</span>)
+407:         
+408:           <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetY</span>(<span class="ruby-identifier">top</span><span class="ruby-operator">+</span><span class="ruby-value">1.5</span>)
+409:           
+410:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Issue</span>
+411:             <span class="ruby-identifier">i_start_date</span> = (<span class="ruby-identifier">i</span>.<span class="ruby-identifier">start_date</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-identifier">gantt</span>.<span class="ruby-identifier">date_from</span> <span class="ruby-value">? </span><span class="ruby-identifier">i</span>.<span class="ruby-identifier">start_date</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">gantt</span>.<span class="ruby-identifier">date_from</span> )
+412:             <span class="ruby-identifier">i_end_date</span> = (<span class="ruby-identifier">i</span>.<span class="ruby-identifier">due_before</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-identifier">gantt</span>.<span class="ruby-identifier">date_to</span> <span class="ruby-value">? </span><span class="ruby-identifier">i</span>.<span class="ruby-identifier">due_before</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">gantt</span>.<span class="ruby-identifier">date_to</span> )
+413:             
+414:             <span class="ruby-identifier">i_done_date</span> = <span class="ruby-identifier">i</span>.<span class="ruby-identifier">start_date</span> <span class="ruby-operator">+</span> ((<span class="ruby-identifier">i</span>.<span class="ruby-identifier">due_before</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">start_date</span><span class="ruby-operator">+</span><span class="ruby-value">1</span>)<span class="ruby-operator">*</span><span class="ruby-identifier">i</span>.<span class="ruby-identifier">done_ratio</span><span class="ruby-operator">/</span><span class="ruby-value">100</span>).<span class="ruby-identifier">floor</span>
+415:             <span class="ruby-identifier">i_done_date</span> = (<span class="ruby-identifier">i_done_date</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-identifier">gantt</span>.<span class="ruby-identifier">date_from</span> <span class="ruby-value">? </span><span class="ruby-identifier">gantt</span>.<span class="ruby-identifier">date_from</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">i_done_date</span> )
+416:             <span class="ruby-identifier">i_done_date</span> = (<span class="ruby-identifier">i_done_date</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-identifier">gantt</span>.<span class="ruby-identifier">date_to</span> <span class="ruby-value">? </span><span class="ruby-identifier">gantt</span>.<span class="ruby-identifier">date_to</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">i_done_date</span> )
+417:             
+418:             <span class="ruby-identifier">i_late_date</span> = [<span class="ruby-identifier">i_end_date</span>, <span class="ruby-constant">Date</span>.<span class="ruby-identifier">today</span>].<span class="ruby-identifier">min</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">i_start_date</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Date</span>.<span class="ruby-identifier">today</span>
+419:             
+420:             <span class="ruby-identifier">i_left</span> = ((<span class="ruby-identifier">i_start_date</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">gantt</span>.<span class="ruby-identifier">date_from</span>)<span class="ruby-operator">*</span><span class="ruby-identifier">zoom</span>) 
+421:             <span class="ruby-identifier">i_width</span> = ((<span class="ruby-identifier">i_end_date</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">i_start_date</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>)<span class="ruby-operator">*</span><span class="ruby-identifier">zoom</span>)
+422:             <span class="ruby-identifier">d_width</span> = ((<span class="ruby-identifier">i_done_date</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">i_start_date</span>)<span class="ruby-operator">*</span><span class="ruby-identifier">zoom</span>)
+423:             <span class="ruby-identifier">l_width</span> = ((<span class="ruby-identifier">i_late_date</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">i_start_date</span><span class="ruby-operator">+</span><span class="ruby-value">1</span>)<span class="ruby-operator">*</span><span class="ruby-identifier">zoom</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">i_late_date</span>
+424:             <span class="ruby-identifier">l_width</span> <span class="ruby-operator">||=</span> <span class="ruby-value">0</span>
+425:           
+426:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetX</span>(<span class="ruby-identifier">subject_width</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">i_left</span>)
+427:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFillColor</span>(<span class="ruby-value">200</span>,<span class="ruby-value">200</span>,<span class="ruby-value">200</span>)
+428:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-identifier">i_width</span>, <span class="ruby-value">2</span>, <span class="ruby-value str">&quot;&quot;</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value str">&quot;&quot;</span>, <span class="ruby-value">1</span>)
+429:           
+430:             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">l_width</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+431:               <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetY</span>(<span class="ruby-identifier">top</span><span class="ruby-operator">+</span><span class="ruby-value">1.5</span>)
+432:               <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetX</span>(<span class="ruby-identifier">subject_width</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">i_left</span>)
+433:               <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFillColor</span>(<span class="ruby-value">255</span>,<span class="ruby-value">100</span>,<span class="ruby-value">100</span>)
+434:               <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-identifier">l_width</span>, <span class="ruby-value">2</span>, <span class="ruby-value str">&quot;&quot;</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value str">&quot;&quot;</span>, <span class="ruby-value">1</span>)
+435:             <span class="ruby-keyword kw">end</span> 
+436:             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">d_width</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+437:               <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetY</span>(<span class="ruby-identifier">top</span><span class="ruby-operator">+</span><span class="ruby-value">1.5</span>)
+438:               <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetX</span>(<span class="ruby-identifier">subject_width</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">i_left</span>)
+439:               <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFillColor</span>(<span class="ruby-value">100</span>,<span class="ruby-value">100</span>,<span class="ruby-value">255</span>)
+440:               <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-identifier">d_width</span>, <span class="ruby-value">2</span>, <span class="ruby-value str">&quot;&quot;</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value str">&quot;&quot;</span>, <span class="ruby-value">1</span>)
+441:             <span class="ruby-keyword kw">end</span>
+442:             
+443:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetY</span>(<span class="ruby-identifier">top</span><span class="ruby-operator">+</span><span class="ruby-value">1.5</span>)
+444:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetX</span>(<span class="ruby-identifier">subject_width</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">i_left</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">i_width</span>)
+445:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">30</span>, <span class="ruby-value">2</span>, <span class="ruby-node">&quot;#{i.status} #{i.done_ratio}%&quot;</span>)
+446:           <span class="ruby-keyword kw">else</span>
+447:             <span class="ruby-identifier">i_left</span> = ((<span class="ruby-identifier">i</span>.<span class="ruby-identifier">start_date</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">gantt</span>.<span class="ruby-identifier">date_from</span>)<span class="ruby-operator">*</span><span class="ruby-identifier">zoom</span>) 
+448:             
+449:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetX</span>(<span class="ruby-identifier">subject_width</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">i_left</span>)
+450:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFillColor</span>(<span class="ruby-value">50</span>,<span class="ruby-value">200</span>,<span class="ruby-value">50</span>)
+451:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">2</span>, <span class="ruby-value">2</span>, <span class="ruby-value str">&quot;&quot;</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value str">&quot;&quot;</span>, <span class="ruby-value">1</span>) 
+452:         
+453:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetY</span>(<span class="ruby-identifier">top</span><span class="ruby-operator">+</span><span class="ruby-value">1.5</span>)
+454:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetX</span>(<span class="ruby-identifier">subject_width</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">i_left</span> <span class="ruby-operator">+</span> <span class="ruby-value">3</span>)
+455:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">30</span>, <span class="ruby-value">2</span>, <span class="ruby-node">&quot;#{i.name}&quot;</span>)
+456:           <span class="ruby-keyword kw">end</span>
+457:           
+458:           <span class="ruby-identifier">top</span> = <span class="ruby-identifier">top</span> <span class="ruby-operator">+</span> <span class="ruby-value">5</span>
+459:           <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetDrawColor</span>(<span class="ruby-value">200</span>, <span class="ruby-value">200</span>, <span class="ruby-value">200</span>)
+460:           <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Line</span>(<span class="ruby-value">15</span>, <span class="ruby-identifier">top</span>, <span class="ruby-identifier">subject_width</span><span class="ruby-operator">+</span><span class="ruby-identifier">g_width</span>, <span class="ruby-identifier">top</span>)
+461:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">GetY</span>() <span class="ruby-operator">&gt;</span> <span class="ruby-value">180</span>
+462:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">AddPage</span>(<span class="ruby-value str">&quot;L&quot;</span>)
+463:             <span class="ruby-identifier">top</span> = <span class="ruby-value">20</span>
+464:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Line</span>(<span class="ruby-value">15</span>, <span class="ruby-identifier">top</span>, <span class="ruby-identifier">subject_width</span><span class="ruby-operator">+</span><span class="ruby-identifier">g_width</span>, <span class="ruby-identifier">top</span>)
+465:           <span class="ruby-keyword kw">end</span>
+466:           <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetDrawColor</span>(<span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>)
+467:         <span class="ruby-keyword kw">end</span>
+468:         
+469:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Line</span>(<span class="ruby-value">15</span>, <span class="ruby-identifier">top</span>, <span class="ruby-identifier">subject_width</span><span class="ruby-operator">+</span><span class="ruby-identifier">g_width</span>, <span class="ruby-identifier">top</span>)
+470:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Output</span>
+471:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001023" class="method-detail">
+        <a name="M001023"></a>
+
+        <div class="method-heading">
+          <a href="#M001023" class="method-signature">
+          <span class="method-name">issue_to_pdf</span><span class="method-args">(issue)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a <a href="PDF.html">PDF</a> string of a single issue
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001023-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001023-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redmine/export/pdf.rb, line 169</span>
+169:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">issue_to_pdf</span>(<span class="ruby-identifier">issue</span>)
+170:         <span class="ruby-identifier">pdf</span> = <span class="ruby-constant">IFPDF</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">current_language</span>)
+171:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetTitle</span>(<span class="ruby-node">&quot;#{issue.project} - ##{issue.tracker} #{issue.id}&quot;</span>)
+172:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">AliasNbPages</span>
+173:         <span class="ruby-identifier">pdf</span>.<span class="ruby-identifier">footer_date</span> = <span class="ruby-identifier">format_date</span>(<span class="ruby-constant">Date</span>.<span class="ruby-identifier">today</span>)
+174:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">AddPage</span>
+175:         
+176:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">'B'</span>,<span class="ruby-value">11</span>)    
+177:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">190</span>,<span class="ruby-value">10</span>, <span class="ruby-node">&quot;#{issue.project} - #{issue.tracker} # #{issue.id}: #{issue.subject}&quot;</span>)
+178:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Ln</span>
+179:         
+180:         <span class="ruby-identifier">y0</span> = <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">GetY</span>
+181:         
+182:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">'B'</span>,<span class="ruby-value">9</span>)
+183:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">35</span>,<span class="ruby-value">5</span>, <span class="ruby-identifier">l</span>(<span class="ruby-identifier">:field_status</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;:&quot;</span>,<span class="ruby-value str">&quot;LT&quot;</span>)
+184:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">''</span>,<span class="ruby-value">9</span>)
+185:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">60</span>,<span class="ruby-value">5</span>, <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">status</span>.<span class="ruby-identifier">to_s</span>,<span class="ruby-value str">&quot;RT&quot;</span>)
+186:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">'B'</span>,<span class="ruby-value">9</span>)
+187:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">35</span>,<span class="ruby-value">5</span>, <span class="ruby-identifier">l</span>(<span class="ruby-identifier">:field_priority</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;:&quot;</span>,<span class="ruby-value str">&quot;LT&quot;</span>)
+188:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">''</span>,<span class="ruby-value">9</span>)
+189:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">60</span>,<span class="ruby-value">5</span>, <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">priority</span>.<span class="ruby-identifier">to_s</span>,<span class="ruby-value str">&quot;RT&quot;</span>)        
+190:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Ln</span>
+191:           
+192:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">'B'</span>,<span class="ruby-value">9</span>)
+193:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">35</span>,<span class="ruby-value">5</span>, <span class="ruby-identifier">l</span>(<span class="ruby-identifier">:field_author</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;:&quot;</span>,<span class="ruby-value str">&quot;L&quot;</span>)
+194:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">''</span>,<span class="ruby-value">9</span>)
+195:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">60</span>,<span class="ruby-value">5</span>, <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">author</span>.<span class="ruby-identifier">to_s</span>,<span class="ruby-value str">&quot;R&quot;</span>)
+196:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">'B'</span>,<span class="ruby-value">9</span>)
+197:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">35</span>,<span class="ruby-value">5</span>, <span class="ruby-identifier">l</span>(<span class="ruby-identifier">:field_category</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;:&quot;</span>,<span class="ruby-value str">&quot;L&quot;</span>)
+198:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">''</span>,<span class="ruby-value">9</span>)
+199:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">60</span>,<span class="ruby-value">5</span>, <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">category</span>.<span class="ruby-identifier">to_s</span>,<span class="ruby-value str">&quot;R&quot;</span>)
+200:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Ln</span>   
+201:         
+202:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">'B'</span>,<span class="ruby-value">9</span>)
+203:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">35</span>,<span class="ruby-value">5</span>, <span class="ruby-identifier">l</span>(<span class="ruby-identifier">:field_created_on</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;:&quot;</span>,<span class="ruby-value str">&quot;L&quot;</span>)
+204:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">''</span>,<span class="ruby-value">9</span>)
+205:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">60</span>,<span class="ruby-value">5</span>, <span class="ruby-identifier">format_date</span>(<span class="ruby-identifier">issue</span>.<span class="ruby-identifier">created_on</span>),<span class="ruby-value str">&quot;R&quot;</span>)
+206:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">'B'</span>,<span class="ruby-value">9</span>)
+207:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">35</span>,<span class="ruby-value">5</span>, <span class="ruby-identifier">l</span>(<span class="ruby-identifier">:field_assigned_to</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;:&quot;</span>,<span class="ruby-value str">&quot;L&quot;</span>)
+208:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">''</span>,<span class="ruby-value">9</span>)
+209:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">60</span>,<span class="ruby-value">5</span>, <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">assigned_to</span>.<span class="ruby-identifier">to_s</span>,<span class="ruby-value str">&quot;R&quot;</span>)
+210:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Ln</span>
+211:         
+212:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">'B'</span>,<span class="ruby-value">9</span>)
+213:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">35</span>,<span class="ruby-value">5</span>, <span class="ruby-identifier">l</span>(<span class="ruby-identifier">:field_updated_on</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;:&quot;</span>,<span class="ruby-value str">&quot;LB&quot;</span>)
+214:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">''</span>,<span class="ruby-value">9</span>)
+215:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">60</span>,<span class="ruby-value">5</span>, <span class="ruby-identifier">format_date</span>(<span class="ruby-identifier">issue</span>.<span class="ruby-identifier">updated_on</span>),<span class="ruby-value str">&quot;RB&quot;</span>)
+216:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">'B'</span>,<span class="ruby-value">9</span>)
+217:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">35</span>,<span class="ruby-value">5</span>, <span class="ruby-identifier">l</span>(<span class="ruby-identifier">:field_due_date</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;:&quot;</span>,<span class="ruby-value str">&quot;LB&quot;</span>)
+218:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">''</span>,<span class="ruby-value">9</span>)
+219:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">60</span>,<span class="ruby-value">5</span>, <span class="ruby-identifier">format_date</span>(<span class="ruby-identifier">issue</span>.<span class="ruby-identifier">due_date</span>),<span class="ruby-value str">&quot;RB&quot;</span>)
+220:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Ln</span>
+221:           
+222:         <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">custom_value</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">custom_values</span>
+223:           <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">'B'</span>,<span class="ruby-value">9</span>)
+224:           <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">35</span>,<span class="ruby-value">5</span>, <span class="ruby-identifier">custom_value</span>.<span class="ruby-identifier">custom_field</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;:&quot;</span>,<span class="ruby-value str">&quot;L&quot;</span>)
+225:           <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">''</span>,<span class="ruby-value">9</span>)
+226:           <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">MultiCell</span>(<span class="ruby-value">155</span>,<span class="ruby-value">5</span>, (<span class="ruby-identifier">show_value</span> <span class="ruby-identifier">custom_value</span>),<span class="ruby-value str">&quot;R&quot;</span>)
+227:         <span class="ruby-keyword kw">end</span>
+228:           
+229:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">'B'</span>,<span class="ruby-value">9</span>)
+230:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">35</span>,<span class="ruby-value">5</span>, <span class="ruby-identifier">l</span>(<span class="ruby-identifier">:field_subject</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;:&quot;</span>,<span class="ruby-value str">&quot;LTB&quot;</span>)
+231:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">''</span>,<span class="ruby-value">9</span>)
+232:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">155</span>,<span class="ruby-value">5</span>, <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">subject</span>,<span class="ruby-value str">&quot;RTB&quot;</span>)
+233:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Ln</span>    
+234:         
+235:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">'B'</span>,<span class="ruby-value">9</span>)
+236:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">35</span>,<span class="ruby-value">5</span>, <span class="ruby-identifier">l</span>(<span class="ruby-identifier">:field_description</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;:&quot;</span>)
+237:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">''</span>,<span class="ruby-value">9</span>)
+238:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">MultiCell</span>(<span class="ruby-value">155</span>,<span class="ruby-value">5</span>, <span class="ruby-ivar">@issue</span>.<span class="ruby-identifier">description</span>,<span class="ruby-value str">&quot;BR&quot;</span>)
+239:         
+240:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Line</span>(<span class="ruby-identifier">pdf</span>.<span class="ruby-constant">GetX</span>, <span class="ruby-identifier">y0</span>, <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">GetX</span>, <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">GetY</span>)
+241:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Line</span>(<span class="ruby-identifier">pdf</span>.<span class="ruby-constant">GetX</span>, <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">GetY</span>, <span class="ruby-value">170</span>, <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">GetY</span>)
+242:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Ln</span>
+243:         
+244:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">changesets</span>.<span class="ruby-identifier">any?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>.<span class="ruby-identifier">allowed_to?</span>(<span class="ruby-identifier">:view_changesets</span>, <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">project</span>)
+245:           <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">'B'</span>,<span class="ruby-value">9</span>)
+246:           <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">190</span>,<span class="ruby-value">5</span>, <span class="ruby-identifier">l</span>(<span class="ruby-identifier">:label_associated_revisions</span>), <span class="ruby-value str">&quot;B&quot;</span>)
+247:           <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Ln</span>
+248:           <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">changeset</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">changesets</span>
+249:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">'B'</span>,<span class="ruby-value">8</span>)
+250:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">190</span>,<span class="ruby-value">5</span>, <span class="ruby-identifier">format_time</span>(<span class="ruby-identifier">changeset</span>.<span class="ruby-identifier">committed_on</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot; - &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">changeset</span>.<span class="ruby-identifier">author</span>.<span class="ruby-identifier">to_s</span>)
+251:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Ln</span>
+252:             <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">changeset</span>.<span class="ruby-identifier">comments</span>.<span class="ruby-identifier">blank?</span>
+253:               <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">''</span>,<span class="ruby-value">8</span>)
+254:               <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">MultiCell</span>(<span class="ruby-value">190</span>,<span class="ruby-value">5</span>, <span class="ruby-identifier">changeset</span>.<span class="ruby-identifier">comments</span>)
+255:             <span class="ruby-keyword kw">end</span>   
+256:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Ln</span>
+257:           <span class="ruby-keyword kw">end</span>
+258:         <span class="ruby-keyword kw">end</span>
+259:         
+260:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">'B'</span>,<span class="ruby-value">9</span>)
+261:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">190</span>,<span class="ruby-value">5</span>, <span class="ruby-identifier">l</span>(<span class="ruby-identifier">:label_history</span>), <span class="ruby-value str">&quot;B&quot;</span>)
+262:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Ln</span>  
+263:         <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">journal</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">journals</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">:all</span>, <span class="ruby-identifier">:include</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-identifier">:user</span>, <span class="ruby-identifier">:details</span>], <span class="ruby-identifier">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{Journal.table_name}.created_on ASC&quot;</span>)
+264:           <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">'B'</span>,<span class="ruby-value">8</span>)
+265:           <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">190</span>,<span class="ruby-value">5</span>, <span class="ruby-identifier">format_time</span>(<span class="ruby-identifier">journal</span>.<span class="ruby-identifier">created_on</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot; - &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">journal</span>.<span class="ruby-identifier">user</span>.<span class="ruby-identifier">name</span>)
+266:           <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Ln</span>
+267:           <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">'I'</span>,<span class="ruby-value">8</span>)
+268:           <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">detail</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">journal</span>.<span class="ruby-identifier">details</span>
+269:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">190</span>,<span class="ruby-value">5</span>, <span class="ruby-value str">&quot;- &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">show_detail</span>(<span class="ruby-identifier">detail</span>, <span class="ruby-keyword kw">true</span>))
+270:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Ln</span>
+271:           <span class="ruby-keyword kw">end</span>
+272:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">journal</span>.<span class="ruby-identifier">notes?</span>
+273:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">''</span>,<span class="ruby-value">8</span>)
+274:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">MultiCell</span>(<span class="ruby-value">190</span>,<span class="ruby-value">5</span>, <span class="ruby-identifier">journal</span>.<span class="ruby-identifier">notes</span>)
+275:           <span class="ruby-keyword kw">end</span>   
+276:           <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Ln</span>
+277:         <span class="ruby-keyword kw">end</span>
+278:         
+279:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">attachments</span>.<span class="ruby-identifier">any?</span>
+280:           <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">'B'</span>,<span class="ruby-value">9</span>)
+281:           <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">190</span>,<span class="ruby-value">5</span>, <span class="ruby-identifier">l</span>(<span class="ruby-identifier">:label_attachment_plural</span>), <span class="ruby-value str">&quot;B&quot;</span>)
+282:           <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Ln</span>
+283:           <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">attachment</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">attachments</span>
+284:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">''</span>,<span class="ruby-value">8</span>)
+285:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">80</span>,<span class="ruby-value">5</span>, <span class="ruby-identifier">attachment</span>.<span class="ruby-identifier">filename</span>)
+286:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">20</span>,<span class="ruby-value">5</span>, <span class="ruby-identifier">number_to_human_size</span>(<span class="ruby-identifier">attachment</span>.<span class="ruby-identifier">filesize</span>),<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value str">&quot;R&quot;</span>)
+287:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">25</span>,<span class="ruby-value">5</span>, <span class="ruby-identifier">format_date</span>(<span class="ruby-identifier">attachment</span>.<span class="ruby-identifier">created_on</span>),<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value str">&quot;R&quot;</span>)
+288:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">65</span>,<span class="ruby-value">5</span>, <span class="ruby-identifier">attachment</span>.<span class="ruby-identifier">author</span>.<span class="ruby-identifier">name</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value str">&quot;R&quot;</span>)
+289:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Ln</span>
+290:           <span class="ruby-keyword kw">end</span>
+291:         <span class="ruby-keyword kw">end</span>
+292:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Output</span>
+293:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001022" class="method-detail">
+        <a name="M001022"></a>
+
+        <div class="method-heading">
+          <a href="#M001022" class="method-signature">
+          <span class="method-name">issues_to_pdf</span><span class="method-args">(issues, project, query)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a <a href="PDF.html">PDF</a> string of a list of issues
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001022-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001022-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redmine/export/pdf.rb, line 111</span>
+111:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">issues_to_pdf</span>(<span class="ruby-identifier">issues</span>, <span class="ruby-identifier">project</span>, <span class="ruby-identifier">query</span>)
+112:         <span class="ruby-identifier">pdf</span> = <span class="ruby-constant">IFPDF</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">current_language</span>)
+113:         <span class="ruby-identifier">title</span> = <span class="ruby-identifier">project</span> <span class="ruby-value">? </span><span class="ruby-node">&quot;#{project} - #{l(:label_issue_plural)}&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-node">&quot;#{l(:label_issue_plural)}&quot;</span>
+114:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetTitle</span>(<span class="ruby-identifier">title</span>)
+115:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">AliasNbPages</span>
+116:         <span class="ruby-identifier">pdf</span>.<span class="ruby-identifier">footer_date</span> = <span class="ruby-identifier">format_date</span>(<span class="ruby-constant">Date</span>.<span class="ruby-identifier">today</span>)
+117:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">AddPage</span>(<span class="ruby-value str">&quot;L&quot;</span>)
+118:         <span class="ruby-identifier">row_height</span> = <span class="ruby-value">7</span>
+119:         
+120:         <span class="ruby-comment cmt"># title</span>
+121:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">'B'</span>,<span class="ruby-value">11</span>)    
+122:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">190</span>,<span class="ruby-value">10</span>, <span class="ruby-identifier">title</span>)
+123:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Ln</span>
+124:         
+125:         <span class="ruby-comment cmt"># headers</span>
+126:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">'B'</span>,<span class="ruby-value">10</span>)
+127:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFillColor</span>(<span class="ruby-value">230</span>, <span class="ruby-value">230</span>, <span class="ruby-value">230</span>)
+128:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">15</span>, <span class="ruby-identifier">row_height</span>, <span class="ruby-value str">&quot;#&quot;</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value str">'L'</span>, <span class="ruby-value">1</span>)
+129:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">30</span>, <span class="ruby-identifier">row_height</span>, <span class="ruby-identifier">l</span>(<span class="ruby-identifier">:field_tracker</span>), <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value str">'L'</span>, <span class="ruby-value">1</span>)
+130:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">30</span>, <span class="ruby-identifier">row_height</span>, <span class="ruby-identifier">l</span>(<span class="ruby-identifier">:field_status</span>), <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value str">'L'</span>, <span class="ruby-value">1</span>)
+131:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">30</span>, <span class="ruby-identifier">row_height</span>, <span class="ruby-identifier">l</span>(<span class="ruby-identifier">:field_priority</span>), <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value str">'L'</span>, <span class="ruby-value">1</span>)
+132:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">40</span>, <span class="ruby-identifier">row_height</span>, <span class="ruby-identifier">l</span>(<span class="ruby-identifier">:field_assigned_to</span>), <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value str">'L'</span>, <span class="ruby-value">1</span>)
+133:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">25</span>, <span class="ruby-identifier">row_height</span>, <span class="ruby-identifier">l</span>(<span class="ruby-identifier">:field_updated_on</span>), <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value str">'L'</span>, <span class="ruby-value">1</span>)
+134:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">0</span>, <span class="ruby-identifier">row_height</span>, <span class="ruby-identifier">l</span>(<span class="ruby-identifier">:field_subject</span>), <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value str">'L'</span>, <span class="ruby-value">1</span>)
+135:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Line</span>(<span class="ruby-value">10</span>, <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">GetY</span>, <span class="ruby-value">287</span>, <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">GetY</span>)
+136:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Ln</span>
+137:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Line</span>(<span class="ruby-value">10</span>, <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">GetY</span>, <span class="ruby-value">287</span>, <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">GetY</span>)
+138:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetY</span>(<span class="ruby-identifier">pdf</span>.<span class="ruby-constant">GetY</span>() <span class="ruby-operator">+</span> <span class="ruby-value">1</span>)
+139:         
+140:         <span class="ruby-comment cmt"># rows</span>
+141:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">''</span>,<span class="ruby-value">9</span>)
+142:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFillColor</span>(<span class="ruby-value">255</span>, <span class="ruby-value">255</span>, <span class="ruby-value">255</span>)
+143:         <span class="ruby-identifier">group</span> = <span class="ruby-keyword kw">false</span>
+144:         <span class="ruby-identifier">issues</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">issue</span><span class="ruby-operator">|</span>
+145:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">query</span>.<span class="ruby-identifier">grouped?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">query</span>.<span class="ruby-identifier">group_by</span>) <span class="ruby-operator">!=</span> <span class="ruby-identifier">group</span>
+146:             <span class="ruby-identifier">group</span> = <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">query</span>.<span class="ruby-identifier">group_by</span>)
+147:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">'B'</span>,<span class="ruby-value">10</span>)
+148:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">0</span>, <span class="ruby-identifier">row_height</span>, <span class="ruby-node">&quot;#{group.blank? ? 'None' : group.to_s}&quot;</span>, <span class="ruby-value">0</span>, <span class="ruby-value">1</span>, <span class="ruby-value str">'L'</span>)
+149:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Line</span>(<span class="ruby-value">10</span>, <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">GetY</span>, <span class="ruby-value">287</span>, <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">GetY</span>)
+150:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetY</span>(<span class="ruby-identifier">pdf</span>.<span class="ruby-constant">GetY</span>() <span class="ruby-operator">+</span> <span class="ruby-value">0</span><span class="ruby-value">.5</span>)
+151:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Line</span>(<span class="ruby-value">10</span>, <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">GetY</span>, <span class="ruby-value">287</span>, <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">GetY</span>)
+152:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetY</span>(<span class="ruby-identifier">pdf</span>.<span class="ruby-constant">GetY</span>() <span class="ruby-operator">+</span> <span class="ruby-value">1</span>)
+153:             <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetFontStyle</span>(<span class="ruby-value str">''</span>,<span class="ruby-value">9</span>)
+154:           <span class="ruby-keyword kw">end</span>
+155:           <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">15</span>, <span class="ruby-identifier">row_height</span>, <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value str">'L'</span>, <span class="ruby-value">1</span>)
+156:           <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">30</span>, <span class="ruby-identifier">row_height</span>, <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">tracker</span>.<span class="ruby-identifier">name</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value str">'L'</span>, <span class="ruby-value">1</span>)
+157:           <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">30</span>, <span class="ruby-identifier">row_height</span>, <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">status</span>.<span class="ruby-identifier">name</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value str">'L'</span>, <span class="ruby-value">1</span>)
+158:           <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">30</span>, <span class="ruby-identifier">row_height</span>, <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">priority</span>.<span class="ruby-identifier">name</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value str">'L'</span>, <span class="ruby-value">1</span>)
+159:           <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">40</span>, <span class="ruby-identifier">row_height</span>, <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">assigned_to</span> <span class="ruby-value">? </span><span class="ruby-identifier">issue</span>.<span class="ruby-identifier">assigned_to</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">:</span> <span class="ruby-value str">''</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value str">'L'</span>, <span class="ruby-value">1</span>)
+160:           <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Cell</span>(<span class="ruby-value">25</span>, <span class="ruby-identifier">row_height</span>, <span class="ruby-identifier">format_date</span>(<span class="ruby-identifier">issue</span>.<span class="ruby-identifier">updated_on</span>), <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value str">'L'</span>, <span class="ruby-value">1</span>)
+161:           <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">MultiCell</span>(<span class="ruby-value">0</span>, <span class="ruby-identifier">row_height</span>, (<span class="ruby-identifier">project</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">issue</span>.<span class="ruby-identifier">project</span> <span class="ruby-value">? </span><span class="ruby-identifier">issue</span>.<span class="ruby-identifier">subject</span> <span class="ruby-operator">:</span> <span class="ruby-node">&quot;#{issue.project} - #{issue.subject}&quot;</span>))
+162:           <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Line</span>(<span class="ruby-value">10</span>, <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">GetY</span>, <span class="ruby-value">287</span>, <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">GetY</span>)
+163:           <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">SetY</span>(<span class="ruby-identifier">pdf</span>.<span class="ruby-constant">GetY</span>() <span class="ruby-operator">+</span> <span class="ruby-value">1</span>)
+164:         <span class="ruby-keyword kw">end</span>
+165:         <span class="ruby-identifier">pdf</span>.<span class="ruby-constant">Output</span>
+166:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

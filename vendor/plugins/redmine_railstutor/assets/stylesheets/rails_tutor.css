@@ -1,0 +1,94 @@
+#top-menu {background: #b89c7f; color: #fff; height:1.8em; font-size: 0.8em; padding: 2px 2px 0px 6px;}
+
+#main-menu li a {
+  display: block;
+  color: #b89c7f;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0;
+  padding: 4px 10px 4px 10px;
+}
+#main-menu li a:hover {background: #b89c7f; color:#fff;}
+#main-menu li a.selected, #main-menu li a.selected:hover {background: #b71312; color: #faf0e6;}
+
+
+
+#header {height:90px;margin:0;background-color: #faf0e6;color:#f8f8f8; padding: 4px 8px 0px 6px; position:relative;
+	border-bottom-style: solid;
+	border-bottom-color: #b81312;
+	border-bottom-width: 3px;
+}
+
+/* @group Home Page */
+
+#home_page_left {
+	width: 28%;
+	float: left;
+}
+
+#courses {
+	min-height: 100px;
+	background-color: #faf0e6;
+	padding: 10px;
+	margin-bottom: 10px;
+	width: 90%;
+}
+
+#recent_topics {
+	min-height: 100px;
+	background-color: #dcceb5;
+	padding: 10px;
+	width: 90%;	
+}
+
+#home_page_middle {
+	width: 40%;
+	float: left;
+}
+
+#mission_statement {
+	background-color: #d7c5b2;
+	padding: 10px;
+	margin-bottom: 10px;
+	width: 90%;	
+}
+
+#how_to_help {
+	min-height: 100px;
+	background-color: #faf0e6;
+	padding: 10px;
+	width: 90%;	
+}
+
+#home_page_right {
+	width: 28%;
+	float: left;
+}
+
+#recent_blog {
+	min-height: 100px;
+	background-color: #dcceb5;
+	padding: 10px;
+	width: 90%;
+	margin-bottom: 10px;
+}
+
+#wiki_links {
+	min-height: 100px;
+	background-color: #faf0e6;
+	padding: 10px;
+	width: 90%;
+	margin-bottom: 10px;
+}
+
+#team {
+	min-height: 100px;
+	background-color: #dcceb5;
+	padding: 10px;
+	width: 90%;	
+}
+
+.centerme {
+	text-align: center;
+}
+/* @end */

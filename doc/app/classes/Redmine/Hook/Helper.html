@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Redmine::Hook::Helper</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Redmine::Hook::Helper</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/redmine/hook_rb.html">
+                lib/redmine/hook.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+<a href="Helper.html">Helper</a> module included in <a
+href="../../ApplicationHelper.html">ApplicationHelper</a> and
+ActionControllerso that hooks can be called in views like this:
+</p>
+<pre>
+  &lt;%= call_hook(:some_hook) %&gt;
+  &lt;%= call_hook(:another_hook, :foo =&gt; 'bar' %&gt;
+</pre>
+<p>
+Or in controllers like:
+</p>
+<pre>
+  call_hook(:some_hook)
+  call_hook(:another_hook, :foo =&gt; 'bar'
+</pre>
+<p>
+Hooks added to views will be concatenated into a string. Hooks added to
+controllers will return an array of results.
+</p>
+<p>
+Several objects are automatically added to the call context:
+</p>
+<ul>
+<li>project =&gt; current project
+
+</li>
+<li>request =&gt; Request instance
+
+</li>
+<li>controller =&gt; current Controller instance
+
+</li>
+</ul>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000868">call_hook</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000868" class="method-detail">
+        <a name="M000868"></a>
+
+        <div class="method-heading">
+          <a href="#M000868" class="method-signature">
+          <span class="method-name">call_hook</span><span class="method-args">(hook, context={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000868-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000868-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redmine/hook.rb, line 138</span>
+138:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">call_hook</span>(<span class="ruby-identifier">hook</span>, <span class="ruby-identifier">context</span>={})
+139:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">ActionController</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>)
+140:           <span class="ruby-identifier">default_context</span> = {<span class="ruby-identifier">:controller</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">:project</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@project</span>, <span class="ruby-identifier">:request</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">request</span>}
+141:           <span class="ruby-constant">Redmine</span><span class="ruby-operator">::</span><span class="ruby-constant">Hook</span>.<span class="ruby-identifier">call_hook</span>(<span class="ruby-identifier">hook</span>, <span class="ruby-identifier">default_context</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">context</span>))
+142:         <span class="ruby-keyword kw">else</span>
+143:           <span class="ruby-identifier">default_context</span> = {<span class="ruby-identifier">:controller</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">controller</span>, <span class="ruby-identifier">:project</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@project</span>, <span class="ruby-identifier">:request</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">request</span>}
+144:           <span class="ruby-constant">Redmine</span><span class="ruby-operator">::</span><span class="ruby-constant">Hook</span>.<span class="ruby-identifier">call_hook</span>(<span class="ruby-identifier">hook</span>, <span class="ruby-identifier">default_context</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">context</span>)).<span class="ruby-identifier">join</span>(<span class="ruby-value str">' '</span>)
+145:         <span class="ruby-keyword kw">end</span>        
+146:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

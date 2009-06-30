@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: SVG::Graph::Bar</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">SVG::Graph::Bar</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/SVG/Graph/Bar_rb.html">
+                lib/SVG/Graph/Bar.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="BarBase.html">
+                BarBase
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h3>Create presentation quality <a href="../../SVG.html">SVG</a> bar graphs easily</h3>
+<h1>Synopsis</h1>
+<pre>
+  require 'SVG/Graph/Bar'
+
+  fields = %w(Jan Feb Mar);
+  data_sales_02 = [12, 45, 21]
+
+  graph = SVG::Graph::Bar.new(
+    :height =&gt; 500,
+    :width =&gt; 300,
+    :fields =&gt; fields
+  )
+
+  graph.add_data(
+    :data =&gt; data_sales_02,
+    :title =&gt; 'Sales 2002'
+  )
+
+  print &quot;Content-type: image/svg+xml\r\n\r\n&quot;
+  print graph.burn
+</pre>
+<h1>Description</h1>
+<p>
+This object aims to allow you to easily create high quality <a
+href="../../SVG.html">SVG</a>[<a
+href="http://www.w3c.org/tr/svg">www.w3c.org/tr/svg</a> bar graphs. You can
+either use the default style sheet or supply your own. Either way there are
+many options which can be configured to give you control over how the graph
+is generated - with or without a key, data elements at each point, title,
+subtitle etc.
+</p>
+<h1>Notes</h1>
+<p>
+The default stylesheet handles upto 12 data sets, if you use more you must
+create your own stylesheet and add the additional settings for the extra
+data sets. You will know if you go over 12 data sets as they will have no
+style and be in black.
+</p>
+<h1>Examples</h1>
+<ul>
+<li><a
+href="http://germane-software.com/repositories/public/SVG/test/test.rb">germane-software.com/repositories/public/SVG/test/test.rb</a>
+
+</li>
+</ul>
+<h1>See also</h1>
+<ul>
+<li><a href="../Graph.html">SVG::Graph::Graph</a>
+
+</li>
+<li><a href="BarHorizontal.html">SVG::Graph::BarHorizontal</a>
+
+</li>
+<li><a href="Line.html">SVG::Graph::Line</a>
+
+</li>
+<li><a href="Pie.html">SVG::Graph::Pie</a>
+
+</li>
+<li><a href="Plot.html">SVG::Graph::Plot</a>
+
+</li>
+<li><a href="TimeSeries.html">SVG::Graph::TimeSeries</a>
+
+</li>
+</ul>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000794">draw_data</a>&nbsp;&nbsp;
+      <a href="#M000791">get_x_labels</a>&nbsp;&nbsp;
+      <a href="#M000792">get_y_labels</a>&nbsp;&nbsp;
+      <a href="#M000790">set_defaults</a>&nbsp;&nbsp;
+      <a href="#M000793">x_label_offset</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name">REXML</span>
+      </div>
+    </div>
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000790" class="method-detail">
+        <a name="M000790"></a>
+
+        <div class="method-heading">
+          <a href="#M000790" class="method-signature">
+          <span class="method-name">set_defaults</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+See Graph::initialize and BarBase::set_defaults
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000790-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000790-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/SVG/Graph/Bar.rb, line 62</span>
+62:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">set_defaults</span> 
+63:         <span class="ruby-keyword kw">super</span>
+64:         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">top_align</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">top_font</span> = <span class="ruby-value">1</span>
+65:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Protected Instance methods</h3>
+
+      <div id="method-M000794" class="method-detail">
+        <a name="M000794"></a>
+
+        <div class="method-heading">
+          <a href="#M000794" class="method-signature">
+          <span class="method-name">draw_data</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000794-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000794-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/SVG/Graph/Bar.rb, line 98</span>
+ 98:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">draw_data</span>
+ 99:         <span class="ruby-identifier">minvalue</span> = <span class="ruby-identifier">min_value</span>
+100:         <span class="ruby-identifier">fieldwidth</span> = <span class="ruby-identifier">field_width</span>
+101: 
+102:         <span class="ruby-identifier">unit_size</span> =  (<span class="ruby-ivar">@graph_height</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">font_size</span><span class="ruby-operator">*</span><span class="ruby-value">2</span><span class="ruby-operator">*</span><span class="ruby-identifier">top_font</span>) <span class="ruby-operator">/</span> 
+103:                           (<span class="ruby-identifier">get_y_labels</span>.<span class="ruby-identifier">max</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">get_y_labels</span>.<span class="ruby-identifier">min</span>)
+104:         <span class="ruby-identifier">bargap</span> = <span class="ruby-identifier">bar_gap</span> <span class="ruby-value">? </span>(<span class="ruby-identifier">fieldwidth</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">10</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">fieldwidth</span> <span class="ruby-operator">/</span> <span class="ruby-value">2</span> <span class="ruby-operator">:</span> <span class="ruby-value">10</span>) <span class="ruby-operator">:</span> <span class="ruby-value">0</span>
+105: 
+106:         <span class="ruby-identifier">bar_width</span> = <span class="ruby-identifier">fieldwidth</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">bargap</span>
+107:         <span class="ruby-identifier">bar_width</span> <span class="ruby-operator">/=</span> <span class="ruby-ivar">@data</span>.<span class="ruby-identifier">length</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">stack</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:side</span>
+108:         <span class="ruby-identifier">x_mod</span> = (<span class="ruby-ivar">@graph_width</span><span class="ruby-operator">-</span><span class="ruby-identifier">bargap</span>)<span class="ruby-operator">/</span><span class="ruby-value">2</span> <span class="ruby-operator">-</span> (<span class="ruby-identifier">stack</span><span class="ruby-operator">==</span><span class="ruby-identifier">:side</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">bar_width</span><span class="ruby-operator">/</span><span class="ruby-value">2</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>)
+109:  
+110:         <span class="ruby-identifier">bottom</span> = <span class="ruby-ivar">@graph_height</span>
+111: 
+112:         <span class="ruby-identifier">field_count</span> = <span class="ruby-value">0</span>
+113:         <span class="ruby-ivar">@config</span>[<span class="ruby-identifier">:fields</span>].<span class="ruby-identifier">each_index</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+114:           <span class="ruby-identifier">dataset_count</span> = <span class="ruby-value">0</span>
+115:           <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">dataset</span> <span class="ruby-keyword kw">in</span> <span class="ruby-ivar">@data</span>
+116:           
+117:             <span class="ruby-comment cmt"># cases (assume 0 = +ve):</span>
+118:             <span class="ruby-comment cmt">#   value  min  length</span>
+119:             <span class="ruby-comment cmt">#    +ve   +ve  value - min</span>
+120:             <span class="ruby-comment cmt">#    +ve   -ve  value - 0</span>
+121:             <span class="ruby-comment cmt">#    -ve   -ve  value.abs - 0</span>
+122:           
+123:             <span class="ruby-identifier">value</span> = <span class="ruby-identifier">dataset</span>[<span class="ruby-identifier">:data</span>][<span class="ruby-identifier">i</span>]
+124:             
+125:             <span class="ruby-identifier">left</span> = (<span class="ruby-identifier">fieldwidth</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">field_count</span>)
+126:             
+127:             <span class="ruby-identifier">length</span> = (<span class="ruby-identifier">value</span>.<span class="ruby-identifier">abs</span> <span class="ruby-operator">-</span> (<span class="ruby-identifier">minvalue</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">minvalue</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>)) <span class="ruby-operator">*</span> <span class="ruby-identifier">unit_size</span>
+128:             <span class="ruby-comment cmt"># top is 0 if value is negative</span>
+129:             <span class="ruby-identifier">top</span> = <span class="ruby-identifier">bottom</span> <span class="ruby-operator">-</span> (((<span class="ruby-identifier">value</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">0</span> <span class="ruby-operator">?</span> <span class="ruby-value">0</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">value</span>) <span class="ruby-operator">-</span> <span class="ruby-identifier">minvalue</span>) <span class="ruby-operator">*</span> <span class="ruby-identifier">unit_size</span>)
+130:             <span class="ruby-identifier">left</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">bar_width</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">dataset_count</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">stack</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:side</span>
+131:  
+132:             <span class="ruby-ivar">@graph</span>.<span class="ruby-identifier">add_element</span>( <span class="ruby-value str">&quot;rect&quot;</span>, {
+133:               <span class="ruby-value str">&quot;x&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">left</span>.<span class="ruby-identifier">to_s</span>,
+134:               <span class="ruby-value str">&quot;y&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">top</span>.<span class="ruby-identifier">to_s</span>,
+135:               <span class="ruby-value str">&quot;width&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">bar_width</span>.<span class="ruby-identifier">to_s</span>,
+136:               <span class="ruby-value str">&quot;height&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">length</span>.<span class="ruby-identifier">to_s</span>,
+137:               <span class="ruby-value str">&quot;class&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;fill#{dataset_count+1}&quot;</span>
+138:             })
+139: 
+140:             <span class="ruby-identifier">make_datapoint_text</span>(<span class="ruby-identifier">left</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">bar_width</span><span class="ruby-operator">/</span><span class="ruby-value">2.0</span>, <span class="ruby-identifier">top</span> <span class="ruby-operator">-</span> <span class="ruby-value">6</span>, <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_s</span>)
+141:             <span class="ruby-identifier">dataset_count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+142:           <span class="ruby-keyword kw">end</span>
+143:           <span class="ruby-identifier">field_count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+144:         }
+145:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000791" class="method-detail">
+        <a name="M000791"></a>
+
+        <div class="method-heading">
+          <a href="#M000791" class="method-signature">
+          <span class="method-name">get_x_labels</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000791-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000791-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/SVG/Graph/Bar.rb, line 69</span>
+69:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_x_labels</span>
+70:         <span class="ruby-ivar">@config</span>[<span class="ruby-identifier">:fields</span>]
+71:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000792" class="method-detail">
+        <a name="M000792"></a>
+
+        <div class="method-heading">
+          <a href="#M000792" class="method-signature">
+          <span class="method-name">get_y_labels</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000792-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000792-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/SVG/Graph/Bar.rb, line 73</span>
+73:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_y_labels</span>
+74:         <span class="ruby-identifier">maxvalue</span> = <span class="ruby-identifier">max_value</span>
+75:         <span class="ruby-identifier">minvalue</span> = <span class="ruby-identifier">min_value</span>
+76:         <span class="ruby-identifier">range</span> = <span class="ruby-identifier">maxvalue</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">minvalue</span>
+77: 
+78:         <span class="ruby-identifier">top_pad</span> = <span class="ruby-identifier">range</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span> <span class="ruby-operator">?</span> <span class="ruby-value">10</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">range</span> <span class="ruby-operator">/</span> <span class="ruby-value">20.0</span>
+79:         <span class="ruby-identifier">scale_range</span> = (<span class="ruby-identifier">maxvalue</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">top_pad</span>) <span class="ruby-operator">-</span> <span class="ruby-identifier">minvalue</span>
+80: 
+81:         <span class="ruby-identifier">scale_division</span> = <span class="ruby-identifier">scale_divisions</span> <span class="ruby-operator">||</span> (<span class="ruby-identifier">scale_range</span> <span class="ruby-operator">/</span> <span class="ruby-value">10.0</span>)
+82: 
+83:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">scale_integers</span>
+84:           <span class="ruby-identifier">scale_division</span> = <span class="ruby-identifier">scale_division</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">1</span> <span class="ruby-operator">?</span> <span class="ruby-value">1</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">scale_division</span>.<span class="ruby-identifier">round</span>
+85:         <span class="ruby-keyword kw">end</span>
+86: 
+87:         <span class="ruby-identifier">rv</span> = []
+88:         <span class="ruby-identifier">maxvalue</span> = <span class="ruby-identifier">maxvalue</span><span class="ruby-operator">%</span><span class="ruby-identifier">scale_division</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span> <span class="ruby-operator">?</span> 
+89:           <span class="ruby-identifier">maxvalue</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">maxvalue</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">scale_division</span>
+90:         <span class="ruby-identifier">minvalue</span>.<span class="ruby-identifier">step</span>( <span class="ruby-identifier">maxvalue</span>, <span class="ruby-identifier">scale_division</span> ) {<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">rv</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">v</span>}
+91:         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">rv</span>
+92:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000793" class="method-detail">
+        <a name="M000793"></a>
+
+        <div class="method-heading">
+          <a href="#M000793" class="method-signature">
+          <span class="method-name">x_label_offset</span><span class="method-args">( width )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000793-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000793-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/SVG/Graph/Bar.rb, line 94</span>
+94:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">x_label_offset</span>( <span class="ruby-identifier">width</span> )
+95:         <span class="ruby-identifier">width</span> <span class="ruby-operator">/</span> <span class="ruby-value">2.0</span>
+96:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

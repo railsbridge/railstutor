@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Redmine::Scm::Adapters::GitAdapter</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Redmine::Scm::Adapters::GitAdapter</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../../files/lib/redmine/scm/adapters/git_adapter_rb.html">
+                lib/redmine/scm/adapters/git_adapter.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                AbstractAdapter
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000953">annotate</a>&nbsp;&nbsp;
+      <a href="#M000954">cat</a>&nbsp;&nbsp;
+      <a href="#M000952">diff</a>&nbsp;&nbsp;
+      <a href="#M000950">entries</a>&nbsp;&nbsp;
+      <a href="#M000948">get_rev</a>&nbsp;&nbsp;
+      <a href="#M000949">info</a>&nbsp;&nbsp;
+      <a href="#M000951">revisions</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GIT_BIN</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;git&quot;</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Git executable name
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000953" class="method-detail">
+        <a name="M000953"></a>
+
+        <div class="method-heading">
+          <a href="#M000953" class="method-signature">
+          <span class="method-name">annotate</span><span class="method-args">(path, identifier=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000953-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000953-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redmine/scm/adapters/git_adapter.rb, line 236</span>
+236:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">annotate</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">identifier</span>=<span class="ruby-keyword kw">nil</span>)
+237:           <span class="ruby-identifier">identifier</span> = <span class="ruby-value str">'HEAD'</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">identifier</span>.<span class="ruby-identifier">blank?</span>
+238:           <span class="ruby-identifier">cmd</span> = <span class="ruby-node">&quot;#{GIT_BIN} --git-dir #{target('')} blame -l #{shell_quote identifier} -- #{shell_quote path}&quot;</span>
+239:           <span class="ruby-identifier">blame</span> = <span class="ruby-constant">Annotate</span>.<span class="ruby-identifier">new</span>
+240:           <span class="ruby-identifier">content</span> = <span class="ruby-keyword kw">nil</span>
+241:           <span class="ruby-identifier">shellout</span>(<span class="ruby-identifier">cmd</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">io</span><span class="ruby-operator">|</span> <span class="ruby-identifier">io</span>.<span class="ruby-identifier">binmode</span>; <span class="ruby-identifier">content</span> = <span class="ruby-identifier">io</span>.<span class="ruby-identifier">read</span> }
+242:           <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">$?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">$?</span>.<span class="ruby-identifier">exitstatus</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+243:           <span class="ruby-comment cmt"># git annotates binary files</span>
+244:           <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">content</span>.<span class="ruby-identifier">is_binary_data?</span>
+245:           <span class="ruby-identifier">content</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;\n&quot;</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+246:             <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/([0-9a-f]{39,40})\s\((\w*)[^\)]*\)(.*)/</span>
+247:             <span class="ruby-identifier">blame</span>.<span class="ruby-identifier">add_line</span>(<span class="ruby-identifier">$3</span>.<span class="ruby-identifier">rstrip</span>, <span class="ruby-constant">Revision</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:identifier</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">$1</span>, <span class="ruby-identifier">:author</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">$2</span>.<span class="ruby-identifier">strip</span>))
+248:           <span class="ruby-keyword kw">end</span>
+249:           <span class="ruby-identifier">blame</span>
+250:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000954" class="method-detail">
+        <a name="M000954"></a>
+
+        <div class="method-heading">
+          <a href="#M000954" class="method-signature">
+          <span class="method-name">cat</span><span class="method-args">(path, identifier=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000954-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000954-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redmine/scm/adapters/git_adapter.rb, line 252</span>
+252:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cat</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">identifier</span>=<span class="ruby-keyword kw">nil</span>)
+253:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">identifier</span>.<span class="ruby-identifier">nil?</span>
+254:             <span class="ruby-identifier">identifier</span> = <span class="ruby-value str">'HEAD'</span>
+255:           <span class="ruby-keyword kw">end</span>
+256:           <span class="ruby-identifier">cmd</span> = <span class="ruby-node">&quot;#{GIT_BIN} --git-dir #{target('')} show #{shell_quote(identifier + ':' + path)}&quot;</span>
+257:           <span class="ruby-identifier">cat</span> = <span class="ruby-keyword kw">nil</span>
+258:           <span class="ruby-identifier">shellout</span>(<span class="ruby-identifier">cmd</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">io</span><span class="ruby-operator">|</span>
+259:             <span class="ruby-identifier">io</span>.<span class="ruby-identifier">binmode</span>
+260:             <span class="ruby-identifier">cat</span> = <span class="ruby-identifier">io</span>.<span class="ruby-identifier">read</span>
+261:           <span class="ruby-keyword kw">end</span>
+262:           <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">$?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">$?</span>.<span class="ruby-identifier">exitstatus</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+263:           <span class="ruby-identifier">cat</span>
+264:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000952" class="method-detail">
+        <a name="M000952"></a>
+
+        <div class="method-heading">
+          <a href="#M000952" class="method-signature">
+          <span class="method-name">diff</span><span class="method-args">(path, identifier_from, identifier_to=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000952-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000952-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redmine/scm/adapters/git_adapter.rb, line 217</span>
+217:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">diff</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">identifier_from</span>, <span class="ruby-identifier">identifier_to</span>=<span class="ruby-keyword kw">nil</span>)
+218:           <span class="ruby-identifier">path</span> <span class="ruby-operator">||=</span> <span class="ruby-value str">''</span>
+219:           <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">identifier_to</span>
+220:             <span class="ruby-identifier">identifier_to</span> = <span class="ruby-keyword kw">nil</span>
+221:           <span class="ruby-keyword kw">end</span>
+222:           
+223:           <span class="ruby-identifier">cmd</span> = <span class="ruby-node">&quot;#{GIT_BIN} --git-dir #{target('')} show #{shell_quote identifier_from}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">identifier_to</span>.<span class="ruby-identifier">nil?</span>
+224:           <span class="ruby-identifier">cmd</span> = <span class="ruby-node">&quot;#{GIT_BIN} --git-dir #{target('')} diff #{shell_quote identifier_to} #{shell_quote identifier_from}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">identifier_to</span>.<span class="ruby-identifier">nil?</span>
+225:           <span class="ruby-identifier">cmd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; -- #{shell_quote path}&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">empty?</span>
+226:           <span class="ruby-identifier">diff</span> = []
+227:           <span class="ruby-identifier">shellout</span>(<span class="ruby-identifier">cmd</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">io</span><span class="ruby-operator">|</span>
+228:             <span class="ruby-identifier">io</span>.<span class="ruby-identifier">each_line</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+229:               <span class="ruby-identifier">diff</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
+230:             <span class="ruby-keyword kw">end</span>
+231:           <span class="ruby-keyword kw">end</span>
+232:           <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">$?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">$?</span>.<span class="ruby-identifier">exitstatus</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+233:           <span class="ruby-identifier">diff</span>
+234:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000950" class="method-detail">
+        <a name="M000950"></a>
+
+        <div class="method-heading">
+          <a href="#M000950" class="method-signature">
+          <span class="method-name">entries</span><span class="method-args">(path=nil, identifier=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000950-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000950-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redmine/scm/adapters/git_adapter.rb, line 110</span>
+110:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">entries</span>(<span class="ruby-identifier">path</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">identifier</span>=<span class="ruby-keyword kw">nil</span>)
+111:           <span class="ruby-identifier">path</span> <span class="ruby-operator">||=</span> <span class="ruby-value str">''</span>
+112:           <span class="ruby-identifier">entries</span> = <span class="ruby-constant">Entries</span>.<span class="ruby-identifier">new</span>
+113:           <span class="ruby-identifier">cmd</span> = <span class="ruby-node">&quot;#{GIT_BIN} --git-dir #{target('')} ls-tree -l &quot;</span>
+114:           <span class="ruby-identifier">cmd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">shell_quote</span>(<span class="ruby-value str">&quot;HEAD:&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">path</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">identifier</span>.<span class="ruby-identifier">nil?</span>
+115:           <span class="ruby-identifier">cmd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">shell_quote</span>(<span class="ruby-identifier">identifier</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;:&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">path</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">identifier</span>
+116:           <span class="ruby-identifier">shellout</span>(<span class="ruby-identifier">cmd</span>)  <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">io</span><span class="ruby-operator">|</span>
+117:             <span class="ruby-identifier">io</span>.<span class="ruby-identifier">each_line</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+118:               <span class="ruby-identifier">e</span> = <span class="ruby-identifier">line</span>.<span class="ruby-identifier">chomp</span>.<span class="ruby-identifier">to_s</span>
+119:               <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">e</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^\d+\s+(\w+)\s+([0-9a-f]{40})\s+([0-9-]+)\s+(.+)$/</span>
+120:                 <span class="ruby-identifier">type</span> = <span class="ruby-identifier">$1</span>
+121:                 <span class="ruby-identifier">sha</span> = <span class="ruby-identifier">$2</span>
+122:                 <span class="ruby-identifier">size</span> = <span class="ruby-identifier">$3</span>
+123:                 <span class="ruby-identifier">name</span> = <span class="ruby-identifier">$4</span>
+124:                 <span class="ruby-identifier">entries</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Entry</span>.<span class="ruby-identifier">new</span>({<span class="ruby-identifier">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">name</span>,
+125:                                        <span class="ruby-identifier">:path</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-identifier">path</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-value">? </span><span class="ruby-identifier">name</span> <span class="ruby-operator">:</span> <span class="ruby-node">&quot;#{path}/#{name}&quot;</span>),
+126:                                        <span class="ruby-identifier">:kind</span> =<span class="ruby-operator">&gt;</span> ((<span class="ruby-identifier">type</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;tree&quot;</span>) <span class="ruby-operator">?</span> <span class="ruby-value str">'dir'</span> <span class="ruby-operator">:</span> <span class="ruby-value str">'file'</span>),
+127:                                        <span class="ruby-identifier">:size</span> =<span class="ruby-operator">&gt;</span> ((<span class="ruby-identifier">type</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;tree&quot;</span>) <span class="ruby-operator">?</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">size</span>),
+128:                                        <span class="ruby-identifier">:lastrev</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">get_rev</span>(<span class="ruby-identifier">identifier</span>,(<span class="ruby-identifier">path</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-value">? </span><span class="ruby-identifier">name</span> <span class="ruby-operator">:</span> <span class="ruby-node">&quot;#{path}/#{name}&quot;</span>)) 
+129:                                                                   
+130:                                      }) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">entries</span>.<span class="ruby-identifier">detect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">entry</span><span class="ruby-operator">|</span> <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">name</span>}
+131:               <span class="ruby-keyword kw">end</span>
+132:             <span class="ruby-keyword kw">end</span>
+133:           <span class="ruby-keyword kw">end</span>
+134:           <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">$?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">$?</span>.<span class="ruby-identifier">exitstatus</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+135:           <span class="ruby-identifier">entries</span>.<span class="ruby-identifier">sort_by_name</span>
+136:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000948" class="method-detail">
+        <a name="M000948"></a>
+
+        <div class="method-heading">
+          <a href="#M000948" class="method-signature">
+          <span class="method-name">get_rev</span><span class="method-args">(rev,path)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Get the revision of a particuliar file
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000948-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000948-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/redmine/scm/adapters/git_adapter.rb, line 29</span>
+29:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_rev</span> (<span class="ruby-identifier">rev</span>,<span class="ruby-identifier">path</span>)
+30:         
+31:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">rev</span> <span class="ruby-operator">!=</span> <span class="ruby-value str">'latest'</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">rev</span>.<span class="ruby-identifier">nil?</span>
+32:             <span class="ruby-identifier">cmd</span>=<span class="ruby-node">&quot;#{GIT_BIN} --git-dir #{target('')} show --date=iso --pretty=fuller #{shell_quote rev} -- #{shell_quote path}&quot;</span> 
+33:           <span class="ruby-keyword kw">else</span>
+34:             <span class="ruby-ivar">@branch</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">shellout</span>(<span class="ruby-node">&quot;#{GIT_BIN} --git-dir #{target('')} branch&quot;</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">io</span><span class="ruby-operator">|</span> <span class="ruby-identifier">io</span>.<span class="ruby-identifier">grep</span>(<span class="ruby-regexp re">/\*/</span>)[<span class="ruby-value">0</span>].<span class="ruby-identifier">strip</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp re">/\* (.*)/</span>)[<span class="ruby-value">1</span>] }
+35:             <span class="ruby-identifier">cmd</span>=<span class="ruby-node">&quot;#{GIT_BIN} --git-dir #{target('')} log --date=iso --pretty=fuller -1 #{@branch} -- #{shell_quote path}&quot;</span> 
+36:           <span class="ruby-keyword kw">end</span>
+37:           <span class="ruby-identifier">rev</span>=[]
+38:           <span class="ruby-identifier">i</span>=<span class="ruby-value">0</span>
+39:           <span class="ruby-identifier">shellout</span>(<span class="ruby-identifier">cmd</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">io</span><span class="ruby-operator">|</span>
+40:             <span class="ruby-identifier">files</span>=[]
+41:             <span class="ruby-identifier">changeset</span> = {}
+42:             <span class="ruby-identifier">parsing_descr</span> = <span class="ruby-value">0</span>  <span class="ruby-comment cmt">#0: not parsing desc or files, 1: parsing desc, 2: parsing files</span>
+43: 
+44:             <span class="ruby-identifier">io</span>.<span class="ruby-identifier">each_line</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+45:               <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^commit ([0-9a-f]{40})$/</span>
+46:                 <span class="ruby-identifier">key</span> = <span class="ruby-value str">&quot;commit&quot;</span>
+47:                 <span class="ruby-identifier">value</span> = <span class="ruby-identifier">$1</span>
+48:                 <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">parsing_descr</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">parsing_descr</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>)
+49:                   <span class="ruby-identifier">parsing_descr</span> = <span class="ruby-value">0</span>
+50:                   <span class="ruby-identifier">rev</span> = <span class="ruby-constant">Revision</span>.<span class="ruby-identifier">new</span>({<span class="ruby-identifier">:identifier</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">changeset</span>[<span class="ruby-identifier">:commit</span>],
+51:                                       <span class="ruby-identifier">:scmid</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">changeset</span>[<span class="ruby-identifier">:commit</span>],
+52:                                       <span class="ruby-identifier">:author</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">changeset</span>[<span class="ruby-identifier">:author</span>],
+53:                                       <span class="ruby-identifier">:time</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">changeset</span>[<span class="ruby-identifier">:date</span>]),
+54:                                       <span class="ruby-identifier">:message</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">changeset</span>[<span class="ruby-identifier">:description</span>],
+55:                                       <span class="ruby-identifier">:paths</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">files</span>
+56:                                      })
+57:                   <span class="ruby-identifier">changeset</span> = {}
+58:                   <span class="ruby-identifier">files</span> = []
+59:                 <span class="ruby-keyword kw">end</span>
+60:                 <span class="ruby-identifier">changeset</span>[<span class="ruby-identifier">:commit</span>] = <span class="ruby-identifier">$1</span>
+61:               <span class="ruby-keyword kw">elsif</span> (<span class="ruby-identifier">parsing_descr</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^(\w+):\s*(.*)$/</span>
+62:                 <span class="ruby-identifier">key</span> = <span class="ruby-identifier">$1</span>
+63:                 <span class="ruby-identifier">value</span> = <span class="ruby-identifier">$2</span>
+64:                 <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">key</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;Author&quot;</span>
+65:                   <span class="ruby-identifier">changeset</span>[<span class="ruby-identifier">:author</span>] = <span class="ruby-identifier">value</span>
+66:                 <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">key</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;CommitDate&quot;</span>
+67:                   <span class="ruby-identifier">changeset</span>[<span class="ruby-identifier">:date</span>] = <span class="ruby-identifier">value</span>
+68:                 <span class="ruby-keyword kw">end</span>
+69:               <span class="ruby-keyword kw">elsif</span> (<span class="ruby-identifier">parsing_descr</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">chomp</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;&quot;</span>
+70:                 <span class="ruby-identifier">parsing_descr</span> = <span class="ruby-value">1</span>
+71:                 <span class="ruby-identifier">changeset</span>[<span class="ruby-identifier">:description</span>] = <span class="ruby-value str">&quot;&quot;</span>
+72:               <span class="ruby-keyword kw">elsif</span> (<span class="ruby-identifier">parsing_descr</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">parsing_descr</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^:\d+\s+\d+\s+[0-9a-f.]+\s+[0-9a-f.]+\s+(\w)\s+(.+)$/</span>
+73:                 <span class="ruby-identifier">parsing_descr</span> = <span class="ruby-value">2</span>
+74:                 <span class="ruby-identifier">fileaction</span> = <span class="ruby-identifier">$1</span>
+75:                 <span class="ruby-identifier">filepath</span> = <span class="ruby-identifier">$2</span>
+76:                 <span class="ruby-identifier">files</span> <span class="ruby-operator">&lt;&lt;</span> {<span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">fileaction</span>, <span class="ruby-identifier">:path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">filepath</span>}
+77:               <span class="ruby-keyword kw">elsif</span> (<span class="ruby-identifier">parsing_descr</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">chomp</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;&quot;</span>
+78:                 <span class="ruby-identifier">parsing_descr</span> = <span class="ruby-value">2</span>
+79:               <span class="ruby-keyword kw">elsif</span> (<span class="ruby-identifier">parsing_descr</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>)
+80:                 <span class="ruby-identifier">changeset</span>[<span class="ruby-identifier">:description</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
+81:               <span class="ruby-keyword kw">end</span>
+82:             <span class="ruby-keyword kw">end</span> 
+83:             <span class="ruby-identifier">rev</span> = <span class="ruby-constant">Revision</span>.<span class="ruby-identifier">new</span>({<span class="ruby-identifier">:identifier</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">changeset</span>[<span class="ruby-identifier">:commit</span>],
+84:                                 <span class="ruby-identifier">:scmid</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">changeset</span>[<span class="ruby-identifier">:commit</span>],
+85:                                 <span class="ruby-identifier">:author</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">changeset</span>[<span class="ruby-identifier">:author</span>],
+86:                                 <span class="ruby-identifier">:time</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-identifier">changeset</span>[<span class="ruby-identifier">:date</span>] <span class="ruby-operator">?</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">changeset</span>[<span class="ruby-identifier">:date</span>]) <span class="ruby-operator">:</span> <span class="ruby-keyword kw">nil</span>),
+87:                                 <span class="ruby-identifier">:message</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">changeset</span>[<span class="ruby-identifier">:description</span>],
+88:                                 <span class="ruby-identifier">:paths</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">files</span>
+89:                                })
+90: 
+91:           <span class="ruby-keyword kw">end</span>
+92: 
+93:           <span class="ruby-identifier">get_rev</span>(<span class="ruby-value str">'latest'</span>,<span class="ruby-identifier">path</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">rev</span> <span class="ruby-operator">==</span> []
+94: 
+95:           <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">$?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">$?</span>.<span class="ruby-identifier">exitstatus</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+96:           <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">rev</span>
+97:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000949" class="method-detail">
+        <a name="M000949"></a>
+
+        <div class="method-heading">
+          <a href="#M000949" class="method-signature">
+          <span class="method-name">info</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000949-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000949-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redmine/scm/adapters/git_adapter.rb, line 99</span>
+ 99:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">info</span>
+100:           <span class="ruby-identifier">revs</span> = <span class="ruby-identifier">revisions</span>(<span class="ruby-identifier">url</span>,<span class="ruby-keyword kw">nil</span>,<span class="ruby-keyword kw">nil</span>,{<span class="ruby-identifier">:limit</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>})
+101:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">revs</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">revs</span>.<span class="ruby-identifier">any?</span>
+102:             <span class="ruby-constant">Info</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:root_url</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">url</span>, <span class="ruby-identifier">:lastrev</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">revs</span>.<span class="ruby-identifier">first</span>)
+103:           <span class="ruby-keyword kw">else</span>
+104:             <span class="ruby-keyword kw">nil</span>
+105:           <span class="ruby-keyword kw">end</span>
+106:         <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">ENOENT</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+107:           <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+108:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000951" class="method-detail">
+        <a name="M000951"></a>
+
+        <div class="method-heading">
+          <a href="#M000951" class="method-signature">
+          <span class="method-name">revisions</span><span class="method-args">(path, identifier_from, identifier_to, options={}) {|revision| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000951-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000951-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redmine/scm/adapters/git_adapter.rb, line 138</span>
+138:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">revisions</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">identifier_from</span>, <span class="ruby-identifier">identifier_to</span>, <span class="ruby-identifier">options</span>={})
+139:           <span class="ruby-identifier">revisions</span> = <span class="ruby-constant">Revisions</span>.<span class="ruby-identifier">new</span>
+140:           <span class="ruby-identifier">cmd</span> = <span class="ruby-node">&quot;#{GIT_BIN} --git-dir #{target('')} log --raw --date=iso --pretty=fuller&quot;</span>
+141:           <span class="ruby-identifier">cmd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot; --reverse&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:reverse</span>]
+142:           <span class="ruby-identifier">cmd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; -n #{options[:limit].to_i} &quot;</span> <span class="ruby-keyword kw">if</span> (<span class="ruby-operator">!</span><span class="ruby-identifier">options</span>.<span class="ruby-identifier">nil?</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:limit</span>]
+143:           <span class="ruby-identifier">cmd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; #{shell_quote(identifier_from + '..')} &quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">identifier_from</span>
+144:           <span class="ruby-identifier">cmd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; #{shell_quote identifier_to} &quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">identifier_to</span>
+145:           <span class="ruby-identifier">shellout</span>(<span class="ruby-identifier">cmd</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">io</span><span class="ruby-operator">|</span>
+146:             <span class="ruby-identifier">files</span>=[]
+147:             <span class="ruby-identifier">changeset</span> = {}
+148:             <span class="ruby-identifier">parsing_descr</span> = <span class="ruby-value">0</span>  <span class="ruby-comment cmt">#0: not parsing desc or files, 1: parsing desc, 2: parsing files</span>
+149:             <span class="ruby-identifier">revno</span> = <span class="ruby-value">1</span>
+150: 
+151:             <span class="ruby-identifier">io</span>.<span class="ruby-identifier">each_line</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+152:               <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^commit ([0-9a-f]{40})$/</span>
+153:                 <span class="ruby-identifier">key</span> = <span class="ruby-value str">&quot;commit&quot;</span>
+154:                 <span class="ruby-identifier">value</span> = <span class="ruby-identifier">$1</span>
+155:                 <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">parsing_descr</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">parsing_descr</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>)
+156:                   <span class="ruby-identifier">parsing_descr</span> = <span class="ruby-value">0</span>
+157:                   <span class="ruby-identifier">revision</span> = <span class="ruby-constant">Revision</span>.<span class="ruby-identifier">new</span>({<span class="ruby-identifier">:identifier</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">changeset</span>[<span class="ruby-identifier">:commit</span>],
+158:                                            <span class="ruby-identifier">:scmid</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">changeset</span>[<span class="ruby-identifier">:commit</span>],
+159:                                            <span class="ruby-identifier">:author</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">changeset</span>[<span class="ruby-identifier">:author</span>],
+160:                                            <span class="ruby-identifier">:time</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">changeset</span>[<span class="ruby-identifier">:date</span>]),
+161:                                            <span class="ruby-identifier">:message</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">changeset</span>[<span class="ruby-identifier">:description</span>],
+162:                                            <span class="ruby-identifier">:paths</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">files</span>
+163:                                           })
+164:                   <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>
+165:                     <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">revision</span>
+166:                   <span class="ruby-keyword kw">else</span>
+167:                     <span class="ruby-identifier">revisions</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">revision</span>
+168:                   <span class="ruby-keyword kw">end</span>
+169:                   <span class="ruby-identifier">changeset</span> = {}
+170:                   <span class="ruby-identifier">files</span> = []
+171:                   <span class="ruby-identifier">revno</span> = <span class="ruby-identifier">revno</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+172:                 <span class="ruby-keyword kw">end</span>
+173:                 <span class="ruby-identifier">changeset</span>[<span class="ruby-identifier">:commit</span>] = <span class="ruby-identifier">$1</span>
+174:               <span class="ruby-keyword kw">elsif</span> (<span class="ruby-identifier">parsing_descr</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^(\w+):\s*(.*)$/</span>
+175:                 <span class="ruby-identifier">key</span> = <span class="ruby-identifier">$1</span>
+176:                 <span class="ruby-identifier">value</span> = <span class="ruby-identifier">$2</span>
+177:                 <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">key</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;Author&quot;</span>
+178:                   <span class="ruby-identifier">changeset</span>[<span class="ruby-identifier">:author</span>] = <span class="ruby-identifier">value</span>
+179:                 <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">key</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;CommitDate&quot;</span>
+180:                   <span class="ruby-identifier">changeset</span>[<span class="ruby-identifier">:date</span>] = <span class="ruby-identifier">value</span>
+181:                 <span class="ruby-keyword kw">end</span>
+182:               <span class="ruby-keyword kw">elsif</span> (<span class="ruby-identifier">parsing_descr</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">chomp</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;&quot;</span>
+183:                 <span class="ruby-identifier">parsing_descr</span> = <span class="ruby-value">1</span>
+184:                 <span class="ruby-identifier">changeset</span>[<span class="ruby-identifier">:description</span>] = <span class="ruby-value str">&quot;&quot;</span>
+185:               <span class="ruby-keyword kw">elsif</span> (<span class="ruby-identifier">parsing_descr</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">parsing_descr</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^:\d+\s+\d+\s+[0-9a-f.]+\s+[0-9a-f.]+\s+(\w)\s+(.+)$/</span>
+186:                 <span class="ruby-identifier">parsing_descr</span> = <span class="ruby-value">2</span>
+187:                 <span class="ruby-identifier">fileaction</span> = <span class="ruby-identifier">$1</span>
+188:                 <span class="ruby-identifier">filepath</span> = <span class="ruby-identifier">$2</span>
+189:                 <span class="ruby-identifier">files</span> <span class="ruby-operator">&lt;&lt;</span> {<span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">fileaction</span>, <span class="ruby-identifier">:path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">filepath</span>}
+190:               <span class="ruby-keyword kw">elsif</span> (<span class="ruby-identifier">parsing_descr</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">chomp</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;&quot;</span>
+191:                 <span class="ruby-identifier">parsing_descr</span> = <span class="ruby-value">2</span>
+192:               <span class="ruby-keyword kw">elsif</span> (<span class="ruby-identifier">parsing_descr</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>)
+193:                 <span class="ruby-identifier">changeset</span>[<span class="ruby-identifier">:description</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>[<span class="ruby-value">4</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>]
+194:               <span class="ruby-keyword kw">end</span>
+195:             <span class="ruby-keyword kw">end</span> 
+196: 
+197:             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">changeset</span>[<span class="ruby-identifier">:commit</span>]
+198:               <span class="ruby-identifier">revision</span> = <span class="ruby-constant">Revision</span>.<span class="ruby-identifier">new</span>({<span class="ruby-identifier">:identifier</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">changeset</span>[<span class="ruby-identifier">:commit</span>],
+199:                                        <span class="ruby-identifier">:scmid</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">changeset</span>[<span class="ruby-identifier">:commit</span>],
+200:                                        <span class="ruby-identifier">:author</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">changeset</span>[<span class="ruby-identifier">:author</span>],
+201:                                        <span class="ruby-identifier">:time</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">changeset</span>[<span class="ruby-identifier">:date</span>]),
+202:                                        <span class="ruby-identifier">:message</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">changeset</span>[<span class="ruby-identifier">:description</span>],
+203:                                        <span class="ruby-identifier">:paths</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">files</span>
+204:                                       })
+205:               <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>
+206:                 <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">revision</span>
+207:               <span class="ruby-keyword kw">else</span>
+208:                 <span class="ruby-identifier">revisions</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">revision</span>
+209:               <span class="ruby-keyword kw">end</span>
+210:             <span class="ruby-keyword kw">end</span>
+211:           <span class="ruby-keyword kw">end</span>
+212: 
+213:           <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">$?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">$?</span>.<span class="ruby-identifier">exitstatus</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+214:           <span class="ruby-identifier">revisions</span>
+215:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

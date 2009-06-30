@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Version</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Version</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/app/models/version_rb.html">
+                app/models/version.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                ActiveRecord::Base
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+redMine - project management software Copyright (C) 2006 Jean-Philippe Lang
+</p>
+<p>
+This program is free software; you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the Free
+Software Foundation; either version 2 of the License, or (at your option)
+any later version.
+</p>
+<p>
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+more details.
+</p>
+<p>
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc., 51
+Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000355">&lt;=&gt;</a>&nbsp;&nbsp;
+      <a href="#M000352">closed_issues_count</a>&nbsp;&nbsp;
+      <a href="#M000348">closed_pourcent</a>&nbsp;&nbsp;
+      <a href="#M000346">completed?</a>&nbsp;&nbsp;
+      <a href="#M000347">completed_pourcent</a>&nbsp;&nbsp;
+      <a href="#M000343">due_date</a>&nbsp;&nbsp;
+      <a href="#M000344">estimated_hours</a>&nbsp;&nbsp;
+      <a href="#M000350">issues_count</a>&nbsp;&nbsp;
+      <a href="#M000351">open_issues_count</a>&nbsp;&nbsp;
+      <a href="#M000349">overdue?</a>&nbsp;&nbsp;
+      <a href="#M000345">spent_hours</a>&nbsp;&nbsp;
+      <a href="#M000342">start_date</a>&nbsp;&nbsp;
+      <a href="#M000354">to_s</a>&nbsp;&nbsp;
+      <a href="#M000353">wiki_page</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000355" class="method-detail">
+        <a name="M000355"></a>
+
+        <div class="method-heading">
+          <a href="#M000355" class="method-signature">
+          <span class="method-name">&lt;=&gt;</span><span class="method-args">(version)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Versions are sorted by effective_date and name Those with no effective_date
+are at the end, sorted by name
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000355-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000355-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/version.rb, line 105</span>
+105:   <span class="ruby-keyword kw">def</span> <span class="ruby-operator">&lt;=&gt;</span>(<span class="ruby-identifier">version</span>)
+106:     <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">effective_date</span>
+107:       <span class="ruby-identifier">version</span>.<span class="ruby-identifier">effective_date</span> <span class="ruby-value">? </span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">effective_date</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">version</span>.<span class="ruby-identifier">effective_date</span> <span class="ruby-value">? </span><span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">version</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">effective_date</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">version</span>.<span class="ruby-identifier">effective_date</span>) <span class="ruby-operator">:</span> <span class="ruby-value">-1</span>
+108:     <span class="ruby-keyword kw">else</span>
+109:       <span class="ruby-identifier">version</span>.<span class="ruby-identifier">effective_date</span> <span class="ruby-value">? </span><span class="ruby-value">1</span> <span class="ruby-operator">:</span> (<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">version</span>.<span class="ruby-identifier">name</span>)
+110:     <span class="ruby-keyword kw">end</span>
+111:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000352" class="method-detail">
+        <a name="M000352"></a>
+
+        <div class="method-heading">
+          <a href="#M000352" class="method-signature">
+          <span class="method-name">closed_issues_count</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the total amount of closed issues for this version.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000352-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000352-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/version.rb, line 90</span>
+90:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">closed_issues_count</span>
+91:     <span class="ruby-ivar">@closed_issues_count</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Issue</span>.<span class="ruby-identifier">count</span>(<span class="ruby-identifier">:all</span>, <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-value str">&quot;fixed_version_id = ? AND is_closed = ?&quot;</span>, <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-keyword kw">true</span>], <span class="ruby-identifier">:include</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:status</span>)
+92:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000348" class="method-detail">
+        <a name="M000348"></a>
+
+        <div class="method-heading">
+          <a href="#M000348" class="method-signature">
+          <span class="method-name">closed_pourcent</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the percentage of issues that have been marked as
+&#8216;closed&#8217;.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000348-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000348-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/version.rb, line 66</span>
+66:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">closed_pourcent</span>
+67:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">issues_count</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+68:       <span class="ruby-value">0</span>
+69:     <span class="ruby-keyword kw">else</span>
+70:       <span class="ruby-identifier">issues_progress</span>(<span class="ruby-keyword kw">false</span>)
+71:     <span class="ruby-keyword kw">end</span>
+72:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000346" class="method-detail">
+        <a name="M000346"></a>
+
+        <div class="method-heading">
+          <a href="#M000346" class="method-signature">
+          <span class="method-name">completed?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns true if the version is completed: due date reached and no open
+issues
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000346-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000346-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/version.rb, line 49</span>
+49:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">completed?</span>
+50:     <span class="ruby-identifier">effective_date</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">effective_date</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-constant">Date</span>.<span class="ruby-identifier">today</span>) <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">open_issues_count</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>)
+51:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000347" class="method-detail">
+        <a name="M000347"></a>
+
+        <div class="method-heading">
+          <a href="#M000347" class="method-signature">
+          <span class="method-name">completed_pourcent</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the completion percentage of this version based on the amount of
+open/closed issues and the time spent on the open issues.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000347-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000347-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/version.rb, line 55</span>
+55:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">completed_pourcent</span>
+56:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">issues_count</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+57:       <span class="ruby-value">0</span>
+58:     <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">open_issues_count</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+59:       <span class="ruby-value">100</span>
+60:     <span class="ruby-keyword kw">else</span>
+61:       <span class="ruby-identifier">issues_progress</span>(<span class="ruby-keyword kw">false</span>) <span class="ruby-operator">+</span> <span class="ruby-identifier">issues_progress</span>(<span class="ruby-keyword kw">true</span>)
+62:     <span class="ruby-keyword kw">end</span>
+63:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000343" class="method-detail">
+        <a name="M000343"></a>
+
+        <div class="method-heading">
+          <a href="#M000343" class="method-signature">
+          <span class="method-name">due_date</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000343-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000343-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/version.rb, line 34</span>
+34:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">due_date</span>
+35:     <span class="ruby-identifier">effective_date</span>
+36:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000344" class="method-detail">
+        <a name="M000344"></a>
+
+        <div class="method-heading">
+          <a href="#M000344" class="method-signature">
+          <span class="method-name">estimated_hours</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the total estimated time for this version
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000344-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000344-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/version.rb, line 39</span>
+39:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">estimated_hours</span>
+40:     <span class="ruby-ivar">@estimated_hours</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">fixed_issues</span>.<span class="ruby-identifier">sum</span>(<span class="ruby-identifier">:estimated_hours</span>).<span class="ruby-identifier">to_f</span>
+41:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000350" class="method-detail">
+        <a name="M000350"></a>
+
+        <div class="method-heading">
+          <a href="#M000350" class="method-signature">
+          <span class="method-name">issues_count</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns assigned issues count
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000350-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000350-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/version.rb, line 80</span>
+80:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">issues_count</span>
+81:     <span class="ruby-ivar">@issue_count</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">fixed_issues</span>.<span class="ruby-identifier">count</span>
+82:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000351" class="method-detail">
+        <a name="M000351"></a>
+
+        <div class="method-heading">
+          <a href="#M000351" class="method-signature">
+          <span class="method-name">open_issues_count</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the total amount of open issues for this version.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000351-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000351-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/version.rb, line 85</span>
+85:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">open_issues_count</span>
+86:     <span class="ruby-ivar">@open_issues_count</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Issue</span>.<span class="ruby-identifier">count</span>(<span class="ruby-identifier">:all</span>, <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-value str">&quot;fixed_version_id = ? AND is_closed = ?&quot;</span>, <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-keyword kw">false</span>], <span class="ruby-identifier">:include</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:status</span>)
+87:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000349" class="method-detail">
+        <a name="M000349"></a>
+
+        <div class="method-heading">
+          <a href="#M000349" class="method-signature">
+          <span class="method-name">overdue?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns true if the version is overdue: due date reached and some open
+issues
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000349-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000349-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/version.rb, line 75</span>
+75:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">overdue?</span>
+76:     <span class="ruby-identifier">effective_date</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">effective_date</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Date</span>.<span class="ruby-identifier">today</span>) <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">open_issues_count</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>)
+77:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000345" class="method-detail">
+        <a name="M000345"></a>
+
+        <div class="method-heading">
+          <a href="#M000345" class="method-signature">
+          <span class="method-name">spent_hours</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the total reported time for this version
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000345-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000345-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/version.rb, line 44</span>
+44:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">spent_hours</span>
+45:     <span class="ruby-ivar">@spent_hours</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">TimeEntry</span>.<span class="ruby-identifier">sum</span>(<span class="ruby-identifier">:hours</span>, <span class="ruby-identifier">:include</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:issue</span>, <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-node">&quot;#{Issue.table_name}.fixed_version_id = ?&quot;</span>, <span class="ruby-identifier">id</span>]).<span class="ruby-identifier">to_f</span>
+46:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000342" class="method-detail">
+        <a name="M000342"></a>
+
+        <div class="method-heading">
+          <a href="#M000342" class="method-signature">
+          <span class="method-name">start_date</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000342-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000342-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/version.rb, line 30</span>
+30:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">start_date</span>
+31:     <span class="ruby-identifier">effective_date</span>
+32:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000354" class="method-detail">
+        <a name="M000354"></a>
+
+        <div class="method-heading">
+          <a href="#M000354" class="method-signature">
+          <span class="method-name">to_s</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000354-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000354-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/version.rb, line 101</span>
+101:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s</span>; <span class="ruby-identifier">name</span> <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000353" class="method-detail">
+        <a name="M000353"></a>
+
+        <div class="method-heading">
+          <a href="#M000353" class="method-signature">
+          <span class="method-name">wiki_page</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000353-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000353-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/version.rb, line 94</span>
+94:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">wiki_page</span>
+95:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">project</span>.<span class="ruby-identifier">wiki</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">wiki_page_title</span>.<span class="ruby-identifier">blank?</span>
+96:       <span class="ruby-ivar">@wiki_page</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">project</span>.<span class="ruby-identifier">wiki</span>.<span class="ruby-identifier">find_page</span>(<span class="ruby-identifier">wiki_page_title</span>)
+97:     <span class="ruby-keyword kw">end</span>
+98:     <span class="ruby-ivar">@wiki_page</span>
+99:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

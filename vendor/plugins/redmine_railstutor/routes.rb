@@ -1,0 +1,1 @@
+home '', :controller => 'pages', :action => 'home'

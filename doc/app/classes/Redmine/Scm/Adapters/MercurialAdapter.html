@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Redmine::Scm::Adapters::MercurialAdapter</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Redmine::Scm::Adapters::MercurialAdapter</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../../files/lib/redmine/scm/adapters/mercurial_adapter_rb.html">
+                lib/redmine/scm/adapters/mercurial_adapter.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                AbstractAdapter
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000910">annotate</a>&nbsp;&nbsp;
+      <a href="#M000909">cat</a>&nbsp;&nbsp;
+      <a href="#M000900">client_version</a>&nbsp;&nbsp;
+      <a href="#M000908">diff</a>&nbsp;&nbsp;
+      <a href="#M000906">entries</a>&nbsp;&nbsp;
+      <a href="#M000901">hgversion</a>&nbsp;&nbsp;
+      <a href="#M000902">hgversion_from_command_line</a>&nbsp;&nbsp;
+      <a href="#M000905">info</a>&nbsp;&nbsp;
+      <a href="#M000907">revisions</a>&nbsp;&nbsp;
+      <a href="#M000903">template_path</a>&nbsp;&nbsp;
+      <a href="#M000904">template_path_for</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HG_BIN</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;hg&quot;</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Mercurial executable name
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TEMPLATES_DIR</td>
+          <td>=</td>
+          <td class="context-item-value">File.dirname(__FILE__) + &quot;/mercurial&quot;</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TEMPLATE_NAME</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;hg-template&quot;</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TEMPLATE_EXTENSION</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;tmpl&quot;</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000900" class="method-detail">
+        <a name="M000900"></a>
+
+        <div class="method-heading">
+          <a href="#M000900" class="method-signature">
+          <span class="method-name">client_version</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000900-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000900-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/redmine/scm/adapters/mercurial_adapter.rb, line 32</span>
+32:           <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">client_version</span>
+33:             <span class="ruby-ivar">@@client_version</span> <span class="ruby-operator">||=</span> (<span class="ruby-identifier">hgversion</span> <span class="ruby-operator">||</span> [])
+34:           <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000901" class="method-detail">
+        <a name="M000901"></a>
+
+        <div class="method-heading">
+          <a href="#M000901" class="method-signature">
+          <span class="method-name">hgversion</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000901-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000901-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/redmine/scm/adapters/mercurial_adapter.rb, line 36</span>
+36:           <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">hgversion</span>  
+37:             <span class="ruby-comment cmt"># The hg version is expressed either as a</span>
+38:             <span class="ruby-comment cmt"># release number (eg 0.9.5 or 1.0) or as a revision</span>
+39:             <span class="ruby-comment cmt"># id composed of 12 hexa characters.</span>
+40:             <span class="ruby-identifier">theversion</span> = <span class="ruby-identifier">hgversion_from_command_line</span>
+41:             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">theversion</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp re">/^\d+(\.\d+)+/</span>)
+42:               <span class="ruby-identifier">theversion</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;.&quot;</span>).<span class="ruby-identifier">collect</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">:to_i</span>)
+43:             <span class="ruby-keyword kw">end</span>
+44:           <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000902" class="method-detail">
+        <a name="M000902"></a>
+
+        <div class="method-heading">
+          <a href="#M000902" class="method-signature">
+          <span class="method-name">hgversion_from_command_line</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000902-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000902-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/redmine/scm/adapters/mercurial_adapter.rb, line 46</span>
+46:           <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">hgversion_from_command_line</span>
+47:             <span class="ruby-node">%x{#{HG_BIN} --version}</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp re">/\(version (.*)\)/</span>)[<span class="ruby-value">1</span>]
+48:           <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000903" class="method-detail">
+        <a name="M000903"></a>
+
+        <div class="method-heading">
+          <a href="#M000903" class="method-signature">
+          <span class="method-name">template_path</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000903-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000903-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/redmine/scm/adapters/mercurial_adapter.rb, line 50</span>
+50:           <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">template_path</span>
+51:             <span class="ruby-ivar">@@template_path</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">template_path_for</span>(<span class="ruby-identifier">client_version</span>)
+52:           <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000904" class="method-detail">
+        <a name="M000904"></a>
+
+        <div class="method-heading">
+          <a href="#M000904" class="method-signature">
+          <span class="method-name">template_path_for</span><span class="method-args">(version)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000904-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000904-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/redmine/scm/adapters/mercurial_adapter.rb, line 54</span>
+54:           <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">template_path_for</span>(<span class="ruby-identifier">version</span>)
+55:             <span class="ruby-keyword kw">if</span> ((<span class="ruby-identifier">version</span> <span class="ruby-operator">&lt;=&gt;</span> [<span class="ruby-value">0</span>,<span class="ruby-value">9</span>,<span class="ruby-value">5</span>]) <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">version</span>.<span class="ruby-identifier">empty?</span>
+56:               <span class="ruby-identifier">ver</span> = <span class="ruby-value str">&quot;1.0&quot;</span>
+57:             <span class="ruby-keyword kw">else</span>
+58:               <span class="ruby-identifier">ver</span> = <span class="ruby-value str">&quot;0.9.5&quot;</span>
+59:             <span class="ruby-keyword kw">end</span>
+60:             <span class="ruby-node">&quot;#{TEMPLATES_DIR}/#{TEMPLATE_NAME}-#{ver}.#{TEMPLATE_EXTENSION}&quot;</span>
+61:           <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000910" class="method-detail">
+        <a name="M000910"></a>
+
+        <div class="method-heading">
+          <a href="#M000910" class="method-signature">
+          <span class="method-name">annotate</span><span class="method-args">(path, identifier=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000910-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000910-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redmine/scm/adapters/mercurial_adapter.rb, line 185</span>
+185:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">annotate</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">identifier</span>=<span class="ruby-keyword kw">nil</span>)
+186:           <span class="ruby-identifier">path</span> <span class="ruby-operator">||=</span> <span class="ruby-value str">''</span>
+187:           <span class="ruby-identifier">cmd</span> = <span class="ruby-node">&quot;#{HG_BIN} -R #{target('')}&quot;</span>
+188:           <span class="ruby-identifier">cmd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot; annotate -n -u&quot;</span>
+189:           <span class="ruby-identifier">cmd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot; -r &quot;</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">identifier</span> <span class="ruby-value">? </span><span class="ruby-identifier">identifier</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">:</span> <span class="ruby-value str">&quot;tip&quot;</span>)
+190:           <span class="ruby-identifier">cmd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; -r #{identifier.to_i}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">identifier</span>
+191:           <span class="ruby-identifier">cmd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; #{target(path)}&quot;</span>
+192:           <span class="ruby-identifier">blame</span> = <span class="ruby-constant">Annotate</span>.<span class="ruby-identifier">new</span>
+193:           <span class="ruby-identifier">shellout</span>(<span class="ruby-identifier">cmd</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">io</span><span class="ruby-operator">|</span>
+194:             <span class="ruby-identifier">io</span>.<span class="ruby-identifier">each_line</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+195:               <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">%r{^([^:]+)\s(\d+):(.*)$}</span>
+196:               <span class="ruby-identifier">blame</span>.<span class="ruby-identifier">add_line</span>(<span class="ruby-identifier">$3</span>.<span class="ruby-identifier">rstrip</span>, <span class="ruby-constant">Revision</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:identifier</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">$2</span>.<span class="ruby-identifier">to_i</span>, <span class="ruby-identifier">:author</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">$1</span>.<span class="ruby-identifier">strip</span>))
+197:             <span class="ruby-keyword kw">end</span>
+198:           <span class="ruby-keyword kw">end</span>
+199:           <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">$?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">$?</span>.<span class="ruby-identifier">exitstatus</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+200:           <span class="ruby-identifier">blame</span>
+201:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000909" class="method-detail">
+        <a name="M000909"></a>
+
+        <div class="method-heading">
+          <a href="#M000909" class="method-signature">
+          <span class="method-name">cat</span><span class="method-args">(path, identifier=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000909-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000909-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redmine/scm/adapters/mercurial_adapter.rb, line 172</span>
+172:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cat</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">identifier</span>=<span class="ruby-keyword kw">nil</span>)
+173:           <span class="ruby-identifier">cmd</span> = <span class="ruby-node">&quot;#{HG_BIN} -R #{target('')} cat&quot;</span>
+174:           <span class="ruby-identifier">cmd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot; -r &quot;</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">identifier</span> <span class="ruby-value">? </span><span class="ruby-identifier">identifier</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">:</span> <span class="ruby-value str">&quot;tip&quot;</span>)
+175:           <span class="ruby-identifier">cmd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; #{target(path)}&quot;</span>
+176:           <span class="ruby-identifier">cat</span> = <span class="ruby-keyword kw">nil</span>
+177:           <span class="ruby-identifier">shellout</span>(<span class="ruby-identifier">cmd</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">io</span><span class="ruby-operator">|</span>
+178:             <span class="ruby-identifier">io</span>.<span class="ruby-identifier">binmode</span>
+179:             <span class="ruby-identifier">cat</span> = <span class="ruby-identifier">io</span>.<span class="ruby-identifier">read</span>
+180:           <span class="ruby-keyword kw">end</span>
+181:           <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">$?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">$?</span>.<span class="ruby-identifier">exitstatus</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+182:           <span class="ruby-identifier">cat</span>
+183:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000908" class="method-detail">
+        <a name="M000908"></a>
+
+        <div class="method-heading">
+          <a href="#M000908" class="method-signature">
+          <span class="method-name">diff</span><span class="method-args">(path, identifier_from, identifier_to=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000908-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000908-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redmine/scm/adapters/mercurial_adapter.rb, line 153</span>
+153:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">diff</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">identifier_from</span>, <span class="ruby-identifier">identifier_to</span>=<span class="ruby-keyword kw">nil</span>)
+154:           <span class="ruby-identifier">path</span> <span class="ruby-operator">||=</span> <span class="ruby-value str">''</span>
+155:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">identifier_to</span>
+156:             <span class="ruby-identifier">identifier_to</span> = <span class="ruby-identifier">identifier_to</span>.<span class="ruby-identifier">to_i</span> 
+157:           <span class="ruby-keyword kw">else</span>
+158:             <span class="ruby-identifier">identifier_to</span> = <span class="ruby-identifier">identifier_from</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>
+159:           <span class="ruby-keyword kw">end</span>
+160:           <span class="ruby-identifier">cmd</span> = <span class="ruby-node">&quot;#{HG_BIN} -R #{target('')} diff -r #{identifier_to} -r #{identifier_from} --nodates&quot;</span>
+161:           <span class="ruby-identifier">cmd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; -I #{target(path)}&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">empty?</span>
+162:           <span class="ruby-identifier">diff</span> = []
+163:           <span class="ruby-identifier">shellout</span>(<span class="ruby-identifier">cmd</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">io</span><span class="ruby-operator">|</span>
+164:             <span class="ruby-identifier">io</span>.<span class="ruby-identifier">each_line</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+165:               <span class="ruby-identifier">diff</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
+166:             <span class="ruby-keyword kw">end</span>
+167:           <span class="ruby-keyword kw">end</span>
+168:           <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">$?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">$?</span>.<span class="ruby-identifier">exitstatus</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+169:           <span class="ruby-identifier">diff</span>
+170:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000906" class="method-detail">
+        <a name="M000906"></a>
+
+        <div class="method-heading">
+          <a href="#M000906" class="method-signature">
+          <span class="method-name">entries</span><span class="method-args">(path=nil, identifier=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000906-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000906-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redmine/scm/adapters/mercurial_adapter.rb, line 79</span>
+ 79:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">entries</span>(<span class="ruby-identifier">path</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">identifier</span>=<span class="ruby-keyword kw">nil</span>)
+ 80:           <span class="ruby-identifier">path</span> <span class="ruby-operator">||=</span> <span class="ruby-value str">''</span>
+ 81:           <span class="ruby-identifier">entries</span> = <span class="ruby-constant">Entries</span>.<span class="ruby-identifier">new</span>
+ 82:           <span class="ruby-identifier">cmd</span> = <span class="ruby-node">&quot;#{HG_BIN} -R #{target('')} --cwd #{target('')} locate&quot;</span>
+ 83:           <span class="ruby-identifier">cmd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot; -r &quot;</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">identifier</span> <span class="ruby-value">? </span><span class="ruby-identifier">identifier</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">:</span> <span class="ruby-value str">&quot;tip&quot;</span>)
+ 84:           <span class="ruby-identifier">cmd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">shell_quote</span>(<span class="ruby-node">&quot;path:#{path}&quot;</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">empty?</span>
+ 85:           <span class="ruby-identifier">shellout</span>(<span class="ruby-identifier">cmd</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">io</span><span class="ruby-operator">|</span>
+ 86:             <span class="ruby-identifier">io</span>.<span class="ruby-identifier">each_line</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+ 87:               <span class="ruby-comment cmt"># HG uses antislashs as separator on Windows</span>
+ 88:               <span class="ruby-identifier">line</span> = <span class="ruby-identifier">line</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/\\/</span>, <span class="ruby-value str">&quot;/&quot;</span>)
+ 89:               <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">e</span> = <span class="ruby-identifier">line</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-node">%r{^#{with_trailling_slash(path)}}</span>,<span class="ruby-value str">''</span>)
+ 90:                 <span class="ruby-identifier">e</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">line</span>
+ 91:                 <span class="ruby-identifier">e</span> = <span class="ruby-identifier">e</span>.<span class="ruby-identifier">chomp</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp re">%r{[\/\\]}</span>)
+ 92:                 <span class="ruby-identifier">entries</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Entry</span>.<span class="ruby-identifier">new</span>({<span class="ruby-identifier">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">first</span>,
+ 93:                                        <span class="ruby-identifier">:path</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-identifier">path</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-value">? </span><span class="ruby-identifier">e</span>.<span class="ruby-identifier">first</span> <span class="ruby-operator">:</span> <span class="ruby-node">&quot;#{with_trailling_slash(path)}#{e.first}&quot;</span>),
+ 94:                                        <span class="ruby-identifier">:kind</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-identifier">e</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span> <span class="ruby-operator">?</span> <span class="ruby-value str">'dir'</span> <span class="ruby-operator">:</span> <span class="ruby-value str">'file'</span>),
+ 95:                                        <span class="ruby-identifier">:lastrev</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Revision</span>.<span class="ruby-identifier">new</span>
+ 96:                                      }) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">entries</span>.<span class="ruby-identifier">detect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">entry</span><span class="ruby-operator">|</span> <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">first</span>}
+ 97:               <span class="ruby-keyword kw">end</span>
+ 98:             <span class="ruby-keyword kw">end</span>
+ 99:           <span class="ruby-keyword kw">end</span>
+100:           <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">$?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">$?</span>.<span class="ruby-identifier">exitstatus</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+101:           <span class="ruby-identifier">entries</span>.<span class="ruby-identifier">sort_by_name</span>
+102:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000905" class="method-detail">
+        <a name="M000905"></a>
+
+        <div class="method-heading">
+          <a href="#M000905" class="method-signature">
+          <span class="method-name">info</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000905-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000905-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/redmine/scm/adapters/mercurial_adapter.rb, line 64</span>
+64:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">info</span>
+65:           <span class="ruby-identifier">cmd</span> = <span class="ruby-node">&quot;#{HG_BIN} -R #{target('')} root&quot;</span>
+66:           <span class="ruby-identifier">root_url</span> = <span class="ruby-keyword kw">nil</span>
+67:           <span class="ruby-identifier">shellout</span>(<span class="ruby-identifier">cmd</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">io</span><span class="ruby-operator">|</span>
+68:             <span class="ruby-identifier">root_url</span> = <span class="ruby-identifier">io</span>.<span class="ruby-identifier">gets</span>
+69:           <span class="ruby-keyword kw">end</span>
+70:           <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">$?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">$?</span>.<span class="ruby-identifier">exitstatus</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+71:           <span class="ruby-identifier">info</span> = <span class="ruby-constant">Info</span>.<span class="ruby-identifier">new</span>({<span class="ruby-identifier">:root_url</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">root_url</span>.<span class="ruby-identifier">chomp</span>,
+72:                             <span class="ruby-identifier">:lastrev</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">revisions</span>(<span class="ruby-keyword kw">nil</span>,<span class="ruby-keyword kw">nil</span>,<span class="ruby-keyword kw">nil</span>,{<span class="ruby-identifier">:limit</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>}).<span class="ruby-identifier">last</span>
+73:                           })
+74:           <span class="ruby-identifier">info</span>
+75:         <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">CommandFailed</span>
+76:           <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+77:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000907" class="method-detail">
+        <a name="M000907"></a>
+
+        <div class="method-heading">
+          <a href="#M000907" class="method-signature">
+          <span class="method-name">revisions</span><span class="method-args">(path=nil, identifier_from=nil, identifier_to=nil, options={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Fetch the <a href="MercurialAdapter.html#M000907">revisions</a> by using a
+template file that makes Mercurial produce a xml output.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000907-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000907-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redmine/scm/adapters/mercurial_adapter.rb, line 106</span>
+106:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">revisions</span>(<span class="ruby-identifier">path</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">identifier_from</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">identifier_to</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">options</span>={})  
+107:           <span class="ruby-identifier">revisions</span> = <span class="ruby-constant">Revisions</span>.<span class="ruby-identifier">new</span>
+108:           <span class="ruby-identifier">cmd</span> = <span class="ruby-node">&quot;#{HG_BIN} --debug --encoding utf8 -R #{target('')} log -C --style #{shell_quote self.class.template_path}&quot;</span>
+109:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">identifier_from</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">identifier_to</span>
+110:             <span class="ruby-identifier">cmd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; -r #{identifier_from.to_i}:#{identifier_to.to_i}&quot;</span>
+111:           <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">identifier_from</span>
+112:             <span class="ruby-identifier">cmd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; -r #{identifier_from.to_i}:&quot;</span>
+113:           <span class="ruby-keyword kw">end</span>
+114:           <span class="ruby-identifier">cmd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; --limit #{options[:limit].to_i}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:limit</span>]
+115:           <span class="ruby-identifier">cmd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; #{path}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">path</span>
+116:           <span class="ruby-identifier">shellout</span>(<span class="ruby-identifier">cmd</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">io</span><span class="ruby-operator">|</span>
+117:             <span class="ruby-keyword kw">begin</span>
+118:               <span class="ruby-comment cmt"># HG doesn't close the XML Document...</span>
+119:               <span class="ruby-identifier">doc</span> = <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Document</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">io</span>.<span class="ruby-identifier">read</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&lt;/log&gt;&quot;</span>)
+120:               <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">elements</span>.<span class="ruby-identifier">each</span>(<span class="ruby-value str">&quot;log/logentry&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">logentry</span><span class="ruby-operator">|</span>
+121:                 <span class="ruby-identifier">paths</span> = []
+122:                 <span class="ruby-identifier">copies</span> = <span class="ruby-identifier">logentry</span>.<span class="ruby-identifier">get_elements</span>(<span class="ruby-value str">'paths/path-copied'</span>)
+123:                 <span class="ruby-identifier">logentry</span>.<span class="ruby-identifier">elements</span>.<span class="ruby-identifier">each</span>(<span class="ruby-value str">&quot;paths/path&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">path</span><span class="ruby-operator">|</span>
+124:                   <span class="ruby-comment cmt"># Detect if the added file is a copy</span>
+125:                   <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">'action'</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'A'</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">c</span> = <span class="ruby-identifier">copies</span>.<span class="ruby-identifier">find</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">text</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">text</span> }
+126:                     <span class="ruby-identifier">from_path</span> = <span class="ruby-identifier">c</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">'copyfrom-path'</span>]
+127:                     <span class="ruby-identifier">from_rev</span> = <span class="ruby-identifier">logentry</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">'revision'</span>]
+128:                   <span class="ruby-keyword kw">end</span>
+129:                   <span class="ruby-identifier">paths</span> <span class="ruby-operator">&lt;&lt;</span> {<span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">'action'</span>],
+130:                     <span class="ruby-identifier">:path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;/#{path.text}&quot;</span>,
+131:                     <span class="ruby-identifier">:from_path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">from_path</span> <span class="ruby-value">? </span><span class="ruby-node">&quot;/#{from_path}&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">nil</span>,
+132:                     <span class="ruby-identifier">:from_revision</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">from_rev</span> <span class="ruby-value">? </span><span class="ruby-identifier">from_rev</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">nil</span>
+133:                   }
+134:                 <span class="ruby-keyword kw">end</span>
+135:                 <span class="ruby-identifier">paths</span>.<span class="ruby-identifier">sort!</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>,<span class="ruby-identifier">y</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>[<span class="ruby-identifier">:path</span>] <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">y</span>[<span class="ruby-identifier">:path</span>] }
+136:                 
+137:                 <span class="ruby-identifier">revisions</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Revision</span>.<span class="ruby-identifier">new</span>({<span class="ruby-identifier">:identifier</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">logentry</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">'revision'</span>],
+138:                                             <span class="ruby-identifier">:scmid</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">logentry</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">'node'</span>],
+139:                                             <span class="ruby-identifier">:author</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-identifier">logentry</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'author'</span>] <span class="ruby-operator">?</span> <span class="ruby-identifier">logentry</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'author'</span>].<span class="ruby-identifier">text</span> <span class="ruby-operator">:</span> <span class="ruby-value str">&quot;&quot;</span>),
+140:                                             <span class="ruby-identifier">:time</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">logentry</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'date'</span>].<span class="ruby-identifier">text</span>).<span class="ruby-identifier">localtime</span>,
+141:                                             <span class="ruby-identifier">:message</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">logentry</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'msg'</span>].<span class="ruby-identifier">text</span>,
+142:                                             <span class="ruby-identifier">:paths</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">paths</span>
+143:                                           })
+144:               <span class="ruby-keyword kw">end</span>
+145:             <span class="ruby-keyword kw">rescue</span>
+146:               <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-identifier">$!</span>)
+147:             <span class="ruby-keyword kw">end</span>
+148:           <span class="ruby-keyword kw">end</span>
+149:           <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">$?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">$?</span>.<span class="ruby-identifier">exitstatus</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+150:           <span class="ruby-identifier">revisions</span>
+151:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

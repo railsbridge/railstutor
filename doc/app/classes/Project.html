@@ -1,0 +1,1164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Project</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Project</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/app/models/project_rb.html">
+                app/models/project.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                ActiveRecord::Base
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+redMine - <a href="Project.html#M000376">project</a> management software
+Copyright (C) 2006 Jean-Philippe Lang
+</p>
+<p>
+This program is free software; you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the Free
+Software Foundation; either version 2 of the License, or (at your option)
+any later version.
+</p>
+<p>
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+more details.
+</p>
+<p>
+You should have received a <a href="Project.html#M000384">copy</a> of the
+GNU General Public License along with this program; if not, write to the
+Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+02110-1301, USA.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000377">&lt;=&gt;</a>&nbsp;&nbsp;
+      <a href="#M000365">active?</a>&nbsp;&nbsp;
+      <a href="#M000375">all_issue_custom_fields</a>&nbsp;&nbsp;
+      <a href="#M000361">allowed_to_condition</a>&nbsp;&nbsp;
+      <a href="#M000380">allows_to?</a>&nbsp;&nbsp;
+      <a href="#M000366">archive</a>&nbsp;&nbsp;
+      <a href="#M000373">assignable_users</a>&nbsp;&nbsp;
+      <a href="#M000384">copy</a>&nbsp;&nbsp;
+      <a href="#M000385">copy_from</a>&nbsp;&nbsp;
+      <a href="#M000372">delete_all_members</a>&nbsp;&nbsp;
+      <a href="#M000382">enabled_module_names=</a>&nbsp;&nbsp;
+      <a href="#M000363">find</a>&nbsp;&nbsp;
+      <a href="#M000356">identifier=</a>&nbsp;&nbsp;
+      <a href="#M000357">identifier_frozen?</a>&nbsp;&nbsp;
+      <a href="#M000358">issues_with_subprojects</a>&nbsp;&nbsp;
+      <a href="#M000359">latest</a>&nbsp;&nbsp;
+      <a href="#M000381">module_enabled?</a>&nbsp;&nbsp;
+      <a href="#M000383">next_identifier</a>&nbsp;&nbsp;
+      <a href="#M000368">possible_parents</a>&nbsp;&nbsp;
+      <a href="#M000376">project</a>&nbsp;&nbsp;
+      <a href="#M000362">project_condition</a>&nbsp;&nbsp;
+      <a href="#M000374">recipients</a>&nbsp;&nbsp;
+      <a href="#M000370">rolled_up_trackers</a>&nbsp;&nbsp;
+      <a href="#M000369">set_parent!</a>&nbsp;&nbsp;
+      <a href="#M000379">short_description</a>&nbsp;&nbsp;
+      <a href="#M000364">to_param</a>&nbsp;&nbsp;
+      <a href="#M000378">to_s</a>&nbsp;&nbsp;
+      <a href="#M000367">unarchive</a>&nbsp;&nbsp;
+      <a href="#M000371">users_by_role</a>&nbsp;&nbsp;
+      <a href="#M000360">visible_by</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STATUS_ACTIVE</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+<a href="Project.html">Project</a> statuses
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STATUS_ARCHIVED</td>
+          <td>=</td>
+          <td class="context-item-value">9</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000361" class="method-detail">
+        <a name="M000361"></a>
+
+        <div class="method-heading">
+          <a href="#M000361" class="method-signature">
+          <span class="method-name">allowed_to_condition</span><span class="method-args">(user, permission, options={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000361-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000361-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/project.rb, line 119</span>
+119:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">allowed_to_condition</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">permission</span>, <span class="ruby-identifier">options</span>={})
+120:     <span class="ruby-identifier">statements</span> = []
+121:     <span class="ruby-identifier">base_statement</span> = <span class="ruby-node">&quot;#{Project.table_name}.status=#{Project::STATUS_ACTIVE}&quot;</span>
+122:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">perm</span> = <span class="ruby-constant">Redmine</span><span class="ruby-operator">::</span><span class="ruby-constant">AccessControl</span>.<span class="ruby-identifier">permission</span>(<span class="ruby-identifier">permission</span>)
+123:       <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">perm</span>.<span class="ruby-identifier">project_module</span>.<span class="ruby-identifier">nil?</span>
+124:         <span class="ruby-comment cmt"># If the permission belongs to a project module, make sure the module is enabled</span>
+125:         <span class="ruby-identifier">base_statement</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; AND EXISTS (SELECT em.id FROM #{EnabledModule.table_name} em WHERE em.name='#{perm.project_module}' AND em.project_id=#{Project.table_name}.id)&quot;</span>
+126:       <span class="ruby-keyword kw">end</span>
+127:     <span class="ruby-keyword kw">end</span>
+128:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:project</span>]
+129:       <span class="ruby-identifier">project_statement</span> = <span class="ruby-node">&quot;#{Project.table_name}.id = #{options[:project].id}&quot;</span>
+130:       <span class="ruby-identifier">project_statement</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; OR (#{Project.table_name}.lft &gt; #{options[:project].lft} AND #{Project.table_name}.rgt &lt; #{options[:project].rgt})&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:with_subprojects</span>]
+131:       <span class="ruby-identifier">base_statement</span> = <span class="ruby-node">&quot;(#{project_statement}) AND (#{base_statement})&quot;</span>
+132:     <span class="ruby-keyword kw">end</span>
+133:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">admin?</span>
+134:       <span class="ruby-comment cmt"># no restriction</span>
+135:     <span class="ruby-keyword kw">else</span>
+136:       <span class="ruby-identifier">statements</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;1=0&quot;</span>
+137:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">logged?</span>
+138:         <span class="ruby-identifier">statements</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{Project.table_name}.is_public = #{connection.quoted_true}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Role</span>.<span class="ruby-identifier">non_member</span>.<span class="ruby-identifier">allowed_to?</span>(<span class="ruby-identifier">permission</span>)
+139:         <span class="ruby-identifier">allowed_project_ids</span> = <span class="ruby-identifier">user</span>.<span class="ruby-identifier">memberships</span>.<span class="ruby-identifier">select</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">roles</span>.<span class="ruby-identifier">detect</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">role</span><span class="ruby-operator">|</span> <span class="ruby-identifier">role</span>.<span class="ruby-identifier">allowed_to?</span>(<span class="ruby-identifier">permission</span>)}}.<span class="ruby-identifier">collect</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">project_id</span>}
+140:         <span class="ruby-identifier">statements</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{Project.table_name}.id IN (#{allowed_project_ids.join(',')})&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">allowed_project_ids</span>.<span class="ruby-identifier">any?</span>
+141:       <span class="ruby-keyword kw">elsif</span> <span class="ruby-constant">Role</span>.<span class="ruby-identifier">anonymous</span>.<span class="ruby-identifier">allowed_to?</span>(<span class="ruby-identifier">permission</span>)
+142:         <span class="ruby-comment cmt"># anonymous user allowed on public project</span>
+143:         <span class="ruby-identifier">statements</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{Project.table_name}.is_public = #{connection.quoted_true}&quot;</span> 
+144:       <span class="ruby-keyword kw">else</span>
+145:         <span class="ruby-comment cmt"># anonymous user is not authorized</span>
+146:       <span class="ruby-keyword kw">end</span>
+147:     <span class="ruby-keyword kw">end</span>
+148:     <span class="ruby-identifier">statements</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-value">? </span><span class="ruby-identifier">base_statement</span> <span class="ruby-operator">:</span> <span class="ruby-node">&quot;((#{base_statement}) AND (#{statements.join(' OR ')}))&quot;</span>
+149:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000385" class="method-detail">
+        <a name="M000385"></a>
+
+        <div class="method-heading">
+          <a href="#M000385" class="method-signature">
+          <span class="method-name">copy_from</span><span class="method-args">(project)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Copies <tt><a href="Project.html#M000376">project</a></tt> and returns the
+new instance. This will not save the <a
+href="Project.html#M000384">copy</a>
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000385-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000385-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/project.rb, line 377</span>
+377:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">copy_from</span>(<span class="ruby-identifier">project</span>)
+378:     <span class="ruby-keyword kw">begin</span>
+379:       <span class="ruby-identifier">project</span> = <span class="ruby-identifier">project</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Project</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">project</span> <span class="ruby-operator">:</span> <span class="ruby-constant">Project</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">project</span>)
+380:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">project</span>
+381:         <span class="ruby-comment cmt"># clear unique attributes</span>
+382:         <span class="ruby-identifier">attributes</span> = <span class="ruby-identifier">project</span>.<span class="ruby-identifier">attributes</span>.<span class="ruby-identifier">dup</span>.<span class="ruby-identifier">except</span>(<span class="ruby-value str">'name'</span>, <span class="ruby-value str">'identifier'</span>, <span class="ruby-value str">'id'</span>, <span class="ruby-value str">'status'</span>)
+383:         <span class="ruby-identifier">copy</span> = <span class="ruby-constant">Project</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">attributes</span>)
+384:         <span class="ruby-identifier">copy</span>.<span class="ruby-identifier">enabled_modules</span> = <span class="ruby-identifier">project</span>.<span class="ruby-identifier">enabled_modules</span>
+385:         <span class="ruby-identifier">copy</span>.<span class="ruby-identifier">trackers</span> = <span class="ruby-identifier">project</span>.<span class="ruby-identifier">trackers</span>
+386:         <span class="ruby-identifier">copy</span>.<span class="ruby-identifier">custom_values</span> = <span class="ruby-identifier">project</span>.<span class="ruby-identifier">custom_values</span>.<span class="ruby-identifier">collect</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">clone</span>}
+387:         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">copy</span>
+388:       <span class="ruby-keyword kw">else</span>
+389:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+390:       <span class="ruby-keyword kw">end</span>
+391:     <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">RecordNotFound</span>
+392:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+393:     <span class="ruby-keyword kw">end</span>
+394:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000363" class="method-detail">
+        <a name="M000363"></a>
+
+        <div class="method-heading">
+          <a href="#M000363" class="method-signature">
+          <span class="method-name">find</span><span class="method-args">(*args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000363-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000363-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/project.rb, line 162</span>
+162:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">find</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+163:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">first</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">args</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp re">/^\d*$/</span>)
+164:       <span class="ruby-identifier">project</span> = <span class="ruby-identifier">find_by_identifier</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+165:       <span class="ruby-identifier">raise</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">RecordNotFound</span>, <span class="ruby-node">&quot;Couldn't find Project with identifier=#{args.first}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">project</span>.<span class="ruby-identifier">nil?</span>
+166:       <span class="ruby-identifier">project</span>
+167:     <span class="ruby-keyword kw">else</span>
+168:       <span class="ruby-keyword kw">super</span>
+169:     <span class="ruby-keyword kw">end</span>
+170:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000359" class="method-detail">
+        <a name="M000359"></a>
+
+        <div class="method-heading">
+          <a href="#M000359" class="method-signature">
+          <span class="method-name">latest</span><span class="method-args">(user=nil, count=5)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+returns <a href="Project.html#M000359">latest</a> created projects non
+public projects will be returned only if user is a member of those
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000359-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000359-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/project.rb, line 99</span>
+ 99:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">latest</span>(<span class="ruby-identifier">user</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">count</span>=<span class="ruby-value">5</span>)
+100:     <span class="ruby-identifier">find</span>(<span class="ruby-identifier">:all</span>, <span class="ruby-identifier">:limit</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">count</span>, <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">visible_by</span>(<span class="ruby-identifier">user</span>), <span class="ruby-identifier">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;created_on DESC&quot;</span>)   
+101:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000383" class="method-detail">
+        <a name="M000383"></a>
+
+        <div class="method-heading">
+          <a href="#M000383" class="method-signature">
+          <span class="method-name">next_identifier</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns an auto-generated <a href="Project.html#M000376">project</a>
+identifier based on the last identifier used
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000383-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000383-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/project.rb, line 330</span>
+330:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">next_identifier</span>
+331:     <span class="ruby-identifier">p</span> = <span class="ruby-constant">Project</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">:first</span>, <span class="ruby-identifier">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'created_on DESC'</span>)
+332:     <span class="ruby-identifier">p</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-value">? </span><span class="ruby-keyword kw">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">p</span>.<span class="ruby-identifier">identifier</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">succ</span>
+333:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000360" class="method-detail">
+        <a name="M000360"></a>
+
+        <div class="method-heading">
+          <a href="#M000360" class="method-signature">
+          <span class="method-name">visible_by</span><span class="method-args">(user=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a SQL :conditions string used to <a
+href="Project.html#M000363">find</a> all active projects for the specified
+user.
+</p>
+<p>
+Examples:
+</p>
+<pre>
+    Projects.visible_by(admin)        =&gt; &quot;projects.status = 1&quot;
+    Projects.visible_by(normal_user)  =&gt; &quot;projects.status = 1 AND projects.is_public = 1&quot;
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000360-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000360-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/project.rb, line 108</span>
+108:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">visible_by</span>(<span class="ruby-identifier">user</span>=<span class="ruby-keyword kw">nil</span>)
+109:     <span class="ruby-identifier">user</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">current</span>
+110:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">user</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">admin?</span>
+111:       <span class="ruby-keyword kw">return</span> <span class="ruby-node">&quot;#{Project.table_name}.status=#{Project::STATUS_ACTIVE}&quot;</span>
+112:     <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">user</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">memberships</span>.<span class="ruby-identifier">any?</span>
+113:       <span class="ruby-keyword kw">return</span> <span class="ruby-node">&quot;#{Project.table_name}.status=#{Project::STATUS_ACTIVE} AND (#{Project.table_name}.is_public = #{connection.quoted_true} or #{Project.table_name}.id IN (#{user.memberships.collect{|m| m.project_id}.join(',')}))&quot;</span>
+114:     <span class="ruby-keyword kw">else</span>
+115:       <span class="ruby-keyword kw">return</span> <span class="ruby-node">&quot;#{Project.table_name}.status=#{Project::STATUS_ACTIVE} AND #{Project.table_name}.is_public = #{connection.quoted_true}&quot;</span>
+116:     <span class="ruby-keyword kw">end</span>
+117:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000377" class="method-detail">
+        <a name="M000377"></a>
+
+        <div class="method-heading">
+          <a href="#M000377" class="method-signature">
+          <span class="method-name">&lt;=&gt;</span><span class="method-args">(project)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000377-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000377-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/project.rb, line 287</span>
+287:   <span class="ruby-keyword kw">def</span> <span class="ruby-operator">&lt;=&gt;</span>(<span class="ruby-identifier">project</span>)
+288:     <span class="ruby-identifier">name</span>.<span class="ruby-identifier">downcase</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">project</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">downcase</span>
+289:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000365" class="method-detail">
+        <a name="M000365"></a>
+
+        <div class="method-heading">
+          <a href="#M000365" class="method-signature">
+          <span class="method-name">active?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000365-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000365-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/project.rb, line 177</span>
+177:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">active?</span>
+178:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">status</span> <span class="ruby-operator">==</span> <span class="ruby-constant">STATUS_ACTIVE</span>
+179:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000375" class="method-detail">
+        <a name="M000375"></a>
+
+        <div class="method-heading">
+          <a href="#M000375" class="method-signature">
+          <span class="method-name">all_issue_custom_fields</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns an array of all custom fields enabled for <a
+href="Project.html#M000376">project</a> issues (explictly associated custom
+fields and custom fields enabled for all projects)
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000375-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000375-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/project.rb, line 279</span>
+279:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">all_issue_custom_fields</span>
+280:     <span class="ruby-ivar">@all_issue_custom_fields</span> <span class="ruby-operator">||=</span> (<span class="ruby-constant">IssueCustomField</span>.<span class="ruby-identifier">for_all</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">issue_custom_fields</span>).<span class="ruby-identifier">uniq</span>.<span class="ruby-identifier">sort</span>
+281:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000380" class="method-detail">
+        <a name="M000380"></a>
+
+        <div class="method-heading">
+          <a href="#M000380" class="method-signature">
+          <span class="method-name">allows_to?</span><span class="method-args">(action)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return true if this <a href="Project.html#M000376">project</a> is allowed
+to do the specified action. action can be:
+</p>
+<ul>
+<li>a parameter-like Hash (eg. :controller =&gt; &#8216;projects&#8217;,
+:action =&gt; &#8216;edit&#8217;)
+
+</li>
+<li>a permission Symbol (eg. :edit_project)
+
+</li>
+</ul>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000380-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000380-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/project.rb, line 304</span>
+304:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">allows_to?</span>(<span class="ruby-identifier">action</span>)
+305:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">action</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Hash</span>
+306:       <span class="ruby-identifier">allowed_actions</span>.<span class="ruby-identifier">include?</span> <span class="ruby-node">&quot;#{action[:controller]}/#{action[:action]}&quot;</span>
+307:     <span class="ruby-keyword kw">else</span>
+308:       <span class="ruby-identifier">allowed_permissions</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">action</span>
+309:     <span class="ruby-keyword kw">end</span>
+310:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000366" class="method-detail">
+        <a name="M000366"></a>
+
+        <div class="method-heading">
+          <a href="#M000366" class="method-signature">
+          <span class="method-name">archive</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Archives the <a href="Project.html#M000376">project</a> and its descendants
+recursively
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000366-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000366-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/project.rb, line 182</span>
+182:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">archive</span>
+183:     <span class="ruby-comment cmt"># Archive subprojects if any</span>
+184:     <span class="ruby-identifier">children</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">subproject</span><span class="ruby-operator">|</span>
+185:       <span class="ruby-identifier">subproject</span>.<span class="ruby-identifier">archive</span>
+186:     <span class="ruby-keyword kw">end</span>
+187:     <span class="ruby-identifier">update_attribute</span> <span class="ruby-identifier">:status</span>, <span class="ruby-constant">STATUS_ARCHIVED</span>
+188:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000373" class="method-detail">
+        <a name="M000373"></a>
+
+        <div class="method-heading">
+          <a href="#M000373" class="method-signature">
+          <span class="method-name">assignable_users</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Users issues can be assigned to
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000373-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000373-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/project.rb, line 268</span>
+268:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">assignable_users</span>
+269:     <span class="ruby-identifier">members</span>.<span class="ruby-identifier">select</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">roles</span>.<span class="ruby-identifier">detect</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">role</span><span class="ruby-operator">|</span> <span class="ruby-identifier">role</span>.<span class="ruby-identifier">assignable?</span>}}.<span class="ruby-identifier">collect</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">user</span>}.<span class="ruby-identifier">sort</span>
+270:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000384" class="method-detail">
+        <a name="M000384"></a>
+
+        <div class="method-heading">
+          <a href="#M000384" class="method-signature">
+          <span class="method-name">copy</span><span class="method-args">(project)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Copies and saves the <a href="Project.html">Project</a> instance based on
+the <tt><a href="Project.html#M000376">project</a></tt>. Will duplicate the
+source <a href="Project.html#M000376">project</a>&#8216;s:
+</p>
+<ul>
+<li>Issues
+
+</li>
+<li>Members
+
+</li>
+<li>Queries
+
+</li>
+</ul>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000384-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000384-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/project.rb, line 340</span>
+340:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">copy</span>(<span class="ruby-identifier">project</span>)
+341:     <span class="ruby-identifier">project</span> = <span class="ruby-identifier">project</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Project</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">project</span> <span class="ruby-operator">:</span> <span class="ruby-constant">Project</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">project</span>)
+342: 
+343:     <span class="ruby-constant">Project</span>.<span class="ruby-identifier">transaction</span> <span class="ruby-keyword kw">do</span>
+344:       <span class="ruby-comment cmt"># Issues</span>
+345:       <span class="ruby-identifier">project</span>.<span class="ruby-identifier">issues</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">issue</span><span class="ruby-operator">|</span>
+346:         <span class="ruby-identifier">new_issue</span> = <span class="ruby-constant">Issue</span>.<span class="ruby-identifier">new</span>
+347:         <span class="ruby-identifier">new_issue</span>.<span class="ruby-identifier">copy_from</span>(<span class="ruby-identifier">issue</span>)
+348:         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">issues</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">new_issue</span>
+349:       <span class="ruby-keyword kw">end</span>
+350:     
+351:       <span class="ruby-comment cmt"># Members</span>
+352:       <span class="ruby-identifier">project</span>.<span class="ruby-identifier">members</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">member</span><span class="ruby-operator">|</span>
+353:         <span class="ruby-identifier">new_member</span> = <span class="ruby-constant">Member</span>.<span class="ruby-identifier">new</span>
+354:         <span class="ruby-identifier">new_member</span>.<span class="ruby-identifier">attributes</span> = <span class="ruby-identifier">member</span>.<span class="ruby-identifier">attributes</span>.<span class="ruby-identifier">dup</span>.<span class="ruby-identifier">except</span>(<span class="ruby-value str">&quot;project_id&quot;</span>)
+355:         <span class="ruby-identifier">new_member</span>.<span class="ruby-identifier">role_ids</span> = <span class="ruby-identifier">member</span>.<span class="ruby-identifier">role_ids</span>.<span class="ruby-identifier">dup</span>
+356:         <span class="ruby-identifier">new_member</span>.<span class="ruby-identifier">project</span> = <span class="ruby-keyword kw">self</span>
+357:         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">members</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">new_member</span>
+358:       <span class="ruby-keyword kw">end</span>
+359:       
+360:       <span class="ruby-comment cmt"># Queries</span>
+361:       <span class="ruby-identifier">project</span>.<span class="ruby-identifier">queries</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">query</span><span class="ruby-operator">|</span>
+362:         <span class="ruby-identifier">new_query</span> = <span class="ruby-constant">Query</span>.<span class="ruby-identifier">new</span>
+363:         <span class="ruby-identifier">new_query</span>.<span class="ruby-identifier">attributes</span> = <span class="ruby-identifier">query</span>.<span class="ruby-identifier">attributes</span>.<span class="ruby-identifier">dup</span>.<span class="ruby-identifier">except</span>(<span class="ruby-value str">&quot;project_id&quot;</span>, <span class="ruby-value str">&quot;sort_criteria&quot;</span>)
+364:         <span class="ruby-identifier">new_query</span>.<span class="ruby-identifier">sort_criteria</span> = <span class="ruby-identifier">query</span>.<span class="ruby-identifier">sort_criteria</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">query</span>.<span class="ruby-identifier">sort_criteria</span>
+365:         <span class="ruby-identifier">new_query</span>.<span class="ruby-identifier">project</span> = <span class="ruby-keyword kw">self</span>
+366:         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">queries</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">new_query</span>
+367:       <span class="ruby-keyword kw">end</span>
+368: 
+369:       <span class="ruby-constant">Redmine</span><span class="ruby-operator">::</span><span class="ruby-constant">Hook</span>.<span class="ruby-identifier">call_hook</span>(<span class="ruby-identifier">:model_project_copy_before_save</span>, <span class="ruby-identifier">:source_project</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">project</span>, <span class="ruby-identifier">:destination_project</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">self</span>)
+370:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">save</span>
+371:     <span class="ruby-keyword kw">end</span>
+372:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000372" class="method-detail">
+        <a name="M000372"></a>
+
+        <div class="method-heading">
+          <a href="#M000372" class="method-signature">
+          <span class="method-name">delete_all_members</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Deletes all <a href="Project.html#M000376">project</a>&#8216;s members
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000372-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000372-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/project.rb, line 261</span>
+261:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">delete_all_members</span>
+262:     <span class="ruby-identifier">me</span>, <span class="ruby-identifier">mr</span> = <span class="ruby-constant">Member</span>.<span class="ruby-identifier">table_name</span>, <span class="ruby-constant">MemberRole</span>.<span class="ruby-identifier">table_name</span>
+263:     <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-node">&quot;DELETE FROM #{mr} WHERE #{mr}.member_id IN (SELECT #{me}.id FROM #{me} WHERE #{me}.project_id = #{id})&quot;</span>)
+264:     <span class="ruby-constant">Member</span>.<span class="ruby-identifier">delete_all</span>([<span class="ruby-value str">'project_id = ?'</span>, <span class="ruby-identifier">id</span>])
+265:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000382" class="method-detail">
+        <a name="M000382"></a>
+
+        <div class="method-heading">
+          <a href="#M000382" class="method-signature">
+          <span class="method-name">enabled_module_names=</span><span class="method-args">(module_names)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000382-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000382-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/project.rb, line 317</span>
+317:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">enabled_module_names=</span>(<span class="ruby-identifier">module_names</span>)
+318:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">module_names</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">module_names</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Array</span>)
+319:       <span class="ruby-identifier">module_names</span> = <span class="ruby-identifier">module_names</span>.<span class="ruby-identifier">collect</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">:to_s</span>)
+320:       <span class="ruby-comment cmt"># remove disabled modules</span>
+321:       <span class="ruby-identifier">enabled_modules</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">mod</span><span class="ruby-operator">|</span> <span class="ruby-identifier">mod</span>.<span class="ruby-identifier">destroy</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">module_names</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">mod</span>.<span class="ruby-identifier">name</span>)}
+322:       <span class="ruby-comment cmt"># add new modules</span>
+323:       <span class="ruby-identifier">module_names</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span> <span class="ruby-identifier">enabled_modules</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">EnabledModule</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">name</span>)}
+324:     <span class="ruby-keyword kw">else</span>
+325:       <span class="ruby-identifier">enabled_modules</span>.<span class="ruby-identifier">clear</span>
+326:     <span class="ruby-keyword kw">end</span>
+327:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000356" class="method-detail">
+        <a name="M000356"></a>
+
+        <div class="method-heading">
+          <a href="#M000356" class="method-signature">
+          <span class="method-name">identifier=</span><span class="method-args">(identifier)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000356-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000356-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/project.rb, line 74</span>
+74:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">identifier=</span>(<span class="ruby-identifier">identifier</span>)
+75:     <span class="ruby-keyword kw">super</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">identifier_frozen?</span>
+76:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000357" class="method-detail">
+        <a name="M000357"></a>
+
+        <div class="method-heading">
+          <a href="#M000357" class="method-signature">
+          <span class="method-name">identifier_frozen?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000357-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000357-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/project.rb, line 78</span>
+78:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">identifier_frozen?</span>
+79:     <span class="ruby-identifier">errors</span>[<span class="ruby-identifier">:identifier</span>].<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">new_record?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">identifier</span>.<span class="ruby-identifier">blank?</span>)
+80:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000358" class="method-detail">
+        <a name="M000358"></a>
+
+        <div class="method-heading">
+          <a href="#M000358" class="method-signature">
+          <span class="method-name">issues_with_subprojects</span><span class="method-args">(include_subprojects=false) {|| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000358-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000358-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/project.rb, line 82</span>
+82:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">issues_with_subprojects</span>(<span class="ruby-identifier">include_subprojects</span>=<span class="ruby-keyword kw">false</span>)
+83:     <span class="ruby-identifier">conditions</span> = <span class="ruby-keyword kw">nil</span>
+84:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">include_subprojects</span>
+85:       <span class="ruby-identifier">ids</span> = [<span class="ruby-identifier">id</span>] <span class="ruby-operator">+</span> <span class="ruby-identifier">descendants</span>.<span class="ruby-identifier">collect</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">:id</span>)
+86:       <span class="ruby-identifier">conditions</span> = [<span class="ruby-node">&quot;#{Project.table_name}.id IN (#{ids.join(',')}) AND #{Project.visible_by}&quot;</span>]
+87:     <span class="ruby-keyword kw">end</span>
+88:     <span class="ruby-identifier">conditions</span> <span class="ruby-operator">||=</span> [<span class="ruby-node">&quot;#{Project.table_name}.id = ?&quot;</span>, <span class="ruby-identifier">id</span>]
+89:     <span class="ruby-comment cmt"># Quick and dirty fix for Rails 2 compatibility</span>
+90:     <span class="ruby-constant">Issue</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:with_scope</span>, <span class="ruby-identifier">:find</span> =<span class="ruby-operator">&gt;</span> { <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">conditions</span> }) <span class="ruby-keyword kw">do</span> 
+91:       <span class="ruby-constant">Version</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:with_scope</span>, <span class="ruby-identifier">:find</span> =<span class="ruby-operator">&gt;</span> { <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">conditions</span> }) <span class="ruby-keyword kw">do</span>
+92:         <span class="ruby-keyword kw">yield</span>
+93:       <span class="ruby-keyword kw">end</span>
+94:     <span class="ruby-keyword kw">end</span> 
+95:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000381" class="method-detail">
+        <a name="M000381"></a>
+
+        <div class="method-heading">
+          <a href="#M000381" class="method-signature">
+          <span class="method-name">module_enabled?</span><span class="method-args">(module_name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000381-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000381-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/project.rb, line 312</span>
+312:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">module_enabled?</span>(<span class="ruby-identifier">module_name</span>)
+313:     <span class="ruby-identifier">module_name</span> = <span class="ruby-identifier">module_name</span>.<span class="ruby-identifier">to_s</span>
+314:     <span class="ruby-identifier">enabled_modules</span>.<span class="ruby-identifier">detect</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">module_name</span>}
+315:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000368" class="method-detail">
+        <a name="M000368"></a>
+
+        <div class="method-heading">
+          <a href="#M000368" class="method-signature">
+          <span class="method-name">possible_parents</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns an array of projects the <a href="Project.html#M000376">project</a>
+can be moved to
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000368-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000368-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/project.rb, line 198</span>
+198:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">possible_parents</span>
+199:     <span class="ruby-ivar">@possible_parents</span> <span class="ruby-operator">||=</span> (<span class="ruby-constant">Project</span>.<span class="ruby-identifier">active</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">:all</span>) <span class="ruby-operator">-</span> <span class="ruby-identifier">self_and_descendants</span>)
+200:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000376" class="method-detail">
+        <a name="M000376"></a>
+
+        <div class="method-heading">
+          <a href="#M000376" class="method-signature">
+          <span class="method-name">project</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000376-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000376-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/project.rb, line 283</span>
+283:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">project</span>
+284:     <span class="ruby-keyword kw">self</span>
+285:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000362" class="method-detail">
+        <a name="M000362"></a>
+
+        <div class="method-heading">
+          <a href="#M000362" class="method-signature">
+          <span class="method-name">project_condition</span><span class="method-args">(with_subprojects)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a :conditions SQL string that can be used to <a
+href="Project.html#M000363">find</a> the issues associated with this <a
+href="Project.html#M000376">project</a>.
+</p>
+<p>
+Examples:
+</p>
+<pre>
+  project.project_condition(true)  =&gt; &quot;(projects.id = 1 OR (projects.lft &gt; 1 AND projects.rgt &lt; 10))&quot;
+  project.project_condition(false) =&gt; &quot;projects.id = 1&quot;
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000362-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000362-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/project.rb, line 156</span>
+156:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">project_condition</span>(<span class="ruby-identifier">with_subprojects</span>)
+157:     <span class="ruby-identifier">cond</span> = <span class="ruby-node">&quot;#{Project.table_name}.id = #{id}&quot;</span>
+158:     <span class="ruby-identifier">cond</span> = <span class="ruby-node">&quot;(#{cond} OR (#{Project.table_name}.lft &gt; #{lft} AND #{Project.table_name}.rgt &lt; #{rgt}))&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">with_subprojects</span>
+159:     <span class="ruby-identifier">cond</span>
+160:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000374" class="method-detail">
+        <a name="M000374"></a>
+
+        <div class="method-heading">
+          <a href="#M000374" class="method-signature">
+          <span class="method-name">recipients</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the mail adresses of users that should be always notified on <a
+href="Project.html#M000376">project</a> events
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000374-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000374-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/project.rb, line 273</span>
+273:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">recipients</span>
+274:     <span class="ruby-identifier">members</span>.<span class="ruby-identifier">select</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">mail_notification?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">user</span>.<span class="ruby-identifier">mail_notification?</span>}.<span class="ruby-identifier">collect</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">user</span>.<span class="ruby-identifier">mail</span>}
+275:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000370" class="method-detail">
+        <a name="M000370"></a>
+
+        <div class="method-heading">
+          <a href="#M000370" class="method-signature">
+          <span class="method-name">rolled_up_trackers</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns an array of the trackers used by the <a
+href="Project.html#M000376">project</a> and its active sub projects
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000370-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000370-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/project.rb, line 241</span>
+241:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rolled_up_trackers</span>
+242:     <span class="ruby-ivar">@rolled_up_trackers</span> <span class="ruby-operator">||=</span>
+243:       <span class="ruby-constant">Tracker</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">:all</span>, <span class="ruby-identifier">:include</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:projects</span>,
+244:                          <span class="ruby-identifier">:select</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;DISTINCT #{Tracker.table_name}.*&quot;</span>,
+245:                          <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-node">&quot;#{Project.table_name}.lft &gt;= ? AND #{Project.table_name}.rgt &lt;= ? AND #{Project.table_name}.status = #{STATUS_ACTIVE}&quot;</span>, <span class="ruby-identifier">lft</span>, <span class="ruby-identifier">rgt</span>],
+246:                          <span class="ruby-identifier">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{Tracker.table_name}.position&quot;</span>)
+247:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000369" class="method-detail">
+        <a name="M000369"></a>
+
+        <div class="method-heading">
+          <a href="#M000369" class="method-signature">
+          <span class="method-name">set_parent!</span><span class="method-args">(p)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Sets the parent of the <a href="Project.html#M000376">project</a> Argument
+can be either a <a href="Project.html">Project</a>, a String, a Fixnum or
+nil
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000369-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000369-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/project.rb, line 204</span>
+204:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">set_parent!</span>(<span class="ruby-identifier">p</span>)
+205:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">p</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">p</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Project</span>)
+206:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">p</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">blank?</span>
+207:         <span class="ruby-identifier">p</span> = <span class="ruby-keyword kw">nil</span>
+208:       <span class="ruby-keyword kw">else</span>
+209:         <span class="ruby-identifier">p</span> = <span class="ruby-constant">Project</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">p</span>)
+210:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">p</span>
+211:       <span class="ruby-keyword kw">end</span>
+212:     <span class="ruby-keyword kw">end</span>
+213:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">p</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">parent</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">p</span>.<span class="ruby-identifier">nil?</span>
+214:       <span class="ruby-comment cmt"># Nothing to do</span>
+215:       <span class="ruby-keyword kw">true</span>
+216:     <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">p</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> (<span class="ruby-identifier">p</span>.<span class="ruby-identifier">active?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">move_possible?</span>(<span class="ruby-identifier">p</span>))
+217:       <span class="ruby-comment cmt"># Insert the project so that target's children or root projects stay alphabetically sorted</span>
+218:       <span class="ruby-identifier">sibs</span> = (<span class="ruby-identifier">p</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-value">? </span><span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">roots</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">p</span>.<span class="ruby-identifier">children</span>)
+219:       <span class="ruby-identifier">to_be_inserted_before</span> = <span class="ruby-identifier">sibs</span>.<span class="ruby-identifier">detect</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span> }
+220:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">to_be_inserted_before</span>
+221:         <span class="ruby-identifier">move_to_left_of</span>(<span class="ruby-identifier">to_be_inserted_before</span>)
+222:       <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">p</span>.<span class="ruby-identifier">nil?</span>
+223:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sibs</span>.<span class="ruby-identifier">empty?</span>
+224:           <span class="ruby-comment cmt"># move_to_root adds the project in first (ie. left) position</span>
+225:           <span class="ruby-identifier">move_to_root</span>
+226:         <span class="ruby-keyword kw">else</span>
+227:           <span class="ruby-identifier">move_to_right_of</span>(<span class="ruby-identifier">sibs</span>.<span class="ruby-identifier">last</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">self</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">sibs</span>.<span class="ruby-identifier">last</span>
+228:         <span class="ruby-keyword kw">end</span>
+229:       <span class="ruby-keyword kw">else</span>
+230:         <span class="ruby-comment cmt"># move_to_child_of adds the project in last (ie.right) position</span>
+231:         <span class="ruby-identifier">move_to_child_of</span>(<span class="ruby-identifier">p</span>)
+232:       <span class="ruby-keyword kw">end</span>
+233:       <span class="ruby-keyword kw">true</span>
+234:     <span class="ruby-keyword kw">else</span>
+235:       <span class="ruby-comment cmt"># Can not move to the given target</span>
+236:       <span class="ruby-keyword kw">false</span>
+237:     <span class="ruby-keyword kw">end</span>
+238:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000379" class="method-detail">
+        <a name="M000379"></a>
+
+        <div class="method-heading">
+          <a href="#M000379" class="method-signature">
+          <span class="method-name">short_description</span><span class="method-args">(length = 255)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a short description of the projects (first lines)
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000379-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000379-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/project.rb, line 296</span>
+296:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">short_description</span>(<span class="ruby-identifier">length</span> = <span class="ruby-value">255</span>)
+297:     <span class="ruby-identifier">description</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-node">/^(.{#{length}}[^\n\r]*).*$/</span><span class="ruby-identifier">m</span>, <span class="ruby-value str">'\1...'</span>).<span class="ruby-identifier">strip</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">description</span>
+298:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000364" class="method-detail">
+        <a name="M000364"></a>
+
+        <div class="method-heading">
+          <a href="#M000364" class="method-signature">
+          <span class="method-name">to_param</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000364-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000364-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/project.rb, line 172</span>
+172:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_param</span>
+173:     <span class="ruby-comment cmt"># id is used for projects with a numeric identifier (compatibility)</span>
+174:     <span class="ruby-ivar">@to_param</span> <span class="ruby-operator">||=</span> (<span class="ruby-identifier">identifier</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">%r{^\d*$}</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">id</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">identifier</span>)
+175:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000378" class="method-detail">
+        <a name="M000378"></a>
+
+        <div class="method-heading">
+          <a href="#M000378" class="method-signature">
+          <span class="method-name">to_s</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000378-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000378-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/project.rb, line 291</span>
+291:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s</span>
+292:     <span class="ruby-identifier">name</span>
+293:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000367" class="method-detail">
+        <a name="M000367"></a>
+
+        <div class="method-heading">
+          <a href="#M000367" class="method-signature">
+          <span class="method-name">unarchive</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Unarchives the <a href="Project.html#M000376">project</a> All its ancestors
+must be active
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000367-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000367-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/project.rb, line 192</span>
+192:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">unarchive</span>
+193:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">ancestors</span>.<span class="ruby-identifier">detect</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">a</span>.<span class="ruby-identifier">active?</span>}
+194:     <span class="ruby-identifier">update_attribute</span> <span class="ruby-identifier">:status</span>, <span class="ruby-constant">STATUS_ACTIVE</span>
+195:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000371" class="method-detail">
+        <a name="M000371"></a>
+
+        <div class="method-heading">
+          <a href="#M000371" class="method-signature">
+          <span class="method-name">users_by_role</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a hash of <a href="Project.html#M000376">project</a> users grouped
+by role
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000371-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000371-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/project.rb, line 250</span>
+250:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">users_by_role</span>
+251:     <span class="ruby-identifier">members</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">:all</span>, <span class="ruby-identifier">:include</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-identifier">:user</span>, <span class="ruby-identifier">:roles</span>]).<span class="ruby-identifier">inject</span>({}) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">h</span>, <span class="ruby-identifier">m</span><span class="ruby-operator">|</span>
+252:       <span class="ruby-identifier">m</span>.<span class="ruby-identifier">roles</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span>
+253:         <span class="ruby-identifier">h</span>[<span class="ruby-identifier">r</span>] <span class="ruby-operator">||=</span> []
+254:         <span class="ruby-identifier">h</span>[<span class="ruby-identifier">r</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">user</span>
+255:       <span class="ruby-keyword kw">end</span>
+256:       <span class="ruby-identifier">h</span>
+257:     <span class="ruby-keyword kw">end</span>
+258:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

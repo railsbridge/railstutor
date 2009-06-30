@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: RedCloth3</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">RedCloth3</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/redcloth3_rb.html">
+                lib/redcloth3.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                String
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1>RedCloth</h1>
+<p>
+RedCloth is a Ruby library for converting Textile and/or Markdown into
+HTML. You can use either format, intermingled or separately. You can also
+extend RedCloth to honor your own custom text stylings.
+</p>
+<p>
+RedCloth users are encouraged to use Textile if they are generating HTML
+and to use Markdown if others will be viewing the plain text.
+</p>
+<h2>What is Textile?</h2>
+<p>
+Textile is a simple formatting style for text documents, loosely based on
+some HTML conventions.
+</p>
+<h2>Sample Textile Text</h2>
+<pre>
+ h2. This is a title
+
+ h3. This is a subhead
+
+ This is a bit of paragraph.
+
+ bq. This is a blockquote.
+</pre>
+<h1>Writing Textile</h1>
+<p>
+A Textile document consists of paragraphs. Paragraphs can be specially
+formatted by adding a small instruction to the beginning of the paragraph.
+</p>
+<pre>
+ h[n].   Header of size [n].
+ bq.     Blockquote.
+ #       Numeric list.
+ *       Bulleted list.
+</pre>
+<h2>Quick Phrase Modifiers</h2>
+<p>
+Quick phrase modifiers are also included, to allow formatting of small
+portions of text within a paragraph.
+</p>
+<pre>
+ \_emphasis\_
+ \_\_italicized\_\_
+ \*strong\*
+ \*\*bold\*\*
+ ??citation??
+ -deleted text-
+ +inserted text+
+ ^superscript^
+ ~subscript~
+ @code@
+ %(classname)span%
+
+ ==notextile== (leave text alone)
+</pre>
+<h2>Links</h2>
+<p>
+To make a hypertext link, put the link text in &quot;quotation marks&quot;
+followed immediately by a colon and the URL of the link.
+</p>
+<p>
+Optional: text in (parentheses) following the link text, but before the
+closing quotation mark, will become a Title attribute for the link, visible
+as a tool tip when a cursor is above it.
+</p>
+<p>
+Example:
+</p>
+<pre>
+ &quot;This is a link (This is a title) &quot;:http://www.textism.com
+</pre>
+<p>
+Will become:
+</p>
+<pre>
+ &lt;a href=&quot;http://www.textism.com&quot; title=&quot;This is a title&quot;&gt;This is a link&lt;/a&gt;
+</pre>
+<h2>Images</h2>
+<p>
+To insert an image, put the URL for the image inside exclamation marks.
+</p>
+<p>
+Optional: text that immediately follows the URL in (parentheses) will be
+used as the Alt text for the image. Images on the web should always have
+descriptive Alt text for the benefit of readers using non-graphical
+browsers.
+</p>
+<p>
+Optional: place a colon followed by a URL immediately after the closing !
+to make the image into a link.
+</p>
+<p>
+Example:
+</p>
+<pre>
+ !http://www.textism.com/common/textist.gif(Textist)!
+</pre>
+<p>
+Will become:
+</p>
+<pre>
+ &lt;img src=&quot;http://www.textism.com/common/textist.gif&quot; alt=&quot;Textist&quot; /&gt;
+</pre>
+<p>
+With a link:
+</p>
+<pre>
+ !/common/textist.gif(Textist)!:http://textism.com
+</pre>
+<p>
+Will become:
+</p>
+<pre>
+ &lt;a href=&quot;http://textism.com&quot;&gt;&lt;img src=&quot;/common/textist.gif&quot; alt=&quot;Textist&quot; /&gt;&lt;/a&gt;
+</pre>
+<h2>Defining Acronyms</h2>
+<p>
+HTML allows authors to define acronyms via the tag. The definition appears
+as a tool tip when a cursor hovers over the acronym. A crucial aid to clear
+writing, this should be used at least once for each acronym in documents
+where they appear.
+</p>
+<p>
+To quickly define an acronym in Textile, place the full text in
+(parentheses) immediately following the acronym.
+</p>
+<p>
+Example:
+</p>
+<pre>
+ ACLU(American Civil Liberties Union)
+</pre>
+<p>
+Will become:
+</p>
+<pre>
+ &lt;acronym title=&quot;American Civil Liberties Union&quot;&gt;ACLU&lt;/acronym&gt;
+</pre>
+<h2>Adding Tables</h2>
+<p>
+In Textile, simple tables can be added by seperating each column by a pipe.
+</p>
+<pre>
+    |a|simple|table|row|
+    |And|Another|table|row|
+</pre>
+<p>
+Attributes are defined by style definitions in parentheses.
+</p>
+<pre>
+    table(border:1px solid black).
+    (background:#ddd;color:red). |{}| | | |
+</pre>
+<h2>Using RedCloth</h2>
+<p>
+RedCloth is simply an extension of the String class, which can handle
+Textile formatting. Use it like a String and output HTML with its
+RedCloth#to_html method.
+</p>
+<pre>
+ doc = RedCloth.new &quot;
+
+ h2. Test document
+
+ Just a simple test.&quot;
+
+ puts doc.to_html
+</pre>
+<p>
+By default, RedCloth uses both Textile and Markdown formatting, with
+Textile formatting taking precedence. If you want to turn off Markdown
+formatting, to boost speed and limit the processor:
+</p>
+<pre>
+ class RedCloth::Textile.new( str )
+</pre>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000666">new</a>&nbsp;&nbsp;
+      <a href="#M000667">to_html</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">VERSION</td>
+          <td>=</td>
+          <td class="context-item-value">'3.0.4'</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DEFAULT_RULES</td>
+          <td>=</td>
+          <td class="context-item-value">[:textile, :markdown]</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TEXTILE_TAGS</td>
+          <td>=</td>
+          <td class="context-item-value">[[128, 8364], [129, 0], [130, 8218], [131, 402], [132, 8222], [133, 8230],           [134, 8224], [135, 8225], [136, 710], [137, 8240], [138, 352], [139, 8249],           [140, 338], [141, 0], [142, 0], [143, 0], [144, 0], [145, 8216], [146, 8217],           [147, 8220], [148, 8221], [149, 8226], [150, 8211], [151, 8212], [152, 732],           [153, 8482], [154, 353], [155, 8250], [156, 339], [157, 0], [158, 0], [159, 376]].          collect! do |a, b|             [a.chr, ( b.zero? and &quot;&quot; or &quot;&amp;#{ b };&quot; )]</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Mapping of 8-bit ASCII codes to HTML numerical entity equivalents. (from
+PyTextile)
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">filter_html</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Two accessor for setting security restrictions.
+
+<p>
+This is a nice thing if you&#8216;re using RedCloth for formatting in
+public places (e.g. Wikis) where you don&#8216;t want users to abuse HTML
+for bad things.
+</p>
+<p>
+If +:filter_html+ is set, HTML which wasn&#8216;t created by the Textile
+processor will be escaped.
+</p>
+<p>
+If +:filter_styles+ is set, it will also disable the style markup
+specifier. (&#8217;{color: red}&#8217;)
+</p>
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">filter_styles</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Two accessor for setting security restrictions.
+
+<p>
+This is a nice thing if you&#8216;re using RedCloth for formatting in
+public places (e.g. Wikis) where you don&#8216;t want users to abuse HTML
+for bad things.
+</p>
+<p>
+If +:filter_html+ is set, HTML which wasn&#8216;t created by the Textile
+processor will be escaped.
+</p>
+<p>
+If +:filter_styles+ is set, it will also disable the style markup
+specifier. (&#8217;{color: red}&#8217;)
+</p>
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">hard_breaks</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Accessor for toggling hard breaks.
+
+<p>
+If +:hard_breaks+ is set, single newlines will be converted to HTML break
+tags. This is the default behavior for traditional RedCloth.
+</p>
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">lite_mode</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Accessor for toggling lite mode.
+
+<p>
+In lite mode, block-level rules are ignored. This means that tables,
+paragraphs, lists, and such aren&#8216;t available. Only the inline markup
+for bold, italics, entities and so on.
+</p>
+<pre>
+  r = RedCloth.new( &quot;And then? She *fell*!&quot;, [:lite_mode] )
+  r.to_html
+  #=&gt; &quot;And then? She &lt;strong&gt;fell&lt;/strong&gt;!&quot;
+</pre>
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">no_span_caps</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Accessor for toggling span caps.
+
+<p>
+Textile places `span&#8217; tags around capitalized words by default, but
+this wreaks havoc on Wikis. If +:no_span_caps+ is set, this will be
+suppressed.
+</p>
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">rules</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Establishes the markup predence. Available rules include:
+
+<h2>Textile Rules</h2>
+<p>
+The following textile rules can be set individually. Or add the complete
+set of rules with the single :textile rule, which supplies the rule set in
+the following precedence:
+</p>
+<table>
+<tr><td valign="top">refs_textile:</td><td>Textile references (i.e. [hobix]<a href="http://hobix.com">hobix.com</a>/)
+
+</td></tr>
+<tr><td valign="top">block_textile_table:</td><td>Textile table block structures
+
+</td></tr>
+<tr><td valign="top">block_textile_lists:</td><td>Textile list structures
+
+</td></tr>
+<tr><td valign="top">block_textile_prefix:</td><td>Textile blocks with prefixes (i.e. bq., h2., etc.)
+
+</td></tr>
+<tr><td valign="top">inline_textile_image:</td><td>Textile inline images
+
+</td></tr>
+<tr><td valign="top">inline_textile_link:</td><td>Textile inline links
+
+</td></tr>
+<tr><td valign="top">inline_textile_span:</td><td>Textile inline spans
+
+</td></tr>
+<tr><td valign="top">glyphs_textile:</td><td>Textile entities (such as em-dashes and smart quotes)
+
+</td></tr>
+</table>
+<h2>Markdown</h2>
+<table>
+<tr><td valign="top">refs_markdown:</td><td>Markdown references (for example: [hobix]: <a
+href="http://hobix.com">hobix.com</a>/)
+
+</td></tr>
+<tr><td valign="top">block_markdown_setext:</td><td>Markdown setext headers
+
+</td></tr>
+<tr><td valign="top">block_markdown_atx:</td><td>Markdown atx headers
+
+</td></tr>
+<tr><td valign="top">block_markdown_rule:</td><td>Markdown horizontal rules
+
+</td></tr>
+<tr><td valign="top">block_markdown_bq:</td><td>Markdown blockquotes
+
+</td></tr>
+<tr><td valign="top">block_markdown_lists:</td><td>Markdown lists
+
+</td></tr>
+<tr><td valign="top">inline_markdown_link:</td><td>Markdown links
+
+</td></tr>
+</table>
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000666" class="method-detail">
+        <a name="M000666"></a>
+
+        <div class="method-heading">
+          <a href="#M000666" class="method-signature">
+          <span class="method-name">new</span><span class="method-args">( string, restrictions = [] )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a <a href="RedCloth3.html#M000666">new</a> RedCloth object, based
+on <em>string</em> and enforcing all the included <em>restrictions</em>.
+</p>
+<pre>
+  r = RedCloth.new( &quot;h1. A &lt;b&gt;bold&lt;/b&gt; man&quot;, [:filter_html] )
+  r.to_html
+    #=&gt;&quot;&lt;h1&gt;A &amp;lt;b&amp;gt;bold&amp;lt;/b&amp;gt; man&lt;/h1&gt;&quot;
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000666-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000666-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 254</span>
+254:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>( <span class="ruby-identifier">string</span>, <span class="ruby-identifier">restrictions</span> = [] )
+255:         <span class="ruby-identifier">restrictions</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span> <span class="ruby-identifier">method</span>( <span class="ruby-node">&quot;#{ r }=&quot;</span> ).<span class="ruby-identifier">call</span>( <span class="ruby-keyword kw">true</span> ) }
+256:         <span class="ruby-keyword kw">super</span>( <span class="ruby-identifier">string</span> )
+257:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000667" class="method-detail">
+        <a name="M000667"></a>
+
+        <div class="method-heading">
+          <a href="#M000667" class="method-signature">
+          <span class="method-name">to_html</span><span class="method-args">( *rules )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Generates HTML from the Textile contents.
+</p>
+<pre>
+  r = RedCloth.new( &quot;And then? She *fell*!&quot; )
+  r.to_html( true )
+    #=&gt;&quot;And then? She &lt;strong&gt;fell&lt;/strong&gt;!&quot;
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000667-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000667-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/redcloth3.rb, line 266</span>
+266:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_html</span>( <span class="ruby-operator">*</span><span class="ruby-identifier">rules</span> )
+267:         <span class="ruby-identifier">rules</span> = <span class="ruby-constant">DEFAULT_RULES</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">rules</span>.<span class="ruby-identifier">empty?</span>
+268:         <span class="ruby-comment cmt"># make our working copy</span>
+269:         <span class="ruby-identifier">text</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">dup</span>
+270:         
+271:         <span class="ruby-ivar">@urlrefs</span> = {}
+272:         <span class="ruby-ivar">@shelf</span> = []
+273:         <span class="ruby-identifier">textile_rules</span> = [<span class="ruby-identifier">:refs_textile</span>, <span class="ruby-identifier">:block_textile_table</span>, <span class="ruby-identifier">:block_textile_lists</span>,
+274:                          <span class="ruby-identifier">:block_textile_prefix</span>, <span class="ruby-identifier">:inline_textile_image</span>, <span class="ruby-identifier">:inline_textile_link</span>,
+275:                          <span class="ruby-identifier">:inline_textile_code</span>, <span class="ruby-identifier">:inline_textile_span</span>, <span class="ruby-identifier">:glyphs_textile</span>]
+276:         <span class="ruby-identifier">markdown_rules</span> = [<span class="ruby-identifier">:refs_markdown</span>, <span class="ruby-identifier">:block_markdown_setext</span>, <span class="ruby-identifier">:block_markdown_atx</span>, <span class="ruby-identifier">:block_markdown_rule</span>,
+277:                           <span class="ruby-identifier">:block_markdown_bq</span>, <span class="ruby-identifier">:block_markdown_lists</span>, 
+278:                           <span class="ruby-identifier">:inline_markdown_reflink</span>, <span class="ruby-identifier">:inline_markdown_link</span>]
+279:         <span class="ruby-ivar">@rules</span> = <span class="ruby-identifier">rules</span>.<span class="ruby-identifier">collect</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">rule</span><span class="ruby-operator">|</span>
+280:             <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">rule</span>
+281:             <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:markdown</span>
+282:                 <span class="ruby-identifier">markdown_rules</span>
+283:             <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:textile</span>
+284:                 <span class="ruby-identifier">textile_rules</span>
+285:             <span class="ruby-keyword kw">else</span>
+286:                 <span class="ruby-identifier">rule</span>
+287:             <span class="ruby-keyword kw">end</span>
+288:         <span class="ruby-keyword kw">end</span>.<span class="ruby-identifier">flatten</span>
+289: 
+290:         <span class="ruby-comment cmt"># standard clean up</span>
+291:         <span class="ruby-identifier">incoming_entities</span> <span class="ruby-identifier">text</span> 
+292:         <span class="ruby-identifier">clean_white_space</span> <span class="ruby-identifier">text</span> 
+293: 
+294:         <span class="ruby-comment cmt"># start processor</span>
+295:         <span class="ruby-ivar">@pre_list</span> = []
+296:         <span class="ruby-identifier">rip_offtags</span> <span class="ruby-identifier">text</span>
+297:         <span class="ruby-identifier">no_textile</span> <span class="ruby-identifier">text</span>
+298:         <span class="ruby-identifier">escape_html_tags</span> <span class="ruby-identifier">text</span>
+299:         <span class="ruby-identifier">hard_break</span> <span class="ruby-identifier">text</span> 
+300:         <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@lite_mode</span>
+301:             <span class="ruby-identifier">refs</span> <span class="ruby-identifier">text</span>
+302:             <span class="ruby-comment cmt"># need to do this before text is split by #blocks</span>
+303:             <span class="ruby-identifier">block_textile_quotes</span> <span class="ruby-identifier">text</span>
+304:             <span class="ruby-identifier">blocks</span> <span class="ruby-identifier">text</span>
+305:         <span class="ruby-keyword kw">end</span>
+306:         <span class="ruby-identifier">inline</span> <span class="ruby-identifier">text</span>
+307:         <span class="ruby-identifier">smooth_offtags</span> <span class="ruby-identifier">text</span>
+308: 
+309:         <span class="ruby-identifier">retrieve</span> <span class="ruby-identifier">text</span>
+310: 
+311:         <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-regexp re">/&lt;\/?notextile&gt;/</span>, <span class="ruby-value str">''</span> )
+312:         <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-regexp re">/x%x%/</span>, <span class="ruby-value str">'&amp;#38;'</span> )
+313:         <span class="ruby-identifier">clean_html</span> <span class="ruby-identifier">text</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">filter_html</span>
+314:         <span class="ruby-identifier">text</span>.<span class="ruby-identifier">strip!</span>
+315:         <span class="ruby-identifier">text</span>
+316: 
+317:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

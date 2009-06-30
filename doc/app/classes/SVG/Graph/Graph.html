@@ -1,0 +1,1758 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: SVG::Graph::Graph</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">SVG::Graph::Graph</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/SVG/Graph/Graph_rb.html">
+                lib/SVG/Graph/Graph.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h3>Base object for generating <a href="../../SVG.html">SVG</a> Graphs</h3>
+<h2>Synopsis</h2>
+<p>
+This class is only used as a superclass of specialized charts. Do not
+attempt to use this class directly, unless creating a <a
+href="Graph.html#M000760">new</a> chart type.
+</p>
+<p>
+For examples of how to subclass this class, see the existing specific
+subclasses, such as <a href="Pie.html">SVG::Graph::Pie</a>.
+</p>
+<h2>Examples</h2>
+<p>
+For examples of how to use this package, see either the test files, or the
+documentation for the specific class you want to use.
+</p>
+<ul>
+<li>file:test/plot.rb
+
+</li>
+<li>file:test/single.rb
+
+</li>
+<li>file:test/test.rb
+
+</li>
+<li>file:test/timeseries.rb
+
+</li>
+</ul>
+<h2>Description</h2>
+<p>
+This package should be used as a base for creating <a
+href="../../SVG.html">SVG</a> graphs.
+</p>
+<h2>Acknowledgements</h2>
+<p>
+Leo Lapworth for creating the SVG::TT::Graph package which this Ruby port
+is based on.
+</p>
+<p>
+Stephen Morgan for creating the TT template and <a
+href="../../SVG.html">SVG</a>.
+</p>
+<h2>See</h2>
+<ul>
+<li><a href="BarHorizontal.html">SVG::Graph::BarHorizontal</a>
+
+</li>
+<li><a href="Bar.html">SVG::Graph::Bar</a>
+
+</li>
+<li><a href="Line.html">SVG::Graph::Line</a>
+
+</li>
+<li><a href="Pie.html">SVG::Graph::Pie</a>
+
+</li>
+<li><a href="Plot.html">SVG::Graph::Plot</a>
+
+</li>
+<li><a href="TimeSeries.html">SVG::Graph::TimeSeries</a>
+
+</li>
+</ul>
+<h2>Author</h2>
+<p>
+Sean E. Russell &lt;serATgermaneHYPHENsoftwareDOTcom&gt;
+</p>
+<p>
+Copyright 2004 Sean E. Russell This software is available under the Ruby <a
+href="http://LICENSE.txt">license</a>
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000761">add_data</a>&nbsp;&nbsp;
+      <a href="#M000770">add_popup</a>&nbsp;&nbsp;
+      <a href="#M000763">burn</a>&nbsp;&nbsp;
+      <a href="#M000771">calculate_bottom_margin</a>&nbsp;&nbsp;
+      <a href="#M000766">calculate_left_margin</a>&nbsp;&nbsp;
+      <a href="#M000768">calculate_right_margin</a>&nbsp;&nbsp;
+      <a href="#M000769">calculate_top_margin</a>&nbsp;&nbsp;
+      <a href="#M000762">clear_data</a>&nbsp;&nbsp;
+      <a href="#M000772">draw_graph</a>&nbsp;&nbsp;
+      <a href="#M000784">draw_legend</a>&nbsp;&nbsp;
+      <a href="#M000782">draw_titles</a>&nbsp;&nbsp;
+      <a href="#M000780">draw_x_guidelines</a>&nbsp;&nbsp;
+      <a href="#M000775">draw_x_labels</a>&nbsp;&nbsp;
+      <a href="#M000781">draw_y_guidelines</a>&nbsp;&nbsp;
+      <a href="#M000779">draw_y_labels</a>&nbsp;&nbsp;
+      <a href="#M000778">field_height</a>&nbsp;&nbsp;
+      <a href="#M000777">field_width</a>&nbsp;&nbsp;
+      <a href="#M000765">init_with</a>&nbsp;&nbsp;
+      <a href="#M000783">keys</a>&nbsp;&nbsp;
+      <a href="#M000774">make_datapoint_text</a>&nbsp;&nbsp;
+      <a href="#M000767">max_y_label_width_px</a>&nbsp;&nbsp;
+      <a href="#M000760">new</a>&nbsp;&nbsp;
+      <a href="#M000764">sort</a>&nbsp;&nbsp;
+      <a href="#M000773">x_label_offset</a>&nbsp;&nbsp;
+      <a href="#M000776">y_label_offset</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name">REXML</span>
+      </div>
+    </div>
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">KEY_BOX_SIZE</td>
+          <td>=</td>
+          <td class="context-item-value">12</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">add_popups</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Add popups for the data points on some graphs
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">font_size</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Set the font size (in points) of the data point labels
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">graph_subtitle</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+What the subtitle on the graph should be.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">graph_title</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+What the title on the graph should be.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">height</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Set the height of the graph box, this is the total height of the <a
+href="../../SVG.html">SVG</a> box created - not the graph it self which
+auto scales to fix the space.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">key</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Whether to show a key, defaults to false, set to true if you want to show
+it.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">key_font_size</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Set the key font size
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">key_position</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Where the key should be positioned, defaults to :right, set to :bottom if
+you want to move it.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">min_scale_value</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+The point at which the Y axis starts, defaults to &#8216;0&#8217;, if set
+to nil it will default to the minimum data value.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">no_css</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Do not use CSS if set to true. Many <a href="../../SVG.html">SVG</a>
+viewers do not support CSS, but not using CSS can result in larger SVGs as
+well as making it impossible to change colors after the chart is generated.
+Defaults to false.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">right_align</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">right_font</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">rotate_x_labels</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+This turns the X axis labels by 90 degrees. Default it false, to turn on
+set to true.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">rotate_y_labels</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+This turns the Y axis labels by 90 degrees. Default it false, to turn on
+set to true.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">scale_divisions</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+This defines the gap between markers on the Y axis, default is a 10th of
+the max_value, e.g. you will have 10 markers on the Y axis. NOTE: do not
+set this too low - you are limited to 999 markers, after that the graph
+won&#8216;t generate.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">scale_integers</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Ensures only whole numbers are used as the scale divisions. Default it
+false, to turn on set to true. This has no effect if scale divisions are
+less than 1.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">show_data_values</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+(Bool) Show the value of each element of data on the graph
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">show_graph_subtitle</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Whether to show a subtitle on the graph, defaults to false, set to true to
+show.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">show_graph_title</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Whether to show a title on the graph, defaults to false, set to true to
+show.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">show_x_guidelines</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Show guidelines for the X axis
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">show_x_labels</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Whether to show labels on the X axis or not, defaults to true, set to false
+if you want to turn them off.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">show_x_title</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Whether to show the title under the X axis labels, default is false, set to
+true to show.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">show_y_guidelines</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Show guidelines for the Y axis
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">show_y_labels</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Whether to show labels on the Y axis or not, defaults to true, set to false
+if you want to turn them off.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">show_y_title</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Whether to show the title under the Y axis labels, default is false, set to
+true to show.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">stagger_x_labels</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+This puts the X labels at alternative levels so if they are long field
+names they will not overlap so easily. Default it false, to turn on set to
+true.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">stagger_y_labels</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+This puts the Y labels at alternative levels so if they are long field
+names they will not overlap so easily. Default it false, to turn on set to
+true.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">step_include_first_x_label</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Whether to (when taking &quot;steps&quot; between X axis labels) step from
+the first label (i.e. always include the first label) or step from the X
+axis origin (i.e. start with a gap if step_x_labels is greater than one).
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">step_x_labels</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+How many &quot;steps&quot; to use between displayed X axis labels, a step
+of one means display every label, a step of two results in every other
+label being displayed (label &lt;gap&gt; label &lt;gap&gt; label), a step
+of three results in every third label being displayed (label &lt;gap&gt;
+&lt;gap&gt; label &lt;gap&gt; &lt;gap&gt; label) and so on.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">style_sheet</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Set the path to an external stylesheet, set to &#8217;&#8217; if you want
+to revert back to using the defaut internal version.
+
+<p>
+To create an external stylesheet create a graph using the default internal
+version and copy the stylesheet section to an external file and edit from
+there.
+</p>
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">subtitle_font_size</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Set the subtitle font size
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">title_font_size</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Set the title font size
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">top_align</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">top_font</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">width</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Set the width of the graph box, this is the total width of the <a
+href="../../SVG.html">SVG</a> box created - not the graph it self which
+auto scales to fix the space.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">x_label_font_size</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Set the font size of the X axis labels
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">x_title</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+What the title under X axis should be, e.g. &#8216;Months&#8217;.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">x_title_font_size</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Set the font size of the X axis title
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">y_label_font_size</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Set the font size of the Y axis labels
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">y_title</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+What the title under Y axis should be, e.g. &#8216;Sales in
+thousands&#8217;.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">y_title_font_size</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Set the font size of the Y axis title
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">y_title_text_direction</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Aligns writing mode for Y axis label. Defaults to :bt (Bottom to Top). <a
+href="../../Change.html">Change</a> to :tb (Top to Bottom) to reverse.
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000760" class="method-detail">
+        <a name="M000760"></a>
+
+        <div class="method-heading">
+          <a href="#M000760" class="method-signature">
+          <span class="method-name">new</span><span class="method-args">( config )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Initialize the graph object with the graph settings. You won&#8216;t
+instantiate this class directly; see the subclass for options.
+</p>
+<dl>
+<dt>width</dt><dd>500
+
+</dd>
+<dt>height</dt><dd>300
+
+</dd>
+<dt>show_x_guidelines</dt><dd>false
+
+</dd>
+<dt>show_y_guidelines</dt><dd>true
+
+</dd>
+<dt>show_data_values</dt><dd>true
+
+</dd>
+<dt>min_scale_value</dt><dd>0
+
+</dd>
+<dt>show_x_labels</dt><dd>true
+
+</dd>
+<dt>stagger_x_labels</dt><dd>false
+
+</dd>
+<dt>rotate_x_labels</dt><dd>false
+
+</dd>
+<dt>step_x_labels</dt><dd>1
+
+</dd>
+<dt>step_include_first_x_label</dt><dd>true
+
+</dd>
+<dt>show_y_labels</dt><dd>true
+
+</dd>
+<dt>rotate_y_labels</dt><dd>false
+
+</dd>
+<dt>scale_integers</dt><dd>false
+
+</dd>
+<dt>show_x_title</dt><dd>false
+
+</dd>
+<dt>x_title</dt><dd>&#8216;X Field names&#8216;
+
+</dd>
+<dt>show_y_title</dt><dd>false
+
+</dd>
+<dt>y_title_text_direction</dt><dd>:bt
+
+</dd>
+<dt>y_title</dt><dd>&#8216;Y Scale&#8216;
+
+</dd>
+<dt>show_graph_title</dt><dd>false
+
+</dd>
+<dt>graph_title</dt><dd>&#8216;<a href="Graph.html">Graph</a> Title&#8216;
+
+</dd>
+<dt>show_graph_subtitle</dt><dd>false
+
+</dd>
+<dt>graph_subtitle</dt><dd>&#8216;<a href="Graph.html">Graph</a> Sub Title&#8216;
+
+</dd>
+<dt>key</dt><dd>true,
+
+</dd>
+<dt>key_position</dt><dd>:right, # bottom or righ
+
+</dd>
+<dt>font_size</dt><dd>12
+
+</dd>
+<dt>title_font_size</dt><dd>16
+
+</dd>
+<dt>subtitle_font_size</dt><dd>14
+
+</dd>
+<dt>x_label_font_size</dt><dd>12
+
+</dd>
+<dt>x_title_font_size</dt><dd>14
+
+</dd>
+<dt>y_label_font_size</dt><dd>12
+
+</dd>
+<dt>y_title_font_size</dt><dd>14
+
+</dd>
+<dt>key_font_size</dt><dd>10
+
+</dd>
+<dt>no_css</dt><dd>false
+
+</dd>
+<dt>add_popups</dt><dd>false
+
+</dd>
+</dl>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000760-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000760-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/SVG/Graph/Graph.rb, line 101</span>
+101:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>( <span class="ruby-identifier">config</span> )
+102:         <span class="ruby-ivar">@config</span> = <span class="ruby-identifier">config</span>
+103: 
+104:         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">top_align</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">top_font</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">right_align</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">right_font</span> = <span class="ruby-value">0</span>
+105: 
+106:         <span class="ruby-identifier">init_with</span>({
+107:           <span class="ruby-identifier">:width</span>                =<span class="ruby-operator">&gt;</span> <span class="ruby-value">500</span>,
+108:           <span class="ruby-identifier">:height</span>                =<span class="ruby-operator">&gt;</span> <span class="ruby-value">300</span>,
+109:           <span class="ruby-identifier">:show_x_guidelines</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>,
+110:           <span class="ruby-identifier">:show_y_guidelines</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>,
+111:           <span class="ruby-identifier">:show_data_values</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>,
+112: 
+113: <span class="ruby-comment cmt">#          :min_scale_value      =&gt; 0,</span>
+114: 
+115:           <span class="ruby-identifier">:show_x_labels</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>,
+116:           <span class="ruby-identifier">:stagger_x_labels</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>,
+117:           <span class="ruby-identifier">:rotate_x_labels</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>,
+118:           <span class="ruby-identifier">:step_x_labels</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>,
+119:           <span class="ruby-identifier">:step_include_first_x_label</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>,
+120: 
+121:           <span class="ruby-identifier">:show_y_labels</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>,
+122:           <span class="ruby-identifier">:rotate_y_labels</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>,
+123:           <span class="ruby-identifier">:stagger_y_labels</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>,
+124:           <span class="ruby-identifier">:scale_integers</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>,
+125: 
+126:           <span class="ruby-identifier">:show_x_title</span>         =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>,
+127:           <span class="ruby-identifier">:x_title</span>              =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'X Field names'</span>,
+128: 
+129:           <span class="ruby-identifier">:show_y_title</span>         =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>,
+130:           <span class="ruby-identifier">:y_title_text_direction</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:bt</span>,
+131:           <span class="ruby-identifier">:y_title</span>              =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'Y Scale'</span>,
+132: 
+133:           <span class="ruby-identifier">:show_graph_title</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>,
+134:           <span class="ruby-identifier">:graph_title</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'Graph Title'</span>,
+135:           <span class="ruby-identifier">:show_graph_subtitle</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>,
+136:           <span class="ruby-identifier">:graph_subtitle</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'Graph Sub Title'</span>,
+137:           <span class="ruby-identifier">:key</span>                  =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>, 
+138:           <span class="ruby-identifier">:key_position</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:right</span>, <span class="ruby-comment cmt"># bottom or right</span>
+139: 
+140:           <span class="ruby-identifier">:font_size</span>            =<span class="ruby-operator">&gt;</span><span class="ruby-value">12</span>,
+141:           <span class="ruby-identifier">:title_font_size</span>      =<span class="ruby-operator">&gt;</span><span class="ruby-value">16</span>,
+142:           <span class="ruby-identifier">:subtitle_font_size</span>   =<span class="ruby-operator">&gt;</span><span class="ruby-value">14</span>,
+143:           <span class="ruby-identifier">:x_label_font_size</span>    =<span class="ruby-operator">&gt;</span><span class="ruby-value">12</span>,
+144:           <span class="ruby-identifier">:x_title_font_size</span>    =<span class="ruby-operator">&gt;</span><span class="ruby-value">14</span>,
+145:           <span class="ruby-identifier">:y_label_font_size</span>    =<span class="ruby-operator">&gt;</span><span class="ruby-value">12</span>,
+146:           <span class="ruby-identifier">:y_title_font_size</span>    =<span class="ruby-operator">&gt;</span><span class="ruby-value">14</span>,
+147:           <span class="ruby-identifier">:key_font_size</span>        =<span class="ruby-operator">&gt;</span><span class="ruby-value">10</span>,
+148:           
+149:           <span class="ruby-identifier">:no_css</span>               =<span class="ruby-operator">&gt;</span><span class="ruby-keyword kw">false</span>,
+150:           <span class="ruby-identifier">:add_popups</span>           =<span class="ruby-operator">&gt;</span><span class="ruby-keyword kw">false</span>,
+151:         })
+152: 
+153:                                 <span class="ruby-identifier">set_defaults</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">methods</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value str">&quot;set_defaults&quot;</span>
+154: 
+155:         <span class="ruby-identifier">init_with</span> <span class="ruby-identifier">config</span>
+156:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000761" class="method-detail">
+        <a name="M000761"></a>
+
+        <div class="method-heading">
+          <a href="#M000761" class="method-signature">
+          <span class="method-name">add_data</span><span class="method-args">(conf)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+This method allows you do add data to the graph object. It can be called
+several times to add more data sets in.
+</p>
+<pre>
+  data_sales_02 = [12, 45, 21];
+
+  graph.add_data({
+    :data =&gt; data_sales_02,
+    :title =&gt; 'Sales 2002'
+  })
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000761-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000761-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/SVG/Graph/Graph.rb, line 168</span>
+168:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_data</span> <span class="ruby-identifier">conf</span>
+169:         <span class="ruby-ivar">@data</span> = [] <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">defined?</span> <span class="ruby-ivar">@data</span>
+170: 
+171:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">conf</span>[<span class="ruby-identifier">:data</span>] <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">conf</span>[<span class="ruby-identifier">:data</span>].<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">Array</span>
+172:           <span class="ruby-ivar">@data</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">conf</span>
+173:         <span class="ruby-keyword kw">else</span>
+174:           <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;No data provided by #{conf.inspect}&quot;</span>
+175:         <span class="ruby-keyword kw">end</span>
+176:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000763" class="method-detail">
+        <a name="M000763"></a>
+
+        <div class="method-heading">
+          <a href="#M000763" class="method-signature">
+          <span class="method-name">burn</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+This method processes the template with the data and config which has been
+set and returns the resulting <a href="../../SVG.html">SVG</a>.
+</p>
+<p>
+This method will croak unless at least one data set has been added to the
+graph object.
+</p>
+<pre>
+  print graph.burn
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000763-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000763-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/SVG/Graph/Graph.rb, line 195</span>
+195:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">burn</span>
+196:         <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;No data available&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@data</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+197:         
+198:         <span class="ruby-identifier">calculations</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">methods</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value str">'calculations'</span>
+199: 
+200:         <span class="ruby-identifier">start_svg</span>
+201:         <span class="ruby-identifier">calculate_graph_dimensions</span>
+202:         <span class="ruby-ivar">@foreground</span> = <span class="ruby-constant">Element</span>.<span class="ruby-identifier">new</span>( <span class="ruby-value str">&quot;g&quot;</span> )
+203:         <span class="ruby-identifier">draw_graph</span>
+204:         <span class="ruby-identifier">draw_titles</span>
+205:         <span class="ruby-identifier">draw_legend</span>
+206:         <span class="ruby-identifier">draw_data</span>
+207:         <span class="ruby-ivar">@graph</span>.<span class="ruby-identifier">add_element</span>( <span class="ruby-ivar">@foreground</span> )
+208:         <span class="ruby-identifier">style</span>
+209: 
+210:         <span class="ruby-identifier">data</span> = <span class="ruby-value str">&quot;&quot;</span>
+211:         <span class="ruby-ivar">@doc</span>.<span class="ruby-identifier">write</span>( <span class="ruby-identifier">data</span>, <span class="ruby-value">0</span> )
+212: 
+213:         <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@config</span>[<span class="ruby-identifier">:compress</span>]
+214:           <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@@__have_zlib</span>
+215:             <span class="ruby-identifier">inp</span>, <span class="ruby-identifier">out</span> = <span class="ruby-constant">IO</span>.<span class="ruby-identifier">pipe</span>
+216:             <span class="ruby-identifier">gz</span> = <span class="ruby-constant">Zlib</span><span class="ruby-operator">::</span><span class="ruby-constant">GzipWriter</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">out</span> )
+217:             <span class="ruby-identifier">gz</span>.<span class="ruby-identifier">write</span> <span class="ruby-identifier">data</span>
+218:             <span class="ruby-identifier">gz</span>.<span class="ruby-identifier">close</span>
+219:             <span class="ruby-identifier">data</span> = <span class="ruby-identifier">inp</span>.<span class="ruby-identifier">read</span>
+220:           <span class="ruby-keyword kw">else</span>
+221:             <span class="ruby-identifier">data</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&lt;!-- Ruby Zlib not available for SVGZ --&gt;&quot;</span>;
+222:           <span class="ruby-keyword kw">end</span>
+223:         <span class="ruby-keyword kw">end</span>
+224:         
+225:         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">data</span>
+226:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000762" class="method-detail">
+        <a name="M000762"></a>
+
+        <div class="method-heading">
+          <a href="#M000762" class="method-signature">
+          <span class="method-name">clear_data</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+This method removes all data from the object so that you can reuse it to
+create a <a href="Graph.html#M000760">new</a> graph but with the same
+config options.
+</p>
+<pre>
+  graph.clear_data
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000762-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000762-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/SVG/Graph/Graph.rb, line 183</span>
+183:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">clear_data</span> 
+184:         <span class="ruby-ivar">@data</span> = []
+185:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Protected Instance methods</h3>
+
+      <div id="method-M000770" class="method-detail">
+        <a name="M000770"></a>
+
+        <div class="method-heading">
+          <a href="#M000770" class="method-signature">
+          <span class="method-name">add_popup</span><span class="method-args">( x, y, label )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Adds pop-up point information to a graph.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000770-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000770-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/SVG/Graph/Graph.rb, line 413</span>
+413:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_popup</span>( <span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">label</span> )
+414:         <span class="ruby-identifier">txt_width</span> = <span class="ruby-identifier">label</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">font_size</span> <span class="ruby-operator">*</span> <span class="ruby-value">0</span><span class="ruby-value">.6</span> <span class="ruby-operator">+</span> <span class="ruby-value">10</span>
+415:         <span class="ruby-identifier">tx</span> = (<span class="ruby-identifier">x</span><span class="ruby-operator">+</span><span class="ruby-identifier">txt_width</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">width</span> <span class="ruby-value">? </span><span class="ruby-identifier">x</span><span class="ruby-operator">-</span><span class="ruby-value">5</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">x</span><span class="ruby-operator">+</span><span class="ruby-value">5</span>)
+416:         <span class="ruby-identifier">t</span> = <span class="ruby-ivar">@foreground</span>.<span class="ruby-identifier">add_element</span>( <span class="ruby-value str">&quot;text&quot;</span>, {
+417:           <span class="ruby-value str">&quot;x&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">tx</span>.<span class="ruby-identifier">to_s</span>,
+418:           <span class="ruby-value str">&quot;y&quot;</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-identifier">y</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">font_size</span>).<span class="ruby-identifier">to_s</span>,
+419:           <span class="ruby-value str">&quot;visibility&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;hidden&quot;</span>,
+420:         })
+421:         <span class="ruby-identifier">t</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">&quot;style&quot;</span>] = <span class="ruby-value str">&quot;fill: #000; &quot;</span><span class="ruby-operator">+</span>
+422:           (<span class="ruby-identifier">x</span><span class="ruby-operator">+</span><span class="ruby-identifier">txt_width</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">width</span> <span class="ruby-value">? </span><span class="ruby-value str">&quot;text-anchor: end;&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-value str">&quot;text-anchor: start;&quot;</span>)
+423:         <span class="ruby-identifier">t</span>.<span class="ruby-identifier">text</span> = <span class="ruby-identifier">label</span>.<span class="ruby-identifier">to_s</span>
+424:         <span class="ruby-identifier">t</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">&quot;id&quot;</span>] = <span class="ruby-identifier">t</span>.<span class="ruby-identifier">object_id</span>.<span class="ruby-identifier">to_s</span>
+425: 
+426:         <span class="ruby-ivar">@foreground</span>.<span class="ruby-identifier">add_element</span>( <span class="ruby-value str">&quot;circle&quot;</span>, {
+427:           <span class="ruby-value str">&quot;cx&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">to_s</span>,
+428:           <span class="ruby-value str">&quot;cy&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">y</span>.<span class="ruby-identifier">to_s</span>,
+429:           <span class="ruby-value str">&quot;r&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;10&quot;</span>,
+430:           <span class="ruby-value str">&quot;style&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;opacity: 0&quot;</span>,
+431:           <span class="ruby-value str">&quot;onmouseover&quot;</span> =<span class="ruby-operator">&gt;</span> 
+432:             <span class="ruby-node">&quot;document.getElementById(#{t.object_id}).setAttribute('visibility', 'visible' )&quot;</span>,
+433:           <span class="ruby-value str">&quot;onmouseout&quot;</span> =<span class="ruby-operator">&gt;</span> 
+434:             <span class="ruby-node">&quot;document.getElementById(#{t.object_id}).setAttribute('visibility', 'hidden' )&quot;</span>,
+435:         })
+436: 
+437:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000771" class="method-detail">
+        <a name="M000771"></a>
+
+        <div class="method-heading">
+          <a href="#M000771" class="method-signature">
+          <span class="method-name">calculate_bottom_margin</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Override this (and call super) to change the margin to the bottom of the
+plot area. Results in @border_bottom being set.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000771-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000771-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/SVG/Graph/Graph.rb, line 442</span>
+442:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">calculate_bottom_margin</span>
+443:         <span class="ruby-ivar">@border_bottom</span> = <span class="ruby-value">7</span>
+444:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">key</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">key_position</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:bottom</span>
+445:           <span class="ruby-ivar">@border_bottom</span> <span class="ruby-operator">+=</span> <span class="ruby-ivar">@data</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">*</span> (<span class="ruby-identifier">font_size</span> <span class="ruby-operator">+</span> <span class="ruby-value">5</span>)
+446:           <span class="ruby-ivar">@border_bottom</span> <span class="ruby-operator">+=</span> <span class="ruby-value">10</span>
+447:         <span class="ruby-keyword kw">end</span>
+448:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">show_x_labels</span>
+449:                   <span class="ruby-identifier">max_x_label_height_px</span> = (<span class="ruby-keyword kw">not</span> <span class="ruby-identifier">rotate_x_labels</span>) <span class="ruby-operator">?</span> 
+450:             <span class="ruby-identifier">x_label_font_size</span> <span class="ruby-operator">:</span>
+451:             <span class="ruby-identifier">get_x_labels</span>.<span class="ruby-identifier">max</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span> 
+452:               <span class="ruby-identifier">a</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">length</span><span class="ruby-operator">&lt;=&gt;</span><span class="ruby-identifier">b</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">length</span>
+453:             }.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">x_label_font_size</span> <span class="ruby-operator">*</span> <span class="ruby-value">0</span><span class="ruby-value">.6</span>
+454:           <span class="ruby-ivar">@border_bottom</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">max_x_label_height_px</span>
+455:           <span class="ruby-ivar">@border_bottom</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">max_x_label_height_px</span> <span class="ruby-operator">+</span> <span class="ruby-value">10</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">stagger_x_labels</span>
+456:         <span class="ruby-keyword kw">end</span>
+457:         <span class="ruby-ivar">@border_bottom</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">x_title_font_size</span> <span class="ruby-operator">+</span> <span class="ruby-value">5</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">show_x_title</span>
+458:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000766" class="method-detail">
+        <a name="M000766"></a>
+
+        <div class="method-heading">
+          <a href="#M000766" class="method-signature">
+          <span class="method-name">calculate_left_margin</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Override this (and call super) to change the margin to the left of the plot
+area. Results in @border_left being set.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000766-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000766-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/SVG/Graph/Graph.rb, line 368</span>
+368:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">calculate_left_margin</span>
+369:         <span class="ruby-ivar">@border_left</span> = <span class="ruby-value">7</span>
+370:         <span class="ruby-comment cmt"># Check for Y labels</span>
+371:         <span class="ruby-identifier">max_y_label_height_px</span> = <span class="ruby-identifier">rotate_y_labels</span> <span class="ruby-value">? </span>
+372:           <span class="ruby-identifier">y_label_font_size</span> <span class="ruby-operator">:</span>
+373:           <span class="ruby-identifier">get_y_labels</span>.<span class="ruby-identifier">max</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span> 
+374:             <span class="ruby-identifier">a</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">length</span><span class="ruby-operator">&lt;=&gt;</span><span class="ruby-identifier">b</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">length</span>
+375:           }.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">y_label_font_size</span> <span class="ruby-operator">*</span> <span class="ruby-value">0</span><span class="ruby-value">.6</span>
+376:         <span class="ruby-ivar">@border_left</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">max_y_label_height_px</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">show_y_labels</span>
+377:         <span class="ruby-ivar">@border_left</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">max_y_label_height_px</span> <span class="ruby-operator">+</span> <span class="ruby-value">10</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">stagger_y_labels</span>
+378:         <span class="ruby-ivar">@border_left</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">y_title_font_size</span> <span class="ruby-operator">+</span> <span class="ruby-value">5</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">show_y_title</span>
+379:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000768" class="method-detail">
+        <a name="M000768"></a>
+
+        <div class="method-heading">
+          <a href="#M000768" class="method-signature">
+          <span class="method-name">calculate_right_margin</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Override this (and call super) to change the margin to the right of the
+plot area. Results in @border_right being set.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000768-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000768-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/SVG/Graph/Graph.rb, line 391</span>
+391:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">calculate_right_margin</span>
+392:         <span class="ruby-ivar">@border_right</span> = <span class="ruby-value">7</span>
+393:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">key</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">key_position</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:right</span>
+394:           <span class="ruby-identifier">val</span> = <span class="ruby-identifier">keys</span>.<span class="ruby-identifier">max</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">length</span> }
+395:           <span class="ruby-ivar">@border_right</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">val</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">key_font_size</span> <span class="ruby-operator">*</span> <span class="ruby-value">0</span><span class="ruby-value">.6</span> 
+396:           <span class="ruby-ivar">@border_right</span> <span class="ruby-operator">+=</span> <span class="ruby-constant">KEY_BOX_SIZE</span>
+397:           <span class="ruby-ivar">@border_right</span> <span class="ruby-operator">+=</span> <span class="ruby-value">10</span>    <span class="ruby-comment cmt"># Some padding around the box</span>
+398:         <span class="ruby-keyword kw">end</span>
+399:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000769" class="method-detail">
+        <a name="M000769"></a>
+
+        <div class="method-heading">
+          <a href="#M000769" class="method-signature">
+          <span class="method-name">calculate_top_margin</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Override this (and call super) to change the margin to the top of the plot
+area. Results in @border_top being set.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000769-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000769-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/SVG/Graph/Graph.rb, line 404</span>
+404:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">calculate_top_margin</span>
+405:         <span class="ruby-ivar">@border_top</span> = <span class="ruby-value">5</span>
+406:         <span class="ruby-ivar">@border_top</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">title_font_size</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">show_graph_title</span>
+407:         <span class="ruby-ivar">@border_top</span> <span class="ruby-operator">+=</span> <span class="ruby-value">5</span>
+408:         <span class="ruby-ivar">@border_top</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">subtitle_font_size</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">show_graph_subtitle</span>
+409:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000772" class="method-detail">
+        <a name="M000772"></a>
+
+        <div class="method-heading">
+          <a href="#M000772" class="method-signature">
+          <span class="method-name">draw_graph</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Draws the background, axis, and labels.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000772-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000772-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/SVG/Graph/Graph.rb, line 462</span>
+462:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">draw_graph</span>
+463:         <span class="ruby-ivar">@graph</span> = <span class="ruby-ivar">@root</span>.<span class="ruby-identifier">add_element</span>( <span class="ruby-value str">&quot;g&quot;</span>, {
+464:           <span class="ruby-value str">&quot;transform&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;translate( #@border_left #@border_top )&quot;</span>
+465:         })
+466: 
+467:         <span class="ruby-comment cmt"># Background</span>
+468:         <span class="ruby-ivar">@graph</span>.<span class="ruby-identifier">add_element</span>( <span class="ruby-value str">&quot;rect&quot;</span>, {
+469:           <span class="ruby-value str">&quot;x&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;0&quot;</span>,
+470:           <span class="ruby-value str">&quot;y&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;0&quot;</span>,
+471:           <span class="ruby-value str">&quot;width&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@graph_width</span>.<span class="ruby-identifier">to_s</span>,
+472:           <span class="ruby-value str">&quot;height&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@graph_height</span>.<span class="ruby-identifier">to_s</span>,
+473:           <span class="ruby-value str">&quot;class&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;graphBackground&quot;</span>
+474:         })
+475: 
+476:         <span class="ruby-comment cmt"># Axis</span>
+477:         <span class="ruby-ivar">@graph</span>.<span class="ruby-identifier">add_element</span>( <span class="ruby-value str">&quot;path&quot;</span>, {
+478:           <span class="ruby-value str">&quot;d&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;M 0 0 v#@graph_height&quot;</span>,
+479:           <span class="ruby-value str">&quot;class&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;axis&quot;</span>,
+480:           <span class="ruby-value str">&quot;id&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;xAxis&quot;</span>
+481:         })
+482:         <span class="ruby-ivar">@graph</span>.<span class="ruby-identifier">add_element</span>( <span class="ruby-value str">&quot;path&quot;</span>, {
+483:           <span class="ruby-value str">&quot;d&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;M 0 #@graph_height h#@graph_width&quot;</span>,
+484:           <span class="ruby-value str">&quot;class&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;axis&quot;</span>,
+485:           <span class="ruby-value str">&quot;id&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;yAxis&quot;</span>
+486:         })
+487: 
+488:         <span class="ruby-identifier">draw_x_labels</span>
+489:         <span class="ruby-identifier">draw_y_labels</span>
+490:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000784" class="method-detail">
+        <a name="M000784"></a>
+
+        <div class="method-heading">
+          <a href="#M000784" class="method-signature">
+          <span class="method-name">draw_legend</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Draws the legend on the graph
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000784-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000784-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/SVG/Graph/Graph.rb, line 710</span>
+710:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">draw_legend</span>
+711:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">key</span>
+712:           <span class="ruby-identifier">group</span> = <span class="ruby-ivar">@root</span>.<span class="ruby-identifier">add_element</span>( <span class="ruby-value str">&quot;g&quot;</span> )
+713: 
+714:           <span class="ruby-identifier">key_count</span> = <span class="ruby-value">0</span>
+715:           <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">key_name</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">keys</span>
+716:             <span class="ruby-identifier">y_offset</span> = (<span class="ruby-constant">KEY_BOX_SIZE</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">key_count</span>) <span class="ruby-operator">+</span> (<span class="ruby-identifier">key_count</span> <span class="ruby-operator">*</span> <span class="ruby-value">5</span>)
+717:             <span class="ruby-identifier">group</span>.<span class="ruby-identifier">add_element</span>( <span class="ruby-value str">&quot;rect&quot;</span>, {
+718:               <span class="ruby-value str">&quot;x&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>.<span class="ruby-identifier">to_s</span>,
+719:               <span class="ruby-value str">&quot;y&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">y_offset</span>.<span class="ruby-identifier">to_s</span>,
+720:               <span class="ruby-value str">&quot;width&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">KEY_BOX_SIZE</span>.<span class="ruby-identifier">to_s</span>,
+721:               <span class="ruby-value str">&quot;height&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">KEY_BOX_SIZE</span>.<span class="ruby-identifier">to_s</span>,
+722:               <span class="ruby-value str">&quot;class&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;key#{key_count+1}&quot;</span>
+723:             })
+724:             <span class="ruby-identifier">group</span>.<span class="ruby-identifier">add_element</span>( <span class="ruby-value str">&quot;text&quot;</span>, {
+725:               <span class="ruby-value str">&quot;x&quot;</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-constant">KEY_BOX_SIZE</span> <span class="ruby-operator">+</span> <span class="ruby-value">5</span>).<span class="ruby-identifier">to_s</span>,
+726:               <span class="ruby-value str">&quot;y&quot;</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-identifier">y_offset</span> <span class="ruby-operator">+</span> <span class="ruby-constant">KEY_BOX_SIZE</span>).<span class="ruby-identifier">to_s</span>,
+727:               <span class="ruby-value str">&quot;class&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;keyText&quot;</span>
+728:             }).<span class="ruby-identifier">text</span> = <span class="ruby-identifier">key_name</span>.<span class="ruby-identifier">to_s</span>
+729:             <span class="ruby-identifier">key_count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+730:           <span class="ruby-keyword kw">end</span>
+731: 
+732:           <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">key_position</span>
+733:           <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:right</span>
+734:             <span class="ruby-identifier">x_offset</span> = <span class="ruby-ivar">@graph_width</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@border_left</span> <span class="ruby-operator">+</span> <span class="ruby-value">10</span>
+735:             <span class="ruby-identifier">y_offset</span> = <span class="ruby-ivar">@border_top</span> <span class="ruby-operator">+</span> <span class="ruby-value">20</span>
+736:           <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:bottom</span>
+737:             <span class="ruby-identifier">x_offset</span> = <span class="ruby-ivar">@border_left</span> <span class="ruby-operator">+</span> <span class="ruby-value">20</span>
+738:             <span class="ruby-identifier">y_offset</span> = <span class="ruby-ivar">@border_top</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@graph_height</span> <span class="ruby-operator">+</span> <span class="ruby-value">5</span>
+739:             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">show_x_labels</span>
+740:                           <span class="ruby-identifier">max_x_label_height_px</span> = (<span class="ruby-keyword kw">not</span> <span class="ruby-identifier">rotate_x_labels</span>) <span class="ruby-operator">?</span> 
+741:                                 <span class="ruby-identifier">x_label_font_size</span> <span class="ruby-operator">:</span>
+742:                                 <span class="ruby-identifier">get_x_labels</span>.<span class="ruby-identifier">max</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span> 
+743:                                   <span class="ruby-identifier">a</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">length</span><span class="ruby-operator">&lt;=&gt;</span><span class="ruby-identifier">b</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">length</span>
+744:                                 }.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">x_label_font_size</span> <span class="ruby-operator">*</span> <span class="ruby-value">0</span><span class="ruby-value">.6</span>
+745:                 <span class="ruby-identifier">x_label_font_size</span>
+746:               <span class="ruby-identifier">y_offset</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">max_x_label_height_px</span>
+747:               <span class="ruby-identifier">y_offset</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">max_x_label_height_px</span> <span class="ruby-operator">+</span> <span class="ruby-value">5</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">stagger_x_labels</span>
+748:             <span class="ruby-keyword kw">end</span>
+749:             <span class="ruby-identifier">y_offset</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">x_title_font_size</span> <span class="ruby-operator">+</span> <span class="ruby-value">5</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">show_x_title</span>
+750:           <span class="ruby-keyword kw">end</span>
+751:           <span class="ruby-identifier">group</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">&quot;transform&quot;</span>] = <span class="ruby-node">&quot;translate(#{x_offset} #{y_offset})&quot;</span>
+752:         <span class="ruby-keyword kw">end</span>
+753:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000782" class="method-detail">
+        <a name="M000782"></a>
+
+        <div class="method-heading">
+          <a href="#M000782" class="method-signature">
+          <span class="method-name">draw_titles</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Draws the graph title and subtitle
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000782-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000782-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/SVG/Graph/Graph.rb, line 652</span>
+652:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">draw_titles</span>
+653:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">show_graph_title</span>
+654:           <span class="ruby-ivar">@root</span>.<span class="ruby-identifier">add_element</span>( <span class="ruby-value str">&quot;text&quot;</span>, {
+655:             <span class="ruby-value str">&quot;x&quot;</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-identifier">width</span> <span class="ruby-operator">/</span> <span class="ruby-value">2</span>).<span class="ruby-identifier">to_s</span>,
+656:             <span class="ruby-value str">&quot;y&quot;</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-identifier">title_font_size</span>).<span class="ruby-identifier">to_s</span>,
+657:             <span class="ruby-value str">&quot;class&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;mainTitle&quot;</span>
+658:           }).<span class="ruby-identifier">text</span> = <span class="ruby-identifier">graph_title</span>.<span class="ruby-identifier">to_s</span>
+659:         <span class="ruby-keyword kw">end</span>
+660: 
+661:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">show_graph_subtitle</span>
+662:           <span class="ruby-identifier">y_subtitle</span> = <span class="ruby-identifier">show_graph_title</span> <span class="ruby-value">? </span>
+663:             <span class="ruby-identifier">title_font_size</span> <span class="ruby-operator">+</span> <span class="ruby-value">10</span> <span class="ruby-operator">:</span>
+664:             <span class="ruby-identifier">subtitle_font_size</span>
+665:           <span class="ruby-ivar">@root</span>.<span class="ruby-identifier">add_element</span>(<span class="ruby-value str">&quot;text&quot;</span>, {
+666:             <span class="ruby-value str">&quot;x&quot;</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-identifier">width</span> <span class="ruby-operator">/</span> <span class="ruby-value">2</span>).<span class="ruby-identifier">to_s</span>,
+667:             <span class="ruby-value str">&quot;y&quot;</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-identifier">y_subtitle</span>).<span class="ruby-identifier">to_s</span>,
+668:             <span class="ruby-value str">&quot;class&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;subTitle&quot;</span>
+669:           }).<span class="ruby-identifier">text</span> = <span class="ruby-identifier">graph_subtitle</span>.<span class="ruby-identifier">to_s</span>
+670:         <span class="ruby-keyword kw">end</span>
+671: 
+672:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">show_x_title</span>
+673:           <span class="ruby-identifier">y</span> = <span class="ruby-ivar">@graph_height</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@border_top</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">x_title_font_size</span>
+674:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">show_x_labels</span>
+675:             <span class="ruby-identifier">y</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">x_label_font_size</span> <span class="ruby-operator">+</span> <span class="ruby-value">5</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">stagger_x_labels</span>
+676:             <span class="ruby-identifier">y</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">x_label_font_size</span> <span class="ruby-operator">+</span> <span class="ruby-value">5</span>
+677:           <span class="ruby-keyword kw">end</span>
+678:           <span class="ruby-identifier">x</span> = <span class="ruby-identifier">width</span> <span class="ruby-operator">/</span> <span class="ruby-value">2</span>
+679: 
+680:           <span class="ruby-ivar">@root</span>.<span class="ruby-identifier">add_element</span>(<span class="ruby-value str">&quot;text&quot;</span>, {
+681:             <span class="ruby-value str">&quot;x&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">to_s</span>,
+682:             <span class="ruby-value str">&quot;y&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">y</span>.<span class="ruby-identifier">to_s</span>,
+683:             <span class="ruby-value str">&quot;class&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;xAxisTitle&quot;</span>,
+684:           }).<span class="ruby-identifier">text</span> = <span class="ruby-identifier">x_title</span>.<span class="ruby-identifier">to_s</span>
+685:         <span class="ruby-keyword kw">end</span>
+686: 
+687:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">show_y_title</span>
+688:           <span class="ruby-identifier">x</span> = <span class="ruby-identifier">y_title_font_size</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">y_title_text_direction</span><span class="ruby-operator">==</span><span class="ruby-identifier">:bt</span> <span class="ruby-operator">?</span> <span class="ruby-value">3</span> <span class="ruby-operator">:</span> <span class="ruby-value">-3</span>)
+689:           <span class="ruby-identifier">y</span> = <span class="ruby-identifier">height</span> <span class="ruby-operator">/</span> <span class="ruby-value">2</span>
+690: 
+691:           <span class="ruby-identifier">text</span> = <span class="ruby-ivar">@root</span>.<span class="ruby-identifier">add_element</span>(<span class="ruby-value str">&quot;text&quot;</span>, {
+692:             <span class="ruby-value str">&quot;x&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">to_s</span>,
+693:             <span class="ruby-value str">&quot;y&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">y</span>.<span class="ruby-identifier">to_s</span>,
+694:             <span class="ruby-value str">&quot;class&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;yAxisTitle&quot;</span>,
+695:           })
+696:           <span class="ruby-identifier">text</span>.<span class="ruby-identifier">text</span> = <span class="ruby-identifier">y_title</span>.<span class="ruby-identifier">to_s</span>
+697:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">y_title_text_direction</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:bt</span>
+698:             <span class="ruby-identifier">text</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">&quot;transform&quot;</span>] = <span class="ruby-node">&quot;rotate( -90, #{x}, #{y} )&quot;</span>
+699:           <span class="ruby-keyword kw">else</span>
+700:             <span class="ruby-identifier">text</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">&quot;transform&quot;</span>] = <span class="ruby-node">&quot;rotate( 90, #{x}, #{y} )&quot;</span>
+701:           <span class="ruby-keyword kw">end</span>
+702:         <span class="ruby-keyword kw">end</span>
+703:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000780" class="method-detail">
+        <a name="M000780"></a>
+
+        <div class="method-heading">
+          <a href="#M000780" class="method-signature">
+          <span class="method-name">draw_x_guidelines</span><span class="method-args">( label_height, count )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Draws the X axis guidelines
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000780-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000780-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/SVG/Graph/Graph.rb, line 630</span>
+630:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">draw_x_guidelines</span>( <span class="ruby-identifier">label_height</span>, <span class="ruby-identifier">count</span> )
+631:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">count</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+632:           <span class="ruby-ivar">@graph</span>.<span class="ruby-identifier">add_element</span>( <span class="ruby-value str">&quot;path&quot;</span>, {
+633:             <span class="ruby-value str">&quot;d&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;M#{label_height*count} 0 v#@graph_height&quot;</span>,
+634:             <span class="ruby-value str">&quot;class&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;guideLines&quot;</span>
+635:           })
+636:         <span class="ruby-keyword kw">end</span>
+637:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000775" class="method-detail">
+        <a name="M000775"></a>
+
+        <div class="method-heading">
+          <a href="#M000775" class="method-signature">
+          <span class="method-name">draw_x_labels</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Draws the X axis labels
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000775-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000775-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/SVG/Graph/Graph.rb, line 519</span>
+519:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">draw_x_labels</span>
+520:         <span class="ruby-identifier">stagger</span> = <span class="ruby-identifier">x_label_font_size</span> <span class="ruby-operator">+</span> <span class="ruby-value">5</span>
+521:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">show_x_labels</span>
+522:           <span class="ruby-identifier">label_width</span> = <span class="ruby-identifier">field_width</span>
+523: 
+524:           <span class="ruby-identifier">count</span> = <span class="ruby-value">0</span>
+525:           <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">label</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">get_x_labels</span>
+526:             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">step_include_first_x_label</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">true</span> <span class="ruby-keyword kw">then</span>
+527:               <span class="ruby-identifier">step</span> = <span class="ruby-identifier">count</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">step_x_labels</span>
+528:             <span class="ruby-keyword kw">else</span>
+529:               <span class="ruby-identifier">step</span> = (<span class="ruby-identifier">count</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>) <span class="ruby-operator">%</span> <span class="ruby-identifier">step_x_labels</span>
+530:             <span class="ruby-keyword kw">end</span>
+531: 
+532:             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">step</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span> <span class="ruby-keyword kw">then</span>
+533:               <span class="ruby-identifier">text</span> = <span class="ruby-ivar">@graph</span>.<span class="ruby-identifier">add_element</span>( <span class="ruby-value str">&quot;text&quot;</span> )
+534:               <span class="ruby-identifier">text</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">&quot;class&quot;</span>] = <span class="ruby-value str">&quot;xAxisLabels&quot;</span>
+535:               <span class="ruby-identifier">text</span>.<span class="ruby-identifier">text</span> = <span class="ruby-identifier">label</span>.<span class="ruby-identifier">to_s</span>
+536: 
+537:               <span class="ruby-identifier">x</span> = <span class="ruby-identifier">count</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">label_width</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">x_label_offset</span>( <span class="ruby-identifier">label_width</span> )
+538:               <span class="ruby-identifier">y</span> = <span class="ruby-ivar">@graph_height</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">x_label_font_size</span> <span class="ruby-operator">+</span> <span class="ruby-value">3</span>
+539:               <span class="ruby-identifier">t</span> = <span class="ruby-value">0</span> <span class="ruby-operator">-</span> (<span class="ruby-identifier">font_size</span> <span class="ruby-operator">/</span> <span class="ruby-value">2</span>)
+540: 
+541:               <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">stagger_x_labels</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">count</span> <span class="ruby-operator">%</span> <span class="ruby-value">2</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+542:                 <span class="ruby-identifier">y</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">stagger</span>
+543:                 <span class="ruby-ivar">@graph</span>.<span class="ruby-identifier">add_element</span>( <span class="ruby-value str">&quot;path&quot;</span>, {
+544:                   <span class="ruby-value str">&quot;d&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;M#{x} #@graph_height v#{stagger}&quot;</span>,
+545:                   <span class="ruby-value str">&quot;class&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;staggerGuideLine&quot;</span>
+546:                 })
+547:               <span class="ruby-keyword kw">end</span>
+548: 
+549:               <span class="ruby-identifier">text</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">&quot;x&quot;</span>] = <span class="ruby-identifier">x</span>.<span class="ruby-identifier">to_s</span>
+550:               <span class="ruby-identifier">text</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">&quot;y&quot;</span>] = <span class="ruby-identifier">y</span>.<span class="ruby-identifier">to_s</span>
+551:               <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">rotate_x_labels</span>
+552:                 <span class="ruby-identifier">text</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">&quot;transform&quot;</span>] = 
+553:                   <span class="ruby-node">&quot;rotate( 90 #{x} #{y-x_label_font_size} )&quot;</span><span class="ruby-operator">+</span>
+554:                   <span class="ruby-node">&quot; translate( 0 -#{x_label_font_size/4} )&quot;</span>
+555:                 <span class="ruby-identifier">text</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">&quot;style&quot;</span>] = <span class="ruby-value str">&quot;text-anchor: start&quot;</span>
+556:               <span class="ruby-keyword kw">else</span>
+557:                 <span class="ruby-identifier">text</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">&quot;style&quot;</span>] = <span class="ruby-value str">&quot;text-anchor: middle&quot;</span>
+558:               <span class="ruby-keyword kw">end</span>
+559:             <span class="ruby-keyword kw">end</span>
+560: 
+561:             <span class="ruby-identifier">draw_x_guidelines</span>( <span class="ruby-identifier">label_width</span>, <span class="ruby-identifier">count</span> ) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">show_x_guidelines</span>
+562:             <span class="ruby-identifier">count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+563:           <span class="ruby-keyword kw">end</span>
+564:         <span class="ruby-keyword kw">end</span>
+565:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000781" class="method-detail">
+        <a name="M000781"></a>
+
+        <div class="method-heading">
+          <a href="#M000781" class="method-signature">
+          <span class="method-name">draw_y_guidelines</span><span class="method-args">( label_height, count )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Draws the Y axis guidelines
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000781-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000781-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/SVG/Graph/Graph.rb, line 641</span>
+641:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">draw_y_guidelines</span>( <span class="ruby-identifier">label_height</span>, <span class="ruby-identifier">count</span> )
+642:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">count</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+643:           <span class="ruby-ivar">@graph</span>.<span class="ruby-identifier">add_element</span>( <span class="ruby-value str">&quot;path&quot;</span>, {
+644:             <span class="ruby-value str">&quot;d&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;M0 #{@graph_height-(label_height*count)} h#@graph_width&quot;</span>,
+645:             <span class="ruby-value str">&quot;class&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;guideLines&quot;</span>
+646:           })
+647:         <span class="ruby-keyword kw">end</span>
+648:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000779" class="method-detail">
+        <a name="M000779"></a>
+
+        <div class="method-heading">
+          <a href="#M000779" class="method-signature">
+          <span class="method-name">draw_y_labels</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Draws the Y axis labels
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000779-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000779-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/SVG/Graph/Graph.rb, line 588</span>
+588:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">draw_y_labels</span>
+589:         <span class="ruby-identifier">stagger</span> = <span class="ruby-identifier">y_label_font_size</span> <span class="ruby-operator">+</span> <span class="ruby-value">5</span>
+590:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">show_y_labels</span>
+591:           <span class="ruby-identifier">label_height</span> = <span class="ruby-identifier">field_height</span>
+592: 
+593:           <span class="ruby-identifier">count</span> = <span class="ruby-value">0</span>
+594:           <span class="ruby-identifier">y_offset</span> = <span class="ruby-ivar">@graph_height</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">y_label_offset</span>( <span class="ruby-identifier">label_height</span> )
+595:           <span class="ruby-identifier">y_offset</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">font_size</span><span class="ruby-operator">/</span><span class="ruby-value">1.2</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">rotate_y_labels</span>
+596:           <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">label</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">get_y_labels</span>
+597:             <span class="ruby-identifier">y</span> = <span class="ruby-identifier">y_offset</span> <span class="ruby-operator">-</span> (<span class="ruby-identifier">label_height</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">count</span>)
+598:             <span class="ruby-identifier">x</span> = <span class="ruby-identifier">rotate_y_labels</span> <span class="ruby-value">? </span><span class="ruby-value">0</span> <span class="ruby-operator">:</span> <span class="ruby-value">-3</span>
+599: 
+600:             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">stagger_y_labels</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">count</span> <span class="ruby-operator">%</span> <span class="ruby-value">2</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+601:               <span class="ruby-identifier">x</span> <span class="ruby-operator">-=</span> <span class="ruby-identifier">stagger</span>
+602:               <span class="ruby-ivar">@graph</span>.<span class="ruby-identifier">add_element</span>( <span class="ruby-value str">&quot;path&quot;</span>, {
+603:                 <span class="ruby-value str">&quot;d&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;M#{x} #{y} h#{stagger}&quot;</span>,
+604:                 <span class="ruby-value str">&quot;class&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;staggerGuideLine&quot;</span>
+605:               })
+606:             <span class="ruby-keyword kw">end</span>
+607: 
+608:             <span class="ruby-identifier">text</span> = <span class="ruby-ivar">@graph</span>.<span class="ruby-identifier">add_element</span>( <span class="ruby-value str">&quot;text&quot;</span>, {
+609:               <span class="ruby-value str">&quot;x&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">to_s</span>,
+610:               <span class="ruby-value str">&quot;y&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">y</span>.<span class="ruby-identifier">to_s</span>,
+611:               <span class="ruby-value str">&quot;class&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;yAxisLabels&quot;</span>
+612:             })
+613:             <span class="ruby-identifier">text</span>.<span class="ruby-identifier">text</span> = <span class="ruby-identifier">label</span>.<span class="ruby-identifier">to_s</span>
+614:             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">rotate_y_labels</span>
+615:               <span class="ruby-identifier">text</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">&quot;transform&quot;</span>] = <span class="ruby-node">&quot;translate( -#{font_size} 0 ) &quot;</span><span class="ruby-operator">+</span>
+616:                 <span class="ruby-node">&quot;rotate( 90 #{x} #{y} ) &quot;</span>
+617:               <span class="ruby-identifier">text</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">&quot;style&quot;</span>] = <span class="ruby-value str">&quot;text-anchor: middle&quot;</span>
+618:             <span class="ruby-keyword kw">else</span>
+619:               <span class="ruby-identifier">text</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">&quot;y&quot;</span>] = (<span class="ruby-identifier">y</span> <span class="ruby-operator">-</span> (<span class="ruby-identifier">y_label_font_size</span><span class="ruby-operator">/</span><span class="ruby-value">2</span>)).<span class="ruby-identifier">to_s</span>
+620:               <span class="ruby-identifier">text</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">&quot;style&quot;</span>] = <span class="ruby-value str">&quot;text-anchor: end&quot;</span>
+621:             <span class="ruby-keyword kw">end</span>
+622:             <span class="ruby-identifier">draw_y_guidelines</span>( <span class="ruby-identifier">label_height</span>, <span class="ruby-identifier">count</span> ) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">show_y_guidelines</span>
+623:             <span class="ruby-identifier">count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+624:           <span class="ruby-keyword kw">end</span>
+625:         <span class="ruby-keyword kw">end</span>
+626:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000778" class="method-detail">
+        <a name="M000778"></a>
+
+        <div class="method-heading">
+          <a href="#M000778" class="method-signature">
+          <span class="method-name">field_height</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000778-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000778-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/SVG/Graph/Graph.rb, line 581</span>
+581:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">field_height</span>
+582:         (<span class="ruby-ivar">@graph_height</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">font_size</span><span class="ruby-operator">*</span><span class="ruby-value">2</span><span class="ruby-operator">*</span><span class="ruby-identifier">top_font</span>) <span class="ruby-operator">/</span>
+583:            (<span class="ruby-identifier">get_y_labels</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">top_align</span>)
+584:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000777" class="method-detail">
+        <a name="M000777"></a>
+
+        <div class="method-heading">
+          <a href="#M000777" class="method-signature">
+          <span class="method-name">field_width</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000777-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000777-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/SVG/Graph/Graph.rb, line 575</span>
+575:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">field_width</span>
+576:         (<span class="ruby-ivar">@graph_width</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">font_size</span><span class="ruby-operator">*</span><span class="ruby-value">2</span><span class="ruby-operator">*</span><span class="ruby-identifier">right_font</span>) <span class="ruby-operator">/</span>
+577:            (<span class="ruby-identifier">get_x_labels</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">right_align</span>)
+578:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000765" class="method-detail">
+        <a name="M000765"></a>
+
+        <div class="method-heading">
+          <a href="#M000765" class="method-signature">
+          <span class="method-name">init_with</span><span class="method-args">(config)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Overwrite configuration options with supplied options. Used by subclasses.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000765-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000765-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/SVG/Graph/Graph.rb, line 356</span>
+356:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">init_with</span> <span class="ruby-identifier">config</span>
+357:         <span class="ruby-identifier">config</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+358:           <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">send</span>( <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span><span class="ruby-operator">+</span><span class="ruby-value str">&quot;=&quot;</span>, <span class="ruby-identifier">value</span> ) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">methods</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>
+359:         }
+360:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000783" class="method-detail">
+        <a name="M000783"></a>
+
+        <div class="method-heading">
+          <a href="#M000783" class="method-signature">
+          <span class="method-name">keys</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000783-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000783-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/SVG/Graph/Graph.rb, line 705</span>
+705:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">keys</span> 
+706:         <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@data</span>.<span class="ruby-identifier">collect</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">d</span><span class="ruby-operator">|</span> <span class="ruby-identifier">d</span>[<span class="ruby-identifier">:title</span>] }
+707:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000774" class="method-detail">
+        <a name="M000774"></a>
+
+        <div class="method-heading">
+          <a href="#M000774" class="method-signature">
+          <span class="method-name">make_datapoint_text</span><span class="method-args">( x, y, value, style=&quot;&quot; )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000774-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000774-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/SVG/Graph/Graph.rb, line 499</span>
+499:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">make_datapoint_text</span>( <span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">value</span>, <span class="ruby-identifier">style</span>=<span class="ruby-value str">&quot;&quot;</span> )
+500:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">show_data_values</span>
+501:           <span class="ruby-ivar">@foreground</span>.<span class="ruby-identifier">add_element</span>( <span class="ruby-value str">&quot;text&quot;</span>, {
+502:             <span class="ruby-value str">&quot;x&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">to_s</span>,
+503:             <span class="ruby-value str">&quot;y&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">y</span>.<span class="ruby-identifier">to_s</span>,
+504:             <span class="ruby-value str">&quot;class&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;dataPointLabel&quot;</span>,
+505:             <span class="ruby-value str">&quot;style&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{style} stroke: #fff; stroke-width: 2;&quot;</span>
+506:           }).<span class="ruby-identifier">text</span> = <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_s</span>
+507:           <span class="ruby-identifier">text</span> = <span class="ruby-ivar">@foreground</span>.<span class="ruby-identifier">add_element</span>( <span class="ruby-value str">&quot;text&quot;</span>, {
+508:             <span class="ruby-value str">&quot;x&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">to_s</span>,
+509:             <span class="ruby-value str">&quot;y&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">y</span>.<span class="ruby-identifier">to_s</span>,
+510:             <span class="ruby-value str">&quot;class&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;dataPointLabel&quot;</span>
+511:           })
+512:           <span class="ruby-identifier">text</span>.<span class="ruby-identifier">text</span> = <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_s</span>
+513:           <span class="ruby-identifier">text</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">&quot;style&quot;</span>] = <span class="ruby-identifier">style</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">style</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+514:         <span class="ruby-keyword kw">end</span>
+515:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000767" class="method-detail">
+        <a name="M000767"></a>
+
+        <div class="method-heading">
+          <a href="#M000767" class="method-signature">
+          <span class="method-name">max_y_label_width_px</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Calculates the width of the widest Y label. This will be the character
+height if the Y labels are rotated
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000767-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000767-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/SVG/Graph/Graph.rb, line 384</span>
+384:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">max_y_label_width_px</span>
+385:         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">font_size</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">rotate_y_labels</span>
+386:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000764" class="method-detail">
+        <a name="M000764"></a>
+
+        <div class="method-heading">
+          <a href="#M000764" class="method-signature">
+          <span class="method-name">sort</span><span class="method-args">( *arrys )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000764-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000764-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/SVG/Graph/Graph.rb, line 350</span>
+350:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sort</span>( <span class="ruby-operator">*</span><span class="ruby-identifier">arrys</span> )
+351:         <span class="ruby-identifier">sort_multiple</span>( <span class="ruby-identifier">arrys</span> )
+352:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000773" class="method-detail">
+        <a name="M000773"></a>
+
+        <div class="method-heading">
+          <a href="#M000773" class="method-signature">
+          <span class="method-name">x_label_offset</span><span class="method-args">( width )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Where in the X area the label is drawn Centered in the field, should be
+width/2. Start, 0.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000773-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000773-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/SVG/Graph/Graph.rb, line 495</span>
+495:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">x_label_offset</span>( <span class="ruby-identifier">width</span> )
+496:         <span class="ruby-value">0</span>
+497:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000776" class="method-detail">
+        <a name="M000776"></a>
+
+        <div class="method-heading">
+          <a href="#M000776" class="method-signature">
+          <span class="method-name">y_label_offset</span><span class="method-args">( height )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Where in the Y area the label is drawn Centered in the field, should be
+width/2. Start, 0.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000776-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000776-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/SVG/Graph/Graph.rb, line 570</span>
+570:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">y_label_offset</span>( <span class="ruby-identifier">height</span> )
+571:         <span class="ruby-value">0</span>
+572:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>
