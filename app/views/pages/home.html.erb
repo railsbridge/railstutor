@@ -8,7 +8,9 @@
 	<div id="recent_topics">
 		<%= image_tag('recently_updated_title.png', :alt => 'Recently Updated') %>
 		<ul>
-			<li><%= "Windows Installation" %></li>
+			<% @most_recent.each do |m| %>
+				<li><%= link_to m.pretty_title, "/projects/#{m.project.identifier}/wiki/#{m.title}" %></li>
+			<% end %>
 		</ul>
 	</div>
 </div>
