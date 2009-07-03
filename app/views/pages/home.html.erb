@@ -9,7 +9,7 @@
 		<%= image_tag('recently_updated_title.png', :alt => 'Recently Updated') %>
 		<ul>
 			<% @most_recent.each do |m| %>
-				<li><%= link_to m.pretty_title, "/projects/#{m.project.identifier}/wiki/#{m.title}" %></li>
+				<li><%= link_to m.pretty_title, :controller => 'wiki', :action => 'index', :page => m.title, :id => m.wiki.project %></li>
 			<% end %>
 		</ul>
 	</div>
