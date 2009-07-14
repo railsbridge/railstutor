@@ -47,9 +47,10 @@ namespace :localize do
 
   desc "link shared file storage to current"
   task :link_shared_file_storage, :roles => [:app] do
+    run "rm #{current_path}/files/delete.me"
+    run "rmdir #{current_path}/files"
     run "ln -nsf #{shared_path}/files #{current_path}/files"
   end
-
 end
 
 after "deploy:symlink", "localize:copy_shared_configurations", "localize:link_shared_file_storage", "deploy:cleanup"
