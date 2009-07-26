@@ -13,6 +13,14 @@
 			<% end %>
 		</ul>
 	</div>
+	<div id="donate">
+		<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+		<input type="hidden" name="cmd" value="_s-xclick">
+		<input type="hidden" name="hosted_button_id" value="7054082">
+		<input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+		<img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+		</form>
+	</div>
 </div>
 
 <div id="home_page_middle">
@@ -28,7 +36,7 @@
 			<li><strong>Be an editor</strong>: Courseware topics need a "once over" before they are considered complete. If you have a gift for editing (either copy or technical), then create an account and look for those articles with "Awaiting Review" next to their titles on the course outlines.</li>
 			<li><strong>Report errors and omissions</strong>: We're only human, and we can't know everything. If we've made a mistake, or if new updates to Rails or a plugin has rendered something in the courseware invalid, we want to know! Also, if you're a new developer and you find some aspect of the courseware confusing, we'd like to know that, too. Just report it to <%= mail_to 'dana@sterlingrosedesign.com', 'Dana Jones' %> and we'll get it fixed. Similarly, if you know of a good source of <%= link_to 'supplementary material', 'projects/rails-tutor/wiki/Courseware_Source_Materials' %> that's not listed, please add it!</li>
 			<li><strong>Publicize Rails Tutor</strong>: Mention the Rails Tutor website on your Twitter stream, blog, in your conference talk, or anywhere else you might reach beginning developers and those who want to help them.</li>
-			<li><strong>Monetary Contribution</strong>: RailsBridge - the parent of Rails Tutor - has applied for 501c3 status, but this has not yet been granted. We welcome contributions to RailsBridge for our efforts, though they would not yet be tax-deductible.</li>
+			<li><strong>Monetary Contribution</strong>: RailsBridge - the parent of Rails Tutor - has applied for 501c3 status, but this has not yet been granted. We <mail_to 'donations@railsbridge.org', 'welcome contributions to RailsBridge' %> for our efforts, though they would not yet be tax-deductible.</li>
 		</ul>
 		This courseware is still under development, and we welcome those experienced developers who want to contribute. We need writers, editors, and technical editors. If you want to participate, please contact the program coordinator, <%= mail_to 'dana@sterlingrosedesign.com', 'Dana Jones' %> or <%= link_to 'join the railstutor Google Group', 'http://groups.google.com/group/railstutor' %>.
 	</div>
